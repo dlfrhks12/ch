@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentMapper">
+	<!-- findAllByBno, findById, insert, update, delete -->
+	<select id="findAllByBno" resultType="Comment">
+		select b_no bno, c_no cno, c_writer writer, c_content content, c_write_time writeTime
+		from comments
+		where  b_no=#{bno} order by c_no desc
+	</select>
+	<select id="findById" resultType="Comment">
+		select b_no bno, c_no cno, c_writer writer, c_content content,c_write_time writeTime
+		from comments
+		where c_no = #{cno} and rownum = 1
+	</select>
+	<insert id="insert">
+		<selectKey keyProperty="cno" resultType="int" order="BEFORE">
+			select comments_seq.nextval from dual
+		</selectKey>
+		insert into comments(c_no,b_no,c_writer,c_content,c_write_time)
+		values(#{cno},#{bno},#{writer},#{content},sysdate)
+	</insert>
+	<update id="update">
+		update comments 
+		<trim suffixOverrides="," prefix="set">
+			<if test="writer!=null">c_writer=#{writer},</if>
+			<if test="content!=null">c_content=#{content},</if>
+			<if test="writeTime">c_write_time=#{writeTime},</if>
+		</trim>
+		where c_no = #{cno} and rownum = 1
+	</update>
+	<delete id="delete">
+		delete from comments where c_no=#{cno} and rownum=1
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

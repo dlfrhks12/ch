@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- connection pool을 hikari에서 apache dbcp2 -->
+	<!-- 
+		Connection Pool의 개념
+			https://devbox.tistory.com/entry/JSP-%EC%BB%A4%EB%84%A5%EC%85%98-%ED%92%80-1
+		DBCP2 설정
+			https://d2.naver.com/helloworld/5102792
+	-->
+	<!--
+		javax.sql.DataSource : 커넥션풀에서 사용하는 연결의 wrapper 클래스
+	--> 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+		<property name="username" value="cheat" />
+		<property name="password" value="1234" />		
+		<property name="maxTotal" value="10" />			<!-- 최대 활성 연결수 -->
+		<property name="maxIdle" value="10" />			<!-- 최대 비활성 연결수 -->
+		<property name="maxWaitMillis" value="3000" />	<!-- Connection이 모두 사용중일때 최대 대기 시간을 3초로 지정 -->
+	</bean>
+ 	
+ 	<!-- 
+ 		mybatis와 오라클을 연결하는 SqlSession을 만드는 공장 클래스 생성
+ 		SqlSession으로 DB 작업을 할 수도 있지만 사용 후 매번 close()를 시켜야 한다
+ 	 -->
+ 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+ 		<property name="dataSource" ref="dataSource" />
+ 		<property name="mapperLocations" value="classpath:/mapper/*.xml" />
+ 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
+ 	</bean>
+ 	
+ 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+ 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+ 	</bean>		
+
+	<bean id="modelMapper" class="org.modelmapper.ModelMapper" />
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+	
+	<!-- 자바메일을 지원하는 스프링 메일 설정 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="username" value="dlfrhks12@gmail.com" />
+		<property name="password" value="wlwhsdl1!!" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.host">smtp.gmail.com</prop>
+				<prop key="mail.smtp.port">465</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				<prop key="mail.smtp.socketFactory.port">465</prop>
+				<prop key="mail.smtp.socketFactory.fallback">false</prop>
+				<prop key="mail.smtp.auth">true</prop> 
+				<prop key="mail.smtp.timeout">8500</prop>
+				<!-- log를 보고 싶다면 true. false로 하면 메일 관련 메시지가 나오지 않는다 -->
+				<prop key="mail.debug">true</prop>	
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="mailUtil" class="com.icia.cheatingday.util.MailUtil" />
+
+	
+	<bean id="filterMultipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <property name="maxUploadSize" value="1048576" />
+	</bean>
+	
+	<!-- 
+		DAO를 생성하는 방법
+			클래스의 경우 @Repository를 통해 스프링이 빈 생성
+			인터페이스의 경우 마이바티스가 빈 생성 -> 마이바티스에 검색할 패키지를 지정해야 한다
+	 -->
+	<mybatis-spring:scan base-package="com.icia.cheatingdat.notice.dao"/>
+	<mybatis-spring:scan base-package="com.icia.cheatingday.freeboard.dao"/> 
+	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
+
+	<context:component-scan base-package="com.icia.cheatingday">
+		<context:exclude-filter type="annotation" 
+			expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<task:executor id="scheduledExecutor" pool-size="20"/>
+	<task:annotation-driven executor="scheduledExecutor" />
+</beans>

@@ -1,0 +1,55 @@
+================ 예시 commit ================
+작성날짜 : 2020.06.24
+작성내용 : 회원가입 dao,dto,controller 
+변경내용 : dao name => irum으로 변경
+추가예정 내용 : service
+================ 공통 commit ================
+2020.06.24
+SQL 추가
+2020.06.25
+mapper폴더 추가(freeboardMapper 추가)
+Page dto 리스트입력
+
+
+
+================ 메인 commit ================
+================ 회원 commit =================
+2020.06.25
+user Entity 추가
+user Dao추가
+user Mapper추가
+================ 주문/결제 commit ================
+06.25 16:27
+entity작성
+================ 사업자 commit ================
+06.25.9:54 menu entity/ menu dao 생성
+10:37 mybatis-config.xml : menuentity 생성
+<<<<<<< HEAD
+11:42 menuMapper.xml 작성
+3:50 menudao 생성 menumapper 생성 . 
+4:05 menuDaoTest 생성
+=======
+
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+================ 관리자 commit ================
+2020.06.25
+qna 엔티티 작성
+공지사항 엔티티작성
+입점안내 엔티티작성
+qna게시판 dao작성
+공지사항 dao dto service controller작성
+================ 자유게시판 commit ================
+2020.06.24
+freeboardEntity, Attachment Entity 추가
+commentEntity 추가
+2020.06.25
+freeBaorddao 추가
+freeBoardMapper.xml 추가
+경로 재설정, freeboardtest 추가
+commentDao 추가
+attachment Dao 추가
+commentmapper.xml 추가
+commentTest 실행
+attachmentTest 실행
+freeBoard Test  추가
+freeBoard Service 추가

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		
+	<!-- 스프링 MVC를 기본 설정을 가지고 활성화 -->
+	<annotation-driven />
+
+	<!-- 
+		주소 매핑
+			/* : 모든 요청을 처리
+			/ : @RequestMapping을 걸지 않은 나머지 주소를 처리하는 톰캣의 default servlet이 사용하는 경로
+		/경로를 사용할 경우 html, css, 이미지 등 jsp가 아닌 파일들의 경로가 문제가 된다
+			1. <resource />를 이용해 특정 폴더에 정적 파일들을 저장하는 방식
+			2. <default-servlet-handler/>를 사용하면 / 경로를 내가 사용해도 톰캣의 default servlet은 정상 동작한다	  
+	-->
+	<default-servlet-handler/>
+
+	<!-- 
+		스프링의 프론트 컨트롤러로 입출력을 담당하는 창구는 DispatcherServlet
+		DispatcherServlet이 사용자의 요청을 접수한 다음 HandlerMapping 객체를 시켜 처리할 컨트롤러를 찾는다
+		DispatcherServlet이 결과를 출력할 뷰 페이지의 이름을 찾을 때 ViewResolver 객체를 사용한다  
+	 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<!-- 
+	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
+	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
+	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
+	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
+	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
+	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
+	 -->
+	
+	<!-- 스프링 시큐리티 어노테이션 활성화 -->
+	<security:global-method-security pre-post-annotations="enabled"  secured-annotations="enabled" />
+	
+	<!-- 트랙잭션 관리 객체 생성 -->
+	<beans:bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<!-- 트랙잭션 처리를 위한 어노테이션 활성화 -->
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="txManager"/>
+	
+	<beans:bean id="authenticationInterceptor" class="com.icia.cheatingday.util.interceptor.AuthenticationInterceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/login"/>
+			<mapping path="/user/find_id"/>
+			<mapping path="/user/find_pwd"/>
+			<beans:ref bean="authenticationInterceptor"/>
+		</interceptor>
+	</interceptors>
+</beans:beans>

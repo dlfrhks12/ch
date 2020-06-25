@@ -1,0 +1,732 @@
+/* 관리자 */
+CREATE TABLE admin (
+	a_username VARCHAR2(20) NOT NULL, /* 관리자 아이디 */
+	a_password VARCHAR2(60) NOT NULL, /* 비밀번호 */
+	a_irum NVARCHAR2(10) NOT NULL, /* 이름 */
+	a_enabled NUMBER(1) /* 로그인 여부 */
+);
+
+COMMENT ON TABLE admin IS '관리자';
+
+COMMENT ON COLUMN admin.a_username IS '관리자 아이디';
+
+COMMENT ON COLUMN admin.a_password IS '비밀번호';
+
+COMMENT ON COLUMN admin.a_irum IS '이름';
+
+COMMENT ON COLUMN admin.a_enabled IS '로그인 여부';
+
+CREATE UNIQUE INDEX PK_admin
+	ON admin (
+		a_username ASC
+	);
+
+/* 사업자회원 */
+CREATE TABLE manager (
+	m_num NVARCHAR2(50) NOT NULL, /* 사업자등록번호 */
+	m_password VARCHAR2(60) NOT NULL, /* 비밀번호 */
+	m_username VARCHAR2(20) NOT NULL, /* 아이디 */
+	m_email VARCHAR2(30) NOT NULL, /* 이메일 */
+	m_tel VARCHAR2(11) NOT NULL, /* 사업자 전화번호 */
+	m_account VARCHAR2(20) NOT NULL, /* 전용계좌번호 */
+	m_irum NVARCHAR2(10) NOT NULL, /* 사업자 이름 */
+	s_name NVARCHAR2(20) NOT NULL /* 상호명 */
+);
+
+COMMENT ON TABLE manager IS '사업자회원';
+
+COMMENT ON COLUMN manager.m_num IS '사업자등록번호';
+
+COMMENT ON COLUMN manager.m_password IS '비밀번호';
+
+COMMENT ON COLUMN manager.m_username IS '아이디';
+
+COMMENT ON COLUMN manager.m_email IS '이메일';
+
+COMMENT ON COLUMN manager.m_tel IS '사업자 전화번호';
+
+COMMENT ON COLUMN manager.m_account IS '전용계좌번호';
+
+COMMENT ON COLUMN manager.m_irum IS '사업자 이름';
+
+COMMENT ON COLUMN manager.s_name IS '상호명';
+
+CREATE UNIQUE INDEX PK_manager
+	ON manager (
+		m_num ASC
+	);
+
+/* 일반회원 */
+CREATE TABLE users (
+	u_username VARCHAR2(20) NOT NULL, /* 아이디 */
+	u_irum NVARCHAR2(10) NOT NULL, /* 이름 */
+	u_email VARCHAR2(30) NOT NULL, /* 이메일 */
+	u_tel VARCHAR2(11) NOT NULL, /* 전화번호 */
+	u_address NVARCHAR2(100) NOT NULL, /* 주소 */
+	u_password VARCHAR2(60) NOT NULL, /* 비밀번호 */
+	u_enabled NUMBER(1), /* 활성화여부 */
+	u_joindate DATE NOT NULL, /* 가입일자 */
+	u_point NUMBER(10), /* 포인트 */
+	u_login_fail_cnt NUMBER(1) /* 로그인실패횟수 */
+);
+
+COMMENT ON TABLE users IS '일반회원';
+
+COMMENT ON COLUMN users.u_username IS '아이디';
+
+COMMENT ON COLUMN users.u_irum IS '이름';
+
+COMMENT ON COLUMN users.u_email IS '이메일';
+
+COMMENT ON COLUMN users.u_tel IS '전화번호';
+
+COMMENT ON COLUMN users.u_address IS '주소';
+
+COMMENT ON COLUMN users.u_password IS '비밀번호';
+
+<<<<<<< HEAD
+COMMENT ON COLUMN users.u_enabled IS '활성화여부';
+=======
+COMMENT ON COLUMN users.uenabled IS '활성화여부';
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+
+COMMENT ON COLUMN users.u_joindate IS '가입일자';
+
+COMMENT ON COLUMN users.u_point IS '포인트';
+
+COMMENT ON COLUMN users.u_login_fail_cnt IS '로그인실패횟수';
+
+CREATE UNIQUE INDEX PK_users
+	ON users (
+		u_username ASC
+	);
+
+/* 포인트 */
+CREATE TABLE point (
+	u_username VARCHAR2(20) NOT NULL, /* 아이디 */
+	s_name NVARCHAR2(20) NOT NULL, /* 상호명 */
+<<<<<<< HEAD
+	accumulation_day DATE,/* 적립일 */
+=======
+	accumulation_day DATE, /* 적립일 */
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+	accumulation_sal NUMBER(10) /* 적립금액 */
+);
+
+COMMENT ON TABLE point IS '포인트';
+
+COMMENT ON COLUMN point.u_username IS '아이디';
+
+COMMENT ON COLUMN point.s_name IS '상호명';
+
+COMMENT ON COLUMN point.accumulation_day IS '적립일';
+
+COMMENT ON COLUMN point.accumulation_sal IS '적립금액';
+
+CREATE UNIQUE INDEX PK_point
+	ON point (
+		u_username ASC
+	);
+
+/* 음식점  */
+CREATE TABLE store (
+	s_num NVARCHAR2(50) NOT NULL, /* 음식점 고유번호 */
+	s_review CLOB, /* 해당매장의 리뷰 */
+	s_sajin VARCHAR2(100) NOT NULL, /* 매장사진 */
+	s_info CLOB NOT NULL, /* 매장정보 */
+	s_name NVARCHAR2(20) NOT NULL, /* 상호명 */
+	s_tel VARCHAR2(11) NOT NULL, /* 음식점 전화번호 */
+	s_address NVARCHAR2(100), /* 주소 */
+	food_no NUMBER(10), /* 음식 카테고리 번호 */
+	s_star_point NUMBER(10), /* 별점평균 */
+	s_review_cnt NUMBER(10) /* 리뷰개수 */
+);
+
+COMMENT ON TABLE store IS '음식점 ';
+
+COMMENT ON COLUMN store.s_num IS '음식점 고유번호';
+
+COMMENT ON COLUMN store.s_review IS '해당매장의 리뷰';
+
+COMMENT ON COLUMN store.s_sajin IS '매장사진';
+
+COMMENT ON COLUMN store.s_info IS '매장정보';
+
+COMMENT ON COLUMN store.s_name IS '상호명';
+
+COMMENT ON COLUMN store.s_tel IS '음식점 전화번호';
+
+COMMENT ON COLUMN store.s_address IS '주소';
+
+COMMENT ON COLUMN store.food_no IS '음식 카테고리 번호';
+
+COMMENT ON COLUMN store.s_star_point IS '별점평균';
+
+COMMENT ON COLUMN store.s_review_cnt IS '리뷰개수';
+
+CREATE UNIQUE INDEX PK_store
+	ON store (
+		s_num ASC
+	);
+
+/* 음식 카테고리 */
+CREATE TABLE foodcategory (
+	food_no NUMBER(10) NOT NULL, /* 음식 카테고리 번호 */
+	food_category NVARCHAR2(10) /* 음식카테고리명 */
+);
+
+COMMENT ON TABLE foodcategory IS '음식 카테고리';
+
+COMMENT ON COLUMN foodcategory.food_no IS '음식 카테고리 번호';
+
+COMMENT ON COLUMN foodcategory.food_category IS '음식카테고리명';
+
+CREATE UNIQUE INDEX PK_foodcategory
+	ON foodcategory (
+		food_no ASC
+	);
+
+/* 문의 답변 카테고리 */
+CREATE TABLE qnacategory (
+	q_cano NUMBER(10) NOT NULL, /* 문의카테고리 번호 */
+	q_category NVARCHAR2(60) NOT NULL /* 문의카테고리명 */
+);
+
+COMMENT ON TABLE qnacategory IS '문의 답변 카테고리';
+
+COMMENT ON COLUMN qnacategory.q_cano IS '문의카테고리 번호';
+
+COMMENT ON COLUMN qnacategory.q_category IS '문의카테고리명';
+
+CREATE UNIQUE INDEX PK_qnacategory
+	ON qnacategory (
+		q_cano ASC
+	);
+
+/* 문의답변 */
+CREATE TABLE qna (
+	q_no NUMBER(10) NOT NULL, /* 문의 글번호 */
+	q_username VARCHAR2(20) NOT NULL, /* 아이디 */
+	q_title NVARCHAR2(50) NOT NULL, /* 제목 */
+	q_content CLOB NOT NULL, /* 내용 */
+	q_write_time DATE NOT NULL, /* 작성시간 */
+	q_iscomment NUMBER(1), /* 답변유무 */
+	m_num NVARCHAR2(50), /* 사업자등록번호 */
+	q_cano NUMBER(10) /* 문의카테고리 번호 */
+);
+
+COMMENT ON TABLE qna IS '문의답변';
+
+COMMENT ON COLUMN qna.q_no IS '문의 글번호';
+
+COMMENT ON COLUMN qna.q_username IS '아이디';
+
+COMMENT ON COLUMN qna.q_title IS '제목';
+
+COMMENT ON COLUMN qna.q_content IS '내용';
+
+COMMENT ON COLUMN qna.q_write_time IS '작성시간';
+
+COMMENT ON COLUMN qna.q_iscomment IS '답변유무';
+
+COMMENT ON COLUMN qna.m_num IS '사업자등록번호';
+
+COMMENT ON COLUMN qna.q_cano IS '문의카테고리 번호';
+
+CREATE UNIQUE INDEX PK_qna
+	ON qna (
+		q_no ASC
+	);
+
+/* 공지사항 */
+CREATE TABLE notice (
+	n_no NUMBER(10) NOT NULL, /* 공지사항 글번호 */
+	n_title NVARCHAR2(50) NOT NULL, /* 제목 */
+	n_write_time DATE NOT NULL, /* 작성일 */
+	n_readcnt NUMBER(7) NOT NULL, /* 조회수 */
+	content CLOB NOT NULL, /* 내용 */
+	a_username VARCHAR2(20) /* 관리자 아이디 */
+);
+
+COMMENT ON TABLE notice IS '공지사항';
+
+COMMENT ON COLUMN notice.n_no IS '공지사항 글번호';
+
+COMMENT ON COLUMN notice.n_title IS '제목';
+
+COMMENT ON COLUMN notice.n_write_time IS '작성일';
+
+COMMENT ON COLUMN notice.n_readcnt IS '조회수';
+
+COMMENT ON COLUMN notice.content IS '내용';
+
+COMMENT ON COLUMN notice.a_username IS '관리자 아이디';
+
+CREATE UNIQUE INDEX PK_notice
+	ON notice (
+		n_no ASC
+	);
+
+/* 고지서 */
+CREATE TABLE paybill (
+	m_num NVARCHAR2(50) NOT NULL, /* 사업자등록번호 */
+	p_no NUMBER(10) NOT NULL, /* 고지서번호 */
+	p_msal NUMBER(10) NOT NULL, /* 월매출액 */
+	p_sal NUMBER(10) NOT NULL, /* 납부금액 */
+	p_day DATE NOT NULL, /* 납부일 */
+	p_check NUMBER(1) /* 납입여부 */
+);
+
+COMMENT ON TABLE paybill IS '고지서';
+
+COMMENT ON COLUMN paybill.m_num IS '사업자등록번호';
+
+COMMENT ON COLUMN paybill.p_no IS '고지서번호';
+
+COMMENT ON COLUMN paybill.p_msal IS '월매출액';
+
+COMMENT ON COLUMN paybill.p_sal IS '납부금액';
+
+COMMENT ON COLUMN paybill.p_day IS '납부일';
+
+COMMENT ON COLUMN paybill.p_check IS '납입여부';
+
+CREATE UNIQUE INDEX PK_paybill
+	ON paybill (
+		m_num ASC,
+		p_no ASC
+	);
+
+/* 리뷰 */
+CREATE TABLE review (
+	r_no NUMBER(10) NOT NULL, /* 리뷰번호 */
+	r_content CLOB NOT NULL, /* 내용 */
+	r_star_point NUMBER(10) NOT NULL, /* 별점 */
+	r_write_time DATE NOT NULL, /* 작성시간 */
+	o_no NUMBER(10) NOT NULL, /* 주문번호 */
+	r_title NVARCHAR2(50) NOT NULL, /* 제목 */
+	r_report NUMBER(10), /* 신고수 */
+	u_username VARCHAR2(20), /* 아이디 */
+	s_num NVARCHAR2(50), /* 음식점 고유번호 */
+	rc_no NUMBER(10) /* 리뷰답글번호 */
+);
+
+COMMENT ON TABLE review IS '리뷰';
+
+COMMENT ON COLUMN review.r_no IS '리뷰번호';
+
+COMMENT ON COLUMN review.r_content IS '내용';
+
+COMMENT ON COLUMN review.r_star_point IS '별점';
+
+COMMENT ON COLUMN review.r_write_time IS '작성시간';
+
+COMMENT ON COLUMN review.o_no IS '주문번호';
+
+COMMENT ON COLUMN review.r_title IS '제목';
+
+COMMENT ON COLUMN review.r_report IS '신고수';
+
+COMMENT ON COLUMN review.u_username IS '아이디';
+
+COMMENT ON COLUMN review.s_num IS '음식점 고유번호';
+
+COMMENT ON COLUMN review.rc_no IS '리뷰답글번호';
+
+CREATE UNIQUE INDEX PK_review
+	ON review (
+		r_no ASC
+	);
+
+/* 주문 */
+CREATE TABLE orders (
+	o_no NUMBER(10) NOT NULL, /* 주문번호 */
+	o_total NUMBER(10) NOT NULL, /* 총금액 */
+	o_order_time DATE NOT NULL, /* 주문일 */
+	u_username VARCHAR2(20), /* 아이디 */
+	o_check NUMBER(1), /* 주문확인여부 */
+	s_num NVARCHAR2(50) /* 음식점 고유번호 */
+);
+
+COMMENT ON TABLE orders IS '주문';
+
+COMMENT ON COLUMN orders.o_no IS '주문번호';
+
+COMMENT ON COLUMN orders.o_total IS '총금액';
+
+COMMENT ON COLUMN orders.o_order_time IS '주문일';
+
+COMMENT ON COLUMN orders.u_username IS '아이디';
+
+COMMENT ON COLUMN orders.o_check IS '주문확인여부';
+
+COMMENT ON COLUMN orders.s_num IS '음식점 고유번호';
+
+<<<<<<< HEAD
+CREATE UNIQUE INDEX PK_order
+	ON orders (
+=======
+CREATE UNIQUE INDEX PK_orders
+	ON order (
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+		o_no ASC
+	);
+
+/* 입점신청관리 */
+CREATE TABLE insertstore (
+	i_no NUMBER(10) NOT NULL, /* 입점신청번호 */
+	s_name NVARCHAR2(20) NOT NULL, /* 상호명 */
+	m_num NVARCHAR2(50), /* 사업자등록번호 */
+	i_check NUMBER(1), /* 승인여부 */
+	a_username VARCHAR2(20) /* 관리자 아이디 */
+);
+
+COMMENT ON TABLE insertstore IS '입점신청관리';
+
+COMMENT ON COLUMN insertstore.i_no IS '입점신청번호';
+
+COMMENT ON COLUMN insertstore.s_name IS '상호명';
+
+COMMENT ON COLUMN insertstore.m_num IS '사업자등록번호';
+
+COMMENT ON COLUMN insertstore.i_check IS '승인여부';
+
+COMMENT ON COLUMN insertstore.a_username IS '관리자 아이디';
+
+CREATE UNIQUE INDEX PK_insertstore
+	ON insertstore (
+		i_no ASC
+	);
+
+/* 자유게시판 */
+CREATE TABLE board (
+	b_no NUMBER(10) NOT NULL, /* 자유글번호 */
+	b_title NVARCHAR2(50) NOT NULL, /* 제목 */
+	b_content CLOB NOT NULL, /* 내용 */
+	b_write_time DATE NOT NULL, /* 작성시간 */
+	b_read_cnt NUMBER(7), /* 조회수 */
+	b_good_cnt NUMBER(7), /* 추천수 */
+	b_bad_cnt NUMBER(7), /* 비추수 */
+	b_category NVARCHAR2(10), /* 카테고리 */
+	b_comment_cnt NUMBER(7), /* 댓글수 */
+	f_no NUMBER(10), /* 파일 번호 */
+	c_no NUMBER(10), /* 댓글번호 */
+	u_username VARCHAR2(20) /* 아이디 */
+);
+
+COMMENT ON TABLE board IS '자유게시판';
+
+COMMENT ON COLUMN board.b_no IS '자유글번호';
+
+COMMENT ON COLUMN board.b_title IS '제목';
+
+COMMENT ON COLUMN board.b_content IS '내용';
+
+COMMENT ON COLUMN board.b_write_time IS '작성시간';
+
+COMMENT ON COLUMN board.b_read_cnt IS '조회수';
+
+COMMENT ON COLUMN board.b_good_cnt IS '추천수';
+
+COMMENT ON COLUMN board.b_bad_cnt IS '비추수';
+
+COMMENT ON COLUMN board.b_category IS '카테고리';
+
+COMMENT ON COLUMN board.b_comment_cnt IS '댓글수';
+
+COMMENT ON COLUMN board.f_no IS '파일 번호';
+
+COMMENT ON COLUMN board.c_no IS '댓글번호';
+
+COMMENT ON COLUMN board.u_username IS '아이디';
+
+CREATE UNIQUE INDEX PK_board
+	ON board (
+		b_no ASC
+	);
+
+/* 댓글 */
+CREATE TABLE comments (
+	c_no NUMBER(10) NOT NULL, /* 댓글번호 */
+	b_no NUMBER(10), /* 글번호 */
+	c_writer NVARCHAR2(20) NOT NULL, /* 작성자 */
+	c_content CLOB NOT NULL, /* 내용 */
+	c_write_time DATE NOT NULL /* 작성시간 */
+);
+
+COMMENT ON TABLE comments IS '댓글';
+
+COMMENT ON COLUMN comments.c_no IS '댓글번호';
+
+COMMENT ON COLUMN comments.b_no IS '글번호';
+
+COMMENT ON COLUMN comments.c_writer IS '작성자';
+
+COMMENT ON COLUMN comments.c_content IS '내용';
+
+COMMENT ON COLUMN comments.c_write_time IS '작성시간';
+
+<<<<<<< HEAD
+CREATE UNIQUE INDEX PK_comment
+	ON comments (
+=======
+CREATE UNIQUE INDEX PK_comments
+	ON comment (
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+		c_no ASC
+	);
+
+/* 첨부파일 */
+CREATE TABLE attachment (
+	f_no NUMBER(10) NOT NULL, /* 파일 번호 */
+	f_writer NVARCHAR2(20) NOT NULL, /* 작성자 */
+	original_file_name VARCHAR2(100) NOT NULL, /* 원본 파일 이름 */
+	save_file_name VARCHAR2(120) NOT NULL, /* 저장 파일 이름 */
+	f_length NUMBER(5) NOT NULL, /* 길이 */
+	b_no NUMBER(10) NOT NULL, /* 글번호 */
+	is_image NUMBER(1) /* 이미지 여부 */
+);
+
+COMMENT ON TABLE attachment IS '첨부파일';
+
+COMMENT ON COLUMN attachment.f_no IS '파일 번호';
+
+COMMENT ON COLUMN attachment.f_writer IS '작성자';
+
+COMMENT ON COLUMN attachment.original_file_name IS '원본 파일 이름';
+
+COMMENT ON COLUMN attachment.save_file_name IS '저장 파일 이름';
+
+COMMENT ON COLUMN attachment.f_length IS '길이';
+
+COMMENT ON COLUMN attachment.b_no IS '글번호';
+
+COMMENT ON COLUMN attachment.is_image IS '이미지 여부';
+
+CREATE UNIQUE INDEX PK_attachment
+	ON attachment (
+		f_no ASC
+	);
+
+/* 권한 */
+CREATE TABLE authoruty (
+	username VARCHAR2(50) NOT NULL, /* 아이디 */
+	authority NVARCHAR2(100) /* 권한이름 */
+);
+
+COMMENT ON TABLE authoruty IS '권한';
+
+COMMENT ON COLUMN authoruty.username IS '아이디';
+
+COMMENT ON COLUMN authoruty.authority IS '권한이름';
+
+CREATE UNIQUE INDEX PK_authoruty
+	ON authoruty (
+		username ASC
+	);
+
+/* 메뉴 */
+CREATE TABLE menu (
+	menuno NUMBER(10) NOT NULL, /* 메뉴번호 */
+	menusal NUMBER(10) NOT NULL, /* 가격 */
+	menusajin VARCHAR2(100), /* 사진 */
+	menuname NVARCHAR2(30) NOT NULL, /* 이름 */
+	s_num NVARCHAR2(50) /* 음식점 고유번호 */
+);
+
+COMMENT ON TABLE menu IS '메뉴';
+
+COMMENT ON COLUMN menu.menuno IS '메뉴번호';
+
+COMMENT ON COLUMN menu.menusal IS '가격';
+
+COMMENT ON COLUMN menu.menusajin IS '사진';
+
+COMMENT ON COLUMN menu.menuname IS '이름';
+
+COMMENT ON COLUMN menu.s_num IS '음식점 고유번호';
+
+CREATE UNIQUE INDEX PK_menu
+	ON menu (
+		menuno ASC
+	);
+
+/* 주문상세 */
+CREATE TABLE detailorder (
+	d_no NUMBER(10) NOT NULL, /* 상세번호 */
+	d_sal NUMBER(10) NOT NULL, /* 금액 */
+	d_menu_cnt NUMBER(10) NOT NULL, /* 수량 */
+	d_menu_name NVARCHAR2(30) NOT NULL, /* 이름 */
+	o_no NUMBER(10), /* 주문번호 */
+	menuno NUMBER(10) /* 메뉴번호 */
+);
+
+COMMENT ON TABLE detailorder IS '주문상세';
+
+COMMENT ON COLUMN detailorder.d_no IS '상세번호';
+
+COMMENT ON COLUMN detailorder.d_sal IS '금액';
+
+COMMENT ON COLUMN detailorder.d_menu_cnt IS '수량';
+
+COMMENT ON COLUMN detailorder.d_menu_name IS '이름';
+
+COMMENT ON COLUMN detailorder.o_no IS '주문번호';
+
+COMMENT ON COLUMN detailorder.menuno IS '메뉴번호';
+
+CREATE UNIQUE INDEX PK_detailorder
+	ON detailorder (
+		d_no ASC
+	);
+
+/* 달력 */
+CREATE TABLE calender (
+	day DATE NOT NULL, /* 날짜 */
+	check_open NUMBER(1) /* 영업여부 */
+);
+
+COMMENT ON TABLE calender IS '달력';
+
+COMMENT ON COLUMN calender.day IS '날짜';
+
+COMMENT ON COLUMN calender.check_open IS '영업여부';
+
+CREATE UNIQUE INDEX PK_calender
+	ON calender (
+		day ASC
+	);
+
+/* 판매 */
+CREATE TABLE sales (
+	day DATE NOT NULL, /* 날짜 */
+	menuno NUMBER(10) NOT NULL, /* 메뉴번호 */
+	s_num NVARCHAR2(50) NOT NULL, /* 음식점 고유번호 */
+	sal_count NUMBER(10) NOT NULL /* 매출 */
+);
+
+COMMENT ON TABLE sales IS '판매';
+
+COMMENT ON COLUMN sales.day IS '날짜';
+
+COMMENT ON COLUMN sales.menuno IS '메뉴번호';
+
+COMMENT ON COLUMN sales.s_num IS '음식점 고유번호';
+
+COMMENT ON COLUMN sales.sal_count IS '매출';
+
+CREATE UNIQUE INDEX PK_sales
+	ON sales (
+		day ASC,
+		menuno ASC,
+		s_num ASC
+	);
+
+/* 주소정보 */
+CREATE TABLE address (
+	ad_no NVARCHAR2(1000) NOT NULL, /* 우편번호 */
+	ad_road NVARCHAR2(1000) NOT NULL, /* 도로명주소 */
+	ad_extra NVARCHAR2(1000) NOT NULL, /* 참고주소 */
+	ad_detail NVARCHAR2(1000) NOT NULL, /* 상세주소 */
+	ad_total NVARCHAR2(1000) NOT NULL, /* 전체주소 */
+	ad_best NVARCHAR2(1000) NOT NULL, /* 대표주소 */
+	u_username VARCHAR2(20) /* 아이디 */
+);
+
+COMMENT ON TABLE address IS '주소정보';
+
+COMMENT ON COLUMN address.ad_no IS '우편번호';
+
+COMMENT ON COLUMN address.ad_road IS '도로명주소';
+
+COMMENT ON COLUMN address.ad_extra IS '참고주소';
+
+COMMENT ON COLUMN address.ad_detail IS '상세주소';
+
+COMMENT ON COLUMN address.ad_total IS '전체주소';
+
+COMMENT ON COLUMN address.ad_best IS '대표주소';
+
+COMMENT ON COLUMN address.u_username IS '아이디';
+
+/* 즐겨찾기 */
+CREATE TABLE favorites (
+	u_username VARCHAR2(20), /* 아이디 */
+	s_num NVARCHAR2(50) /* 음식점 고유번호 */
+);
+
+COMMENT ON TABLE favorites IS '즐겨찾기';
+
+COMMENT ON COLUMN favorites.u_username IS '아이디';
+
+COMMENT ON COLUMN favorites.s_num IS '음식점 고유번호';
+
+/* 신고리뷰 */
+CREATE TABLE TABLE7 (
+	a_username VARCHAR2(20), /* 관리자 아이디 */
+	r_no NUMBER(10), /* 리뷰번호 */
+	u_username VARCHAR2(20), /* 아이디 */
+	s_num NVARCHAR2(50) /* 음식점 고유번호 */
+);
+
+COMMENT ON TABLE TABLE7 IS '신고리뷰';
+
+COMMENT ON COLUMN TABLE7.a_username IS '관리자 아이디';
+
+COMMENT ON COLUMN TABLE7.r_no IS '리뷰번호';
+
+COMMENT ON COLUMN TABLE7.u_username IS '아이디';
+
+COMMENT ON COLUMN TABLE7.s_num IS '음식점 고유번호';
+
+/* 리뷰답글 */
+CREATE TABLE reviewcomment (
+	rc_no NUMBER(10) NOT NULL, /* 리뷰답글번호 */
+	r_no NUMBER(10), /* 리뷰번호 */
+	m_num NVARCHAR2(50), /* 사업자등록번호 */
+	rc_content CLOB NOT NULL, /* 답글내용 */
+	rc_date_time DATE NOT NULL /* 답글시간 */
+);
+
+COMMENT ON TABLE reviewcomment IS '리뷰답글';
+
+COMMENT ON COLUMN reviewcomment.rc_no IS '리뷰답글번호';
+
+COMMENT ON COLUMN reviewcomment.r_no IS '리뷰번호';
+
+COMMENT ON COLUMN reviewcomment.m_num IS '사업자등록번호';
+
+COMMENT ON COLUMN reviewcomment.rc_content IS '답글내용';
+
+COMMENT ON COLUMN reviewcomment.rc_date_time IS '답글시간';
+
+CREATE UNIQUE INDEX PK_reviewcomment
+	ON reviewcomment (
+		rc_no ASC
+	);
+
+/* 문의답변댓글 */
+CREATE TABLE qnacomment (
+	qc_no NUMBER(10) NOT NULL, /* 문의댓글 글번호 */
+	q_no NUMBER(10), /* 문의 글번호 */
+	a_username VARCHAR2(20), /* 관리자 아이디 */
+	qc_content CLOB NOT NULL, /* 댓글내용 */
+	qc_write_time DATE NOT NULL /* 댓글시간 */
+);
+
+COMMENT ON TABLE qnacomment IS '문의답변댓글';
+
+COMMENT ON COLUMN qnacomment.qc_no IS '문의댓글 글번호';
+
+COMMENT ON COLUMN qnacomment.q_no IS '문의 글번호';
+
+COMMENT ON COLUMN qnacomment.a_username IS '관리자 아이디';
+
+COMMENT ON COLUMN qnacomment.qc_content IS '댓글내용';
+
+COMMENT ON COLUMN qnacomment.qc_write_time IS '댓글시간';
+
+CREATE UNIQUE INDEX PK_qnacomment
+	ON qnacomment (
+		qc_no ASC
+	);

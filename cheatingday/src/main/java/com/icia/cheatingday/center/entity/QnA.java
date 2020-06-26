@@ -1,4 +1,4 @@
-package com.icia.cheatingday.center;
+package com.icia.cheatingday.center.entity;
 
 import java.time.*;
 
@@ -13,11 +13,10 @@ import lombok.experimental.*;
 @Accessors(chain=true)
 public class QnA {
 	private Integer qNo;
-	private String qUsername;
 	private String qTitle;
 	private String qContent;
 	private LocalDateTime qWriteTime;
 	private Boolean qIscomment;
-	private Integer mNum;
+	private String mNum;
 	private Integer qCano;
 }

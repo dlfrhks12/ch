@@ -18,5 +18,5 @@ public class Page {
 	private int endPage;
 	private boolean isPrev;
 	private boolean isNext;
-	List<NoticeDto.DtoForList> list;
+	List<NoticeDto.DtoForList> nlist;
 }

@@ -13,6 +13,8 @@ import org.junit.runner.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
 
+import com.icia.cheatingday.center.dao.*;
+import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.notice.dao.*;
 import com.icia.cheatingday.notice.entity.*;
@@ -23,6 +25,9 @@ import com.icia.cheatingday.util.*;
 public class NoticeTest {
 	@Inject
 	private NoticeDao dao;
+	@Inject
+	private QnADao qdao;
+	
 	//@Test
 	public void init() {
 		assertThat(dao, is(notNullValue()));
@@ -35,7 +40,7 @@ public class NoticeTest {
 	}
 	//@Test
 	public void findallT() {
-		int cnt = dao.count(null);
+		int cnt = dao.count();
 		System.out.println(cnt);
 		Page page = PagingUtil.getPage(1, cnt);
 		System.out.println(page.getStartRowNum());
@@ -58,5 +63,32 @@ public class NoticeTest {
 	//@Test
 	public void deT() {
 		dao.delete(1);
+	}
+	//@Test
+	public void inartw() {
+		QnA qna = QnA.builder().qTitle("aaaa").qContent("ssss").qWriteTime(LocalDateTime.now()).mNum("121221").qCano(1).build();
+		qdao.insert(qna);
+		System.out.println(qna);
+	}
+	
+	//@Test
+	public void finq() {
+		System.out.println(qdao.findById(2));
+	}
+	@Test
+	public void finadll() {
+			int cnt = qdao.count(2);
+			System.out.println(cnt);
+	}
+	//@Test
+	public void rwg() {
+		QnA qna = QnA.builder().qNo(6).qCano(2).build();
+		qdao.update(qna);
+		System.out.println(qna);
+	}
+	
+	//@Test
+	public void countf() {
+		assertThat(qdao.count(1), is(1));
 	}
 }

@@ -1,23 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderAndReviewMapper">
-<!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum -->
-	<!--  
+<!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum --> 
+
+	<!-- 1. 장바구니 추가 -->
 	<insert id="orderInsert">
-		<selectKey keyProperty="dNo" resultType="int " order="BEFORE">
+		<selectKey keyProperty="dNo" resultType="int" order="BEFORE">
 			select detailorder_seq.nextval from dual
 		</selectKey>
 		insert into detailorder(d_no, d_sal, d_menu_cnt, d_menu_name,
 								o_no, menuno, u_username)
-		values(#{dNo}, #{dSal}, 0, #{dMenuName},
-			   #{oNo}, #{menuno}, #{uUserName})
+		values(#{dNo}, #{dSal},#{dMenuCnt}, #{dMenuName},
+			   #{oNo}, #{menuno}, #{uUserName})	
 	</insert>
 	
-	 
-	<select id="orderAllSum" resultType="int">
-		select nvl(sum(d_sal * d_menu_cnt), 0)o_total
+	<!-- 2. 장바구니 목록 -->
+	<select id="order" resultType="orderAndReview">
+		select d.d_no dNo, 
+			   d.u_username uUsername,
+			   m.menuno menuno,
+			   m.menuname menuname,
+			   d.d_menu_cnt dMenuCnt,
+			   m.menusal menusal,
+			   d.d_sal
+		from menu m, detailorder d, users u
+		where u.u_username = d.u_username and
+			  m.menuno = d.menuno and
+			  d.u_username = #{uUsername}
+		order by d.d_no
 	</select>
-	-->
+	
+	<!-- 3. 장바구니 전체 금액 orderAllSum -->
+	<select id="orderAllSum" resultType="int">
+		select nvl(sum(menusal * d_menu_cnt), 0) money
+		from menu m, detailorder d
+		where m.menuno = d.menuno and
+			  d.u_username  = #{uUsername}
+	</select>
+	
+	<!-- 4. 장바구니 수정 -->
+	<update id="orderUpdate">
+		update detailorder
+		set d_menu_cnt = #{dMenuCnt}
+		where u_username = #{uUsername} adn
+			  d_no = #{dno}
+	</update>
+	
+	<!-- 5. 장바구니 삭제 -->
+	<delete id="orderDelete">
+		delete from detailorder
+		where d_no = #{dNo}
+	</delete>
 </mapper>
 
 

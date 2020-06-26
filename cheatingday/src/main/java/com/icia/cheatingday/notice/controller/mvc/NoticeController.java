@@ -21,8 +21,8 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@GetMapping("/notice/list")
-	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, @Nullable String aUsername) {
-		return new ModelAndView("main").addObject("viewName", "notice/list.jsp").addObject("page", service.list(pageno, aUsername));
+	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
+		return new ModelAndView("main").addObject("viewName", "notice/list.jsp").addObject("page", service.list(pageno));
 	}
 	@GetMapping("/notice/read")
 	public ModelAndView read(@NotNull Integer nNo, Principal principal ) {

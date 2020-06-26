@@ -49,6 +49,8 @@ qna 엔티티 작성
 입점안내 엔티티작성
 qna게시판 dao작성
 공지사항 dao dto service controller작성
+2020.06.26
+문의답변 entity mapper작성(오류) DAO 
 ================ 자유게시판 commit ================
 2020.06.24
 freeboardEntity, Attachment Entity 추가
@@ -64,3 +66,5 @@ commentTest 실행
 attachmentTest 실행
 freeBoard Test  추가
 freeBoard Service 추가
+2020.06.26
+수정

@@ -3,25 +3,21 @@
 <mapper namespace="noticeMapper">
 	<select id="count" resultType="int">
 		select count(*) from notice
-		<where>
-			<if test="writer!=null">and writer=#{writer}</if>
-		</where>
 	</select>
 	<select id="findAll" resultType="notice">
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(notice notice_pk_n_no)*/n_no nNo,n_title nTitle,n_write_time nWriteTime,n_readcnt nReadCnt, a_username aUsername from notice) b
+				(select /*+ index_desc(notice notice_pk_n_no)*/n.n_no nNo,n.n_title nTitle,n.n_write_time nWriteTime,n.n_readcnt nReadCnt, a.a_irum aIrum from notice n, admin a where n.a_username=a.a_username(+)) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
 	<select id="findById" resultType="notice">
 		select
-		n_no nNo,n_title
-		nTitle,n_write_time nWriteTime,n_readcnt nReadCnt,content,a_username
-		aUsername
-		from notice where n_no=#{nNo}
+		n.n_no nNo,n.n_title
+		nTitle,n.n_write_time nWriteTime,n.n_readcnt nReadCnt,n.content,a.a_irum aIrum
+		from notice n, admin a where n.a_username=a.a_username(+) and n_no=#{nNo}
 		and rownum=1
 	</select>
 

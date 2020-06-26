@@ -1,4 +1,4 @@
-package com.icia.cheatingday.center;
+package com.icia.cheatingday.center.entity;
 
 import java.time.*;
 import lombok.*;

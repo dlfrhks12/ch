@@ -28,6 +28,7 @@ entity작성
 11:42 menuMapper.xml 작성
 3:50 menudao 생성 menumapper 생성 . 
 4:05 menuDaoTest 생성
+06.26.3:45 menuController, menuService 생성
 =======
 
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git

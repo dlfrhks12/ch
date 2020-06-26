@@ -34,6 +34,11 @@ entity작성
 3:50 menudao 생성 menumapper 생성 . 
 4:05 menuDaoTest 생성
 06.26.3:45 menuController, menuService 생성
+4:18 serviceTest 작성
+5:00main.jsp작성
+manager>menulist.jsp작성
+7:45 입점신청Sql추가 . StoreApplyInsert entity생성. storeEntity 작성
+
 =======
 
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git

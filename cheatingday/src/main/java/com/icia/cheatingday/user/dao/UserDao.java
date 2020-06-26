@@ -18,7 +18,7 @@ public class UserDao {
 	}
 	
 	public boolean existsByUEmail(String uEmail) {
-		return tpl.selectOne("userMapper.existsByEmail", uEmail);
+		return tpl.selectOne("userMapper.existsByUEmail", uEmail);
 	}
 	
 	public int insert(User user) {
@@ -27,6 +27,9 @@ public class UserDao {
 
 	public int update(User user) {
 		return tpl.insert("userMapper.update", user);
+	}
+	public String findPasswordById(String uUsername) {
+		return tpl.selectOne("userMapper.findPasswordById", uUsername);
 	}
 
 	public User findById(String uUsername) {

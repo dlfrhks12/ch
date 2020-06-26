@@ -27,10 +27,10 @@ public class menuDaoTest {
 		assertThat(dao.insert(menu),is(1));
 	}
 	
-	//@Test
-	public void findAllTest() {
-		assertThat((dao.findAll(3)).size(), is(1));
-	}
+	/*
+	 * //@Test public void findAllTest() { assertThat((dao.findAll(3)).size(),
+	 * is(1)); }
+	 */
 	
 	//@Test
 	public void updateTest() {

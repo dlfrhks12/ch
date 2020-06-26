@@ -9,10 +9,14 @@ SQL 추가
 2020.06.25
 mapper폴더 추가(freeboardMapper 추가)
 Page dto 리스트입력
-
-
+system 폴더 추가 (msg.jsp추가)
 
 ================ 메인 commit ================
+2020.06.25
+MainController 생성
+MainService 생성
+AuthorityDao 생성
+main 폴더 생성 - managerjoin.jsp 추가
 ================ 회원 commit =================
 2020.06.25
 user Entity 추가

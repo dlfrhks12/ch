@@ -3,6 +3,7 @@ package com.icia.cheatingday.common.dto;
 
 import java.util.List;
 
+import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
 import com.icia.cheatingday.notice.dto.NoticeDto;
 
 import lombok.Builder;
@@ -18,5 +19,10 @@ public class Page {
 	private int endPage;
 	private boolean isPrev;
 	private boolean isNext;
+<<<<<<< HEAD
 	List<NoticeDto.DtoForList> nlist;
+=======
+	List<NoticeDto.DtoForList> list;
+	List<FreeBoardDto.DtoForLIst> freelist;
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 }

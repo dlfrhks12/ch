@@ -15,8 +15,8 @@ public class MenuDao {
 	private SqlSessionTemplate tpl;
 	
 	//메뉴리스트
-	public List<MenuEntity> findAll(int menuno){
-		return tpl.selectList("menuMapper.findAll",menuno);
+	public List<MenuEntity> findAll(){
+		return tpl.selectList("menuMapper.findAll");
 	}
 	
 	//메뉴읽기

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeBoardMapper">
 	<!--findAll,findById,insert, update, delete  -->
+	<!-- dd -->
 	<select id="findAll" resultType="FreeBoard">
 	<![CDATA[
 	select * from
@@ -39,6 +40,12 @@
 	<delete id="delete">
 		delete from board where b_no=#{bno} and rownum=1
 	</delete>
+	<select id="count" resultType="int">
+		select count(*) from board 
+		<where>
+			<if test="u_username!=null">and u_username=#{username}</if>
+		</where>
+	</select>
 </mapper>
 
 

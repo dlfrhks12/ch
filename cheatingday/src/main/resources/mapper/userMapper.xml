@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userMapper">
+
+	<select id="existsById" resultType="boolean">
+		select count(*) from users where u_username=#{uUsername} and rownum=1
+	</select>
+	<select id="existsByUEmail" resultType="boolean">
+		select count(*) from users where u_username=#{uUsername} and rownum=1
+	</select>
+	
+	<insert id="insert">
+		insert into users(u_username, u_irum, u_email, u_tel, u_address, u_password, u_enabled, u_joindate, u_point, u_login_fail_cnt)
+		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},0,#{uJoinDate},0,0)
+	</insert>
+	
+	<update id="update">
+		update users
+		<trim suffixOverrides="," prefix="set">
+			<if test="uIrum!=null">u_irum=#{uIrum},</if>
+			<if test="uEmail!=null">u_email=#{uEmail},</if>
+			<if test="uTel!=null">u_tel=#{uTel},</if>
+			<if test="uAddress!=null">u_address=#{uAddress},</if>
+			<if test="uPassword!=null">u_password=#{uPassword},</if>
+			<if test="uEnabled!=null">u_enabled=#{uEnabled},</if>
+			<if test="uJoinDate!=null">u_joinDate=#{uJoinDate},</if>
+			<if test="uLoginFailCnt!=null">u_login_fail_cnt=#{uLoginFailCnt},</if>
+		</trim>
+		where u_username=#{uUsername} and rownum=1
+	</update>
+	
+	
+	<select id="findPasswordById" resultType="string">
+		select u_password from users where u_username=#{uUsername} and rownum=1
+	</select>
+	
+	<select id="findById" resultType="user">
+		select u_username uUsername, u_irum uIrum, u_tel uTel, u_address uAddress, u_password uPassword, u_enabled uEnabled,
+		u_joinDate uJoinDate, u_point uPoint, u_login_fail_cnt uLoginFailCnt from users where u_username=#{uUsername} and rownum=1
+	</select>
+	
+	<select id="findUUsernameByUIrumAndUEmail" resultType="string">
+		select u_username from users where u_irum=#{uIrum} and u_email=#{uEmail} and rownum=1
+	</select>
+	
+	<delete id="delete">
+		delete from users where u_username=#{uUsername} and rownum=1
+	</delete>
+</mapper>

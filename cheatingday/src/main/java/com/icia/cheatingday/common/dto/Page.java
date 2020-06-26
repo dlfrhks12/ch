@@ -19,10 +19,7 @@ public class Page {
 	private int endPage;
 	private boolean isPrev;
 	private boolean isNext;
-<<<<<<< HEAD
 	List<NoticeDto.DtoForList> nlist;
-=======
 	List<NoticeDto.DtoForList> list;
 	List<FreeBoardDto.DtoForLIst> freelist;
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 }

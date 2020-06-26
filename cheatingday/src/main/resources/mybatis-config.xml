@@ -8,7 +8,7 @@
 		<typeAlias type="com.icia.cheatingday.user.entity.User" alias="user"/> 
 		<typeAlias type="com.icia.cheatingday.freeboard.entity.FreeBoard" alias="FreeBoard"/>
 		<typeAlias type="com.icia.cheatingday.freeboard.entity.Comment" alias="Comment"/>
-		<!--  <typeAlias type="com.icia.cheatingday.order.entity.OrderEntity" alias="orderAndReview"/>-->
+		<typeAlias type="com.icia.cheatingday.order.entity.DetailorderEntity" alias="orderAndReview"/>
 	</typeAliases>
 	<typeHandlers>
 		<typeHandler handler="com.icia.cheatingday.util.typehandler.LocalDateTimeTypeHandler"/>

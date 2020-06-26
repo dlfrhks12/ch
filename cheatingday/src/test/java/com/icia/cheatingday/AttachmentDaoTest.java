@@ -39,7 +39,7 @@ public class AttachmentDaoTest {
 	public void deleteById() {
 		assertThat(dao.deleteById(1), is(0));
 	}
-	@Test
+	//@Test
 	public void deleteAllById() {
 		assertThat(dao.deleteAllByBno(142), is(0));
 	}

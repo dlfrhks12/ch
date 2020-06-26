@@ -3,6 +3,7 @@ package com.icia.cheatingday.common.dto;
 
 import java.util.List;
 
+import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
 import com.icia.cheatingday.notice.dto.NoticeDto;
 
 import lombok.Builder;
@@ -19,4 +20,5 @@ public class Page {
 	private boolean isPrev;
 	private boolean isNext;
 	List<NoticeDto.DtoForList> list;
+	List<FreeBoardDto.DtoForLIst> freelist;
 }

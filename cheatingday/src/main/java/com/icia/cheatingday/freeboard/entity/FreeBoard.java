@@ -23,6 +23,8 @@ public class FreeBoard {
 	private int badCnt;
 	private int cateno;
 	private int commentCnt;
+	private int attachementCnt;
+	private int deleteCommentCnt;
 	private int fno;
 	private int cno;
 	private String username;

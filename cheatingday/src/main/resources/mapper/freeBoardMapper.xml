@@ -39,6 +39,12 @@
 	<delete id="delete">
 		delete from board where b_no=#{bno} and rownum=1
 	</delete>
+	<select id="count" resultType="int">
+		select count(*) from board 
+		<where>
+			<if test="u_username!=null">and u_username=#{username}</if>
+		</where>
+	</select>
 </mapper>
 
 

@@ -18,6 +18,6 @@ public class FreeBoardServiceTest {
 	/*
 	 * public void writeTest() {
 	 * assertThat(service.write(FreeBoardDto.DtoForWrite.class),
-	 * is(notNullValue())); }
+	 * is(notNullValue())); }aa
 	 */
 }

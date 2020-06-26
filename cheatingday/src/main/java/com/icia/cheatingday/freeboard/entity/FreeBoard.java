@@ -29,5 +29,5 @@ public class FreeBoard {
 	private int cno;
 	private String username;
 }
-
+//ass
 

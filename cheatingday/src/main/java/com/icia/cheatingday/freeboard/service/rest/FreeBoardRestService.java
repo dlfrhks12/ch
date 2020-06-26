@@ -26,6 +26,7 @@ public class FreeBoardRestService {
 	//게시판 업데이트, ckimage저장,첨부파일 읽기
 	//attachment delete
 	//board delete
+	//aa
 	@Autowired
 	private AttachmentDao attachmentDao;
 	@Autowired

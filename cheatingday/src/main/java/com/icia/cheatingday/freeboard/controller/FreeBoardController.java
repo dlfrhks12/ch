@@ -17,4 +17,5 @@ public class FreeBoardController {
 	public ModelAndView list (@RequestParam(defaultValue="1") int pageno,@Nullable String username) {
 		return new ModelAndView("main").addObject("viewName", "/board/list.jsp").addObject("page", service.list(pageno, username));
 	}
+//aa
 }

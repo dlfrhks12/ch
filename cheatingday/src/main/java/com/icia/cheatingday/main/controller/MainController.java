@@ -2,7 +2,6 @@ package com.icia.cheatingday.main.controller;
 
 import java.awt.*;
 
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.*;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.mvc.support.*;
 
-import com.icia.cheatingday.main.service.*;
 import com.icia.cheatingday.manager.dto.*;
 import com.icia.cheatingday.util.editor.*;
 
@@ -19,9 +17,6 @@ public class MainController {
 	public void init(WebDataBinder wdb) {
 		wdb.registerCustomEditor(List.class, "authorities", new AuthrorityPropertyEditor());
 	}
-	
-	@Autowired
-	private MainService service;
 	
 	@GetMapping
 	public ModelAndView join() {

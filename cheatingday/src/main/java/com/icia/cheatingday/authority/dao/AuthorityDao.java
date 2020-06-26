@@ -1,4 +1,4 @@
-package com.icia.cheatingday.authority;
+package com.icia.cheatingday.authority.dao;
 
 import org.apache.ibatis.annotations.*;
 

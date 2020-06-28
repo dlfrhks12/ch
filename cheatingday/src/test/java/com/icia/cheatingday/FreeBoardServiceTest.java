@@ -11,16 +11,16 @@ import com.icia.cheatingday.freeboard.service.FreeBoardService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**-context.xml")
 public class FreeBoardServiceTest {
 	@Autowired
 	private FreeBoardService service;
-	
+
 	/*
-	 public void writeTest() {
+	public void writeTest() {
 	 assertThat(service.write(FreeBoardDto.DtoForWrite.class),
 	 is(notNullValue())); 	 
 	 }
-	 */
+	*/
 }
 

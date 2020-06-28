@@ -43,7 +43,6 @@
 			<if test="mTel!=null">m_tel=#{mTel},</if>
 			<if test="mIrum!=null">m_irum=#{mIrum},</if>
 			<if test="sName!=null">s_name=#{sName},</if>
-			<if test="m_check_code!=null">m_check_code=#{mCheckCode}</if>
 		</trim>
 		where m_num=#{mNum} and rownum=1
 	</update>

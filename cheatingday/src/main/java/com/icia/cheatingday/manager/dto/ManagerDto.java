@@ -5,9 +5,18 @@ import java.util.*;
 
 import javax.validation.constraints.*;
 
-import lombok.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 public class ManagerDto {
+	
+	private ManagerDto() {
+		
+	}
+	
 	@Data
 	public static class DtoForJoin {
 		@Pattern(regexp = "/^([0-9]{3})([0-9]{2})([0-9]{5})$/", message = "사업자번호는 10자리 숫자입니다")
@@ -26,4 +35,14 @@ public class ManagerDto {
 		private List<String> authorities;
 	}
 	
+	@Data
+	@Accessors(chain=true)//입점신청-storeapplyinsert
+	public static class DtoForWrite{
+		private int iNo; //입점신청번호
+		private String mNum; //사업자등록번호
+		
+		private String mIrum; //사업자이름
+		private String mTel; //사업자 전화번호
+		private String mEmail; //사업자이메일
+	}
 }

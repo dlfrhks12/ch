@@ -5,23 +5,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.icia.cheatingday.manager.dao.ManagerStoreApplyInsertDao;
 import com.icia.cheatingday.manager.dao.MenuDao;
+import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.manager.entity.MenuEntity;
+import com.icia.cheatingday.manager.entity.StoreApplyInsert;
 
 @Service
 public class ManagerService {
-
+	//메뉴
 	@Autowired
 	private MenuDao dao;
 	@Value("c:/upload/menusajin")
 	private String profileFolder;
 	@Value("http://localhost:8081/menusajin/")
 	private String profilePath;
+	//입점신청
+	@Autowired
+	private ManagerStoreApplyInsertDao storeAppltInsertDao;
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	//메뉴리스트
 	public List<MenuEntity> menuList() {
@@ -81,6 +90,19 @@ public class ManagerService {
 		return dao.delete(menuno);
 		}
 
+	//입점신청추가
+	public int write(ManagerDto.DtoForWrite dto) {
+		StoreApplyInsert storeApplyInsert = modelMapper.map(dto, StoreApplyInsert.class);
+		
+		/*
+		 * dto.setMIrum(ManagerStoreApplyInsertDao.findByIrum(dto.getMIrum()));
+		 * dto.setMTel(ManagerStoreApplyInsertDao.findByTel(dto.getMTel()));
+		 * dto.setMEmail(ManagerStoreApplyInsertDao.findByEmail(dto.getMEmail()));
+		 */
+		
+		return storeApplyInsert.getINo(); //리턴을 dto를 해야해? iNo를 해야해? / iNo:입점신청번호
+		
+		}
 	}
 	
 

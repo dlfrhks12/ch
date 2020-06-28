@@ -1,11 +1,19 @@
 package com.icia.cheatingday.manager.dto;
 
 
-import javax.validation.constraints.*;
 
-import lombok.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 public class ManagerDto {
+	
+	private ManagerDto() {
+		
+	}
+	
 	@Data
 	public static class DtoForJoin {
 		@Pattern(regexp = "/[^0-9]{0,10}/g", message = "사업자 등록번호는 숫자 10자리입니다")
@@ -23,4 +31,14 @@ public class ManagerDto {
 		private String mIrum;     //사업자 이름
 	}
 	
+	@Data
+	@Accessors(chain=true)//입점신청-storeapplyinsert
+	public static class DtoForWrite{
+		private int iNo; //입점신청번호
+		private String mNum; //사업자등록번호
+		
+		private String mIrum; //사업자이름
+		private String mTel; //사업자 전화번호
+		private String mEmail; //사업자이메일
+	}
 }

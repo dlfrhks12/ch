@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 
@@ -44,6 +45,19 @@ public class ManagerController {
 	public String menuWrite(MenuEntity menu, MultipartFile sajin) throws IllegalStateException, IOException {
 		service.write(menu, sajin);
 		return "redirect:/manager/menu_read";
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	//입점신청 페이지로 이동
+	@GetMapping("/manager/store_apply")
+	public ModelAndView storeApplyInsert() {
+		return new ModelAndView("main").addObject("viewName", "manager/storeapply.jsp");
+	}
+	
+	//입점신청
+	@PostMapping("/manager/store_apply")
+	public String storeApplyInsert(ManagerDto.DtoForWrite dto) {
+		service.write(dto);
+		return "redirect:/system/msg";
 	}
 	
 }

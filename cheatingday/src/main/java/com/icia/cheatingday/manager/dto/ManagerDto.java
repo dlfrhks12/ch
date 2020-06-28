@@ -1,12 +1,9 @@
 package com.icia.cheatingday.manager.dto;
 
 
-<<<<<<< HEAD
-=======
 import java.util.*;
 
 import javax.validation.constraints.*;
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;

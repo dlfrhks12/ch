@@ -109,7 +109,7 @@
 	
 	<filter>
 		<filter-name>msgFilter</filter-name>
-		<filter-class>com.icia.aboard.util.MessageFilter</filter-class>
+		<filter-class>com.icia.cheatingday.util.MessageFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>msgFilter</filter-name>

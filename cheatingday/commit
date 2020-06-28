@@ -23,6 +23,11 @@ MainService 생성
 AuthorityDao 생성
 2020.06.26
 main 폴더 생성 - managerjoin.jsp 추가
+2020.06.28
+main.jsp 생성
+main.css 생성
+header.jsp / footer.jsp / nav.jsp 생성
+
 ================ 회원 commit =================
 2020.06.25
 user Entity 추가
@@ -67,7 +72,7 @@ qna게시판 dao작성
 freeboardEntity, Attachment Entity 추가
 commentEntity 추가
 2020.06.25
-freeBaorddao 추가
+freeBoarddao 추가
 freeBoardMapper.xml 추가
 경로 재설정, freeboardtest 추가
 commentDao 추가

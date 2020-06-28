@@ -22,6 +22,7 @@ import com.icia.cheatingday.util.PagingUtil;
 
 @Service
 public class FreeBoardService {
+	
 	//리스트 페이지, 글쓰기, 글 읽기,
 	@Autowired
 	private FreeBoardDao dao;

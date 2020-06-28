@@ -15,7 +15,7 @@ import com.icia.cheatingday.util.editor.*;
 @Controller
 public class MainController {
 	public void init(WebDataBinder wdb) {
-		wdb.registerCustomEditor(List.class, "authorities", new AuthrorityPropertyEditor());
+		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 	}
 	
 	@GetMapping

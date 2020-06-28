@@ -1,18 +1,20 @@
-package com.icia.cheatingday.main;
+package com.icia.cheatingday.main.service;
+
+import java.util.*;
 
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
-import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.manager.dto.*;
 import com.icia.cheatingday.manager.entity.*;
 
 @Service
 public class MainService {
 	@Autowired
-	private ManagerDao managerDao;
+	private AuthorityDao authorityDao;
 	@Autowired
 	private PasswordEncoder pwdEncoder;
 	@Autowired
@@ -27,6 +29,10 @@ public class MainService {
 		manager.setMPassword(encodedPassword);
 		
 		// 권한 추가 : ROLE_USER, ROLE_MANAGER, ROLE_ADMIN
+		List<String> authorities = dto.getAuthorities();
+		for(String authority:authorities)
+			authorityDao.insert(manager.getMUsername(), authority);
+		
 		
 	}
 

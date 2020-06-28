@@ -34,7 +34,7 @@ public class NoticeService {
 			dto.setNWriteTimeStr(notice.getNWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
 			dtolist.add(dto);
 		}
-		page.setList(dtolist);
+		page.setNlist(dtolist);
 		return page;
 	}
 	public NoticeDto.DtoForRead read(Integer nNo, String aUsername) {

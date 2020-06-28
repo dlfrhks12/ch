@@ -1,12 +1,12 @@
 package com.icia.cheatingday.common.dto;
 
 
-import java.util.List;
+import java.util.*;
 
-import com.icia.cheatingday.notice.dto.NoticeDto;
+import com.icia.cheatingday.notice.dto.*;
+import com.icia.cheatingday.user.dto.*;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
@@ -18,5 +18,6 @@ public class Page {
 	private int endPage;
 	private boolean isPrev;
 	private boolean isNext;
-	List<NoticeDto.DtoForList> list;
+	List<NoticeDto.DtoForList> nlist;
+	List<UserDto.DtoForList> ulist;
 }

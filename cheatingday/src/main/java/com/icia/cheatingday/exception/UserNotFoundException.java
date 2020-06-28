@@ -1,4 +1,4 @@
-package com.icia.cheatingday.user.exception;
+package com.icia.cheatingday.exception;
 
 public class UserNotFoundException extends RuntimeException {
 

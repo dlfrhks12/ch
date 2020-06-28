@@ -14,6 +14,27 @@ Page dto 리스트입력
 
 ================ 메인 commit ================
 ================ 회원 commit =================
+2020.06.26
+userMapper 수정
+pointMapper 추가
+favoriteMapper 추가
+UserMvcController 추가
+UserRestController 추가
+AuthorityDao 추가
+FavoriteDao 추가
+PointDao 추가
+UserDto 추가
+FavoriteEntity 추가
+PointEntity 추가
+UserEntity 수정
+EmailEXistException추가
+JobFailException 추가
+UsernameExistException추가
+UserNotFoundException추가
+UserService추가
+UserRestService추가
+AuthorityPropertyEditor추가
+DatePropertyEditor추가
 2020.06.25
 user Entity 추가
 userDao추가

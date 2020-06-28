@@ -35,5 +35,8 @@ public class FreeBoardDao {
 	public int delete(int bno) {
 		return tpl.delete("freeBoardMapper.delete",bno);
 	}
+	public int count(String username) {
+		return tpl.selectOne("freeBoardMapper.count",username);
+	}
 	
 }

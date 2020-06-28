@@ -16,8 +16,8 @@ public class NoticeDao {
 	@Inject
 	private SqlSessionTemplate tpl;
 	
-	public int count(String aUsername) {
-		return tpl.selectOne("noticeMapper.count", aUsername);
+	public int count() {
+		return tpl.selectOne("noticeMapper.count");
 	}
 	public Notice findById(Integer nNo) {
 		return tpl.selectOne("noticeMapper.findById", nNo);

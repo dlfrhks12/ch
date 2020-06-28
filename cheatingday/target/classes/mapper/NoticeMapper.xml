@@ -3,9 +3,6 @@
 <mapper namespace="noticeMapper">
 	<select id="count" resultType="int">
 		select count(*) from notice
-		<where>
-			<if test="writer!=null">and writer=#{writer}</if>
-		</where>
 	</select>
 	<select id="findAll" resultType="notice">
 		<![CDATA[
@@ -19,8 +16,7 @@
 	<select id="findById" resultType="notice">
 		select
 		n_no nNo,n_title
-		nTitle,n_write_time nWriteTime,n_readcnt nReadCnt,content,a_username
-		aUsername
+		nTitle,n_write_time nWriteTime,n_readcnt nReadCnt,content,a_username aUsername
 		from notice where n_no=#{nNo}
 		and rownum=1
 	</select>

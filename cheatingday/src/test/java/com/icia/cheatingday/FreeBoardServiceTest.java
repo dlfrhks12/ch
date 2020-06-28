@@ -16,10 +16,11 @@ public class FreeBoardServiceTest {
 	@Autowired
 	private FreeBoardService service;
 	
-	
+	/*
 	 public void writeTest() {
 	 assertThat(service.write(FreeBoardDto.DtoForWrite.class),
 	 is(notNullValue())); 	 
 	 }
+	 */
 }
 

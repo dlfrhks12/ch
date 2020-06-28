@@ -13,6 +13,7 @@ public class CommentDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
+	
 	public Comment findById(int cno) {
 		return tpl.selectOne("commentMapper.findById",cno);
 	}

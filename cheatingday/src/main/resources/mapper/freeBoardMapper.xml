@@ -12,6 +12,15 @@
 	where rnum>=#{startRowNum}
 	]]>
 	</select>
+	<select id="findAllByUsername" resultType="FreeBoard">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, b.* from
+			(select /*+ index_desc(board board_pk_bno) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where u_username=#{username}) b
+		where rownum<=#{endRowNum})
+	where rnum>=#{startRowNum}
+	]]>
+	</select>
 	<select id="findById" resultType="FreeBoard">
 		select b_no bno, b_title title,b_content content,b_write_time writeTime,b_read_cnt readCnt, b_good_cnt goodCnt,
 		b_bad_cnt badCnt,b_cateno cateno, b_comment_cnt commentCnt, u_username username

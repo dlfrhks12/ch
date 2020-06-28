@@ -23,6 +23,13 @@ public class FreeBoardDao {
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("freeBoardMapper.findAll", map);
 	}
+	public List<FreeBoard> findAllByUsername(int startRowNum, int endRowNum, String username){
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		return tpl.selectList("freeBoardMapper.findAllByUsername",map);
+		
+	}
 	public FreeBoard findById(int bno) {
 		return tpl.selectOne("freeBoardMapper.findById",bno);
 	}

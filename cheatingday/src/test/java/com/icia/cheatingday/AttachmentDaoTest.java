@@ -43,5 +43,4 @@ public class AttachmentDaoTest {
 	public void deleteAllById() {
 		assertThat(dao.deleteAllByBno(142), is(0));
 	}
-
 }

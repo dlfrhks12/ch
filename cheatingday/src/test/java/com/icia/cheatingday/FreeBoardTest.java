@@ -45,5 +45,8 @@ public class FreeBoardTest {
 	public void deleteTest() {
 		assertThat(dao.delete(2), is(0));
 	}
-	
+	@Test
+	public void findAllByUsename() {
+		assertThat(dao.findAllByUsername(1, 5, "진진진"), is(1));
+	}
 }

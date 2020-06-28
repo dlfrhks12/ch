@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.icia.cheatingday.common.dto.Page;
 import com.icia.cheatingday.freeboard.dao.AttachmentDao;
+import com.icia.cheatingday.freeboard.dao.CommentDao;
 import com.icia.cheatingday.freeboard.dao.FreeBoardDao;
 import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
 import com.icia.cheatingday.freeboard.entity.Attachment;
@@ -30,6 +31,8 @@ public class FreeBoardService {
 	private AttachmentDao attachmentDao;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private CommentDao commentDao;
 	
 	public Page list(int pageno, String username) {
 		int countOfBoard = dao.count(username);
@@ -76,10 +79,15 @@ public class FreeBoardService {
 	public FreeBoardDto.DtoForeRead read(int bno, String username){
 		FreeBoard board = dao.findById(bno);
 		FreeBoardDto.DtoForeRead dto = modelMapper.map(board, FreeBoardDto.DtoForeRead.class);
+		//로그인 했는데 글쓴이가 이름이 다르면
 		if(username!=null&&username.equals(dto.getUsername())==false)
 			dao.update(FreeBoard.builder().bno(bno).readCnt(0).build());
 		String str = board.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일"));
 		dto.setWriteTimeStr(str);
+		if(board.getAttachementCnt()>0)
+			dto.setAttachment(attachmentDao.findAllByBno(dto.getBno()));
+		if(board.getCommentCnt()>0)
+			dto.setComment(commentDao.findAllByBno(dto.getBno()));
 		return dto;
 	}
 	

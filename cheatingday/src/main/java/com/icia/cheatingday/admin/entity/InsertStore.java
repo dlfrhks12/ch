@@ -1,4 +1,4 @@
-package com.icia.cheatingday.admin;
+package com.icia.cheatingday.admin.entity;
 
 
 import lombok.*;

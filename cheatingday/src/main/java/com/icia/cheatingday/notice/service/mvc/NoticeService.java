@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.common.dto.Page;
 import com.icia.cheatingday.notice.dao.NoticeDao;
 import com.icia.cheatingday.notice.dto.NoticeDto;
@@ -18,6 +19,8 @@ import com.icia.cheatingday.util.PagingUtil;
 public class NoticeService {
 	@Autowired
 	private NoticeDao dao;
+	@Autowired
+	private AdminDao adao;
 	@Autowired
 	private ModelMapper modelMapper;
 	
@@ -31,6 +34,7 @@ public class NoticeService {
 		List<NoticeDto.DtoForList> dtolist = new ArrayList<>();
 		for(Notice notice:noticelist) {
 			NoticeDto.DtoForList dto = modelMapper.map(notice, NoticeDto.DtoForList.class);
+			dto.setAIrum(adao.findById(dto.getAUsername()));
 			dto.setNWriteTimeStr(notice.getNWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
 			dtolist.add(dto);
 		}

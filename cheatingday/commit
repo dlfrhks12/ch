@@ -9,7 +9,7 @@ SQL 추가
 2020.06.25
 mapper폴더 추가(freeboardMapper 추가)
 Page dto 리스트입력
-
+pwdEncoder를 위한 서큐리티 추가및 수정
 
 
 ================ 메인 commit ================

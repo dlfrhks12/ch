@@ -24,45 +24,46 @@ import com.icia.cheatingday.util.*;
 @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
 public class NoticeTest {
 	@Inject
-	private NoticeDao dao;
+	private NoticeDao ndao;
 	@Inject
 	private QnADao qdao;
+
 	
 	//@Test
 	public void init() {
-		assertThat(dao, is(notNullValue()));
+		assertThat(ndao, is(notNullValue()));
 	}
 	//@Test
 	public void insett() {
 		Notice notice = Notice.builder().nNo(1).nTitle("예제").nWriteTime(LocalDateTime.now()).content("예시").aUsername("usy1473").build();
-		assertThat(dao.insert(notice), is(1));
+		assertThat(ndao.insert(notice), is(1));
 		System.out.println(notice);
 	}
-	//@Test
+	@Test
 	public void findallT() {
-		int cnt = dao.count();
+		int cnt = ndao.count();
 		System.out.println(cnt);
 		Page page = PagingUtil.getPage(1, cnt);
 		System.out.println(page.getStartRowNum());
 		System.out.println(page.getEndRowNum());
-		List<Notice> list = dao.findAll(page.getStartRowNum(), page.getEndRowNum());
+		List<Notice> list = ndao.findAll(page.getStartRowNum(), page.getEndRowNum());
 		System.out.println(list);
 	}
 	//@Test
 	public void findidT() {
-		System.out.println(dao.findById(2));
+		System.out.println(ndao.findById(2));
 	}
 	
 	//@Test
 	public void upT() {
 		Notice notice = Notice.builder().nNo(1).nTitle("예제2").build();
-		dao.update(notice);
+		ndao.update(notice);
 		System.out.println(notice);
 	}
 	
 	//@Test
 	public void deT() {
-		dao.delete(1);
+		ndao.delete(1);
 	}
 	//@Test
 	public void inartw() {
@@ -75,7 +76,7 @@ public class NoticeTest {
 	public void finq() {
 		System.out.println(qdao.findById(2));
 	}
-	@Test
+	//@Test
 	public void finadll() {
 			int cnt = qdao.count(2);
 			System.out.println(cnt);

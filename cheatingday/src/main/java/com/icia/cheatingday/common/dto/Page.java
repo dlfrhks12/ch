@@ -20,6 +20,5 @@ public class Page {
 	private boolean isPrev;
 	private boolean isNext;
 	List<NoticeDto.DtoForList> nlist;
-	List<NoticeDto.DtoForList> list;
 	List<FreeBoardDto.DtoForLIst> freelist;
 }

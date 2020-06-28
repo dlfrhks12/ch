@@ -2,6 +2,8 @@ package com.icia.cheatingday.notice.dto;
 
 import java.time.*;
 
+import javax.validation.constraints.*;
+
 import com.icia.cheatingday.admin.entity.*;
 
 import lombok.*;
@@ -42,4 +44,5 @@ public class NoticeDto {
 		private String content;
 		private String aUsername;
 	}
+
 }

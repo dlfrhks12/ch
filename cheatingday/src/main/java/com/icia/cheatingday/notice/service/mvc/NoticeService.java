@@ -48,6 +48,7 @@ public class NoticeService {
 		if(aUsername!=null && aUsername.equals(dto.getAUsername())==false)
 			dao.update(Notice.builder().nNo(nNo).nReadCnt(0).build());
 		String str = notice.getNWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일"));
+		dto.setAIrum(adao.findById(dto.getAUsername()));
 		dto.setNWriteTimeStr(str);
 		return dto;
 	}

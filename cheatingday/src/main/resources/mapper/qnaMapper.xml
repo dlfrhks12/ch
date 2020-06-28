@@ -11,15 +11,14 @@
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(qna qna_pk_q_no)*/q.q_no qNo,q.q_title qTitle,q.q_write_time qWriteTime, q.q_iscomment qIscomment, m.m_irum mIrum, qc.q_category qCategory from qna q, qnacategory qc, manager m where m.m_num(+)=q.m_num and qc.q_cano(+)=q.q_cano and q.q_cano=#{qCano}) b
+				(select /*+ index_desc(qna qna_pk_q_no)*/q_no qNo,q_title qTitle,q_write_time qWriteTime,q_iscomment qIscomment,m_num mNum,q_cano qCano from qna where q_cano=#{qCano}) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
 	<select id="findById" resultType="qna">
 		select
-		q.q_no qNo,q.q_title qTitle,q.q_write_time qWriteTime,q.q_content qContent, q.q_iscomment qIscomment, m.m_irum mIrum, qc.q_category qCategory from qna q, qnacategory qc, manager m where m.m_num(+)=q.m_num and qc.q_cano(+)=q.q_cano and q.q_no=#{qNo}
-		and rownum=1
+		q_no qNo,q_title qTitle,q_write_time qWriteTime,q_content qContent,q_iscomment qIscomment, m_num mNum, q_cano qCano from qna where q_no=#{qNo} and rownum=1
 	</select>
 	<insert id="insert">
 		<selectKey keyProperty="qNo" resultType="int" order="BEFORE">

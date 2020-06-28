@@ -1,4 +1,4 @@
-package com.icia.cheatingday.freeboard.service.rest;
+/*package com.icia.cheatingday.freeboard.service.rest;
 
 import java.io.File;
 import java.util.HashMap;
@@ -115,4 +115,4 @@ public class FreeBoardRestService {
 		  
 	  }
 
-}
+}*/

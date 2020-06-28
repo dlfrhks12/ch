@@ -11,7 +11,7 @@ public class FavoriteDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public int insertFavorite(String uUsername, long sNum) {
+	public int insertFavorite(String uUsername, int sNum) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uUsername", uUsername);
 		map.put("sNum", sNum);
@@ -20,7 +20,7 @@ public class FavoriteDao {
 	public int favoriteCount(String uUsername) {
 		return tpl.selectOne("favoriteMapper.favoriteCount", uUsername);
 	}
-	public long findFavoriteById(String uUsername, long sNum) {
+	public int findFavoriteById(String uUsername, int sNum) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uUsername", uUsername);
 		map.put("sNum", sNum);

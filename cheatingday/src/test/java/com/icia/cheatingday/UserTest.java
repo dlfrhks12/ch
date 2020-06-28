@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import java.time.*;
 
+import javax.inject.*;
+
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
@@ -13,12 +15,18 @@ import org.springframework.test.context.junit4.*;
 
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.entity.*;
+import com.icia.cheatingday.user.service.mvc.*;
+import com.icia.cheatingday.user.service.rest.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
-public class UserDaoTest {
+public class UserTest {
 	@Autowired
 	private UserDao dao;
+	@Inject
+	private UserService uservice;
+	@Inject
+	private UserRestService urservice;
 	
 	//@Test
 	public void insert() {
@@ -56,8 +64,18 @@ public class UserDaoTest {
 	public void findPasswordByIdTest() {
 		assertThat(dao.findPasswordById("spring"), is(notNullValue()));
 	}
-	@Test
+	//@Test
 	public void deleteTest() {
 		assertThat(dao.delete("cheat"), is(notNullValue()));
+	}
+	//////////////////////////////////////////////////////////////////////
+	
+	//@Test
+	public void pageList() {
+		System.out.println(uservice.list(1));
+	}
+	//@Test
+	public void myPage() {
+		System.out.println(uservice.myPage("spring"));
 	}
 }

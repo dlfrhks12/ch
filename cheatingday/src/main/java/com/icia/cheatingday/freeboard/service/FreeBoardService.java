@@ -1,4 +1,4 @@
-package com.icia.cheatingday.freeboard.service;
+/*package com.icia.cheatingday.freeboard.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,7 @@ import com.icia.cheatingday.util.PagingUtil;
 
 @Service
 public class FreeBoardService {
+	
 	//리스트 페이지, 글쓰기, 글 읽기,
 	@Autowired
 	private FreeBoardDao dao;
@@ -82,4 +83,4 @@ public class FreeBoardService {
 		return dto;
 	}
 	
-}
+}*/

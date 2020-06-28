@@ -22,6 +22,6 @@ public class Page {
 	private boolean isPrev;
 	private boolean isNext;
 	List<NoticeDto.DtoForList> nlist;
-	List<UserDto.DtoForList> ulist;
+	List<PointDto.DtoForList> plist;
 	List<FreeBoardDto.DtoForLIst> freelist;
 }

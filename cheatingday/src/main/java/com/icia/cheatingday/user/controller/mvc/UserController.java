@@ -73,13 +73,13 @@ public class UserController {
 	}
 	
 	// 회원탈퇴
-		@PreAuthorize("isAuthenticated()")
-		@DeleteMapping("/user/resign")
-		public String resign(SecurityContextLogoutHandler handler, HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-			service.resign(authentication.getName());
-			handler.logout(request, response, authentication);
-			return "redirect:/";
-		}
+	@PreAuthorize("isAuthenticated()")
+	@DeleteMapping("/user/resign")
+	public String resign(SecurityContextLogoutHandler handler, HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+		service.resign(authentication.getName());
+		handler.logout(request, response, authentication);
+		return "redirect:/";
+	}
 }
 
 

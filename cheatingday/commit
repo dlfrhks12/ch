@@ -9,10 +9,20 @@ SQL 추가
 2020.06.25
 mapper폴더 추가(freeboardMapper 추가)
 Page dto 리스트입력
+<<<<<<< HEAD
+system 폴더 추가 (msg.jsp추가)
+=======
+pwdEncoder를 위한 서큐리티 추가및 수정
 
-
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 
 ================ 메인 commit ================
+2020.06.25
+MainController 생성
+MainService 생성
+AuthorityDao 생성
+2020.06.26
+main 폴더 생성 - managerjoin.jsp 추가
 ================ 회원 commit =================
 2020.06.26
 userMapper 수정
@@ -54,6 +64,12 @@ entity작성
 11:42 menuMapper.xml 작성
 3:50 menudao 생성 menumapper 생성 . 
 4:05 menuDaoTest 생성
+06.26.3:45 menuController, menuService 생성
+4:18 serviceTest 작성
+5:00main.jsp작성
+manager>menulist.jsp작성
+7:45 입점신청Sql추가 . StoreApplyInsert entity생성. storeEntity 작성
+
 =======
 
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
@@ -64,6 +80,9 @@ qna 엔티티 작성
 입점안내 엔티티작성
 qna게시판 dao작성
 공지사항 dao dto service controller작성
+2020.06.26
+문의답변 entity mapper작성(오류) DAO 
+조인제거및 전체수정 qna게시판 dao까지작성
 ================ 자유게시판 commit ================
 2020.06.24
 freeboardEntity, Attachment Entity 추가
@@ -79,3 +98,5 @@ commentTest 실행
 attachmentTest 실행
 freeBoard Test  추가
 freeBoard Service 추가
+2020.06.26
+수정

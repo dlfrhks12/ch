@@ -1,8 +1,0 @@
-PropertyEditor(입력)
-	- urlencoded : name=sprint&age=20
-	- 문자열을 값으로 변환
-MessageConverter(입출력)
-	- json과 특정 파일 형식을 자바 객체로 변환 또는 역변환
-	- @RequestBody, @ResponseBody
-	- Gson이나 Jackson을 추가하면 json 메시지 컨버터 자동 추가
-	- Gson과 Jackson의 json 형식은 다르다

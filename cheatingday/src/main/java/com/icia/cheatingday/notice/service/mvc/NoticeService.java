@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.common.dto.Page;
 import com.icia.cheatingday.notice.dao.NoticeDao;
 import com.icia.cheatingday.notice.dto.NoticeDto;
@@ -19,11 +20,13 @@ public class NoticeService {
 	@Autowired
 	private NoticeDao dao;
 	@Autowired
+	private AdminDao adao;
+	@Autowired
 	private ModelMapper modelMapper;
 	
 
-	public Page list(int pageno, String aUsername) {
-		int countOfBoard = dao.count(aUsername);
+	public Page list(int pageno) {
+		int countOfBoard = dao.count();
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
@@ -31,6 +34,7 @@ public class NoticeService {
 		List<NoticeDto.DtoForList> dtolist = new ArrayList<>();
 		for(Notice notice:noticelist) {
 			NoticeDto.DtoForList dto = modelMapper.map(notice, NoticeDto.DtoForList.class);
+			dto.setAIrum(adao.findById(dto.getAUsername()));
 			dto.setNWriteTimeStr(notice.getNWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
 			dtolist.add(dto);
 		}
@@ -44,6 +48,7 @@ public class NoticeService {
 		if(aUsername!=null && aUsername.equals(dto.getAUsername())==false)
 			dao.update(Notice.builder().nNo(nNo).nReadCnt(0).build());
 		String str = notice.getNWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일"));
+		dto.setAIrum(adao.findById(dto.getAUsername()));
 		dto.setNWriteTimeStr(str);
 		return dto;
 	}

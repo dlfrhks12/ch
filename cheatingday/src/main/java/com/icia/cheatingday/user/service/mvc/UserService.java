@@ -84,7 +84,7 @@ public class UserService {
 		return page;
 	}
 	// 회원탈퇴
-		public void resign(String uUsername) {
-			userDao.delete(uUsername);
-		}
+	public void resign(String uUsername) {
+		userDao.delete(uUsername);
+	}
 }

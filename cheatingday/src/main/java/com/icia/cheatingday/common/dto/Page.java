@@ -3,8 +3,11 @@ package com.icia.cheatingday.common.dto;
 
 import java.util.*;
 
+import com.icia.cheatingday.freeboard.dto.*;
 import com.icia.cheatingday.notice.dto.*;
 import com.icia.cheatingday.user.dto.*;
+
+//github.com/tjddnjs5092/CheatingDay.git
 
 import lombok.*;
 
@@ -20,4 +23,5 @@ public class Page {
 	private boolean isNext;
 	List<NoticeDto.DtoForList> nlist;
 	List<UserDto.DtoForList> ulist;
+	List<FreeBoardDto.DtoForLIst> freelist;
 }

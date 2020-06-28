@@ -9,7 +9,11 @@
 		<typeAlias type="com.icia.cheatingday.user.entity.Point" alias="point"/>
 		<typeAlias type="com.icia.cheatingday.freeboard.entity.FreeBoard" alias="FreeBoard"/>
 		<typeAlias type="com.icia.cheatingday.freeboard.entity.Comment" alias="Comment"/>
+		<typeAlias type="com.icia.cheatingday.center.entity.QnA" alias="qna"/>
+		<typeAlias type="com.icia.cheatingday.center.entity.QnAComment" alias="qnacomment"/>
 		<!--  <typeAlias type="com.icia.cheatingday.order.entity.OrderEntity" alias="orderAndReview"/>-->
+		<typeAlias type="com.icia.cheatingday.order.entity.DetailorderEntity" alias="orderAndReview"/>
+
 	</typeAliases>
 	<typeHandlers>
 		<typeHandler handler="com.icia.cheatingday.util.typehandler.LocalDateTimeTypeHandler"/>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="storeApplyInsertMapper">
+
+
+<!-- 입점신청이랑 사업자회원 테이블 두개  =>입점신청할 때 필요한 거(입점신청번호, 사업자등록번호, 사업자이름, 사업자전화번호, 이메일)
+(storeApplyInsert)s  (manager)m
+
+select s.i_no, m.m_num , m.m_irum, m.m_tel, m.m_email  (자바이름 따로 추가해줘야해)
+from storeApplyInsert s, manager m
+where s.m_num = m.m_num(+) and s.i_no=#{iNo}
+
+입점신청을 해야해. insert 사용해야겠지?        QQQQQ. insert문에 외부조인을 할 수 있는건가? -->
+
+<select id="">
+select s.i_no iNo, m.m_num mNum, m.m_irum mIrum, m.m_tel mTel, m.m_email  mEmail 
+from storeApplyInsert s, manager m
+where s.m_num = m.m_num(+) and s.i_no=#{iNo}
+</select>
+
+<insert id="insert">
+insert into() 
+values()
+</insert>
+
+
+</mapper>

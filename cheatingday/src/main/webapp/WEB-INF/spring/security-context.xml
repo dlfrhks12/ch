@@ -58,14 +58,9 @@
 		<sec:authentication-provider>
 			<sec:jdbc-user-service 
 				data-source-ref="dataSource"
-<<<<<<< HEAD
 				users-by-username-query="select username, password, enabled from users where username=? and rownum=1"
-				authorities-by-username-query="select username, authority from authority where username=?" />
-=======
-				users-by-username-query="select u_username, u_password, u_enabled from users where u_username=? and rownum=1"
-				authorities-by-username-query="select username, authority from authorities where username=?"
-			/>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+				authorities-by-username-query="select username, authority from authority where username=?"
+				 />
 			<sec:password-encoder ref="encoder" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>

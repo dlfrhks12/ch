@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: 11
-=======
-Built-By: 13
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 Build-Jdk: 1.8.0_241
 Created-By: Maven Integration for Eclipse
 

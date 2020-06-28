@@ -2,30 +2,22 @@ package com.icia.cheatingday.center.dao;
 
 import java.util.*;
 
-import org.mybatis.spring.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import org.apache.ibatis.annotations.*;
 
 import com.icia.cheatingday.center.entity.*;
 
-@Repository
-public class QnACommentDao {
-	@Autowired
-	private SqlSessionTemplate tpl;
+public interface QnACommentDao {
+	@Select("select q_no qNo, qc_no qcNo, a_username qUsername, qc_content qcContent, qc_write_time qcWriteTime from qnacomment where q_no=#{qNo} order by qc_no desc")
+	public List<QnAComment> findAllByQno(Integer qNo);
 
-	public List<QnAComment> findAllByqNo(){
-		return tpl.selectList("qnacomMapper.findAll");
-	}
-	public int insert(QnAComment qnAComment) {
-		return tpl.insert("qnacomMapper.insert", qnAComment);
-	}
-	public QnAComment findById(Integer qcNo) {
-		return tpl.selectOne("qnacomMapper.findById", qcNo);
-	} 
-	public int update(QnAComment qnAComment) {
-		return tpl.update("qnacomMapper.update", qnAComment);
-	}
-	public int delete(Integer qcNo) {
-		return tpl.delete("qnacomMapper.delete", qcNo);
-	}
+	@Insert("insert into qnacomment values(qnacomment_seq.nextval, #{c.qNo}, #{c.aUsername}, #{c.qcContent}, sysdate)")
+	public void insert(@Param("c") QnAComment qnacomment);
+
+	@Select("select q_no qNo, qc_no qcNo, a_username qUsername, qc_content qcContent, qc_write_time qcWriteTime from qnacomment where qc_no=#{qcNo} and rownum=1")
+	public QnAComment findById(Integer qcNo);
+
+	@Update("update qnacomment qc_content=#{qcContent} where qc_no=#{qcNo} and rownum=1")
+	
+	@Delete("delete from qnacomment where qc_no=#{qcNo} and rownum=1")
+	public void delete(Integer qcNo);
 }

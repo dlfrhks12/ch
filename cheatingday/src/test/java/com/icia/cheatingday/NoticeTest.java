@@ -64,7 +64,7 @@ public class NoticeTest {
 	public void wgq() {
 		System.out.println(ns.read(2, "usy1473"));
 	}
-	@Test
+	//@Test
 	public void gqg() {
 		Notice notice = Notice.builder().nNo(2).nTitle("예제21").build();
 		nrs.updateNotice(notice, "usy1473");
@@ -95,25 +95,25 @@ public class NoticeTest {
 	public void deT() {
 		ndao.delete(1);
 	}
-	@Test
+	//@Test
 	public void inartw() {
-		QnA qna = QnA.builder().qTitle("aaaa").qContent("ssss").qWriteTime(LocalDateTime.now()).mNum("121221").qCano(1).build();
+		QnA qna = QnA.builder().qTitle("aehhhaaa").qContent("ssweess").qWriteTime(LocalDateTime.now()).mNum("121121221").qCano(1).build();
 		qdao.insert(qna);
 		System.out.println(qna);
 	}
 	
 	//@Test
 	public void finq() {
-		System.out.println(qdao.findById(2));
+		System.out.println(qdao.findById(8));
 	}
 	//@Test
 	public void finadll() {
-			int cnt = qdao.count(2);
+			int cnt = qdao.count(3);
 			System.out.println(cnt);
 	}
 	//@Test
 	public void rwg() {
-		QnA qna = QnA.builder().qNo(6).qCano(2).build();
+		QnA qna = QnA.builder().qNo(7).qCano(3).build();
 		qdao.update(qna);
 		System.out.println(qna);
 	}

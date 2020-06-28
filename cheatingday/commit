@@ -29,6 +29,27 @@ main.css 생성
 header.jsp / footer.jsp / nav.jsp 생성
 
 ================ 회원 commit =================
+2020.06.26
+userMapper 수정
+pointMapper 추가
+favoriteMapper 추가
+UserMvcController 추가
+UserRestController 추가
+AuthorityDao 추가
+FavoriteDao 추가
+PointDao 추가
+UserDto 추가
+FavoriteEntity 추가
+PointEntity 추가
+UserEntity 수정
+EmailEXistException추가
+JobFailException 추가
+UsernameExistException추가
+UserNotFoundException추가
+UserService추가
+UserRestService추가
+AuthorityPropertyEditor추가
+DatePropertyEditor추가
 2020.06.25
 user Entity 추가
 userDao추가
@@ -53,7 +74,9 @@ entity작성
 5:00main.jsp작성
 manager>menulist.jsp작성
 7:45 입점신청Sql추가 . StoreApplyInsert entity생성. storeEntity 작성
-
+06.28. 6:32 입점신청 entity,dao,dto,service,controller 생성
+            DB에 storeapplyinsert sequence 생성
+                          입점신청 daotest 성공-확신은안선다.
 =======
 
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
@@ -66,7 +89,7 @@ qna게시판 dao작성
 공지사항 dao dto service controller작성
 2020.06.26
 문의답변 entity mapper작성(오류) DAO 
-조인제거및 전체수정
+조인제거및 전체수정 qna게시판 dao까지작성
 ================ 자유게시판 commit ================
 2020.06.24
 freeboardEntity, Attachment Entity 추가

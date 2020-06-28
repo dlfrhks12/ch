@@ -4,7 +4,7 @@
 	<select id="count" resultType="int">
 		select count(*) from qna
 		<where>
-			<if test="qCano!=null">q_cano=#{qCano}</if>
+			<if test="value!=null">q_cano=#{value}</if>
 		</where>
 	</select>
 	<select id="findAllByqCano" resultType="qna">

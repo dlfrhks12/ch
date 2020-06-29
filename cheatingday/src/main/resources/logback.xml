@@ -6,18 +6,18 @@
 		</encoder>
 	</appender>
 	<!--  내가 만든 클래스에 대한 로깅 설정 -->
-	<logger name="com.icia" level="info" />
+	<logger name="com.icia" level="debug" />
 	
 	<!--
 		trace < debug < info < warn < error 
 	 -->
 	<!--  3rd party 로깅 설정 -->
-	<logger name="org.springframework" level="info" />
+	<logger name="org.springframework" level="debug" />
 	<logger name="com.zaxxer.hikari" level="warn" />
 	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="info" />
 	
 	<!--  log4jdbc 로깅 설정 -->
-	<logger name="jdbc.resultsettable" level="info"/>
+	<logger name="jdbc.resultsettable" level="debug"/>
 	<logger name="jdbc.audit" level="warn"/>
 	<logger name="jdbc.sqltiming" level="warn"/>
 	<logger name="jdbc.resultset" level="warn"/>

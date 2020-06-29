@@ -13,11 +13,11 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain=true)
 public class Attachment {
-	private int fno;
+	private Integer fno;
 	private String writer;
 	private String originalFileName;
 	private String saveFileName;
-	private int flength;
-	private int bno;
+	private Integer flength;
+	private Integer bno;
 	private boolean isImage;
 }

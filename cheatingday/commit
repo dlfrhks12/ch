@@ -24,9 +24,14 @@ AuthorityDao 생성
 2020.06.26
 main 폴더 생성 - managerjoin.jsp 추가
 2020.06.28
+valid.js 생성
 main.jsp 생성
 main.css 생성
 header.jsp / footer.jsp / nav.jsp 생성
+login.jsp 생성
+2020.06.29
+MainRestController 생성
+MainRestService 생성
 
 ================ 회원 commit =================
 2020.06.26

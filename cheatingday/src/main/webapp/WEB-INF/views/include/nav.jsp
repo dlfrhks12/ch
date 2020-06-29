@@ -9,10 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<img src="/cheatingday/imgs/cht.jpg" width="100px" height="100px">
+
 	<div class="navbar navbar-expand-sm bg-dark navbar-dark" style="width: 100%; margin: 0 auto;">
 		<div class="container-fluid">
   			<form class="form-inline" action="/action_page.php" style="margin: 0 auto">
-  				<input class="form-control mr-sm-2" type="text" placeholder="주소를 입력해주세요">
+  				<input class="form-control mr-sm-2" type="text" placeholder="건물명,도로명,지번으로 검색하세요">
     			<button class="btn btn-danger" type="submit">검색</button>
     		</form>
 		</div>

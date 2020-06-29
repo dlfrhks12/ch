@@ -50,7 +50,7 @@ public class OrderDao {
 		return tpl.selectList("orderAndReviewMapper.basList", uUsername);
 	}
 	
-	// ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+	
 	public List<OrderEntity> resList() {
 		return tpl.selectList("orderAndReviewMapper.resList");
 	}

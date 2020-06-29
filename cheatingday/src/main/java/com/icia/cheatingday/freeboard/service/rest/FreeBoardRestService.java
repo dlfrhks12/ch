@@ -50,7 +50,7 @@ public class FreeBoardRestService {
 	Pattern ckImagePattern = Pattern.compile("src=\".+\"\\s");
 	
 	
-	public Attachment readAttachment(int bno) {
+	public Attachment readAttachment(Integer bno) {
 		return attachmentDao.findById(bno);
 	}
 	
@@ -66,14 +66,14 @@ public class FreeBoardRestService {
 	public int updateComment(Comment comment){
 		return commentDao.update(comment);
 	}
-	public List<Comment> deleteComment(int cno, int bno, String username){
+	public List<Comment> deleteComment(Integer cno, Integer bno, String username){
 		Comment comment = commentDao.findById(cno);
 		//글쓴이가 다르면 exception발생하게 하는거 만들어줘야대
 		commentDao.delete(cno);
 		return commentDao.findAllByBno(bno);
 	}
 	
-	public void deleteBoard(int bno, String username) {
+	public void deleteBoard(Integer bno, String username) {
 		FreeBoard board = boardDao.findById(bno);
 		//board가 null일때랑 글쓴이가 다를때 excepttion보내는거 만들어줘야대!
 		
@@ -100,7 +100,7 @@ public class FreeBoardRestService {
 		boardDao.delete(bno);
 		
 	}
-	public List<Attachment> deleteAttachment(int fno,int bno,String username){
+	public List<Attachment> deleteAttachment(Integer fno,Integer bno,String username){
 		Attachment attachment = attachmentDao.findById(bno);
 		//null이 아니면
 		if(attachment!=null) {
@@ -141,11 +141,11 @@ public class FreeBoardRestService {
 	         }
 	         return null;
 	      }
-	  public void updateBoard(FreeBoardDto.DtoForUpdate dto) {
+	  public int updateBoard(FreeBoardDto.DtoForUpdate dto) {
 		  FreeBoard board = boardDao.findById(dto.getBno());
 		  //board가 null일때랑 글쓴이가 다를 때 exception 보낼거 만들어줘야대
 		  board = modelMapper.map(dto, FreeBoard.class);
-		  boardDao.update(board);
+		  return boardDao.update(board);
 	  }
 	  
 	  

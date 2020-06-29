@@ -35,7 +35,7 @@ public class FreeBoardService {
 	private CommentDao commentDao;
 	
 	public Page list(int pageno, String username) {
-		int countOfBoard = dao.count(username);
+		int countOfBoard = (int) dao.count(username);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
@@ -55,12 +55,14 @@ public class FreeBoardService {
 	}
 	public int write(FreeBoardDto.DtoForWrite dto) throws IOException {
 		FreeBoard board = modelMapper.map(dto, FreeBoard.class);
+		
 		if(dto.getAttachment()!=null)
 			board.setAttachementCnt(dto.getAttachment().size());
 		else
 			board.setAttachementCnt(0);
 		dao.insert(board);
 		List<MultipartFile> attachment = dto.getAttachment();
+		
 		if(attachment!=null) {
 			for(MultipartFile mf:attachment) {
 				Attachment attachments = new Attachment();
@@ -76,7 +78,7 @@ public class FreeBoardService {
 		}
 		return board.getBno();
 	}
-	public FreeBoardDto.DtoForeRead read(int bno, String username){
+	public FreeBoardDto.DtoForeRead read(Integer bno, String username){
 		FreeBoard board = dao.findById(bno);
 		FreeBoardDto.DtoForeRead dto = modelMapper.map(board, FreeBoardDto.DtoForeRead.class);
 		//로그인 했는데 글쓴이가 이름이 다르면

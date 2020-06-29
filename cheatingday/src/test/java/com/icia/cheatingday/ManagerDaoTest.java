@@ -1,22 +1,24 @@
 package com.icia.cheatingday;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
-import org.junit.*;
-import org.junit.runner.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.test.context.*;
-import org.springframework.test.context.junit4.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.icia.cheatingday.manager.dao.*;
-import com.icia.cheatingday.manager.entity.*;
+import com.icia.cheatingday.manager.dao.ManagerDao;
+import com.icia.cheatingday.manager.entity.ManagerEntity;
+import com.icia.cheatingday.manager.service.ManagerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
 public class ManagerDaoTest {
 	@Autowired
 	private ManagerDao dao;
+
 	
 	//@Test
 	public void insertTest() {
@@ -51,5 +53,20 @@ public class ManagerDaoTest {
 	//@Test
 	public void deleteTest() {
 		dao.delete("1111111");
+	}
+	
+	//매니저정보수정 update테스트 dao
+	//@Test성공
+	public void updateTest() {
+		ManagerEntity manager = ManagerEntity.builder().mNum("가-01").mPassword("0101").mEmail("red@naver.com").mTel("010-123-456")
+				.mIrum("예지사장").build();
+		
+		assertThat(dao.update(manager), is(1));
+	}
+	
+	//매니저 내정보 읽어오기
+	//@Test 성공
+	public void findByID() {
+		assertThat(dao.findById("가-01"), is(notNullValue()));
 	}
 }

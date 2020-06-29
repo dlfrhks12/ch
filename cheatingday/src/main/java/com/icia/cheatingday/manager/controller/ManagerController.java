@@ -1,6 +1,7 @@
 package com.icia.cheatingday.manager.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,13 @@ public class ManagerController {
 	public String storeApplyInsert(ManagerDto.DtoForWrite dto) {
 		service.write(dto);
 		return "redirect:/system/msg";
+	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//내 정보 읽기
+	@GetMapping("/manager/information")
+	public ModelAndView managerInfoRead() {
+		return new ModelAndView("main").addObject("viewName","manager/information.jsp");
 	}
 	
 }

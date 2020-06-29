@@ -1,21 +1,22 @@
 package com.icia.cheatingday.main.controller;
 
-import java.awt.*;
+import java.awt.List;
 
-import org.springframework.stereotype.*;
-import org.springframework.validation.*;
-import org.springframework.web.bind.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
-import org.springframework.web.servlet.mvc.support.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.icia.cheatingday.manager.dto.*;
-import com.icia.cheatingday.util.editor.*;
+import com.icia.cheatingday.manager.dto.ManagerDto;
+import com.icia.cheatingday.util.editor.AuthorityPropertyEditor;
 
 @Controller
 public class MainController {
 	public void init(WebDataBinder wdb) {
-		wdb.registerCustomEditor(List.class, "authorities", new AuthrorityPropertyEditor());
+		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 	}
 	
 	@GetMapping

@@ -5,6 +5,7 @@
 		<typeAlias type="com.icia.cheatingday.manager.entity.MenuEntity" alias="menu"/>
 		<typeAlias type="com.icia.cheatingday.notice.entity.Notice" alias="notice"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.ManagerEntity" alias="manager"/>
+		<typeAlias type="com.icia.cheatingday.manager.entity.StoreApplyInsert" alias="storeapplyinsert"/>
 		<typeAlias type="com.icia.cheatingday.user.entity.User" alias="user"/> 
 		<typeAlias type="com.icia.cheatingday.user.entity.Point" alias="point"/>
 		<typeAlias type="com.icia.cheatingday.freeboard.entity.FreeBoard" alias="FreeBoard"/>

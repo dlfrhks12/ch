@@ -6,24 +6,24 @@ import org.mybatis.spring.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
-import com.icia.cheatingday.center.*;
+import com.icia.cheatingday.center.entity.*;
 
 @Repository
 public class QnADao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public int count(String qUsername) {
-		return tpl.selectOne("qnaMapper.count", qUsername);
+	public int count(Integer qCano) {
+		return tpl.selectOne("qnaMapper.count", qCano);
 	}
 	public QnA findById(Integer qNo) {
 		return tpl.selectOne("qnaMapper.findById", qNo);
 	}
-	public List<QnA> findAll(int startRowNum, int endRowNum){
+	public List<QnA> findAllByqCano(int startRowNum, int endRowNum){
 		Map<String, Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
-		return tpl.selectList("qnaMapper.findAll", map);
+		return tpl.selectList("qnaMapper.findAllByqCano", map);
 	}
 	public int insert(QnA qnA) {
 		return tpl.insert("qnaMapper.insert", qnA);

@@ -1,6 +1,11 @@
 package com.icia.cheatingday.notice.dto;
 
 import java.time.*;
+
+import javax.validation.constraints.*;
+
+import com.icia.cheatingday.admin.entity.*;
+
 import lombok.*;
 import lombok.experimental.*;
 
@@ -14,8 +19,9 @@ public class NoticeDto {
 	@Accessors(chain = true)
 	public static class DtoForList{
 		private int nNo;
-		private String nTitle;
 		private String aUsername;
+		private String nTitle;
+		private String aIrum;
 		private String nWriteTimeStr;
 		private int nReadCnt;
 	}
@@ -24,11 +30,12 @@ public class NoticeDto {
 	@Accessors(chain=true)
 	public static class DtoForRead {
 		private Integer nNo;
+		private String aUsername;
 		private String nTitle;
 		private String nWriteTimeStr;
 		private Integer nReadCnt;
 		private String content;
-		private String aUsername;
+		private String aIrum;
 	}
 	@Data
 	@Accessors(chain=true)
@@ -37,4 +44,5 @@ public class NoticeDto {
 		private String content;
 		private String aUsername;
 	}
+
 }

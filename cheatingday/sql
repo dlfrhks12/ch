@@ -730,3 +730,10 @@ CREATE UNIQUE INDEX PK_qnacomment
 	ON qnacomment (
 		qc_no ASC
 	);
+	
+	
+	/* 입점신청 */
+CREATE TABLE storeapplyinsert (
+   i_no NUMBER(10) NOT NULL, /* 입점신청번호 */
+   m_num NVARCHAR2(50) /* 사업자등록번호 */
+);

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  HTTP를 위한 자동 설정 활성화 -->
+	
+	<sec:http auto-config="true">
+		<sec:csrf disabled="true"/>
+		<!-- 
+			화면에 아이디와 비밀번호를 타이핑해서 로그인하는 mvc 방식 로그인 설정
+				로그인 화면 아이디의 name 속성 : <input type="text" name="">
+				로그인 화면 비밀번호믜 name 속성
+				로그인 화면을 보여줄 주소(지정하지 않을 경우 GET /login)
+				스프링 시큐리티가 로그인을 처리할 주소(지정하지 않을 경우 POST /login)
+				로그인한 다음 이동할 주소
+			화면이 없는 REST 방식일 경우 <sec:http-basic/>을 사용 
+		 -->
+		<sec:form-login
+			username-parameter="username"
+			password-parameter="password"
+			login-page="/main/login"
+			login-processing-url="/main/login"
+			default-target-url="/" />
+		
+		<!-- 
+			로그아웃 경로. 반드시 POST로 요청해야 한다
+				로그아웃을 처리할 주소
+				로그아웃한 다음 이동할 주소
+		 -->
+		<sec:logout
+			logout-url="/main/logout"
+			logout-success-url="/"
+		/>
+	</sec:http>
+	
+	<!-- 
+		비밀번호 암호화 객체 : 스프링 시큐리티에서 비밀번호 암호화는 필수 설정
+			https://d2.naver.com/helloworld/318732
+	-->
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<!-- 
+		스프링 시큐리티 인증과 인가를 위한 설정
+			인증(authentication) : 사용자를 확인(아이디와 비밀번호가 맞는가?)
+			인가(authorization) : 권한을 확인
+		데이터베이스에 아이디, 비밀번호, 권한을 저장해두고 읽어오는 JDBC 방식 인증/인가의 경우 스프링 시큐리티가 모두 만들어놨다
+			프로그래머는 데이터소스 이름, 인증을 위한 SQL, 인가를 위한 SQL을 작성해주면 된다
+		인증을 위한 SQL은 아이디, 비밀번호, enabled가 포함되어야 한다
+		인가를 위한 SQL은 결과가 하나가 아니라 여러개일 수 있다
+			username	authroity
+			spring		ROLE_사용자
+			spring		ROLE_관리자
+	-->
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:jdbc-user-service 
+				data-source-ref="dataSource"
+				users-by-username-query="select username, password, enabled from users where username=? and rownum=1"
+				authorities-by-username-query="select username, authority from authority where username=?"
+				 />
+			<sec:password-encoder ref="encoder" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+</beans>

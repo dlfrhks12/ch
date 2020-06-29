@@ -12,6 +12,6 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain=true)
 public class Boardcate {
-	private int cateno;
+	private Integer cateno;
 	private String category;
 }

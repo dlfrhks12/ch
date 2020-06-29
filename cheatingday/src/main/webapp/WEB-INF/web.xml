@@ -7,25 +7,38 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
-			<!-- /WEB-INF/spring/security-context.xml -->
+			/WEB-INF/spring/security-context.xml
 		</param-value>
+	</context-param>
+	<context-param>
+		<param-name>profileFolder</param-name>
+		<param-value>d:/upload/profile</param-value>
+	</context-param>
+	<context-param>
+		<param-name>profilePath</param-name>
+		<param-value>http://localhost:8081/profile/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>imageFolder</param-name>
+		<param-value>d:/upload/ckimage</param-value>
+	</context-param>
+	<context-param>
+		<param-name>imagePath</param-name>
+		<param-value>http://localhost:8081/ckimage/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>attachmentFolder</param-name>
+		<param-value>d:/upload/profile</param-value>
+	</context-param>
+	<context-param>
+		<param-name>attachmentPath</param-name>
+		<param-value>http://localhost:8081/profile/</param-value>
 	</context-param>
 
 	<!-- 어떤 이벤트에 반응하는 객체 : ActionListener.... -->
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-	<filter>
-		<filter-name>xssEscapeServletFilter</filter-name>
-		<filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter
-		</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>xssEscapeServletFilter</filter-name>
-		<url-pattern>/comment/write</url-pattern>
-	</filter-mapping>
 
 	<!-- utf-8 인코딩 필터 설정 -->
 	<filter>
@@ -45,62 +58,70 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	
+	<filter>
+		<filter-name>xssEscapeServletFilter</filter-name>
+		<filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>xssEscapeServletFilter</filter-name>
+		<url-pattern>/comment/write</url-pattern>
+	</filter-mapping>
+	
 	<!-- csrf 처리를 위한 MultipartFilter 설정 -->
 	<filter>
 		<display-name>springMultipartFilter</display-name>
 		<filter-name>springMultipartFilter</filter-name>
-		<filter-class>org.springframework.web.multipart.support.MultipartFilter
-		</filter-class>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>springMultipartFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<!-- MVC : 백이 프론트의 화면을 이동 ModelAndView get- 변경X, post-변경 url은 동사 사용 (/user/id_check) 
-		REST : 백은 프론트에게 데이터를 공급. ajax ResponseEntity : 결과 + 상태코드 읽기(get),쓰기(post),변경(put,patch),삭제(delete) 
-		/products/111 -->
+	
+	<!-- 
+		MVC : 백이 프론트의 화면을 이동
+			ModelAndView
+			get- 변경X,  post-변경
+			url은 동사 사용 (/user/id_check)
+		REST : 백은 프론트에게 데이터를 공급. ajax
+			ResponseEntity : 결과 + 상태코드
+			읽기(get),쓰기(post),변경(put,patch),삭제(delete)
+				/products/111
+	 -->
 	<filter>
 		<filter-name>httpMethodFilter</filter-name>
-		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter
-		</filter-class>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>httpMethodFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-<!--
+	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
-		</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	-->
-	<!-- 메시지 지우는 필터 -->
+	
 	<filter>
 		<filter-name>msgFilter</filter-name>
 		<filter-class>com.icia.cheatingday.util.MessageFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>msgFilter</filter-name>
-		<url-pattern>/user/login</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	
+
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet
-		</servlet-class>
-		<!-- 특정 서블릿에서 사용하는 값 -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml
-			</param-value>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

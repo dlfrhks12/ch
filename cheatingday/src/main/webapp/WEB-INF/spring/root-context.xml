@@ -78,9 +78,13 @@
 			클래스의 경우 @Repository를 통해 스프링이 빈 생성
 			인터페이스의 경우 마이바티스가 빈 생성 -> 마이바티스에 검색할 패키지를 지정해야 한다
 	 -->
-	<mybatis-spring:scan base-package="com.icia.cheatingdat.notice.dao"/>
+	<mybatis-spring:scan base-package="com.icia.cheatingday.notice.dao"/>
+	<mybatis-spring:scan base-package="com.icia.cheatingday.admin.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.freeboard.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
+	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
+	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/> 
+	
 
 	<context:component-scan base-package="com.icia.cheatingday">
 		<context:exclude-filter type="annotation" 

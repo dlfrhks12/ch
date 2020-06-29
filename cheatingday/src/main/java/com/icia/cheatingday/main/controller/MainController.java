@@ -19,7 +19,7 @@ public class MainController {
 		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 	}
 	
-	@GetMapping
+	@GetMapping("/main/login")
 	public ModelAndView login() {
 		return  new ModelAndView("main").addObject("viewName", "main/login.jsp");
 	}

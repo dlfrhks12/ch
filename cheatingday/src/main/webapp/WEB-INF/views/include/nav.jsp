@@ -16,6 +16,6 @@
     			<button class="btn btn-danger" type="submit">검색</button>
     		</form>
 		</div>
-	</div>>
+	</div>
 </body>
 </html>

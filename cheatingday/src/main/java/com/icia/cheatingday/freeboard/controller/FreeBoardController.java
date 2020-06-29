@@ -1,4 +1,4 @@
-package com.icia.cheatingday.freeboard.controller;
+/*package com.icia.cheatingday.freeboard.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
@@ -17,5 +17,5 @@ public class FreeBoardController {
 	public ModelAndView list (@RequestParam(defaultValue="1") int pageno,@Nullable String username) {
 		return new ModelAndView("main").addObject("viewName", "/board/list.jsp").addObject("page", service.list(pageno, username));
 	}
-//aa
 }
+*/

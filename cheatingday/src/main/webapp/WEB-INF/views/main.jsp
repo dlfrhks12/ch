@@ -21,9 +21,7 @@
 			<jsp:include page="include/nav.jsp" />
 		</nav>
 		<div id = "main">
-			<section>
-				<jsp:include page="${viewName }"></jsp:include>
-			</section>
+			<jsp:include page="${viewName }"></jsp:include>
 		</div>
 		<footer>
 			<jsp:include page="include/footer.jsp" />

@@ -21,7 +21,7 @@ public class ManagerDaoTest {
 	//@Test
 	public void insertTest() {
 		ManagerEntity m = ManagerEntity.builder().mNum("111111").mUsername("spring").mPassword("1234").mEmail("a@a.com")
-				.mTel("01011111111").mAccount("123").sName("상호명").mIrum("사업자").mCheckCode("0000").build();
+				.mTel("01011111111").mAccount("123").sName("상호명").mIrum("사업자").build();
 		assertThat(dao.insert(m), is(1));
 	}
 	

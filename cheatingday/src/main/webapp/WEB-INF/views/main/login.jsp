@@ -10,10 +10,32 @@
 $(function() {
 	var msg = "${msg}";
 	if(msg!="") {
-		$("#alert")
+		$("#alert").text(msg);
 		$("#msg").show();
 	}
-})
+	
+	$("#username").on("blur", checkUsername)
+	$("#password").on("blur", checkPassword);
+
+	$("#login").on("click", function() {
+		if(checkUsername()==false)
+			return;
+		if(checkPassword()==false)
+			return;
+		$("#login_form").submit();
+	});
+	
+	$("#password").on("keypress", function(key) {
+		if(key.keyCode!=13)
+			return;
+		if(checkUsername()==false)
+			return;
+		if(checkPassword()==false)
+			reutrn;
+		$("#login_form").submit();
+	});
+});
+
 </script>
 </head>
 <body>
@@ -23,12 +45,12 @@ $(function() {
 	</div>
 	<form action="login_form" action="/cheatingday/main/login" method="post">
 		<div class="form-group">
-			<label for="username"></label>
+			<label for="username">아이디</label>
 			<input id="username" type="text" name="username" class="form-control">
 			<span class="helper-text" id="usernaem_msg"></span>
 		</div>
 		<div class="form-group">
-			<label for="password"></label>
+			<label for="password">비밀번호</label>
 			<input id="password" type="password" name="password" class="form-control">
 			<span class="helper-text" id="password_msg"></span>
 		</div>

@@ -16,26 +16,25 @@
 	
 	<!-- 2. 장바구니 목록 -->
 	<select id="order" resultType="orderAndReview">
-		select d.d_no dNo, 
-			   d.u_username uUsername,
-			   m.menuno menuno,
+		select d_no dNo, 
+			   u_username uUsername,
+			   menuno menuno,
 			   m.menuname menuname,
-			   d.d_menu_cnt dMenuCnt,
-			   m.menusal menusal,
-			   d.d_sal
-		from menu m, detailorder d, users u
-		where u.u_username = d.u_username and
-			  m.menuno = d.menuno and
-			  d.u_username = #{uUsername}
-		order by d.d_no
+			   d_menu_cnt dMenuCnt,
+			   menusal menusal,
+			   d_sal
+		from detailorder
+		where u_username = #{uUsername} and
+			  menuno = #{menuno}
+		order by d_no
 	</select>
 	
 	<!-- 3. 장바구니 전체 금액 orderAllSum -->
 	<select id="orderAllSum" resultType="int">
 		select nvl(sum(menusal * d_menu_cnt), 0) money
-		from menu m, detailorder d
-		where m.menuno = d.menuno and
-			  d.u_username  = #{uUsername}
+		from detailorder
+		where menuno = #{menuno} and
+			  u_username  = #{uUsername}
 	</select>
 	
 	<!-- 4. 장바구니 수정 -->
@@ -51,6 +50,13 @@
 		delete from detailorder
 		where d_no = #{dNo}
 	</delete>
+	
+	
+	<select id="basList" parameterType="String" resultType="bas">
+		select * from detailorder where u_username=#{uUsername}
+	</select>
+	
+	
 </mapper>
 
 

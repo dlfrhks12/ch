@@ -26,7 +26,7 @@ public class FreeBoardController {
 	@Autowired
 	private FreeBoardService service;
 	@GetMapping("/board/read")
-	public ModelAndView read(@NonNull int bno) {
+	public ModelAndView read(@NonNull Integer bno) {
 		return new ModelAndView("main").addObject("viewName", "board/read.jsp");
 	}
 	@GetMapping("/board/list")

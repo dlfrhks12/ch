@@ -14,9 +14,7 @@ import lombok.experimental.Accessors;
 
 public class ManagerDto {
 	
-	private ManagerDto() {
-		
-	}
+	private ManagerDto() {}
 	
 	@Data
 	public static class DtoForJoin {

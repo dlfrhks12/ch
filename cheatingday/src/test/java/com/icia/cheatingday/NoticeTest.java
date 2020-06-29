@@ -33,7 +33,8 @@ public class NoticeTest {
 	private QnADao qdao;
 	@Inject
 	private NoticeService ns;
-	@Inject NoticeRestService nrs;
+	@Inject
+	private NoticeRestService nrs;
 	
 	
 	//@Test
@@ -47,7 +48,7 @@ public class NoticeTest {
 		System.out.println(notice);
 	}
 	//@Test
-	public void findallT() {
+	public void sT() {
 		int cnt = ndao.count();
 		System.out.println(cnt);
 		Page page = PagingUtil.getPage(1, cnt);
@@ -56,7 +57,7 @@ public class NoticeTest {
 		List<Notice> list = ndao.findAll(page.getStartRowNum(), page.getEndRowNum());
 		System.out.println(list);
 	}
-	//@Test
+	@Test
 	public void wwq() {
 		System.out.println(ns.list(1));
 	}

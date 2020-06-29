@@ -13,10 +13,11 @@ public class CommentDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public Comment findById(int cno) {
+	
+	public Comment findById(Integer cno) {
 		return tpl.selectOne("commentMapper.findById",cno);
 	}
-	public List<Comment> findAllByBno(int bno){
+	public List<Comment> findAllByBno(Integer bno){
 		return tpl.selectList("commentMapper.findAllByBno",bno);
 	}
 	public int insert(Comment comment) {

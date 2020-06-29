@@ -5,8 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	h5 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
-	${msg}
+	<div id="footer" class="container-fluid">
+		<h5 class="white-text">copyright &copy; 2020 Cheating Day Sensor Web</h5>
+	</div>
 </body>
 </html>

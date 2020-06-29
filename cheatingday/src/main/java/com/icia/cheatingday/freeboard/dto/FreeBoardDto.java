@@ -26,12 +26,12 @@ public class FreeBoardDto {
 	@Builder
 	@Accessors(chain=true)
 	public static class DtoForLIst{
-		private int bno;
+		private Integer bno;
 		private String username;
 		private String title;
 		private String category;
 		private String writeTimeStr;
-		private int readCnt;
+		private Integer readCnt;
 	}
 	@Data
 	@AllArgsConstructor
@@ -39,20 +39,22 @@ public class FreeBoardDto {
 	@Builder
 	@Accessors(chain=true)
 	public static class DtoForeRead{
-		private int bno;
+		private Integer bno;
 		private String username;
 		private String title;
 		private String category;
 		private String writeTimeStr;
-		private int readCnt;
-		private int goodCnt;
-		private int badCnt;
+		private Integer readCnt;
+		private Integer goodCnt;
+		private Integer badCnt;
 		private List<Comment> comment;
 		private List<Attachment> attachment;
 		
 	}
 	@Data
 	@Accessors(chain=true)
+	@AllArgsConstructor
+	@NoArgsConstructor
 	public static class DtoForWrite{
 		@NotBlank
 		@Pattern(regexp="^[\\w\\s가-힣!]{1,50}$", message ="제목은 영숫자와 한글, 특수문자 !만 사용할 수 있습니다")
@@ -64,7 +66,7 @@ public class FreeBoardDto {
 	
 	@Data
 	public static class DtoForUpdate{
-		private int bno;
+		private Integer bno;
 		private String title;
 		private String content;
 		private String username;

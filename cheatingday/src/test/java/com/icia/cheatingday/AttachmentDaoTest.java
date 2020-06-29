@@ -23,17 +23,17 @@ public class AttachmentDaoTest {
 	
 	//@Test
 	public void insertTest() {
-		Attachment attachment = Attachment.builder().bno(142).writer("양수민").originalFileName("ㅁㅁㅁㅁㅁ").saveFileName("aalkd").flength(5).isImage(true).build();
+		Attachment attachment = Attachment.builder().bno(173).writer("양수민").originalFileName("ㅁㅁㅁㅁㅁ").saveFileName("aalkd").flength(5).isImage(true).build();
 		assertThat(dao.insert(attachment), is(1));
 	}
-	//@Test
+	@Test
 	public void findAllByBno() {
-		assertThat((dao.findAllByBno(142)).size(), is(1));
+		assertThat((dao.findAllByBno(173)).size(), is(4));
 	}
 	//@Test
 	public void findById() {
-		System.out.println(dao.findById(142));
-		assertThat(dao.findById(142),is(notNullValue()));
+		System.out.println(dao.findById(8));
+		assertThat(dao.findById(8),is(notNullValue()));
 	}
 	//@Test
 	public void deleteById() {
@@ -43,5 +43,4 @@ public class AttachmentDaoTest {
 	public void deleteAllById() {
 		assertThat(dao.deleteAllByBno(142), is(0));
 	}
-
 }

@@ -14,8 +14,8 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain=true)
 public class Comment {
-	private int cno;
-	private int bno;
+	private Integer cno;
+	private Integer bno;
 	private String writer;
 	private String content;
 	private LocalDateTime writeTime;

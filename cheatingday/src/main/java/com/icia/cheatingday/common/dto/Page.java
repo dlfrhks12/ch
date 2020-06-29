@@ -26,5 +26,5 @@ public class Page {
 	List<NoticeDto.DtoForList> nlist;
 	List<QnADto.DtoForList> qlist;
 	List<UserDto.DtoForList> ulist;
-	List<FreeBoardDto.DtoForLIst> freelist;
+	List<FreeBoardDto.DtoForList> freelist;
 }

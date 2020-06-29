@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +30,14 @@ public class FreeBoardDao {
 		return tpl.selectList("freeBoardMapper.findAllByUsername",map);
 		
 	}
+	public List<FreeBoard> findAllByCategory(int startRowNum, int endRowNum, Integer cateno){
+		Map<String,Object> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("cateno", cateno);
+		return tpl.selectList("freeBoardMapper.findAllByCategory",map);
+		
+	}
 	public FreeBoard findById(Integer bno) {
 		return tpl.selectOne("freeBoardMapper.findById",bno);
 	}
@@ -46,6 +52,9 @@ public class FreeBoardDao {
 	}
 	public int count(String username) {
 		return tpl.selectOne("freeBoardMapper.count",username);
+	}
+	public List<Map> findAllCate() {
+		return tpl.selectList("freeBoardMapper.findAllCate");
 	}
 	
 }

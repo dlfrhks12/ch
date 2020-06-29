@@ -5,7 +5,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
@@ -34,6 +36,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<context:component-scan base-package="com.icia.cheatingday.freeboard.controller" />
+	
 	<context:component-scan base-package="com.icia.cheatingday.manager.controller"/>
 	<!-- 
 	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
@@ -65,4 +68,9 @@
 			<beans:ref bean="authenticationInterceptor"/>
 		</interceptor>
 	</interceptors>
+
+		<beans:bean id="chatHandler" class="com.icia.cheatingday.freeboard.controller.ChatController"></beans:bean>
+	<websocket:handlers>
+		<websocket:mapping handler="chatHandler" path="/board/chat"/>
+	</websocket:handlers>
 </beans:beans>

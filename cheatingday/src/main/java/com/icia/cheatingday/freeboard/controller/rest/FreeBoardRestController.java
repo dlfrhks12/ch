@@ -31,7 +31,7 @@ public class FreeBoardRestController {
 	@PostMapping("/board/read")
 	public ResponseEntity<?> read(@RequestParam @NotNull int bno, Principal principal){
 		String username = principal!=null? principal.getName():null;
-		FreeBoardDto.DtoForeRead dto = service.read(bno, username);
+		FreeBoardDto.DtoForRead dto = service.read(bno, username);
 		return ResponseEntity.ok(dto);
 	}
 	@PostMapping("/comment/write")

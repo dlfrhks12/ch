@@ -10,6 +10,8 @@
 </head>
 <body>
 <img src="/cheatingday/imgs/cht.jpg" width="100px" height="100px">
+<img src="/cheatingday/imgs/cht.jpg" width="100px" height="100px">
+<img src="/cheatingday/imgs/cht.jpg" width="100px" height="100px">
 	<div class="navbar navbar-expand-sm bg-dark navbar-dark" style="width: 100%; margin: 0 auto;">
 		<div class="container-fluid">
   			<form class="form-inline" action="/action_page.php" style="margin: 0 auto">

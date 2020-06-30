@@ -1,8 +1,8 @@
+
 package com.icia.cheatingday.main.controller.mvc;
 
 import java.util.*;
 
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.*;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,22 @@ public class MainController {
 	}
 	
 	//@Autowired
-	//private MainService service;
+	//private MainService service
 
-	 
+
+	// 홈화면 - 메뉴 카테고리
+	@GetMapping("/")
+	public ModelAndView main() {
+		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "main/foodcategory.jsp");
+	}
+	
 	// [공용] 로그인
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("main").addObject("viewName", "main/login.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/header2.jsp").addObject("viewName", "main/login.jsp");
 	}
+}	
+	
 	
 	
 	/*
@@ -167,5 +175,6 @@ public class MainController {
 		ra.addFlashAttribute("msg", "이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요");
 		return "redirect:/main/login";
 	}
-	*/
 }
+
+ */

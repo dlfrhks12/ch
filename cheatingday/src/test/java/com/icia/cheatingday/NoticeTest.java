@@ -57,20 +57,25 @@ public class NoticeTest {
 		List<Notice> list = ndao.findAll(page.getStartRowNum(), page.getEndRowNum());
 		System.out.println(list);
 	}
+	// 리스트(페이징 글번호)
 	@Test
 	public void wwq() {
 		System.out.println(ns.list(1));
 	}
+	// 읽기(글번호, 아이디)
 	//@Test
 	public void wgq() {
 		System.out.println(ns.read(2, "usy1473"));
 	}
+	// 업데이트(아이디)
 	//@Test
 	public void gqg() {
 		Notice notice = Notice.builder().nNo(2).nTitle("예제21").build();
 		nrs.updateNotice(notice, "usy1473");
 	}
+	// 글쓰기(dto.set을 이용 내용입력)
 	//@Test 
+	@Test 
 	public void gwsg(){
 		NoticeDto.DtoForWrite dto = new DtoForWrite();
 		dto.setAUsername("usy1403");

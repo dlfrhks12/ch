@@ -19,29 +19,34 @@ import com.icia.cheatingday.user.service.rest.*;
 public class UserRestController {
 	@Autowired
 	private UserRestService service;
+
 	// 아이디 중복체크
 	@GetMapping("/user/check_id")
 	public ResponseEntity<Boolean> checkId(@RequestParam @NotNull String uUsername) {
 		return ResponseEntity.ok(service.checkId(uUsername));
-	// 이메일 중복체크
+		
 	}
+	// 이메일 중복체크
 	@GetMapping("/user/check_email")
 	public ResponseEntity<Boolean> checkEmail(@RequestParam @NotNull String uEmail) {
 		return ResponseEntity.ok(service.checkEmail(uEmail));
-	// 업데이트
+		
 	}
-	@PreAuthorize("isAuthenticated()")
+	// 업데이트
 	@PutMapping("/user/update")
-	public ResponseEntity<Void> update(@Valid UserDto.DtoForUpdate dto, BindingResult results, Principal principal) throws BindException {
-		if(results.hasErrors())
+	public ResponseEntity<Void> update(@Valid UserDto.DtoForUpdate dto, BindingResult results, Principal principal)
+			throws BindException {
+		if (results.hasErrors())
 			throw new BindException();
 		dto.setUUsername(principal.getName());
-			service.update(dto);
+		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
+/*
 	// 날짜 불러오기
-	@GetMapping(path = "/user/join_date", produces="text/plain;charset=urf-8")
+	@GetMapping(path = "/user/join_date", produces = "text/plain;charset=urf-8")
 	public ResponseEntity<String> findJoinDate(String uUsername) {
 		return ResponseEntity.ok(service.findJoinDate(uUsername));
 	}
+	*/
 }

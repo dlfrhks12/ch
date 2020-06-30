@@ -19,6 +19,7 @@ public class QnADto {
 	@Accessors(chain = true)
 	public static class DtoForList{
 		private int qNo;
+		private int qCano;
 		private String qTitle;
 		private String qWriteTimeStr;
 		private Boolean qIscomment;
@@ -47,6 +48,7 @@ public class QnADto {
 		private String qTitle;
 		private String qContent;
 		private String mNum;
+		private int qCano;
 	}
 	@Data
 	@Accessors(chain=true)
@@ -56,6 +58,7 @@ public class QnADto {
 		@Pattern(regexp="^[\\w\\s가-힣!]{1,50}$", message ="제목은 영숫자와 한글, 특수문자 !만 사용할 수 있습니다")
 		private String qTitle;
 		private String qContent;
+		private int qCano;
 		private String mNum;
 	}
 

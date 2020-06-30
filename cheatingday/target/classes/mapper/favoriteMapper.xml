@@ -13,7 +13,7 @@
 		select count(*) from favorite where u_username=#{uUsername}
 	</select>
 	<!-- 즐겨찾기 중복을 방지하기 위한 중복검사 -->
-	<select id="findFavoriteById" resultType="long">
-		select count * from favorite where u_username=#{uUsername} and s_num=#{sNum}
+	<select id="findFavoriteById" resultType="int">
+		select u_username from favorite where u_username=#{uUsername} and s_num=#{sNum} and rownum=1
 	</select>
 </mapper>

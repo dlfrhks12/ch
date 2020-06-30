@@ -19,6 +19,8 @@ public class QnAService {
 	@Autowired
 	private QnADao qdao;
 	@Autowired
+	private QnACategoryDao qcdao;
+	@Autowired
 	private ModelMapper mapper;
 	@Autowired
 	private ManagerDao mdao;
@@ -42,6 +44,7 @@ public class QnAService {
 			QnADto.DtoForList dto = mapper.map(qna, QnADto.DtoForList.class);
 			dto.setQWriteTimeStr(qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dto.setMIrum(mdao.findById(dto.getMNum()).getMIrum());
+			dto.setQCategory(qcdao.findById(dto.getQCano()));
 			dtolist.add(dto);
 		}
 		page.setQlist(dtolist);

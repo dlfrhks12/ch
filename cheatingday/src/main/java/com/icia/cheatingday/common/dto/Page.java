@@ -3,17 +3,17 @@ package com.icia.cheatingday.common.dto;
 
 import java.util.*;
 
+import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.center.dto.*;
-import com.icia.cheatingday.center.dto.QnADto.*;
 import com.icia.cheatingday.freeboard.dto.*;
 import com.icia.cheatingday.notice.dto.*;
 import com.icia.cheatingday.user.dto.*;
 
-//github.com/tjddnjs5092/CheatingDay.git
-
 import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Page {
 	private int startRowNum;
@@ -24,7 +24,8 @@ public class Page {
 	private boolean isPrev;
 	private boolean isNext;
 	List<NoticeDto.DtoForList> nlist;
+	List<PointDto.DtoForList> plist;
 	List<QnADto.DtoForList> qlist;
-	List<UserDto.DtoForList> ulist;
+	List<AdminDto.DtoForList> alist;
 	List<FreeBoardDto.DtoForLIst> freelist;
 }

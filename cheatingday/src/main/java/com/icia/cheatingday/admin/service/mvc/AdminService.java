@@ -28,7 +28,7 @@ public class AdminService {
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		
+		 
 		List<Review> reviewlist = null;
 		if(rReport>=1)
 			reviewlist = rdao.findAllByReport(srn, ern);

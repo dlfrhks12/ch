@@ -1,0 +1,13 @@
+com\icia\cheatingday\OrderTest.class
+com\icia\cheatingday\AttachmentDaoTest.class
+com\icia\cheatingday\QnaTest.class
+com\icia\cheatingday\MenuServiceTest.class
+com\icia\cheatingday\ManagerServiceTest.class
+com\icia\cheatingday\ManagerStoreApplyInsertTest.class
+com\icia\cheatingday\menuDaoTest.class
+com\icia\cheatingday\CommentDaoTest.class
+com\icia\cheatingday\ManagerDaoTest.class
+com\icia\cheatingday\NoticeTest.class
+com\icia\cheatingday\FreeBoardServiceTest.class
+com\icia\cheatingday\UserDaoTest.class
+com\icia\cheatingday\FreeBoardTest.class

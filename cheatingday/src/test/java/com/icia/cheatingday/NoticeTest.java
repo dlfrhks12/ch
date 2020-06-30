@@ -33,7 +33,7 @@ public class NoticeTest {
 	private QnADao qdao;
 	@Inject
 	private NoticeService ns;
-	@Inject 
+	@Inject
 	private NoticeRestService nrs;
 	
 	
@@ -48,7 +48,7 @@ public class NoticeTest {
 		System.out.println(notice);
 	}
 	//@Test
-	public void findallT() {
+	public void sT() {
 		int cnt = ndao.count();
 		System.out.println(cnt);
 		Page page = PagingUtil.getPage(1, cnt);
@@ -75,6 +75,7 @@ public class NoticeTest {
 	}
 	// 글쓰기(dto.set을 이용 내용입력)
 	//@Test 
+	@Test 
 	public void gwsg(){
 		NoticeDto.DtoForWrite dto = new DtoForWrite();
 		dto.setAUsername("usy1403");

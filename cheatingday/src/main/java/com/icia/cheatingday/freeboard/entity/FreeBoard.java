@@ -14,19 +14,19 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain=true)
 public class FreeBoard {
-	private int bno;
+	private Integer bno;
 	private String title;
 	private String content;
 	private LocalDateTime writeTime;
-	private int readCnt;
-	private int goodCnt;
-	private int badCnt;
-	private int cateno;
-	private int commentCnt;
-	private int attachementCnt;
-	private int deleteCommentCnt;
-	private int fno;
-	private int cno;
+	private Integer readCnt;
+	private Integer goodCnt;
+	private Integer badCnt;
+	private Integer cateno;
+	private Integer commentCnt;
+	private Integer attachementCnt;
+	private Integer deleteCommentCnt;
+	private Integer fno;
+	private Integer cno;
 	private String username;
 }
 //ass

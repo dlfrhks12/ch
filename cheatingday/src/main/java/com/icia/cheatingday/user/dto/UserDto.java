@@ -17,18 +17,16 @@ public class UserDto {
 	@Accessors(chain = true)
 	public static class DtoForJoin {
 		// 알파벳으로 시작하는 영숫자 8~10자
-		@Pattern(regexp="^[A-Za-z][A-Za-z0-9]{7,9}$", message="아이디는 영숫자 8~10자입니다" )
+		@Pattern(regexp="^[A-Za-z][A-Za-z0-9]{8,10}$", message="아이디는 영숫자 8~10자입니다" )
 		private String uUsername;
-		@Pattern(regexp="(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$", message="비밀번호는 특수문자를 포함하는 영숫자 8~10자입니다")
+		@Pattern(regexp="^(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$", message="비밀번호는 특수문자를 포함하는 영숫자 8~10자입니다")
 		private String uPassword;
 		@Pattern(regexp="^[가-힣]{2,5}$", message="이름은 한글 2~5자입니다")
 		private String uIrum;
 		@Email(message="잘못된 이메일 형식입니다")
 		private String uEmail;
-		@NotNull(message="전화번호는 필수입력입니다")
+		@Pattern(regexp = "/^([0-9]{3})([0-9]{4})([0-9]{4})$/", message = "전화번호는 숫자 10~11자입니다")
 		private String uTel;
-		@NotNull(message="생일은 필수입력입니다")
-		private LocalDateTime birthDate;
 		private List<String> authorities;
 	}
 	

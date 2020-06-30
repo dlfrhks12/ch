@@ -1,21 +1,53 @@
-/*package com.icia.cheatingday.freeboard.controller;
+package com.icia.cheatingday.freeboard.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import java.io.*;
+import java.security.*;
 
-import com.icia.cheatingday.freeboard.service.FreeBoardService;
+import javax.servlet.http.*;
+import javax.validation.*;
+
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.lang.*;
+import org.springframework.stereotype.*;
+import org.springframework.validation.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
+
+import com.icia.cheatingday.freeboard.dto.*;
+import com.icia.cheatingday.freeboard.service.*;
+
 
 @Controller
 public class FreeBoardController {
 	@Autowired
 	private FreeBoardService service;
-	@RequestMapping(value = "/")
-	public ModelAndView list (@RequestParam(defaultValue="1") int pageno,@Nullable String username) {
-		return new ModelAndView("main").addObject("viewName", "/board/list.jsp").addObject("page", service.list(pageno, username));
+	@GetMapping("/board/read")
+	public ModelAndView read(@NonNull Integer bno) {
+		return new ModelAndView("main").addObject("viewName", "board/read.jsp");
 	}
-//aa
-}*/
+
+	@GetMapping("/board/list")
+	public ModelAndView list(@RequestParam(defaultValue = "1")int pageno,@Nullable String username ) {
+		return new ModelAndView("main").addObject("viewName", "board/list.jsp");
+	}
+	@GetMapping("/board/write")
+	public ModelAndView write() {
+		return new ModelAndView("main").addObject("viewName", "/board/write.jsp");
+		
+	}
+	@PostMapping("/board/write")
+	public String write(@Valid FreeBoardDto.DtoForWrite dto, BindingResult bindingResult,Principal principal, HttpServletRequest request) throws BindException{
+		if(bindingResult.hasErrors())
+			throw new BindException(bindingResult);
+		dto.setUsername(principal.getName());
+		try {
+			return "redirect:/board/read?bno=" +service.write(dto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+
+}
+
+

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 
@@ -30,5 +31,13 @@ public class ManagerRestController {
 	@DeleteMapping("/manager/menu_read")
 	public ResponseEntity<?> menuDelete(int menuno){
 		return ResponseEntity.ok(service.menuDelete(menuno));
+	}
+	
+	//내정보 수정
+	@PatchMapping("/manager/information_update")
+	public ResponseEntity<Void> update(ManagerEntity manager,Principal principal){
+		manager.setMNum(principal.getName());//////principal을 기본키인 사업자번호로 넣어줬어.
+		service.update(manager);
+		return ResponseEntity.ok(null);
 	}
 }

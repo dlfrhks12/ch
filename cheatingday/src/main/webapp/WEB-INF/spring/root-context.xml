@@ -38,7 +38,6 @@
  		<property name="mapperLocations" value="classpath:/mapper/*.xml" />
  		<property name="configLocation" value="classpath:/mybatis-config.xml" />
  	</bean>
- 	
  	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
  		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
  	</bean>		
@@ -81,12 +80,12 @@
 	<mybatis-spring:scan base-package="com.icia.cheatingday.user.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.notice.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.admin.dao"/>
+	<mybatis-spring:scan base-package="com.icia.cheatingday.center.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.freeboard.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
-	
-
+	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/> 
 	<context:component-scan base-package="com.icia.cheatingday">
 		<context:exclude-filter type="annotation" 
 			expression="org.springframework.stereotype.Controller"/>

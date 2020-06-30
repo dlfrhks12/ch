@@ -1,10 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
-=======
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +36,6 @@
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                     <form style="900px;">
-                
                         <div class="form-row">
                         <button class="fas fa-street-view fa-2x" id="but"></button>
                             <div class="col-12 col-md-9 mb-2 mb-md-0">

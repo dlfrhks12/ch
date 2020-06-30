@@ -42,10 +42,11 @@ public class UserRestController {
 		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
-
+/*
 	// 날짜 불러오기
 	@GetMapping(path = "/user/join_date", produces = "text/plain;charset=urf-8")
 	public ResponseEntity<String> findJoinDate(String uUsername) {
 		return ResponseEntity.ok(service.findJoinDate(uUsername));
 	}
+	*/
 }

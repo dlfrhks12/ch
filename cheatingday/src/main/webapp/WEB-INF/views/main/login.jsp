@@ -17,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <title>Insert title here</title>
-<<<<<<< HEAD
 <script src="/cheatingday/script/valid.js"></script>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
@@ -28,9 +27,7 @@
 <script src="login/vendor/daterangepicker/daterangepicker.js"></script>
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <script src="login/js/main.js"></script>
-=======
 <script src="/aboard/script/valid.js"></script>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 <script>
 $(function() {
 	var msg = "${msg}";
@@ -38,17 +35,14 @@ $(function() {
 		$("#alert").text(msg);
 		$("#msg").show();
 	}
-<<<<<<< HEAD
 	
 	$("#username").on("blur", checkUserUsername);
 	$("#password").on("blur", checkUserPassword);
 	$("#username").on("blur", checkManagerUsername);
 	$("#password").on("blur", checkManagerPassword);
-=======
 
 	$("#username").on("blur", checkUsername);
 	$("#password").on("blur", checkPassword);
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	
 	$("#login").on("click", function() {
 		if(checkUserUsername()==false || checkManagerUsername()==false)
@@ -63,28 +57,17 @@ $(function() {
 			return;
 		if(checkUserUsername()==false || checkManagerUsername()==false) 
 			return;
-<<<<<<< HEAD
 		if(checkUserPassword()==false || checkManagerPassword()==false)
 			return;
 		$("#login_form").submit();
-=======
 		if(checkPassword()==false)
 			return;
 		$("#login_frm").submit();
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	});
-<<<<<<< HEAD
-	
-
-	
-})
-=======
 });
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 </script>
 </head>
 <body>
-<<<<<<< HEAD
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
@@ -120,35 +103,8 @@ $(function() {
 							<a href="/main/find_pwd" class="txt3">비밀번호찾기</a>
 						</div>
 					</div>
-
-					<div class="container-login100-form-btn">
-						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-						<button type="button" class="login100-form-btn" id="login">로그인</button>
-					</div>
-				</form>
 			</div>
 		</div>
 	</div>
-	<div id="dropDownSelect1"></div>
-=======
-	<div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
-    	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    	<strong>서버 메시지 </strong><span id="alert"></span>
-  	</div>
-	<form id="login_frm" action="/aboard/user/login" method="post">
-		<div class="form-group">
-			<label for="username">아이디</label>
-			<input id="username" type="text" name="username" class="form-control">
-			<span class="helper-text" id="username_msg"></span>
-		</div>
-		<div class="form-group">
-			<label for="password">비밀번호</label>
-			<input id="password" type="password" name="password" class="form-control">
-			<span class="helper-text" id="password_msg"></span>
-		</div>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		<button type="button" class="btn btn-success" id="login">로그인</button>
-		</form>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 </body>
 </html>

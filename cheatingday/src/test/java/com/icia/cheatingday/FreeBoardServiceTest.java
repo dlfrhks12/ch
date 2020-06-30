@@ -1,16 +1,8 @@
+/*
 package com.icia.cheatingday;
-
-<<<<<<< HEAD
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-=======
-
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
-
 import java.io.*;
 
 import org.junit.*;
@@ -38,8 +30,7 @@ public class FreeBoardServiceTest {
 	
 	@Test
 	 public void writeTest() {
-	 assertThat(service.write(FreeBoardDto.DtoForWrite.class),
-	  is(notNullValue()));
+	 assertThat(service.write(FreeBoardDto.DtoForWrite.class), is(notNullValue()));
 }
 
 	//@Test
@@ -77,3 +68,4 @@ public class FreeBoardServiceTest {
 		assertThat(restService.updateBoard(dto), is(notNullValue()) );
 	}	
 }
+*/

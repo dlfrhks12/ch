@@ -96,6 +96,8 @@ qna게시판 dao작성
 문의답변 entity mapper작성(오류) DAO 
 조인제거및 전체수정 qna게시판 dao까지작성
 문의답변 서비스까지작성
+20.06.30
+qna게시판 마무리작업 및 jsp테스트
 ================ 자유게시판 commit ================
 2020.06.24
 freeboardEntity, Attachment Entity 추가

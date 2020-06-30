@@ -70,7 +70,7 @@ public class NoticeTest {
 		Notice notice = Notice.builder().nNo(2).nTitle("예제21").build();
 		nrs.updateNotice(notice, "usy1473");
 	}
-	//@Test 
+	@Test 
 	public void gwsg(){
 		NoticeDto.DtoForWrite dto = new DtoForWrite();
 		dto.setAUsername("usy1403");

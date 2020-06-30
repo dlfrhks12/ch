@@ -26,7 +26,7 @@
 	<!-- 사업자등록번호로 조회로 하나 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
-		m_irum mIrum, s_name sName, m_check_code mCheckCode from manager where m_num=#{mNum} and rownum=1
+		m_irum mIrum, s_name sName from manager where m_num=#{mNum} and rownum=1
 	</select>
 	
 	<!-- 이름과 이메일로 아이디 찾기 -->

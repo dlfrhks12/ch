@@ -32,6 +32,8 @@ login.jsp 생성
 2020.06.29
 MainRestController 생성
 MainRestService 생성
+2020.06.30
+foodcategory.jsp 생성
 
 ================ 회원 commit =================
 2020.06.26
@@ -82,9 +84,7 @@ manager>menulist.jsp작성
 06.28. 6:32 입점신청 entity,dao,dto,service,controller 생성
             DB에 storeapplyinsert sequence 생성
                           입점신청 daotest 성공-확신은안선다.
-=======
 
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 ================ 관리자 commit ================
 2020.06.25
 qna 엔티티 작성

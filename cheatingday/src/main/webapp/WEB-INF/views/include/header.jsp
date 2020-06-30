@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
     pageEncoding="UTF-8"%>
+=======
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 <!DOCTYPE html>
 <html>
 <head>

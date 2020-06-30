@@ -24,6 +24,8 @@ public class UserService {
 	@Autowired
 	private PointDao pointDao;
 	@Autowired
+	private FavoriteDao favoriteDao;
+	@Autowired
 	private PasswordEncoder pwdEncoder;
 	@Autowired
 	private ModelMapper modelMapper;
@@ -67,21 +69,29 @@ public class UserService {
 		else 
 			throw new JobFailException("잘못된 비밀번호입니다.");
 	}
-	// 포인트
-	public Page point(int pageno,String uUsername) {
-		int countOfBoard = pointDao.count(uUsername);
+	// 포인트 리스트 페이징
+	public Page list(int pageno) {
+		int countOfBoard = pointDao.count();
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
 		List<Point> pointList = pointDao.findAll(srn, ern);
-		List<UserDto.DtoForList> dtoList = new ArrayList<>();
+		List<PointDto.DtoForList> dtoList = new ArrayList<>();
 		for(Point point:pointList) {
-			UserDto.DtoForList dto = modelMapper.map(point, UserDto.DtoForList.class);
+			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
 			dto.setAccumulationDayStr(point.getAccumulationDay().format(DateTimeFormatter.ofPattern("yyyy년 MM일 dd일")));
 			dtoList.add(dto);
 		}
-		page.setUlist(dtoList);
+		page.setPlist(dtoList);
 		return page;
+	}
+	// 즐겨찾기
+	public int favorite(int sNum, String uUsername ) {
+		int num = favoriteDao.findFavoriteById(uUsername, sNum);
+		if(num != 0) {
+			return num;
+		}
+		return 0;
 	}
 	// 회원탈퇴
 	public void resign(String uUsername) {

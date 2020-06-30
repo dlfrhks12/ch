@@ -1,28 +1,33 @@
 package com.icia.cheatingday;
 
+<<<<<<< HEAD
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
+=======
 
-import java.io.File;
-import java.io.IOException;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 
-import com.icia.cheatingday.freeboard.dao.FreeBoardDao;
-import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
-import com.icia.cheatingday.freeboard.dto.FreeBoardDto.DtoForUpdate;
-import com.icia.cheatingday.freeboard.dto.FreeBoardDto.DtoForWrite;
-import com.icia.cheatingday.freeboard.entity.FreeBoard;
-import com.icia.cheatingday.freeboard.service.FreeBoardService;
-import com.icia.cheatingday.freeboard.service.rest.FreeBoardRestService;
+import java.io.*;
+
+import org.junit.*;
+import org.junit.runner.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.test.context.*;
+import org.springframework.test.context.junit4.*;
+
+import com.icia.cheatingday.freeboard.dao.*;
+import com.icia.cheatingday.freeboard.dto.*;
+import com.icia.cheatingday.freeboard.dto.FreeBoardDto.*;
+import com.icia.cheatingday.freeboard.entity.*;
+import com.icia.cheatingday.freeboard.service.*;
+import com.icia.cheatingday.freeboard.service.rest.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring//-context.xml")
 public class FreeBoardServiceTest {
 	@Autowired
 	private FreeBoardService service;
@@ -31,7 +36,11 @@ public class FreeBoardServiceTest {
 	@Autowired
 	private FreeBoardDao dao;
 	
-	
+	@Test
+	 public void writeTest() {
+	 assertThat(service.write(FreeBoardDto.DtoForWrite.class),
+	  is(notNullValue()));
+}
 
 	//@Test
 	public void writeTest() throws IOException {
@@ -67,6 +76,4 @@ public class FreeBoardServiceTest {
 		dto.setUsername("dkdkk");
 		assertThat(restService.updateBoard(dto), is(notNullValue()) );
 	}	
-
-	
 }

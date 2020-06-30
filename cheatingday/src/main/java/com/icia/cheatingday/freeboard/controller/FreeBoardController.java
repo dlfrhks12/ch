@@ -1,24 +1,20 @@
 package com.icia.cheatingday.freeboard.controller;
 
-import java.io.IOException;
-import java.security.Principal;
+import java.io.*;
+import java.security.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import javax.servlet.http.*;
+import javax.validation.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.lang.*;
+import org.springframework.stereotype.*;
+import org.springframework.validation.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
-import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
-import com.icia.cheatingday.freeboard.service.FreeBoardService;
+import com.icia.cheatingday.freeboard.dto.*;
+import com.icia.cheatingday.freeboard.service.*;
 
 
 @Controller
@@ -29,6 +25,7 @@ public class FreeBoardController {
 	public ModelAndView read(@NonNull Integer bno) {
 		return new ModelAndView("main").addObject("viewName", "board/read.jsp");
 	}
+
 	@GetMapping("/board/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1")int pageno,@Nullable String username ) {
 		return new ModelAndView("main").addObject("viewName", "board/list.jsp");

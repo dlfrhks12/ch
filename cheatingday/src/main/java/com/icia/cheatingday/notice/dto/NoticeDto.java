@@ -1,11 +1,5 @@
 package com.icia.cheatingday.notice.dto;
 
-import java.time.*;
-
-import javax.validation.constraints.*;
-
-import com.icia.cheatingday.admin.entity.*;
-
 import lombok.*;
 import lombok.experimental.*;
 

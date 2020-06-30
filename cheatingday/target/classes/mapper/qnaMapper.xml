@@ -40,7 +40,7 @@
 		</trim>
 		where q_no=#{qNo} and rownum=1
 	</update>
-
+ 
 	<delete id="delete">
 		delete from qna where q_no=#{qNo} and rownum=1
 	</delete>

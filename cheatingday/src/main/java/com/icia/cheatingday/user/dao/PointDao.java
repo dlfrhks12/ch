@@ -14,8 +14,8 @@ public class PointDao {
 	@Inject
 	private SqlSessionTemplate tpl;
 	
-	public int count(String uUsername) {
-		return tpl.selectOne("pointMapper.count", uUsername);
+	public int count() {
+		return tpl.selectOne("pointMapper.count");
 	}
 	public List<Point> findAll(int startRowNum, int endRowNum) {
 		Map<String, Integer> map = new HashMap<>();

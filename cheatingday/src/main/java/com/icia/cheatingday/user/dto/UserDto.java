@@ -11,6 +11,10 @@ import lombok.experimental.*;
 public class UserDto {
 	private UserDto() {}
 	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Builder
+	@Accessors(chain = true)
 	public static class DtoForJoin {
 		// 알파벳으로 시작하는 영숫자 8~10자
 		@Pattern(regexp="^[A-Za-z][A-Za-z0-9]{8,10}$", message="아이디는 영숫자 8~10자입니다" )
@@ -38,17 +42,6 @@ public class UserDto {
 		private String joinDateStr;
 		private long days;
 		private int uPoint;
-	}
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	@Builder
-	public static class DtoForList {
-		private int bno;
-		private String uUsername;
-		private String sName;
-		private String accumulationDayStr;
-		private String accumulationSal;
 	}
 	
 	@Data

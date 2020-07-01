@@ -10,12 +10,18 @@
 	position: absolute;
 	top: 10px;
 	}
+	
+	#logo {
+	width: 50px;
+	height: 50px;
+	}
 </style>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light static-top">
         <div class="container">
         	<div>
+        		<a href="/cheatingday"><img class="logo_image" src="mainhome/images/logo.png" id="logo"/></a>
             	<a class="navbar-brand" href="/cheatingday">Cheating Day</a>
         	</div>
         	<div class="form-group">

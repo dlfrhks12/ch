@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="login/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
+<link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
 <title>Insert title here</title>
 <script src="/cheatingday/script/valid.js"></script>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -26,8 +27,30 @@
 <script src="login/vendor/daterangepicker/moment.min.js"></script>
 <script src="login/vendor/daterangepicker/daterangepicker.js"></script>
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
-<script src="login/js/main.js"></script>
-<script src="/aboard/script/valid.js"></script>
+<style>
+	#login {
+	position: absolute;
+	left: 400px;
+	top: 395px;
+	}
+	
+	#join {
+	position: absolute;
+	top: 400px;
+	}
+	
+	#account {
+	font-size: 13px;
+    color: #999999;
+	}
+	
+	#joinbutton {
+	font-size: 15px;
+	color: red;
+	position: abdolute;
+	top: 407px;
+	}
+</style>
 <script>
 $(function() {
 	var msg = "${msg}";
@@ -41,15 +64,13 @@ $(function() {
 	$("#username").on("blur", checkManagerUsername);
 	$("#password").on("blur", checkManagerPassword);
 
-	$("#username").on("blur", checkUsername);
-	$("#password").on("blur", checkPassword);
 	
 	$("#login").on("click", function() {
 		if(checkUserUsername()==false || checkManagerUsername()==false)
 			return;
 		if(checkUserPassword()==false || checkManagerPassword()==false)
 			return;
-		$("#login_frm").submit();
+		$("#login_form").submit();
 	});
 	
 	$("#password").on("keypress", function(key) {
@@ -62,7 +83,7 @@ $(function() {
 		$("#login_form").submit();
 		if(checkPassword()==false)
 			return;
-		$("#login_frm").submit();
+		$("#login_form").submit();
 	});
 });
 </script>
@@ -71,6 +92,9 @@ $(function() {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				<div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				</div>
 				<form class="login100-form validate-form flex-sb flex-w" id="login_form" action="/cheatingday/main/login" method="post">
 					<span class="login100-form-title p-b-32">로그인</span>
 
@@ -102,6 +126,15 @@ $(function() {
 							<a> / </a>
 							<a href="/main/find_pwd" class="txt3">비밀번호찾기</a>
 						</div>
+						<div id="join">
+							<a id="account">계정이 없으신가요?&nbsp;&nbsp;</a>
+							<a href="/cheatingday/join_user" class="txt3" id="joinbutton">  회원가입하기</a>
+						</div>
+						
+					</div>
+					<div class="container-login100-form-btn">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+						<button type="button" class="btn btn-danger" id="login">로그인</button>
 					</div>
 			</div>
 		</div>

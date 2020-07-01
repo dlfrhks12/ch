@@ -1,24 +1,40 @@
 
 package com.icia.cheatingday.main.controller.mvc;
 
+import java.security.*;
 import java.util.*;
 
+import javax.mail.*;
+import javax.servlet.http.*;
+import javax.validation.*;
+import javax.validation.constraints.*;
+
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
+import org.springframework.validation.*;
 import org.springframework.web.bind.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.mvc.support.*;
 
+import com.icia.cheatingday.main.service.mvc.*;
+import com.icia.cheatingday.manager.dto.*;
+import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
 
+import oracle.jdbc.proxy.annotation.*;
+
 @Controller
+
 public class MainController {
 	@InitBinder
 	public void init(WebDataBinder wdb) {
 		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 	}
 	
-	//@Autowired
-	//private MainService service
+	@Autowired
+	private MainService service;
 
 
 	// 홈화면 - 메뉴 카테고리
@@ -30,22 +46,24 @@ public class MainController {
 	// [공용] 로그인
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("main").addObject("viewHeader", "include/header2.jsp").addObject("viewName", "main/login.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/login.jsp");
 	}
-}	
 	
+	// [공용] 로그아웃
+	@PostMapping("/logout")
+	public String logout() {
+		return "main/logout";
+	}
 	
-	
-	/*
 	// [일반] 회원가입 Get
-	@GetMapping("/main/join_user")
+	@GetMapping("/join_user")
 	public ModelAndView UserJoin() {
-		return new ModelAndView("main").addObject("viewName", "main/userjoin.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/userjoin.jsp");
 	}
 	
 	
 	// [일반] 회원가입 Post
-	@PostMapping("/main/join_user")
+	@PostMapping("/join_user")
 	public String ManagerJoin(@Valid UserDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
 		if(bindingResult.hasErrors()==true)
 			throw new BindException(bindingResult);
@@ -62,7 +80,7 @@ public class MainController {
 	// [일반] 아이디 찾기 Get
 	@GetMapping("/main/u_find_id")
 	public ModelAndView findUserUsername() {
-		return new ModelAndView("main").addObject("viewName", "main/findid.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findid.jsp");
 	}
 	
 	
@@ -79,7 +97,7 @@ public class MainController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/main/u_check_pwd")
 	public ModelAndView checkUserPwd() {
-		return new ModelAndView("main").addObject("viewName", "main/checkpwd.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/checkpwd.jsp");
 	}
 	
 	// [일반] '마이페이지' 클릭 시 비밀번호 확인 Post
@@ -95,7 +113,7 @@ public class MainController {
 	// [일반] 비밀번호 찾기 (재설정) Get
 	@GetMapping("/main/u_find_pwd")
 	public ModelAndView findUserPwd() {
-		return new ModelAndView().addObject("viewName", "main/findpwd.jsp");
+		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findpwd.jsp");
 	}
 	
 	// [일반] 비밀번호 찾기 (재설정) Post
@@ -112,7 +130,7 @@ public class MainController {
 	// [사업자] 회원가입 Get
 	@GetMapping("/main/join_manager")
 	public ModelAndView ManagerJoin() {
-		return new ModelAndView("main").addObject("viewName", "main/managerjoin.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/managerjoin.jsp");
 	}
 	
 	
@@ -134,7 +152,7 @@ public class MainController {
 	// [사업자] 아이디 찾기 Get
 	@GetMapping("/main/m_find_id")
 	public ModelAndView findManagerUsername() {
-		return new ModelAndView("main").addObject("viewName", "main/findid.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findid.jsp");
 	}
 	
 	
@@ -150,7 +168,7 @@ public class MainController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/main/m_check_pwd")
 	public ModelAndView checkManagerPwd() {
-		return new ModelAndView("main").addObject("viewName", "main/checkpwd.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/checkpwd.jsp");
 	}
 	
 	// [사업자] '사장님 페이지로' 클릭 시 비밀번호 확인 Post
@@ -165,7 +183,7 @@ public class MainController {
 	// [사업자] 비밀번호 찾기 (재설정) Get
 	@GetMapping("/main/m_find_pwd")
 	public ModelAndView findManagerPwd() {
-		return new ModelAndView().addObject("viewName", "main/findpwd.jsp");
+		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findpwd.jsp");
 	}
 	
 	// [사업자] 비밀번호 찾기  (재설정) Post
@@ -177,4 +195,3 @@ public class MainController {
 	}
 }
 
- */

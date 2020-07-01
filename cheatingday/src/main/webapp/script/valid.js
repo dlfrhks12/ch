@@ -38,7 +38,7 @@ function checkManagerEmail() {
 }
 
 //사업자 번호 확인
-function checkManagerMnumber() {
+function checkManagernumber() {
 	var pattern = /^([0-9]{3})([0-9]{2})([0-9]{5})$/;
 	return check($("#m_num").val(), pattern, $("#m_num_msg"), "사업자번호는 10자리 숫자입니다")
 }

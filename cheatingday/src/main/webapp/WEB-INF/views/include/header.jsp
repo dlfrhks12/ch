@@ -23,6 +23,7 @@
 	left: 425px;
 	width: 80px;
 	}
+	
 </style>
 </head>
 <body>

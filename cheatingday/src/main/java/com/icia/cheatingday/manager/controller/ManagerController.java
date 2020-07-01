@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.cheatingday.manager.dto.ManagerDto;
+import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 
@@ -25,14 +26,6 @@ public class ManagerController {
 	public ModelAndView menuList() {
 		return new ModelAndView("main").addObject("viewName", "manager/menulist.jsp")
 				.addObject("menuList",service.menuList());
-				 
-	}
-	
-	//메뉴읽기로 이동
-	@GetMapping("/manager/menu_read")
-	public ModelAndView menuRead(int menuno) {
-		return new ModelAndView("main").addObject("viewName", "manager/menuread.jsp")
-				.addObject("menuRead",service.menuRead(menuno));
 	}
 	
 	//메뉴쓰기로 이동
@@ -43,9 +36,9 @@ public class ManagerController {
 	
 	//메뉴쓰기
 	@PostMapping("/manager/menu_write")
-	public String menuWrite(MenuEntity menu, MultipartFile sajin) throws IllegalStateException, IOException {
-		service.write(menu, sajin);
-		return "redirect:/manager/menu_read";
+	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
+		service.write(dto, sajin);
+		return "redirect:/manager/menu_list";
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	//입점신청 페이지로 이동

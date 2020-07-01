@@ -96,6 +96,10 @@ manager>menulist.jsp작성
 =======
 06.29 5:10 입점신청 컨트롤러까지 완성 /테스트 성공
                         매니저 내정보 읽기, 업뎃 컨트롤러까지 완성/ 테스트 성공
+<<<<<<< HEAD
+06.30 메뉴리스트jsp                   
+=======
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 ================ 관리자 commit ================
 2020.06.25

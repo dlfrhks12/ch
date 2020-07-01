@@ -39,7 +39,7 @@ public class UserDto {
 		private String uTel;
 		private String uAddress;
 		private String uPassword;
-		private String joinDateStr;
+		private String uJoinDateStr;
 		private long days;
 		private int uPoint;
 	}
@@ -51,13 +51,9 @@ public class UserDto {
 		private String uUsername;
 		@Pattern(regexp="^[가-힣]{2,5}$", message="이름은 한글 2~5자입니다")
 		private String uIrum;
-		@Pattern(regexp="(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$", message="비밀번호는 특수문자를 포함하는 영숫자 8~10자입니다")
 		private String uPassword;
-		@Pattern(regexp="(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$", message="비밀번호는 특수문자를 포함하는 영숫자 8~10자입니다")
 		private String newUPassword;
-		@NotNull(message="전화번호는 필수입력입니다")
 		private String uTel;
-		@NotNull
 		@Email(message="잘못된 이메일 형식입니다")
 		private String uEmail;
 	}

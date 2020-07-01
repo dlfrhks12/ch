@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/cheatingday/script/vaild.js"></script>
 <style>
 #header p {
 	text-align: center;

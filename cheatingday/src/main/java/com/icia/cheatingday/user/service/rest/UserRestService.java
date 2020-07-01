@@ -39,20 +39,14 @@ public class UserRestService {
 			User user = userDao.findById(dto.getUUsername());
 			if(user==null)
 				throw new UserNotFoundException();
-			String encodedPassword = user.getUPassword();
-			if(pwdEncoder.matches(dto.getUPassword(), encodedPassword)==false)
+			String password = user.getUPassword();
+			if(dto.getUPassword().equals(password)==false)
 				throw new JobFailException("비밀번호를 확인할 수 없습니다.");
-			user.setUPassword(pwdEncoder.encode(dto.getNewUPassword()));
+			user.setUPassword(dto.getNewUPassword());
 		}
 		
 		User user = modelMapper.map(dto, User.class);
 		userDao.update(user);
-	}
-	// 날짜 불러오기
-	public String findJoinDate(String uUsername) {
-		User user = userDao.findById(uUsername);
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
-		return user.getUJoinDate().format(dtf);
 	}
 	
 }

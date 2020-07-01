@@ -16,6 +16,7 @@ import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.dao.ManagerStoreApplyInsertDao;
 import com.icia.cheatingday.manager.dao.MenuDao;
 import com.icia.cheatingday.manager.dto.ManagerDto;
+import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 
@@ -48,36 +49,36 @@ public class ManagerService {
 		return result;
 	}
 
-	// 메뉴읽기
-	public MenuEntity menuRead(int menuno) {
-		return dao.findById(menuno);
-	}
 
 	// 메뉴쓰기 - 메뉴사진 올리는 기능
-	public void write(MenuEntity menu, MultipartFile sajin) throws IllegalStateException, IOException {
+	public void write(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
+		MenuEntity menu = modelMapper.map(dto, MenuEntity.class);
+		
 		if (sajin != null && sajin.isEmpty() == false) {// 사진이 존재하면서 사진형식이면
 			if (sajin.getContentType().toLowerCase().startsWith("image/") == true) {
 				// 사진이 맞으면
 				int lastIndexOfDot = sajin.getOriginalFilename().lastIndexOf('.');
 				String extension = sajin.getOriginalFilename().substring(lastIndexOfDot + 1);
-				File profile = new File(profileFolder, menu.getMenuname() + "." + extension);
+				File profile = new File(profileFolder, dto.getMenuname() + "." + extension);
 
 				sajin.transferTo(profile);
-				menu.setMenusajin(profilePath + profile.getName());
+				dto.setMenusajin(profilePath + profile.getName());
 			} else {
 				// 메뉴사진이라고 올린 파일이 사진이 아닌 경우 => menubasic.jpg
-				menu.setMenusajin(profilePath + "menubasic.jpg");
+				dto.setMenusajin(profilePath + "menubasic.jpg");
 			}
 
 		} else {
 			// 메뉴사진을 안올린 경우 => menubasic.jpg
-			menu.setMenusajin(profilePath + "menubasic.jpg");
+			dto.setMenusajin(profilePath + "menubasic.jpg");
 		}
 		dao.insert(menu);
 	}
 
 	// 메뉴업뎃
-	public int menuUpdate(MenuEntity menu, MultipartFile sajin) throws IllegalStateException, IOException {
+	public int menuUpdate(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
+		MenuEntity menu = modelMapper.map(dto, MenuEntity.class);
+		
 		if (sajin != null && !sajin.isEmpty()) {
 			if (sajin.getContentType().toLowerCase().startsWith("image/") == true) {
 				int lastIndexOfDot = sajin.getOriginalFilename().lastIndexOf('.');

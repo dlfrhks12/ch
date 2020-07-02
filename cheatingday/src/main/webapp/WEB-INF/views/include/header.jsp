@@ -4,11 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <title>Insert title here</title>
-=======
 <title>header</title>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 <style>
 	#bg {
 	width: 100%;

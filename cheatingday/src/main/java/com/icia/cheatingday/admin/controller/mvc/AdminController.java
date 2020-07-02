@@ -34,15 +34,5 @@ public class AdminController {
 			return new ModelAndView("main").addObject("list", service.ulist()).addObject("viewName", "admin/userlist.jsp").addObject("title","유저 목록");
 	}
 	
-	@PostMapping("/admin/user_block")
-	public String userBlock(@RequestParam @NotNull String uUsernames) {
-		// "11,22,33,"을 받아서 split() 함수로 정수 변환
-		List<String> list = new ArrayList<>();
-		String[] strings = uUsernames.split(",");
-		for(String str:strings) {
-			list.add(str);
-		}
-		service.block(list);
-		return "redirect:/system/board/list?job=bad_list";
-	}*/
+	*/
 }

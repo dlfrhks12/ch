@@ -23,16 +23,16 @@ public class AdminRestController {
 		service.deleteReport(rNo);
 		return ResponseEntity.ok("/cheatingday/admin/report_list");
 	}
-	@PostMapping("/system/board/block")
-	public String blockList(@RequestParam @NotNull String bnos) {
+	@PostMapping("/admin/user_block")
+	public String userBlock(@RequestParam @NotNull String uUsernames) {
 		// "11,22,33,"을 받아서 split() 함수로 정수 변환
-		List<Integer> list = new ArrayList<>();
-		String[] strings = bnos.split(",");
+		List<String> list = new ArrayList<>();
+		String[] strings = uUsernames.split(",");
 		for(String str:strings) {
-			list.add(NumberUtils.toInt(str));
+			list.add(str);
 		}
 		service.block(list);
-		return "redirect:/system/board/list?job=bad_list";
+		return "redirect:/admin/list?job=bad_list";
 	}
 	*/
 }

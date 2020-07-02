@@ -58,31 +58,7 @@ $(function() {
 		$("#alert").text(msg);
 		$("#msg").show();
 	}
-	
-	$("#username").on("blur", checkUserUsername);
-	$("#password").on("blur", checkUserPassword);
-	$("#username").on("blur", checkManagerUsername);
-	$("#password").on("blur", checkManagerPassword);
-
-	
 	$("#login").on("click", function() {
-		if(checkUserUsername()==false || checkManagerUsername()==false)
-			return;
-		if(checkUserPassword()==false || checkManagerPassword()==false)
-			return;
-		$("#login_form").submit();
-	});
-	
-	$("#password").on("keypress", function(key) {
-		if(key.keyCode!=13)
-			return;
-		if(checkUserUsername()==false || checkManagerUsername()==false) 
-			return;
-		if(checkUserPassword()==false || checkManagerPassword()==false)
-			return;
-		$("#login_form").submit();
-		if(checkPassword()==false)
-			return;
 		$("#login_form").submit();
 	});
 });
@@ -97,10 +73,10 @@ $(function() {
 				</div>
 				<form class="login100-form validate-form flex-sb flex-w" id="login_form" action="/cheatingday/main/login" method="post">
 					<span class="login100-form-title p-b-32">로그인</span>
-
+					
 					<span class="txt1 p-b-11" id="username">아이디</span>
 					<div class="wrap-input100 validate-input m-b-36" id="username" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" >
+						<input class="input100" type="text" name="a_username" >
 						<span class="focus-input100"></span>
 						<span class="helper_text" id="username_msg"></span>
 					</div>
@@ -110,7 +86,7 @@ $(function() {
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass" >
+						<input class="input100" type="password" name="a_password" >
 						<span class="focus-input100"></span>
 						<span class="helper_text" id="password_msg"></span>
 					</div>
@@ -136,6 +112,7 @@ $(function() {
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<button type="button" class="btn btn-danger" id="login">로그인</button>
 					</div>
+					</form>
 			</div>
 		</div>
 	</div>

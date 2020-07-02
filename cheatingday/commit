@@ -90,7 +90,7 @@ manager>menulist.jsp작성
             DB에 storeapplyinsert sequence 생성
                           입점신청 daotest 성공-확신은안선다.
 <<<<<<< HEAD
-
+07.02 메뉴관리 완서유ㅠㅠ
 =======
 06.29 5:10 입점신청 컨트롤러까지 완성 /테스트 성공
                         매니저 내정보 읽기, 업뎃 컨트롤러까지 완성/ 테스트 성공

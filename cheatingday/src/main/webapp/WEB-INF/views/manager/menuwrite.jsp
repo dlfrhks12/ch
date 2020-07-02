@@ -8,7 +8,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메뉴등록</title>
 <script>
 //1. 이미지 출력입니다
 function loadImage(){
@@ -47,7 +47,7 @@ $(function(){
 <!--user- 회원가입 같이 만들음 > 사진도 추가해줘야해서 -->
 
 <div id="wrap">
-		<form id="write_form" action="/cheatingday/manager/menu_write" method="post" enctype="multipart/form-data">
+		<form id="write_form" action="/cheatingday/manager/menu_insert" method="post" enctype="multipart/form-data">
 			<img id="show_menusajin" height="240px">
 			<input type="hidden" name="_csrf" value="${_csrf.token }">
 			<div class="form-group">
@@ -57,19 +57,19 @@ $(function(){
 			<div>
 				<label for="menuno_label">메뉴번호</label>
 				<div class="form-group">
-					<input type="text" class="form-control" id="menuno" name="menuno">
+					<input type="text" class="form-control" id="menuno" name="menuno" placeholder="메뉴번호를 입력해주세요">
 				</div>
 			</div>
 			<div>
 				<label for="menuname_label">메뉴이름</label>
 				<div class="form-group">
-					<input type="text" class="form-control" id="menuname" name="menuname">
+					<input type="text" class="form-control" id="menuname" name="menuname" placeholder="메뉴이름을 입력해주세요">
 				</div>
 			</div>
 			<div>
 				<label for="menusal_label">메뉴가격</label>
 				<div class="form-group">
-					<input id="menusal" type="text" class="form-control" name="menusal">
+					<input id="menusal" type="text" class="form-control" name="menusal" placeholder="메뉴가격을 입력해주세요">
 				</div>
 			</div>
 			<div>

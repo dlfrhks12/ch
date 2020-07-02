@@ -115,7 +115,7 @@ public class ManagerService {
 		storeapplyInsert.setMTel(storeApplyInsertDao.findByTel(storeapplyInsert.getMNum()));
 		storeapplyInsert.setMEmail(storeApplyInsertDao.findByEmail(storeapplyInsert.getMNum()));
 		storeApplyInsertDao.insert(storeapplyInsert);
-		return storeapplyInsert.getINo();////////////??????????
+		return storeapplyInsert.getINo();////////////입점신청번호를 리턴
 		
 	}
 	//////////////////////////////////////사업자 내정보 ///////////////////////////////////////////////////

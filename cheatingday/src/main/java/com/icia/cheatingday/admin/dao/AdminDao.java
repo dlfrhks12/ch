@@ -1,12 +1,28 @@
 package com.icia.cheatingday.admin.dao;
 
+import java.util.*;
 
-import org.apache.ibatis.annotations.*;
+import org.mybatis.spring.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
+import com.icia.cheatingday.user.entity.*;
 
-public interface AdminDao {
-
-	@Select("select a_irum aIrum from admin where a_username=#{aUsername} and rownum=1")
-	public String findById(String aUsername);
+@Repository
+public class AdminDao {
+	@Autowired
+	private SqlSessionTemplate tpl;
 	
+	public String findById(String aUsername) {
+		return tpl.selectOne("adminMapper.findById", aUsername);
+	}
+	public void blockAll(List<String> uUsernames) {
+		tpl.update("adminMapper.blockAll", uUsernames);
+	}
+	public List<User> findAllBlock(){
+		return tpl.selectList("adminMapper.findAllBlock");
+	}
+	public void unblockAll(List<String> uUsernames) {
+		tpl.update("adminMapper.unblockAll", uUsernames);
+	}
 }

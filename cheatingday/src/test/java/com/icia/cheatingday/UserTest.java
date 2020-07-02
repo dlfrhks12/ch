@@ -36,7 +36,8 @@ public class UserTest {
 	}
 	//@Test
 		public void findByIdTest() {
-			assertThat(dao.findById("cheat"), is(false));
+			assertThat(dao.findById("spring"), is(false));
+			System.out.println(dao.findById("spring"));
 		}
 	//@Test
 	public void exsistsById() {
@@ -74,7 +75,7 @@ public class UserTest {
 	public void pageList() {
 		System.out.println(uservice.list(1));
 	}
-	//@Test
+	@Test
 	public void myPage() {
 		System.out.println(uservice.myPage("spring"));
 	}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+	<select id="findById" resultType="admin">
+		select a_irum aIrum from admin where a_username=#{aUsername} and rownum=1
+	</select>
+	
+	<update id="blockAll">
+		update users set u_enabled=0 where u_username in
+		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		#{item}
+		</foreach>
+	</update>
+	
+	<select id="findAllBlock" resultType="user">
+	<![CDATA[
+		select u_username uUsername, u_irum uIrum, u_joindate uJoindate, u_login_fail_cnt uLoginFailCnt from users
+		where enabled=0
+	]]>
+	</select>
+	<update id="unblockAll">
+		update users set enabled=1 where u_username in
+		 <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		 	#{item}
+		 </foreach>
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

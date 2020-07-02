@@ -10,6 +10,7 @@ import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.user.dao.*;
+import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.util.*;
 
 @Service
@@ -19,7 +20,9 @@ public class AdminService {
 	@Autowired
 	private UserDao udao;
 	@Autowired
-	private storeDao sdao;
+	private storeDao sdao;	
+	@Autowired
+	private AdminDao adao;
 	@Autowired
 	private ModelMapper mapper;
 	
@@ -44,9 +47,17 @@ public class AdminService {
 		page.setAlist(dtolist);
 		return page;
 	}
-	
-	public void deleteReport(Integer rNo, String username) {
-		Review review = rdao.findById(rNo);
-		rdao.delete(rNo);
-	}*/
+
+	public List<AdminDto.DtoForUlist> ulist(){
+		List<AdminDto.DtoForUlist> dtolist = new ArrayList<>();
+		List<User> list = udao.findAll();
+		for(User user:list) {
+			dtolist.add(mapper.map(user, AdminDto.DtoForUlist.class));
+		}
+		return dtolist;
+	}
+	public List<User> blockList(){
+		return adao.findAllBlock();
+	}
+	*/
 }

@@ -38,6 +38,7 @@ public class MainService {
 	@Autowired 
 	private MailUtil mailUtil;
   
+	
 	// [일반] 회원가입 
 	public void UserJoin(UserDto.DtoForJoin dto) { 
 	User user = modelMapper.map(dto, User.class);

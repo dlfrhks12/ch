@@ -33,13 +33,11 @@ public class UserService {
 	// 내정보 읽기
 	public UserDto.DtoForRead myPage(String uUsername) {
 		User user = userDao.findById(uUsername);
-		if(user==null)
-			throw new UserNotFoundException();
+		//if(user==null)
+		//	throw new UserNotFoundException();
 		UserDto.DtoForRead dto = modelMapper.map(user, UserDto.DtoForRead.class);
-		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
-		dto.setJoinDateStr(user.getUJoinDate().format(dtf));
-		
+		dto.setUJoinDateStr(user.getUJoinDate().format(dtf));
 		LocalDate joinDate = user.getUJoinDate().toLocalDate();
 		LocalDate today = LocalDate.now();
 		long days = ChronoUnit.DAYS.between(joinDate, today);
@@ -56,7 +54,7 @@ public class UserService {
 		if(result==false)
 			throw new JobFailException("비밀번호가 틀렸습니다");
 	}
-	// 비밀번호 변경
+	// 비밀번호 변경	
 	public void changePwd(String uPassword, String newUPassword, String UUsername) {
 		User user = userDao.findById(UUsername);
 		if(user==null)

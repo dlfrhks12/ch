@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <title>header</title>
 <style>
 	#bg {
@@ -23,6 +24,7 @@
 	left: 425px;
 	width: 80px;
 	}
+	
 </style>
 </head>
 <body>

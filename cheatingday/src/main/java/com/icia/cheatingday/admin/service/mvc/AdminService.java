@@ -9,16 +9,22 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.common.dto.*;
+import com.icia.cheatingday.exception.*;
+import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.util.*;
 
 @Service
 public class AdminService {
-/*	@Autowired
+	/*
+	@Autowired
 	private reviewDao rdao;
 	@Autowired
 	private UserDao udao;
+	@Autowired
+	private ManagerDao mdao;
 	@Autowired
 	private storeDao sdao;	
 	@Autowired
@@ -48,16 +54,26 @@ public class AdminService {
 		return page;
 	}
 
-	public List<AdminDto.DtoForUlist> ulist(){
-		List<AdminDto.DtoForUlist> dtolist = new ArrayList<>();
-		List<User> list = udao.findAll();
-		for(User user:list) {
-			dtolist.add(mapper.map(user, AdminDto.DtoForUlist.class));
-		}
-		return dtolist;
+	public List<User> ulist(){
+		return adao.findAllUser();;
 	}
 	public List<User> blockList(){
 		return adao.findAllBlock();
 	}
+	public void userBlock(List<String> uUsernames) {
+		adao.blockAll(uUsernames);
+	}
+	
+	public void unblock(List<String> uUsernames) {
+		adao.unblockAll(uUsernames);
+	}
+	public List<ManagerEntity> mlist(){
+		return adao.findAllByEnabled();
+	}
+	public ManagerEntity mread(String mNum) {
+		ManagerEntity manager = mdao.findById(mNum);
+		return manager;
+	}
 	*/
+	
 }

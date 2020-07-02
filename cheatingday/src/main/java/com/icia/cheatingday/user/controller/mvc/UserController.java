@@ -37,12 +37,9 @@ public class UserController {
 	
 	// 내 정보 읽기
 	@GetMapping("/user/mypage")
-	public ModelAndView myPage(HttpSession session, Principal principal) {
-		if (session.getAttribute("isCheck") == null)
-			return new ModelAndView("redirect:/user/check_pwd");
-		else
-			return new ModelAndView("main").addObject("viewName", "user/mypage.jsp").addObject("user",
-					service.myPage(principal.getName()));
+	public ModelAndView myPage(HttpSession session) {
+		return new ModelAndView("main").addObject("viewName", "user/mypage.jsp").addObject("user",
+					service.myPage("spring"));
 	}
 
 	// 비밀번호 확인 get
@@ -52,8 +49,8 @@ public class UserController {
 	}
 	// 비밀번호 확인 post
 	@PostMapping("/user/check_pwd")
-	public String checkPwd(String uPassword, Principal principal, HttpSession session) {
-		service.checkPwd(uPassword, principal.getName());
+	public String checkPwd(String uPassword, HttpSession session) {
+		service.checkPwd(uPassword, "spring");
 		session.setAttribute("isCheck", "true");
 		return "redirect:/user/mypage";
 	}
@@ -65,8 +62,8 @@ public class UserController {
 	}
 	// 비밀번호 변경 post
 	@PostMapping("/user/change_pwd")
-	public String changePwd(@RequestParam @NotNull String uPassword, @RequestParam @NotNull String newUPassword, Principal principal, RedirectAttributes ra) {
-		service.changePwd(uPassword, newUPassword, principal.getName());
+	public String changePwd(@RequestParam @NotNull String uPassword, @RequestParam @NotNull String newUPassword, RedirectAttributes ra) {
+		service.changePwd(uPassword, newUPassword, "spring");
 		ra.addFlashAttribute("msg", "비밀번호를 변경했습니다");
 		return "redirect:/";
 	}

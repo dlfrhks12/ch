@@ -19,8 +19,8 @@
 			화면이 없는 REST 방식일 경우 <sec:http-basic/>을 사용 
 		 -->
 		<sec:form-login
-			username-parameter="username"
-			password-parameter="password"
+			username-parameter="u_username"
+			password-parameter="u_password"
 			login-page="/main/login"
 			login-processing-url="/main/login"
 			default-target-url="/" />

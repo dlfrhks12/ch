@@ -34,14 +34,12 @@ public class UserRestController {
 	}
 	// 업데이트
 	@PutMapping("/user/update")
-	public ResponseEntity<Void> update(@Valid UserDto.DtoForUpdate dto, BindingResult results, Principal principal)
-			throws BindException {
-		if (results.hasErrors())
-			throw new BindException();
-		dto.setUUsername(principal.getName());
+	public ResponseEntity<Void> update(@Valid UserDto.DtoForUpdate dto){
+		dto.setUUsername("spring");
 		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
+
 /*
 	// 날짜 불러오기
 	@GetMapping(path = "/user/join_date", produces = "text/plain;charset=urf-8")

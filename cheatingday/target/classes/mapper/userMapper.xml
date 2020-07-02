@@ -39,7 +39,7 @@
 	</select>
 	<!-- 아이디 찾기 -->
 	<select id="findById" resultType="user">
-		select u_username uUsername, u_irum uIrum, u_tel uTel, u_address uAddress, u_password uPassword, u_enabled uEnabled,
+		select u_username uUsername, u_irum uIrum, u_tel uTel, u_email UEmail, u_address uAddress, u_password uPassword, u_enabled uEnabled,
 		u_joinDate uJoinDate, u_point uPoint, u_login_fail_cnt uLoginFailCnt from users where u_username=#{uUsername} and rownum=1
 	</select>
 	<!-- 이름, 이메일로 아이디 찾기 -->

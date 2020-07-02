@@ -20,8 +20,11 @@ public class MenuDao {
 	}
 	
 	//메뉴읽기
-	public MenuEntity findById(int menuno) {
+	public MenuEntity findById(Integer menuno) {
+		System.out.println("####");
+		System.out.println(menuno);
 		return tpl.selectOne("menuMapper.findById",menuno);
+		
 	}
 	
 	//메뉴추가

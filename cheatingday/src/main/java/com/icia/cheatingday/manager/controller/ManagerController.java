@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,14 +27,26 @@ public class ManagerController {
 	@GetMapping("/manager/menu_list")
 	public ModelAndView menuList() {
 		return new ModelAndView("main").addObject("viewName", "manager/menulist.jsp")
+				.addObject("viewHeader", "include/header2.jsp")
 				.addObject("menuList",service.menuList());
+	}
+	
+	
+	//메뉴읽기 페이지로 이동
+	@GetMapping("/manager/menu_read")
+	public ModelAndView menuRead(Integer menuno) {
+		return new ModelAndView("main").addObject("viewName", "manager/menuread.jsp")
+				.addObject("viewHeader", "include/header2.jsp")
+				.addObject("menuRead",service.menuRead(menuno));
 	}
 	
 	//메뉴쓰기로 이동
 	@GetMapping("/manager/menu_write")
 	public ModelAndView menuWrite() {
-		return new ModelAndView("main").addObject("viewName", "manager/menuwrite.jsp");
+		return new ModelAndView("main").addObject("viewName", "manager/menuwrite.jsp")
+				.addObject("viewHeader", "include/header2.jsp");
 	}
+	
 	
 	//메뉴쓰기
 	@PostMapping("/manager/menu_write")
@@ -40,11 +54,13 @@ public class ManagerController {
 		service.write(dto, sajin);
 		return "redirect:/manager/menu_list";
 	}
+	 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	//입점신청 페이지로 이동
 	@GetMapping("/manager/store_apply")
 	public ModelAndView storeApplyInsert() {
-		return new ModelAndView("main").addObject("viewName", "manager/storeapply.jsp");
+		return new ModelAndView("main").addObject("viewName", "manager/storeapply.jsp")
+				.addObject("viewHeader", "include/header2.jsp");
 	}
 	
 	//입점신청
@@ -58,7 +74,8 @@ public class ManagerController {
 	//내 정보 읽기
 	@GetMapping("/manager/information")
 	public ModelAndView managerInfoRead() {
-		return new ModelAndView("main").addObject("viewName","manager/information.jsp");
+		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
+				.addObject("viewHeader", "include/header2.jsp");
 	}
 	
 }

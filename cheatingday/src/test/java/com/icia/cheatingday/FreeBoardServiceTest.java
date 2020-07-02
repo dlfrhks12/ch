@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //package com.icia.cheatingday;
 //
 //
@@ -72,7 +71,6 @@
 //		assertThat(restService.updateBoard(dto), is(notNullValue()) );
 //	}	
 //}
-=======
 /*
 package com.icia.cheatingday;
 
@@ -144,4 +142,3 @@ public class FreeBoardServiceTest {
 	}	
 }
 */
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git

@@ -9,13 +9,9 @@ SQL 추가
 2020.06.25
 mapper폴더 추가(freeboardMapper 추가)
 Page dto 리스트입력
-<<<<<<< HEAD
 system 폴더 추가 (msg.jsp추가)
-=======
 pwdEncoder를 위한 서큐리티 추가및 수정
-
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
-
+시큐리티설정
 ================ 메인 commit ================
 2020.06.25
 MainController 생성
@@ -114,6 +110,7 @@ qna게시판 dao작성
 문의답변 서비스까지작성
 20.06.30
 qna게시판 마무리작업 및 jsp테스트
+관리자 컨트롤러작성중
 ================ 자유게시판 commit ================
 2020.06.24
 freeboardEntity, Attachment Entity 추가

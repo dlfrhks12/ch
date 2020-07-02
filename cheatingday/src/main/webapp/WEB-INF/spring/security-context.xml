@@ -58,8 +58,8 @@
 		<sec:authentication-provider>
 			<sec:jdbc-user-service 
 				data-source-ref="dataSource"
-				users-by-username-query="select u_username, u_password, u_enabled from users where username=? and rownum=1"
-				authorities-by-username-query="select u_username, authority from authority where username=?"
+				users-by-username-query="select a_username, a_password, a_enabled from (select a_username, a_password, a_enabled from admin union SELECT m_username, m_password, m_enabled from manager union select u_username, u_password, u_enabled from users) where a_username=? and rownum=1"
+				authorities-by-username-query="select username, authority from authority where username=?"
 				 />
 			<sec:password-encoder ref="encoder" />
 		</sec:authentication-provider>

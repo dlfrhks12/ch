@@ -58,33 +58,7 @@ $(function() {
 		$("#alert").text(msg);
 		$("#msg").show();
 	}
-	
-	$("#username").on("blur", checkUserUsername);
-	$("#password").on("blur", checkUserPassword);
-	$("#username").on("blur", checkManagerUsername);
-	$("#password").on("blur", checkManagerPassword);
-
-	
-	$("#login").on("click", function() {
-		if(checkUserUsername()==false || checkManagerUsername()==false)
-			return;
-		if(checkUserPassword()==false || checkManagerPassword()==false)
-			return;
-		$("#login_form").submit();
-	});
-	
-	$("#password").on("keypress", function(key) {
-		if(key.keyCode!=13)
-			return;
-		if(checkUserUsername()==false || checkManagerUsername()==false) 
-			return;
-		if(checkUserPassword()==false || checkManagerPassword()==false)
-			return;
-		$("#login_form").submit();
-		if(checkPassword()==false)
-			return;
-		$("#login_form").submit();
-	});
+	$("#login_form").submit();
 });
 </script>
 </head>

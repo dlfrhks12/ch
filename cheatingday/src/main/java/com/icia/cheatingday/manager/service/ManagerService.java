@@ -26,9 +26,9 @@ public class ManagerService {
 	@Autowired
 	private MenuDao dao;
 	@Value("c:/upload/menusajin")
-	private String profileFolder;
+	private String menuFolder;
 	@Value("http://localhost:8081/menusajin/")
-	private String profilePath;
+	private String menuPath;
 	// 입점신청
 	@Autowired
 	private ManagerStoreApplyInsertDao storeApplyInsertDao;
@@ -49,7 +49,18 @@ public class ManagerService {
 		return result;
 	}
 
-
+	//메뉴 읽기
+	public MenuEntity menuRead(Integer menuno) {
+		System.out.println("-----------");
+		System.out.println(dao.findById(menuno));
+		MenuEntity menu = dao.findById(menuno);
+		
+		
+		System.out.println(menu);
+		return menu;
+		
+	}
+	
 	// 메뉴쓰기 - 메뉴사진 올리는 기능
 	public void write(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
 		MenuEntity menu = modelMapper.map(dto, MenuEntity.class);
@@ -59,18 +70,18 @@ public class ManagerService {
 				// 사진이 맞으면
 				int lastIndexOfDot = sajin.getOriginalFilename().lastIndexOf('.');
 				String extension = sajin.getOriginalFilename().substring(lastIndexOfDot + 1);
-				File profile = new File(profileFolder, dto.getMenuname() + "." + extension);
+				File profile = new File(menuFolder, menu.getMenuname() + "." + extension);
 
 				sajin.transferTo(profile);
-				dto.setMenusajin(profilePath + profile.getName());
+				menu.setMenusajin(menuPath + profile.getName());
 			} else {
 				// 메뉴사진이라고 올린 파일이 사진이 아닌 경우 => menubasic.jpg
-				dto.setMenusajin(profilePath + "menubasic.jpg");
+				menu.setMenusajin(menuPath + "menubasic.jpg");
 			}
 
 		} else {
 			// 메뉴사진을 안올린 경우 => menubasic.jpg
-			dto.setMenusajin(profilePath + "menubasic.jpg");
+			menu.setMenusajin(menuPath + "menubasic.jpg");
 		}
 		dao.insert(menu);
 	}
@@ -83,17 +94,16 @@ public class ManagerService {
 			if (sajin.getContentType().toLowerCase().startsWith("image/") == true) {
 				int lastIndexOfDot = sajin.getOriginalFilename().lastIndexOf('.');
 				String extension = sajin.getOriginalFilename().substring(lastIndexOfDot + 1);
-				File file = new File(profileFolder, menu.getMenuname() + "." + extension);
+				File file = new File(menuFolder, menu.getMenuname() + "." + extension);
 				sajin.transferTo(file);
-				menu.setMenusajin(profilePath + file.getName());
+				menu.setMenusajin(menuPath + file.getName());
 			}
 		}
 		return dao.update(menu);
 	}
 
 	// 메뉴삭제
-	public Object menuDelete(int menuno) {
-
+	public int menuDelete(int menuno) {
 		return dao.delete(menuno);
 	}
 

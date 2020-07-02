@@ -33,6 +33,9 @@ login.jsp 생성
 2020.07.01
 managerjoin.jsp 수정
 userjoin.jsp 생성
+2020.07.02
+join.jsp 생성 (일반/사업자 회원가입 선택창)
+
 ================ 회원 commit =================
 2020.06.30
 reviewMapper추가 

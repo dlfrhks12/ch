@@ -28,8 +28,11 @@ public class MainRestController {
 		return ResponseEntity.ok(service.checkUserEmail(uEmail));
 	}
 
+	
+	////////////////////////////////////////////////////////////////////////////////
+	
+	
 	// [사업자] 아이디 중복확인
-
 	@GetMapping("/main/m_id_check")
 	public ResponseEntity<Boolean> checkManagerId(@RequestParam @NotNull String mUsername) {
 		return ResponseEntity.ok(service.checkManagerId(mUsername));
@@ -44,7 +47,7 @@ public class MainRestController {
 
 	// [사업자] 사업자 등록번호 중복확인
 
-	@GetMapping("/main/managernum_check")
+	@GetMapping("/main/m_num_check")
 	public ResponseEntity<Boolean> checkManagerNumber(@RequestParam @NotNull String mNum) {
 		return ResponseEntity.ok(service.checkManagerNum(mNum));
 	}

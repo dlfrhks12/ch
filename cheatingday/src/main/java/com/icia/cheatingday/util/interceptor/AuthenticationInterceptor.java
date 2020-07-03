@@ -14,7 +14,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 		// 인증 정보 객체를 스프링 시큐리티 정보 관리자로 부터 얻어오자
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(auth.getPrincipal().toString().equals("anonymousUser")==false)
-			throw new IllegalAccessError("잘못돤 접근입니다");
+			throw new IllegalAccessError("잘못된 접근입니다");
 		return super.preHandle(request, response, handler);
 	}
 

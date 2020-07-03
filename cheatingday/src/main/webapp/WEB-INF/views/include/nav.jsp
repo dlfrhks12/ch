@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상단바</title>
 <style>
 	#right {
 	position: absolute;
@@ -28,12 +28,12 @@
         		<ul id="right">
         			<!-- 로그인 하지 않았을 때 보여줄 메뉴 -->
         			<sec:authorize access="isAnonymous()">
-			            <a class="btn btn-danger" href="login">로그인/회원가입</a>
+			            <a class="btn btn-danger" href="/cheatingday/login">로그인/회원가입</a>
         			</sec:authorize>			
         			
         			<!-- 로그인 했을 때 모든 사용자에게 보여줄 메뉴 -->
         			<sec:authorize access="isAuthenticated()">
-        				<a class="btn btn-danger" href="#" id="logout">로그아웃</a>
+        				<a class="btn btn-danger" href="logout" id="logout">로그아웃</a>
         			</sec:authorize>
         			
         			<!-- 일반회원(ROLE_USER)이 로그인 했을 때 보여줄 메뉴 -->

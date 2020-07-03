@@ -6,12 +6,10 @@ import java.util.*;
 
 import javax.mail.*;
 import javax.servlet.http.*;
-import javax.validation.*;
 import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.prepost.*;
-import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.*;
@@ -23,8 +21,6 @@ import com.icia.cheatingday.main.service.mvc.*;
 import com.icia.cheatingday.manager.dto.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
-
-import oracle.jdbc.proxy.annotation.*;
 
 @Controller
 public class MainController {
@@ -53,7 +49,7 @@ public class MainController {
 	// [공용] 로그아웃
 	@PostMapping("/logout")
 	public String logout() {
-		return "main/logout";
+		return "/logout";
 	}
 	
 	// [공용] 일반/사업자 회원가입 선택창
@@ -143,7 +139,7 @@ public class MainController {
 	
 	// [사업자] 회원가입 Post
 	@PostMapping("/join_manager")
-	public String ManagerJoin(@Valid ManagerDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
+	public String ManagerJoin(ManagerDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
 		if(bindingResult.hasErrors()==true)
 			throw new BindException(bindingResult);
 		try {

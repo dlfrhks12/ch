@@ -90,17 +90,15 @@ $(function() {
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="password_msg"></span>
                </div>
-               
                <div class="flex-sb-m w-full p-b-48">
                   <div class="contact100-form-checkbox">
                      <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                      <label class="label-checkbox100" for="ckb1">아이디 저장</label>
                   </div>
-
                   <div>
-                     <a href="/main/find_id" class="txt3">아이디찾기</a>
+                     <a href="/cheatingday/u_find_id" class="txt3">아이디찾기</a>
                      <a> / </a>
-                     <a href="/main/find_pwd" class="txt3">비밀번호찾기</a>
+                     <a href="/cheatingday/u_find_pwd" class="txt3">비밀번호찾기</a>
                   </div>
                   <div id="join">
                      <a id="account">계정이 없으신가요?&nbsp;&nbsp;</a>

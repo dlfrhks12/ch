@@ -109,8 +109,9 @@ public class MainService {
 		authorityDao.insert(manager.getMUsername(), authority);
 	managerDao.insert(manager);
 	
-	// 회원가입이 처리 되면 관리자에게 승인 요청하기
 	
+	// 회원가입이 처리 되면 관리자에게 승인 요청하기
+	// 관리자가 승인수락을 하면 enabled = 1로 변경
 	
 	}
   

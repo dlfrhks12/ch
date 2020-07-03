@@ -59,7 +59,7 @@ $(function() {
       $("#msg").show();
    }
    $("#login").on("click", function() {
-      $("#login_form").submit();
+		$("#login_form").submit();
    });
 });
 </script>
@@ -71,22 +71,22 @@ $(function() {
             <div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
-            <form class="login100-form validate-form flex-sb flex-w" id="login_form" action="/cheatingday/main/login" method="post">
+            <form class="login100-form validate-form flex-sb flex-w" id="login_form" action="/cheatingday/login" method="post">
                <span class="login100-form-title p-b-32">로그인</span>
                
-               <span class="txt1 p-b-11" id="username">아이디</span>
-               <div class="wrap-input100 validate-input m-b-36" id="username" data-validate = "Username is required">
-                  <input class="input100" type="text" name="a_username" >
+               <span class="txt1 p-b-11">아이디</span>
+               <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+                  <input class="input100" type="text" id="username" name="AUsername" >
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="username_msg"></span>
                </div>
                
-               <span class="txt1 p-b-11" id="password">비밀번호</span>
+               <span class="txt1 p-b-11">비밀번호</span>
                <div class="wrap-input100 validate-input m-b-12" id="password" data-validate = "Password is required">
                   <span class="btn-show-pass">
                      <i class="fa fa-eye"></i>
                   </span>
-                  <input class="input100" type="password" name="a_password" >
+                  <input class="input100" type="password" name="APassword" >
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="password_msg"></span>
                </div>
@@ -104,7 +104,7 @@ $(function() {
                   </div>
                   <div id="join">
                      <a id="account">계정이 없으신가요?&nbsp;&nbsp;</a>
-                     <a href="/cheatingday/join_user" class="txt3" id="joinbutton">  회원가입하기</a>
+                     <a href="/cheatingday/join" class="txt3" id="joinbutton">  회원가입하기</a>
                   </div>
                   
                </div>

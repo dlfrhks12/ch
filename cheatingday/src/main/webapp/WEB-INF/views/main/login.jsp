@@ -76,7 +76,7 @@ $(function() {
                
                <span class="txt1 p-b-11">아이디</span>
                <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-                  <input class="input100" type="text" id="username" name="AUsername" >
+                  <input class="input100" type="text" id="username" name="aUsername" >
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="username_msg"></span>
                </div>
@@ -86,7 +86,7 @@ $(function() {
                   <span class="btn-show-pass">
                      <i class="fa fa-eye"></i>
                   </span>
-                  <input class="input100" type="password" name="APassword" >
+                  <input class="input100" type="password" name="aPassword" >
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="password_msg"></span>
                </div>

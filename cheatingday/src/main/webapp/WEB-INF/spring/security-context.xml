@@ -31,7 +31,7 @@
 				로그아웃한 다음 이동할 주소
 		 -->
 		<sec:logout
-			logout-url="/main/logout"
+			logout-url="/logout"
 			logout-success-url="/"
 		/>
 	</sec:http>

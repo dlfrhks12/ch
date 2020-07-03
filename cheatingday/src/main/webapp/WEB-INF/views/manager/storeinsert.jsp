@@ -20,14 +20,13 @@ function loadImage(){
 			title: '크기오류',
 			text: '사진크기는 1MB를 넘을 수 없습니다'
 		});
-	${"#sajin"}.val("");
-	return false;
+		$("#sajin").val("");
+		return false;
 	}
-}
 //하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
 	var reader = new FileReader();
 	reader.onload = function(e){
-		$("#show_storesajin").attr("src",e.target.result);
+		$("#show_menusajin").attr("src",e.target.result);
 	}
 	reader.readAsDataURL(file);
 	return true;
@@ -44,9 +43,9 @@ $(function(){
 <body>
 
 <div id="wrap">
-		<form id="write_form" action="/cheatingday/manager/store_write" method="post" enctype="multipart/form-data">
+		<form id="write_form" action="/cheatingday/manager/store_insert" method="post" enctype="multipart/form-data">
 			<img id="show_storesajin" height="240px">
-			<input type="hidden" name="_csrf" value="${_csrf.token }">
+			<input type="hidden" name="_csrf" value="${_csrf.token}">
 			<div class="form-group">
 				<label for="storesajin">음식점 사진</label>
 				<input id="sajin" type="file" name="sajin" class="form-control"  accept=".jpg,.jpeg,.png,.gif,.bmp">

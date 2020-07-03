@@ -1,29 +1,37 @@
 package com.icia.cheatingday.admin.controller.mvc;
 
+import java.io.*;
 import java.util.*;
 
 import javax.validation.constraints.*;
 
-import org.apache.commons.lang3.math.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.type.*;
+import com.fasterxml.jackson.databind.*;
 import com.icia.cheatingday.admin.service.mvc.*;
 
 @Controller
 public class AdminController {
+	@Autowired
 	private AdminService service;
+	@Autowired
+	private ObjectMapper objectmapper;
 	
-/*	@GetMapping("/admin")
+	/*
+	@GetMapping("/admin")
 	public ModelAndView main() {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/adminpage.jsp");
 	}
 	
 	
 	@GetMapping("/admin/report_list")
-	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno));
+	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, int rReport) {
+		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno, rReport));
 	}
 	
 	@GetMapping("/admin/user_list")
@@ -41,14 +49,14 @@ public class AdminController {
 		for(String str:strings) {
 			list.add(str);
 		}
-		service.block(list);
+		service.userBlock(list);
 		return "redirect:/admin/user_list?job=user_list";
 	}
 	@PostMapping("/admin/user_unblock")
 	public String unblockList(@RequestParam @NotNull String uUsernames) throws JsonParseException, JsonMappingException, IOException {
 		// json 문자열을 MessageConverter가 객체로 변환하게 하려면 @RequestBody
 		// json 문자열을 String으로 받아 객체로 내가 바꾼다
-		List<String> list = objectMapper.readValue(uUsernames, new TypeReference<List<String>>() {});
+		List<String> list = objectmapper.readValue(uUsernames, new TypeReference<List<String>>() {});
 		service.unblock(list);
 		return "redirect:/admin/user_list?job=block_list";
 	}
@@ -62,5 +70,5 @@ public class AdminController {
 	public ModelAndView mread(String mNum) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("manager", service.mread(mNum)).addObject("viewName", "admin/managerread.jsp");
 	}
-	*/
+*/
 }

@@ -13,6 +13,7 @@ import org.junit.runner.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
 
+import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.center.dao.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.common.dto.*;
@@ -35,6 +36,8 @@ public class NoticeTest {
 	private NoticeService ns;
 	@Inject
 	private NoticeRestService nrs;
+	@Inject
+	private AdminDao adao;
 	
 	
 	//@Test
@@ -58,7 +61,7 @@ public class NoticeTest {
 		System.out.println(list);
 	}
 	// 리스트(페이징 글번호)
-	@Test
+	//@Test
 	public void wwq() {
 		System.out.println(ns.list(1));
 	}
@@ -75,7 +78,6 @@ public class NoticeTest {
 	}
 	// 글쓰기(dto.set을 이용 내용입력)
 	//@Test 
-	@Test 
 	public void gwsg(){
 		NoticeDto.DtoForWrite dto = new DtoForWrite();
 		dto.setAUsername("usy1403");
@@ -127,5 +129,17 @@ public class NoticeTest {
 	//@Test
 	public void countf() {
 		assertThat(qdao.count(1), is(1));
+	}
+	//@Test
+	public void ehge() {
+		System.out.println(adao.findById("admin1234"));
+	}
+	//@Test
+	public void eghe() {
+		System.out.println(adao.findAllUser());
+	}
+	@Test
+	public void fcbf() {
+		//adao.blockAll("usy14731");
 	}
 }

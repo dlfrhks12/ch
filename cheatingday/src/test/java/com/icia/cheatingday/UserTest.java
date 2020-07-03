@@ -75,8 +75,13 @@ public class UserTest {
 	public void pageList() {
 		System.out.println(uservice.list(1));
 	}
-	@Test
+	//@Test
 	public void myPage() {
 		System.out.println(uservice.myPage("spring"));
+	}
+	
+	@Test
+	public void wfgw() {
+		System.out.println(dao.existsById("usy14731"));
 	}
 }

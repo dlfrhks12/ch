@@ -1,6 +1,5 @@
 package com.icia.cheatingday.user.controller.rest;
 
-import java.net.BindException;
 import java.security.*;
 
 import javax.validation.*;
@@ -33,11 +32,19 @@ public class UserRestController {
 		
 	}
 	// 업데이트
+	@PreAuthorize("isAuthenticated()")
 	@PutMapping("/user/update")
-	public ResponseEntity<Void> update(@Valid UserDto.DtoForUpdate dto){
-		dto.setUUsername("spring");
+	public ResponseEntity<Void> update(@Valid UserDto.DtoForUpdate dto, BindingResult results, Principal principal) throws BindException{
+		if(results.hasErrors())
+			throw new BindException(results);
+		dto.setUUsername(principal.getName());
 		service.update(dto);
 		return ResponseEntity.ok(null);
+	}
+	// 회원 탈퇴
+	@GetMapping("/user/resign")
+	public ResponseEntity<?> delete(String uUsername, String uPassword) {
+		return ResponseEntity.ok(service.resign(uUsername, uPassword));
 	}
 
 /*

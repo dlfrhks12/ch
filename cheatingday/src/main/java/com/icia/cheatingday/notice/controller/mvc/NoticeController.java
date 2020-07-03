@@ -22,17 +22,17 @@ public class NoticeController {
 	
 	@GetMapping("/notice/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "notice/list.jsp").addObject("page", service.list(pageno));
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/list.jsp").addObject("page", service.list(pageno));
 	}
 	@GetMapping("/notice/read")
 	public ModelAndView read(@NotNull Integer nNo, Principal principal ) {
 		String aUsername = principal!=null? principal.getName():null;
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "notice/read.jsp").addObject("notice", service.read(nNo, aUsername));
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/read.jsp").addObject("notice", service.read(nNo, aUsername));
 	}
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/notice/write")
 	public ModelAndView write() {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName","notice/write.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","notice/write.jsp");
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/notice/write")

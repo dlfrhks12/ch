@@ -59,7 +59,7 @@ $(function() {
       $("#msg").show();
    }
    $("#login").on("click", function() {
-		$("#login_form").submit();
+      $("#login_form").submit();
    });
 });
 </script>

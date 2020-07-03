@@ -44,13 +44,13 @@ pwdEncoder를 위한 서큐리티 추가및 수정
 	LoginFailureHandler 생성
 	
 ================ 회원 commit =================
+2020.07.03
+mypage.jsp
+check_pwd.jsp
+change_pwd.jsp 추가
 2020.06.30
 reviewMapper추가 
-favoriteMapper 수정
-UserService 수정
-USerController 수정
 2020.06.26
-userMapper 수정
 pointMapper 추가
 favoriteMapper 추가
 UserMvcController 추가
@@ -61,7 +61,6 @@ PointDao 추가
 UserDto 추가
 FavoriteEntity 추가
 PointEntity 추가
-UserEntity 수정
 EmailEXistException추가
 JobFailException 추가
 UsernameExistException추가
@@ -108,6 +107,7 @@ manager>menulist.jsp작성
 =======
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+07.03 가게jsp
 ================ 관리자 commit ================
 2020.06.25
 qna 엔티티 작성

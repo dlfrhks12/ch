@@ -160,7 +160,7 @@ $(function() {
 					<div>
 						<span class="txt p-b-11" id="u_password">비밀번호</span>
 						<div class="wrap-input100 validate-input m-b-36" id="u_password">
-							<input class="input200" type="text" id="u_password" >
+							<input class="input200" type="password" id="u_password" >
 							<span class="focus-input200"></span>
 							<span id="u_password_msg"></span>
 						</div>
@@ -168,7 +168,7 @@ $(function() {
 					<div>
 						<span class="txt p-b-11" id="u_password2">비밀번호 확인</span>
 						<div class="wrap-input100 validate-input m-b-36" id="u_password2">
-							<input class="input200" type="text" id="u_password2" >
+							<input class="input200" type="password" id="u_password2" >
 							<span class="focus-input200"></span>
 							<span id="u_password2_msg"></span>
 						</div>

@@ -1,6 +1,6 @@
 package com.icia.cheatingday.user.service.rest;
 
-import java.time.format.*;
+import java.io.*;
 
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
@@ -39,14 +39,22 @@ public class UserRestService {
 			User user = userDao.findById(dto.getUUsername());
 			if(user==null)
 				throw new UserNotFoundException();
-			String password = user.getUPassword();
-			if(dto.getUPassword().equals(password)==false)
+			String encodedPassword = user.getUPassword();
+			if(pwdEncoder.matches(dto.getUPassword(), encodedPassword)==false)
 				throw new JobFailException("비밀번호를 확인할 수 없습니다.");
-			user.setUPassword(dto.getNewUPassword());
+			dto.setUPassword(pwdEncoder.encode(dto.getNewUPassword()));
 		}
 		
 		User user = modelMapper.map(dto, User.class);
+		System.out.println(dto);
 		userDao.update(user);
 	}
-	
+
+	public int resign(String uUsername, String uPassword) {
+		User user = userDao.findById(uUsername);
+		if(user.getUUsername().equals(uUsername)==true)
+		userDao.delete(uUsername);
+		return 0;
+	}
+
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인화면 피자사진+검색창</title>
 <title>header</title>
 <style>
 	#bg {

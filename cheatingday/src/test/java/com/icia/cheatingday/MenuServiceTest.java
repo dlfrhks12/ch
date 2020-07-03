@@ -23,6 +23,15 @@ public class MenuServiceTest {
 	@Autowired
 	private ManagerService service;
 	
+	@Test 
+	public void menureadTest() { 
+		assertThat(service.menuRead(22), is(notNullValue())); 
+		System.out.println(service.menuRead(22));
+	
+	}
+		
+	
+	
 	/*
 	 * //@Test public void writeTest() throws IllegalStateException, IOException {
 	 * 
@@ -39,7 +48,7 @@ public class MenuServiceTest {
 	 * //@Test public void listTest() { assertThat(service.menuList().size(),
 	 * is(notNullValue())); }
 	 * 
-	 * //@Test public void menureadTest() { assertThat(service.menuRead(5),
+	 @Test public void menureadTest() { assertThat(service.menuRead(5),
 	 * is(notNullValue())); }
 	 * 
 	 * //@Test public void deleteTest() { assertThat(service.menuDelete(4), is(1));

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
-	<select id="findById" resultType="admin">
+	<select id="findById" resultType="String">
 		select a_irum aIrum from admin where a_username=#{aUsername} and rownum=1
+	</select>
+	<select id="findAllUser" resultType="user">
+		select u_username uUsername, u_irum uIrum, u_enabled uEnabled from users
 	</select>
 	
 	<update id="blockAll">
@@ -15,7 +18,7 @@
 	<select id="findAllBlock" resultType="user">
 	<![CDATA[
 		select u_username uUsername, u_irum uIrum, u_joindate uJoindate, u_login_fail_cnt uLoginFailCnt from users
-		where enabled=0
+		where u_enabled=0
 	]]>
 	</select>
 	<update id="unblockAll">
@@ -23,6 +26,15 @@
 		 <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
 		 	#{item}
 		 </foreach>
+	</update>
+	<select id="findAllByEnabled" resultType="manager">
+	<![CDATA[
+		select m_username mUsername, m_irum mIrum, m_tel mTel, m_account mAccount from manager
+		where m_enabled=0
+	]]>
+	</select>
+	<update id="enabledM">
+		update manager set m_enabled=1 where m_mnum and rownum=1
 	</update>
 </mapper>
 

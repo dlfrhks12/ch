@@ -11,14 +11,15 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Builder
 @Accessors(chain=true)
-public class StoreEntity {
+public class Store {
 
-	private String sNum;     //음식점 고유번호
+	private int sNum;     //음식점 고유번호  시퀀스주기 . 인트로.
 	private String sSajin;   //매장사진
 	private String sInfo;    //매장정보
 	private String sName;    //상호명
 	private String sTel;     //음식점 전화번호
 	private String sAddress; //주소
 	private int foodNo;      //음식 카테고리 번호
-	
+	private int sStarPoint;  //벌점평균
+	private int sReviewCnt; //리뷰개수
 }

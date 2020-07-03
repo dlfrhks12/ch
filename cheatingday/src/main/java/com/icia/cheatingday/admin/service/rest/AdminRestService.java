@@ -1,15 +1,17 @@
 package com.icia.cheatingday.admin.service.rest;
 
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import com.icia.cheatingday.admin.dao.*;
+import com.icia.cheatingday.manager.entity.*;
+import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.entity.*;
 
 @Service
 public class AdminRestService {
-	/*@Autowired
+/*
+	@Autowired
 	private ReviewDao rdao;
 	@Autowired
 	private UserDao udao;
@@ -20,12 +22,9 @@ public class AdminRestService {
 		Review review = rdao.findById(rNo);
 		rdao.delete(rNo);
 	}
-	public void userBlock(List<String> uUsernames) {
-		adao.blockAll(uUsernames);
-	}
-	
-	public void unblock(List<String> uUsernames) {
-		adao.unblockAll(uUsernames);
+	public int enabledM(ManagerEntity manager) {
+		return adao.enabledM(manager);
 	}
 	*/
+	
 }

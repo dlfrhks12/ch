@@ -21,16 +21,4 @@ public class AdminDto {
 		private String sNum;
 		private String sName;
 	}
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	@Builder
-	@Accessors(chain = true)
-	public static class DtoForUlist{
-		private String uUsername;
-		private String uIrum;
-		private Boolean uEnabled;
-		private String uJoinDateStr;
-		private int uLoginFailCnt;
-	}
 }

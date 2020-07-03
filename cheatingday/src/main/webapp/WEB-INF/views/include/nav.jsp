@@ -16,6 +16,23 @@
 	height: 50px;
 	}
 </style>
+<script>
+	$(function() {
+		$("#logout").on("click", function() {
+			var param = {
+				_csrf:"${_csrf.token}"
+			}
+			$.ajax({
+				url: "/cheatingday/logout",
+				method: "post",
+				data: param,
+				success: function() {
+					location.href = "/cheatingday/login";
+				}
+			})
+		});
+	});
+</script>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light static-top">
@@ -28,7 +45,7 @@
         		<ul id="right">
         			<!-- 로그인 하지 않았을 때 보여줄 메뉴 -->
         			<sec:authorize access="isAnonymous()">
-			            <a class="btn btn-danger" href="login">로그인/회원가입</a>
+			            <a class="btn btn-danger" href="/cheatingday/login">로그인/회원가입</a>
         			</sec:authorize>			
         			
         			<!-- 로그인 했을 때 모든 사용자에게 보여줄 메뉴 -->

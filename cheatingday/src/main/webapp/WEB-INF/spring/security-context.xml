@@ -21,8 +21,8 @@
 		<sec:form-login
 			username-parameter="a_username"
 			password-parameter="a_password"
-			login-page="/main/login"
-			login-processing-url="/main/login"
+			login-page="/login"
+			login-processing-url="/login"
 			default-target-url="/" />
 		
 		<!-- 
@@ -31,7 +31,7 @@
 				로그아웃한 다음 이동할 주소
 		 -->
 		<sec:logout
-			logout-url="/main/logout"
+			logout-url="/logout"
 			logout-success-url="/"
 		/>
 	</sec:http>
@@ -59,7 +59,7 @@
 			<sec:jdbc-user-service 
 				data-source-ref="dataSource"
 				users-by-username-query="select a_username, a_password, a_enabled from (select a_username, a_password, a_enabled from admin union SELECT m_username, m_password, m_enabled from manager union select u_username, u_password, u_enabled from users) where a_username=? and rownum=1"
-				authorities-by-username-query="select username, authority from authoruty where username=?"
+				authorities-by-username-query="select username, authority from authority where username=?"
 				 />
 			<sec:password-encoder ref="encoder" />
 		</sec:authentication-provider>

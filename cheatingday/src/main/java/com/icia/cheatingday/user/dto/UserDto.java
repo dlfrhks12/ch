@@ -27,6 +27,8 @@ public class UserDto {
 		private String uEmail;
 		@Pattern(regexp = "/^([0-9]{3})([0-9]{4})([0-9]{4})$/", message = "전화번호는 숫자 10~11자입니다")
 		private String uTel;
+		@Pattern(regexp = "^[가-힣]{1,9}$",message = "주소를 제대로 입력해주세요") 
+		private String uAddress;
 		private List<String> authorities;
 	}
 	

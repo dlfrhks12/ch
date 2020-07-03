@@ -6,12 +6,10 @@ import java.util.*;
 
 import javax.mail.*;
 import javax.servlet.http.*;
-import javax.validation.*;
 import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.prepost.*;
-import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.*;
@@ -23,8 +21,6 @@ import com.icia.cheatingday.main.service.mvc.*;
 import com.icia.cheatingday.manager.dto.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
-
-import oracle.jdbc.proxy.annotation.*;
 
 @Controller
 public class MainController {
@@ -53,7 +49,7 @@ public class MainController {
 	// [공용] 로그아웃
 	@PostMapping("/logout")
 	public String logout() {
-		return "main/logout";
+		return "/logout";
 	}
 	
 	// [공용] 일반/사업자 회원가입 선택창
@@ -85,18 +81,18 @@ public class MainController {
 	
 	
 	// [일반] 아이디 찾기 Get
-	@GetMapping("/main/u_find_id")
+	@GetMapping("/u_find_id")
 	public ModelAndView findUserUsername() {
-		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findid.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/userfindid.jsp");
 	}
 	
 	
 	// [일반] 아이디찾기 Post
-	@PostMapping("/main/u_find_id")
+	@PostMapping("/u_find_id")
 	public String findUserUsername(@RequestParam @NotNull String uIrum, @RequestParam @NotNull String uEmail, RedirectAttributes ra) {
 		String username = service.findUserUsername(uIrum, uEmail);
 		ra.addFlashAttribute("msg", "아이디는 " + username + " 입니다.");
-		return "redirect:/main/login";
+		return "redirect:/login";
 	}
 	
 	
@@ -118,17 +114,17 @@ public class MainController {
 	
 	
 	// [일반] 비밀번호 찾기 (재설정) Get
-	@GetMapping("/main/u_find_pwd")
+	@GetMapping("/u_find_pwd")
 	public ModelAndView findUserPwd() {
-		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findpwd.jsp");
+		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/userfindpwd.jsp");
 	}
 	
 	// [일반] 비밀번호 찾기 (재설정) Post
-	@PostMapping("/main/u_find_pwd")
+	@PostMapping("/u_find_pwd")
 	public String resetUserPwd(@RequestParam @NotNull String uEmail, @RequestParam @NotNull String uUsername, RedirectAttributes ra) throws MessagingException {
 		service.resetUserPwd(uUsername, uEmail);
 		ra.addFlashAttribute("msg", "이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요");
-		return "redirect:/main/login";
+		return "redirect:/login";
 	}
 	
 	
@@ -143,7 +139,7 @@ public class MainController {
 	
 	// [사업자] 회원가입 Post
 	@PostMapping("/join_manager")
-	public String ManagerJoin(@Valid ManagerDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
+	public String ManagerJoin(ManagerDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
 		if(bindingResult.hasErrors()==true)
 			throw new BindException(bindingResult);
 		try {

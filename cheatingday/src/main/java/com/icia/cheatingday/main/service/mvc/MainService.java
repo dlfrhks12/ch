@@ -3,7 +3,6 @@ package com.icia.cheatingday.main.service.mvc;
 import java.time.*;
 import java.util.*;
 
-import javax.inject.*;
 import javax.mail.*;
 import javax.validation.constraints.*;
 
@@ -47,9 +46,6 @@ public class MainService {
   
 	// 비밀번호 암호화(해시) 
 	String uPassword = user.getUPassword();
-	System.out.println("==================================");
-	System.out.println(uPassword);
-	System.out.println(dto);
 	String encodedPassword = pwdEncoder.encode(uPassword);
 	user.setUPassword(encodedPassword);
   
@@ -98,20 +94,26 @@ public class MainService {
   
   
 	// [사업자] 회원가입 
-	public void ManagerJoin(ManagerDto.DtoForJoin dto) {
-		ManagerEntity manager = modelMapper.map(dto, ManagerEntity.class);
+	public void ManagerJoin(ManagerDto.DtoForJoin dto) { 
+	ManagerEntity manager = modelMapper.map(dto, ManagerEntity.class);
   
-		// 비밀번호 암호화(해시) 
-		String mPassword = manager.getMPassword(); 
-		String encodedPassword = pwdEncoder.encode(mPassword);
-		manager.setMPassword(encodedPassword);
+	// 비밀번호 암호화(해시) 
+	String mPassword = manager.getMPassword();
+	String encodedPassword = pwdEncoder.encode(mPassword);
+	manager.setMPassword(encodedPassword);
   
-		// 권한 추가 : ROLE_USER, ROLE_MANAGER, ROLE_ADMIN 
-		List<String> authorities = dto.getAuthorities(); 
-		for(String authority:authorities)
-			authorityDao.insert(manager.getMUsername(), authority);
-		managerDao.insert(manager);
-		}
+	
+	// 권한 추가 : ROLE_USER, ROLE_MANAGER, ROLE_ADMIN
+	List<String> authorities = dto.getAuthorities(); 
+	for(String authority:authorities)
+		authorityDao.insert(manager.getMUsername(), authority);
+	managerDao.insert(manager);
+	
+	
+	// 회원가입이 처리 되면 관리자에게 승인 요청하기
+	// 관리자가 승인수락을 하면 enabled = 1로 변경
+	
+	}
   
  
 	// [사업자] 아이디찾기 

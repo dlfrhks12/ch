@@ -13,38 +13,44 @@ system 폴더 추가 (msg.jsp추가)
 pwdEncoder를 위한 서큐리티 추가및 수정
 시큐리티설정
 ================ 메인 commit ================
-2020.06.25
-MainController 생성
-MainService 생성
-AuthorityDao 생성
-2020.06.26
-main 폴더 생성 - managerjoin.jsp 추가
-2020.06.28
-valid.js 생성
-main.jsp 생성
-main.css 생성
-header.jsp / footer.jsp / nav.jsp 생성
-2020.06.29
-MainRestController 생성
-MainRestService 생성
-2020.06.30
-foodcategory.jsp 생성
-login.jsp 생성
-2020.07.01
-managerjoin.jsp 수정
-userjoin.jsp 생성
-2020.07.02
-join.jsp 생성 (일반/사업자 회원가입 선택창)
-2020.07.03
-
+- 2020.06.25
+	MainController 생성
+	MainService 생성
+	AuthorityDao 생성
+- 2020.06.26
+	main 폴더 생성 - managerjoin.jsp 추가
+- 2020.06.28
+	valid.js 생성
+	main.jsp 생성
+	main.css 생성
+	header.jsp / footer.jsp / nav.jsp 생성
+- 2020.06.29
+	MainRestController 생성
+	MainRestService 생성
+- 2020.06.30
+	foodcategory.jsp 생성
+	login.jsp 생성
+- 2020.07.01
+	managerjoin.jsp 수정
+	userjoin.jsp 생성
+- 2020.07.02
+	join.jsp 생성 (일반/사업자 회원가입 선택창)
+	MainRestControllerAdvice 생성
+- 2020.07.03
+	* 일반 회원가입 완성
+	* 사업자 회원가입 완성
+	* 로그인/로그아웃 완성
+	LoginSuccessHandler 생성
+	LoginFailureHandler 생성
+	
 ================ 회원 commit =================
+2020.07.03
+mypage.jsp
+check_pwd.jsp
+change_pwd.jsp 추가
 2020.06.30
 reviewMapper추가 
-favoriteMapper 수정
-UserService 수정
-USerController 수정
 2020.06.26
-userMapper 수정
 pointMapper 추가
 favoriteMapper 추가
 UserMvcController 추가
@@ -55,7 +61,6 @@ PointDao 추가
 UserDto 추가
 FavoriteEntity 추가
 PointEntity 추가
-UserEntity 수정
 EmailEXistException추가
 JobFailException 추가
 UsernameExistException추가
@@ -102,6 +107,7 @@ manager>menulist.jsp작성
 =======
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 >>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+07.03 가게jsp
 ================ 관리자 commit ================
 2020.06.25
 qna 엔티티 작성

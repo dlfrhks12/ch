@@ -47,7 +47,7 @@ $(function(){
 <!--user- 회원가입 같이 만들음 > 사진도 추가해줘야해서 -->
 
 <div id="wrap">
-		<form id="write_form" action="/cheatingday/manager/menu_insert" method="post" enctype="multipart/form-data">
+		<form id="write_form" action="/cheatingday/manager/menu_write" method="post" enctype="multipart/form-data">
 			<img id="show_menusajin" height="240px">
 			<input type="hidden" name="_csrf" value="${_csrf.token }">
 			<div class="form-group">

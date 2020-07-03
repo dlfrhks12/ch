@@ -17,6 +17,7 @@
 		<typeAlias type="com.icia.cheatingday.center.entity.QnAComment" alias="qnacomment"/>
 		<typeAlias type="com.icia.cheatingday.order.entity.DetailorderEntity" alias="orderAndReview"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.Store" alias="store"/>
+		<typeAlias type="com.icia.cheatingday.manager.entity.FoodCategory" alias="foodCategory"/>
 	</typeAliases>
 	<typeHandlers>
 		<typeHandler handler="com.icia.cheatingday.util.typehandler.LocalDateTimeTypeHandler"/>

@@ -28,6 +28,7 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <script>
 
+// 일반회원 정규식 검증
 function check(value, pattern, area, fail_msg) {
 	area.text("");
 	if(value.length==0) { 
@@ -98,10 +99,8 @@ function ajaxCheckId() {
 		method: "get",
 		data: "uUsername=" + $("#u_username").val()
 	})
-	.done(()=>{$("#u_username_msg").text("사용가능합니다").css({"color":"green", "font-size":"0.75em"})})
-	.fail(()=>{$("#u_username_msg").text("사용중인 아이디입니다").css({"color":"red","font-size":"0.75em"})
-		console.log($("#u_username").val());
-		});
+	.done(()=>{$("#u_username_msg").text("사용 가능한 아이디입니다").css({"color":"green", "font-size":"0.75em"})})
+	.fail(()=>{$("#u_username_msg").text("사용중인 아이디입니다").css({"color":"red","font-size":"0.75em"})});
 }
 
 //이메일 사용 여부 확인
@@ -133,12 +132,15 @@ $(function() {
 	$("#u_tel").on("blur", checkTel);
 
 	$("#join").on("click", function() {
-	// formData값 확인하는 코드
+		
+	/* 
+		formData값 확인하는 코드
 		var formData = new FormData(document.getElementById("join_form"))
 		for(var key of formData.keys())
 			console.log(key);
 		for(var value of formData.values())
 			console.log(value);
+	*/
 	
 		var r1 = checkUsername();
 		var r2 = checkIrum();

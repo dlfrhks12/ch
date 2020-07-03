@@ -17,18 +17,15 @@
 <div>
 		<table class="table table-hover">
 			<colgroup>
-				<col width="20%">
-				<col width="20%">
-				<col width="20%">
-				<col width="30%">
-				<col width="10%">
+				<col width="25%">
+				<col width="50%">
+				<col width="25%">
 			</colgroup>
 			<thead>
 				<tr>
 					<th>메뉴번호</th>
 					<th>메뉴이름</th>
 					<th>메뉴가격</th>
-					<th><i class="fa fa-scissors" aria-hidden="true"></i></th>
 				</tr>
 			</thead>
 			<tbody id="list">
@@ -37,8 +34,6 @@
 					<td>${menu.menuno}</td>
 					<td><a href="/cheatingday/manager/menu_read?menuno=${menu.menuno}">${menu.menuname}</a></td>
 					<td>${menu.menusal}</td>
-					
-					
 				</tr>
 			</c:forEach>
 			</tbody>

@@ -81,6 +81,7 @@ public class ManagerController {
 	public ModelAndView managerInfoRead() {
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp");
-	}
+	}}
 	
-}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

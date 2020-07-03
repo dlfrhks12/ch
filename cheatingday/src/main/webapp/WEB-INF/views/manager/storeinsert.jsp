@@ -66,7 +66,7 @@ $(function(){
 			<div>
 				<label for="stel_label">음식점 전화번호</label>
 				<div class="form-group">
-					<input id="stel" type="text" class="form-control" name="stel" placeholder="음식점 전화번호를  입력해주세요">
+					<input id="sTel" type="text" class="form-control" name="sTel" placeholder="음식점 전화번호를  입력해주세요">
 				</div>
 			</div>
 			<div>

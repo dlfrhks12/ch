@@ -47,25 +47,29 @@ $("#SSajin").on("change",loadImage);
 $("#update").on("click",function(){
 	
 	var formData = new FormData();
-	formData.append("sinfo", $("#sinfo").val());
-	formData.append("sname", $("#sname").val());
-	formData.append("stel", $("#stel").val());
-	formData.append("saddress", $("#saddress").val());
+	formData.append("SNum", ${storeRead.SNum});
+	formData.append("SInfo", $("#SInfo").val());
+	formData.append("SName", $("#SName").val());
+	formData.append("STel", $("#STel").val());
+	formData.append("SAddress", $("#SAddress").val());
 	formData.append("_csrf", "${_csrf.token}");
-	formData.append("_method","patch");
-
-	if($("#sajin")[0].files[0]!=undefined)
+	formData.append("_method","patch");	
+	 if($("#sajin")[0].files[0]!=undefined)
 		formData.append("sajin",$("#sajin")[0].files[0]);
+	 
+	 for(var key of formData.keys())
+	      console.log(key);
+	   for(var value of formData.values())
+	      console.log(value);	
 	
-	
-	$.ajax({
+	$.ajax({ 
 		url: "/cheatingday/manager/store_update",
 		data: formData,
 		method: "post",
 		processData: false,
 		contentType: false
 	}).done(()=>{location.reload();})
-	.fail(()=>{console.log("음식점 수정을 실패했습니다.")});
+	.fail(()=>{console.log("음식점 수정을 실패했습니다.")}); 
 });
 
  
@@ -96,42 +100,44 @@ $("#update").on("click",function(){
 </script>
 </head>
 <body>
-<div>
- ${storeRead}
-	<%-- <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
+
+
+  <div>
+
+	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
 	</div>
 	<div>
 		<input type="file" name="sajin" id="sajin">
 	</div>
 	
 	<div>
-	 음식점 고유번호 :<input type="text" name="snum" id="snum" value="${storeRead.SNum}">
+	 음식점 고유번호 :<input type="text" name="SNum" id="SNum" value="${storeRead.SNum}">
 	</div>
 	
 	<div>
-	매장정보: <input type="text" name="sinfo" id="sinfo" value="${storeRead.SInfo}">
+	매장정보: <input type="text" name="SInfo" id="SInfo" value="${storeRead.SInfo}">
 	</div>
 	
 	<div>
-	상호명: <input type="text" name="sname" id="sname" value="${storeRead.SName}">
+	상호명: <input type="text" name="SName" id="SName" value="${storeRead.SName}">
 	</div>
 	
 	<div>
-	음식점 전화번호: <input type="text" name="stel" id="stel" value="${storeRead.STel}">
+	음식점 전화번호: <input type="text" name="STel" id="STel" value="${storeRead.STel}">
 	</div>
 	
 	<div>
-	주소: <input type="text" name="saddress" id="saddress" value="${storeRead.SAddress}">
+	주소: <input type="text" name="SAddress" id="SAddress" value="${storeRead.SAddress}">
 	</div>
 	
 	<!-- 음식점 카테고리번호에 해당하는 내용을 읽어와야해  -->
 	<div>
 	카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">
-	</div> --%>
+	</div> 
 	
 	<button type="button" class="btn btn-success" id="update">변경하기</button>
 	<button type="button" class="btn btn-success" id="menu_delete">메뉴 전체 삭제하기</button>
-	<button type="button" class="btn btn-success" id="delete">매장 삭제하기</button> 
+	<button type="button" class="btn btn-success" id="delete">매장 삭제하기</button>  
 </body>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.icia.cheatingday.user.controller.mvc;
 
-import java.security.*;
 import java.time.*;
 
 import javax.servlet.http.*;
@@ -38,14 +37,19 @@ public class UserController {
 	// 내 정보 읽기
 	@GetMapping("/user/mypage")
 	public ModelAndView myPage(HttpSession session) {
-		return new ModelAndView("main").addObject("viewName", "user/mypage.jsp").addObject("user",
-					service.myPage("spring"));
+		return new ModelAndView("main")
+			.addObject("viewHeader", "include/noheader.jsp")
+			.addObject("viewName", "user/mypage.jsp")
+			.addObject("user",service.myPage("spring"));
 	}
 
 	// 비밀번호 확인 get
 	@GetMapping("/user/check_pwd")
 	public ModelAndView checkPwd() {
-		return new ModelAndView("main").addObject("viewName","user/check_pwd.jsp");
+		return new ModelAndView("main")
+			.addObject("viewHeader", "include/noheader.jsp")
+			.addObject("viewName","user/check_pwd.jsp");
+			
 	}
 	// 비밀번호 확인 post
 	@PostMapping("/user/check_pwd")
@@ -58,7 +62,9 @@ public class UserController {
 	// 비밀번호 변경 get
 	@GetMapping("/user/change_pwd")
 	public ModelAndView changePwd() {
-		return new ModelAndView("main").addObject("viewName","user/change_pwd.jsp");
+		return new ModelAndView("main")
+			.addObject("viewHeader", "include/noheader.jsp")
+			.addObject("viewName","user/change_pwd.jsp");
 	}
 	// 비밀번호 변경 post
 	@PostMapping("/user/change_pwd")

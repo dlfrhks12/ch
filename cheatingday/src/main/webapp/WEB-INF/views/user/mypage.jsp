@@ -4,10 +4,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="user/images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="login/vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="login/vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="login/css/util.css">
+<link rel="stylesheet" type="text/css" href="login/css/main.css">
+<link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">	
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="/cheatingday/script/valid.js"></script>
+<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="login/vendor/animsition/js/animsition.min.js"></script>
+<script src="login/vendor/bootstrap/js/popper.js"></script>
+<script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="login/vendor/select2/select2.min.js"></script>
+<script src="login/vendor/daterangepicker/moment.min.js"></script>
+<script src="login/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="login/vendor/countdowntime/countdowntime.js"></script>
 </head>
+<style>
+	#user td {
+		height: 60px;
+		line-height: 60px;
+	}
+	
+	#user td input {
+		height: 25px;
+	}
+	
+	#tel1, #tel2, #tel3 {
+		width: 125px;
+	}
+	#btn_update button {
+		border: 1px solid red; 
+		background-color: red; 
+		color: white; 
+		padding: 5px;
+		float: right;
+	}
+	
+	.first {
+		background-color: #f3f3f3;
+		text-align: center;
+	}
+	.key {
+		width: 10%;
+		display: inline-block;
+	}
+	
+</style>
 <script>
 function makePage() {
 	
@@ -71,8 +124,8 @@ $(function() {
 			url: "/cheatingday/user/update",
 			method: "post",
 			data: params,
-		}).done(()=>{toastr.info("이름변경 성공","서버 메시지")})
-		.fail(()=>{toastr.info("이름변경 실패", "서버 메시지")});
+		}).done(()=>{toastr.success("이름변경 성공","서버 메시지")})
+		.fail(()=>{toastr.fail("이름변경 실패", "서버 메시지")});
 	});
 	
 	$("#changePwd").on("click", function() {
@@ -92,8 +145,8 @@ $(function() {
 			url: "/cheatingday/user/update",
 			method: "post",
 			data: params
-		}).done(()=>{toastr.info("비밀번호 변경 성공","서버 메시지")})
-		.fail(()=>{toastr.info("비밀번호 변경 실패", "서버 메시지")});
+		}).done(()=>{toastr.success("비밀번호 변경 성공","서버 메시지")})
+		.fail(()=>{toastr.fail("비밀번호 변경 실패", "서버 메시지")});
 	});
 	
 	$("#update").on("click", function() { 
@@ -116,13 +169,20 @@ $(function() {
 			method: "post",
 			processData:false,
 			contentType:false
-		}).done(()=>{ toastr.info("변경 성공", "서버메시지"); })
-		.fail(()=>{ toastr.info("변경 실패", "서버메시지"); })
+		}).done(()=>{ toastr.success("변경 성공", "서버메시지"); })
+		.fail(()=>{ toastr.fail("변경 실패", "서버메시지"); })
 	})
 })
 </script>
 <body>
 	<table class="table table-hover" id="user">
+		<colgroup>
+			<col width="10%">
+			<col width="40%">
+			<col width="10%">
+			<col width="30%">
+			<col width="10%">
+		</colgroup>
 		<tr>
 			<td class="first">이름</td>
 			<td><input type="text" id="irum" value="${user.UIrum}">&nbsp;	<button type="button" class="btn btn-info" id="changeIrum">이름변경</button></td>
@@ -157,6 +217,9 @@ $(function() {
 				<input type="text" name="tel3" id="tel3" maxlength="4">
 			</td></tr>
 	</table>
-	<button type="button" class="btn btn-success" id="update">변경하기</button>
+	<div id="btn_update">
+	<button type="button" class="btn btn-success" id="update" >변경하기</button>
+	<button type="button" class="btn btn-success" id="resign" >회원탈퇴</button>
+	</div>
 </body>
 </html>

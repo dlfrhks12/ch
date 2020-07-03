@@ -1,15 +1,10 @@
 package com.icia.cheatingday.user.controller.rest;
 
-import java.net.BindException;
-import java.security.*;
-
 import javax.validation.*;
 import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
-import org.springframework.security.access.prepost.*;
-import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.icia.cheatingday.user.dto.*;
@@ -39,9 +34,12 @@ public class UserRestController {
 		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
-<<<<<<< HEAD
+	// 회원 탈퇴
+	@GetMapping("/user/resign")
+	public ResponseEntity<?> delete(String uUsername, String uPassword) {
+		return ResponseEntity.ok(service.resign(uUsername, uPassword));
+	}
 
-=======
 /*
 	// 날짜 불러오기
 	@GetMapping(path = "/user/join_date", produces = "text/plain;charset=urf-8")
@@ -49,5 +47,4 @@ public class UserRestController {
 		return ResponseEntity.ok(service.findJoinDate(uUsername));
 	}
 	*/
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 }

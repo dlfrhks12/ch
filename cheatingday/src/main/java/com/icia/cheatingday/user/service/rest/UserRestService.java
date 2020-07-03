@@ -1,7 +1,5 @@
 package com.icia.cheatingday.user.service.rest;
 
-import java.time.format.*;
-
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
@@ -48,5 +46,12 @@ public class UserRestService {
 		User user = modelMapper.map(dto, User.class);
 		userDao.update(user);
 	}
-	
+
+	public int resign(String uUsername, String uPassword) {
+		User user = userDao.findById(uUsername);
+		if(user.getUUsername().equals(uUsername)==true)
+		userDao.delete(uUsername);
+		return 0;
+	}
+
 }

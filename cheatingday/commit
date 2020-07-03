@@ -40,11 +40,7 @@ userjoin.jsp 생성
 ================ 회원 commit =================
 2020.06.30
 reviewMapper추가 
-favoriteMapper 수정
-UserService 수정
-USerController 수정
 2020.06.26
-userMapper 수정
 pointMapper 추가
 favoriteMapper 추가
 UserMvcController 추가
@@ -55,7 +51,6 @@ PointDao 추가
 UserDto 추가
 FavoriteEntity 추가
 PointEntity 추가
-UserEntity 수정
 EmailEXistException추가
 JobFailException 추가
 UsernameExistException추가

@@ -92,7 +92,7 @@ public class UserService {
 		return 0;
 	}
 	// 회원탈퇴
-	public void resign(String uUsername) {
-		userDao.delete(uUsername);
+	public int resign(String uUsername) {
+		return userDao.delete(uUsername);
 	}
 }

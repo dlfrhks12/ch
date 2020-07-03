@@ -226,7 +226,7 @@ $(function() {
 						<input type="hidden" name="authorities" value="ROLE_USER">
 					</div>
 					<div class="container-login100-form-btn" style="text-align: center;">
-						<button type="submit" class="btn btn-danger" id="join">가입</button>
+						<button type="button" class="btn btn-danger" id="join">가입</button>
 					</div>
 				</form>
 			</div>

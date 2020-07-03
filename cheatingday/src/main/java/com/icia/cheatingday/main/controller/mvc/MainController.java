@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.prepost.*;
+import org.springframework.security.crypto.bcrypt.*;
 import org.springframework.stereotype.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.*;
@@ -26,7 +27,6 @@ import com.icia.cheatingday.util.editor.*;
 import oracle.jdbc.proxy.annotation.*;
 
 @Controller
-
 public class MainController {
 	@InitBinder
 	public void init(WebDataBinder wdb) {
@@ -36,12 +36,12 @@ public class MainController {
 	@Autowired
 	private MainService service;
 
-
 	// 홈화면 - 메뉴 카테고리
 	@GetMapping("/")
 	public ModelAndView main() {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "main/foodcategory.jsp");
 	}
+	
 	
 	// [공용] 로그인
 	@GetMapping("/login")
@@ -71,7 +71,7 @@ public class MainController {
 	
 	// [일반] 회원가입 Post
 	@PostMapping("/join_user")
-	public String ManagerJoin(@Valid UserDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
+	public String UserJoin( UserDto.DtoForJoin dto, BindingResult bindingResult, RedirectAttributes ra) throws BindException {
 		if(bindingResult.hasErrors()==true)
 			throw new BindException(bindingResult);
 		try {

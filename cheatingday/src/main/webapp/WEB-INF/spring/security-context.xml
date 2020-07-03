@@ -21,8 +21,8 @@
 		<sec:form-login
 			username-parameter="a_username"
 			password-parameter="a_password"
-			login-page="/main/login"
-			login-processing-url="/main/login"
+			login-page="/login"
+			login-processing-url="/login"
 			default-target-url="/" />
 		
 		<!-- 

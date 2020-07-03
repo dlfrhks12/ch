@@ -19,14 +19,14 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insert">
-		insert into manager(m_num, m_password, m_username, m_email, m_tel, m_account, m_irum, s_name) 
-		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, #{mAccount}, #{mIrum}, #{sName})
+		insert into manager(m_num, m_password, m_username, m_email, m_tel, m_account, m_irum, s_name, m_enabled) 
+		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, #{mAccount}, #{mIrum}, #{sName}, 0)
 	</insert>
 	
 	<!-- 사업자등록번호로 조회로 하나 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
-		m_irum mIrum, s_name sName from manager where m_num=#{mNum} and rownum=1
+		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_num=#{mNum} and rownum=1
 	</select>
 	
 	<!-- 이름과 이메일로 아이디 찾기 -->
@@ -42,6 +42,7 @@
 			<if test="mEmail!=null">m_email=#{mEmail},</if>
 			<if test="mTel!=null">m_tel=#{mTel},</if>
 			<if test="mIrum!=null">m_irum=#{mIrum},</if>
+			<if test="mEnabled!=null">m_enabled=#{mEnabled}</if>
 		</trim>
 		where m_num=#{mNum} and rownum=1
 	</update>

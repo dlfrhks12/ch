@@ -6,6 +6,7 @@
 		<typeAlias type="com.icia.cheatingday.notice.entity.Notice" alias="notice"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.ManagerEntity" alias="manager"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.StoreApplyInsert" alias="storeapplyinsert"/>
+		<typeAlias type="com.icia.cheatingday.admin.entity.Admin" alias="admin"/> 
 		<typeAlias type="com.icia.cheatingday.user.entity.User" alias="user"/> 
 		<typeAlias type="com.icia.cheatingday.user.entity.Point" alias="point"/>
 		<typeAlias type="com.icia.cheatingday.user.entity.Favorite" alias="favorite"/>
@@ -15,7 +16,7 @@
 		<typeAlias type="com.icia.cheatingday.center.entity.QnA" alias="qna"/>
 		<typeAlias type="com.icia.cheatingday.center.entity.QnAComment" alias="qnacomment"/>
 		<typeAlias type="com.icia.cheatingday.order.entity.DetailorderEntity" alias="orderAndReview"/>
-
+		<typeAlias type="com.icia.cheatingday.manager.entity.Store" alias="store"/>
 	</typeAliases>
 	<typeHandlers>
 		<typeHandler handler="com.icia.cheatingday.util.typehandler.LocalDateTimeTypeHandler"/>

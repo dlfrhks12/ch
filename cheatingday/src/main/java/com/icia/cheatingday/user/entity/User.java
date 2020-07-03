@@ -17,9 +17,8 @@ public class User {
 	private String uTel;
 	private String uAddress;
 	private String uPassword;
-	private boolean uEnabled;
+	private Boolean uEnabled;
 	private LocalDateTime uJoinDate;
 	private int uPoint;
 	private int uLoginFailCnt;
-	private String CheckCode;
 }

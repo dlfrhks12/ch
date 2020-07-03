@@ -47,6 +47,7 @@ public class UserService {
 	// 비밀번호 확인
 	public void checkPwd(String uPassword, String uUsername) {
 		User user = userDao.findById(uUsername);
+		System.out.println(user);
 		if(user==null)
 			throw new UserNotFoundException();
 		String encodedPassword = user.getUPassword();

@@ -3,6 +3,7 @@ package com.icia.cheatingday.main.service.mvc;
 import java.time.*;
 import java.util.*;
 
+import javax.inject.*;
 import javax.mail.*;
 import javax.validation.constraints.*;
 
@@ -31,7 +32,7 @@ public class MainService {
 	private ManagerDao managerDao;
 	@Autowired 
 	private AuthorityDao authorityDao;
-	@Autowired 
+	@Autowired
 	private PasswordEncoder pwdEncoder;
 	@Autowired 
 	private ModelMapper modelMapper;
@@ -39,15 +40,20 @@ public class MainService {
 	private MailUtil mailUtil;
   
 	
+	
 	// [일반] 회원가입 
 	public void UserJoin(UserDto.DtoForJoin dto) { 
 	User user = modelMapper.map(dto, User.class);
   
 	// 비밀번호 암호화(해시) 
 	String uPassword = user.getUPassword();
+	System.out.println("==================================");
+	System.out.println(uPassword);
+	System.out.println(dto);
 	String encodedPassword = pwdEncoder.encode(uPassword);
 	user.setUPassword(encodedPassword);
   
+	
 	// 권한 추가 : ROLE_USER, ROLE_MANAGER, ROLE_ADMIN
 	List<String> authorities = dto.getAuthorities(); 
 	for(String authority:authorities)

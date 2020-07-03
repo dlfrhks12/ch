@@ -43,9 +43,12 @@
 	<context:component-scan base-package="com.icia.cheatingday.자신의 컨트롤러 넣으세요" />
 	 -->
 	<context:component-scan base-package="com.icia.cheatingday.user.controller" />
-	<context:component-scan base-package="com.icia.cheatingday.main.controller" />
+	<context:component-scan base-package="com.icia.cheatingday.main.controller.mvc" />
+	<context:component-scan base-package="com.icia.cheatingday.main.controller.rest" />
 	<context:component-scan base-package="com.icia.cheatingday.notice.controller" />
 	<context:component-scan base-package="com.icia.cheatingday.freeboard.controller" />
+	<context:component-scan base-package="com.icia.cheatingday.system.controller" />
+	
 	
 	
 	<security:global-method-security pre-post-annotations="enabled"  secured-annotations="enabled" />

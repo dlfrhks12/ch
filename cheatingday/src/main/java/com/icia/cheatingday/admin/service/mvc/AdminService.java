@@ -9,17 +9,26 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.common.dto.*;
+import com.icia.cheatingday.exception.*;
+import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.user.dao.*;
+import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.util.*;
 
 @Service
 public class AdminService {
-/*	@Autowired
+	/*
+	@Autowired
 	private reviewDao rdao;
 	@Autowired
 	private UserDao udao;
 	@Autowired
-	private storeDao sdao;
+	private ManagerDao mdao;
+	@Autowired
+	private storeDao sdao;	
+	@Autowired
+	private AdminDao adao;
 	@Autowired
 	private ModelMapper mapper;
 	
@@ -44,9 +53,27 @@ public class AdminService {
 		page.setAlist(dtolist);
 		return page;
 	}
+
+	public List<User> ulist(){
+		return adao.findAllUser();;
+	}
+	public List<User> blockList(){
+		return adao.findAllBlock();
+	}
+	public void userBlock(List<String> uUsernames) {
+		adao.blockAll(uUsernames);
+	}
 	
-	public void deleteReport(Integer rNo, String username) {
-		Review review = rdao.findById(rNo);
-		rdao.delete(rNo);
-	}*/
+	public void unblock(List<String> uUsernames) {
+		adao.unblockAll(uUsernames);
+	}
+	public List<ManagerEntity> mlist(){
+		return adao.findAllByEnabled();
+	}
+	public ManagerEntity mread(String mNum) {
+		ManagerEntity manager = mdao.findById(mNum);
+		return manager;
+	}
+	*/
+	
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="storeMapper">
+
+
+<select id="findBysNum" resultType="store">
+select s_num sNum from store where s_num=#{sNum} and rownum=1
+</select>
+
+<select id="findAll" resultType="store">
+select s_num sNum, s_sajin sSajin, s_info sInfo,
+s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
+s_star_point sStarPoint, s_review_cnt sReviewCnt from store
+</select>
+	
+
+<insert id="insert">
+insert into store(s_num,s_sajin,s_info,s_name,s_tel,s_address,
+food_no,0,0) values(#{sNum},#{sSajin},#{sInfo},#{sName},
+#{sTel},#{sAddress},#{foodNo},0,0)
+</insert>
+
+<update id="update">
+update store
+	<trim prefix="set" suffixOverrides=",">
+		<if test="sSajin!=null">s_sajin=#{sSajin},</if>
+		<if test="sInfo!=null">s_info=#{sInfo},</if>
+		<if test="sName!=null">s_name=#{sName},</if>
+		<if test="sTel!=null">s_tel=#{sTel},</if>
+		<if test="sAddress!=null">s_address=#{sAddress},</if>
+	</trim>
+	where s_num=#{sNum} and rownum=1
+</update>	
+
+<delete id="delete">
+	delete from store where s_num=#{sNum} and rownum=1
+</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -84,11 +84,7 @@ COMMENT ON COLUMN users.u_address IS '주소';
 
 COMMENT ON COLUMN users.u_password IS '비밀번호';
 
-<<<<<<< HEAD
 COMMENT ON COLUMN users.u_enabled IS '활성화여부';
-=======
-COMMENT ON COLUMN users.uenabled IS '활성화여부';
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 
 COMMENT ON COLUMN users.u_joindate IS '가입일자';
 
@@ -105,11 +101,7 @@ CREATE UNIQUE INDEX PK_users
 CREATE TABLE point (
 	u_username VARCHAR2(20) NOT NULL, /* 아이디 */
 	s_name NVARCHAR2(20) NOT NULL, /* 상호명 */
-<<<<<<< HEAD
 	accumulation_day DATE,/* 적립일 */
-=======
-	accumulation_day DATE, /* 적립일 */
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	accumulation_sal NUMBER(10) /* 적립금액 */
 );
 
@@ -362,13 +354,10 @@ COMMENT ON COLUMN orders.o_check IS '주문확인여부';
 
 COMMENT ON COLUMN orders.s_num IS '음식점 고유번호';
 
-<<<<<<< HEAD
-CREATE UNIQUE INDEX PK_order
-	ON orders (
-=======
+
+
 CREATE UNIQUE INDEX PK_orders
-	ON order (
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+	ON orders (
 		o_no ASC
 	);
 
@@ -466,13 +455,8 @@ COMMENT ON COLUMN comments.c_content IS '내용';
 
 COMMENT ON COLUMN comments.c_write_time IS '작성시간';
 
-<<<<<<< HEAD
-CREATE UNIQUE INDEX PK_comment
-	ON comments (
-=======
 CREATE UNIQUE INDEX PK_comments
-	ON comment (
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+	ON comments (
 		c_no ASC
 	);
 

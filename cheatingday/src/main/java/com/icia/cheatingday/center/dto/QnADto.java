@@ -24,7 +24,7 @@ public class QnADto {
 		private String qWriteTimeStr;
 		private Boolean qIscomment;
 		private String mIrum;
-		private String mNum;
+		private int mNum;
 		private String qCategory;
 	}
 	
@@ -36,7 +36,7 @@ public class QnADto {
 		private String qContent;
 		private String qWriteTimeStr;
 		private Boolean qIscomment;
-		private String mNum;
+		private int mNum;
 		private String mIrum;
 		private int qCano;
 		private String qCategory;
@@ -47,7 +47,7 @@ public class QnADto {
 	public static class DtoForWrite {
 		private String qTitle;
 		private String qContent;
-		private String mNum;
+		private int mNum;
 		private int qCano;
 	}
 	@Data
@@ -59,7 +59,7 @@ public class QnADto {
 		private String qTitle;
 		private String qContent;
 		private int qCano;
-		private String mNum;
+		private int mNum;
 	}
 
 }

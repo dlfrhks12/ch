@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,10 +29,11 @@ public class ManagerDaoTest {
 	}
 	
 	// @Test
-	public void existsByManagerNumberTest() {
-		assertThat(dao.existsByManagerNumber("111111"), is(true));
-		assertThat(dao.existsByManagerNumber("010101"), is(false));
-	}
+	/*
+	 * public void existsByManagerNumberTest() {
+	 * assertThat(dao.existsByManagerNumber("111111"), is(true));
+	 * assertThat(dao.existsByManagerNumber("010101"), is(false)); }
+	 */
 	
 	//@Test
 	public void existsByIdTest() {
@@ -45,14 +47,15 @@ public class ManagerDaoTest {
 		assertThat(dao.existsByEmail("b@b.com"), is(false));
 	}
 	
-	// @Test
+	 @Test
 	public void findById() {
-		assertThat(dao.findById("111111").getSName(), is("상호명"));
+		assertThat(dao.findById(111111113), is(notNullValue()));
+		System.out.println(dao.findById(111111113));
 	}
 	
 	//@Test
 	public void deleteTest() {
-		dao.delete("1111111");
+		//dao.delete("1111111");
 	}
 	
 	//매니저정보수정 update테스트 dao
@@ -67,6 +70,6 @@ public class ManagerDaoTest {
 	//매니저 내정보 읽어오기
 	//@Test 성공
 	public void findByID() {
-		assertThat(dao.findById("가-01"), is(notNullValue()));
+		//assertThat(dao.findById("가-01"), is(notNullValue()));
 	}
 }

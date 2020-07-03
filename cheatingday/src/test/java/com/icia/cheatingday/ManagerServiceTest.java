@@ -24,9 +24,11 @@ public class ManagerServiceTest {
 	@Autowired
 	private ManagerService service;
 	
-	//@Test 테스트 성공
+	@Test
 	public void myinforeadTest() {
-		assertThat(service.read("가-01"), is(notNullValue()));
+		assertThat(service.read(111111113), is(notNullValue()));
+		System.out.println(service.read(111111113));
+		
 	}
 	
 	

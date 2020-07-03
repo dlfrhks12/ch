@@ -13,7 +13,7 @@ public class ManagerDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public Boolean existsByManagerNumber(String mNum) {
+	public Boolean existsByManagerNumber(int mNum) {
 		return tpl.selectOne("managerMapper.existsByManagerNumber", mNum);
 	}
 	
@@ -29,7 +29,7 @@ public class ManagerDao {
 		return tpl.insert("managerMapper.insert", manager);
 	}
 	
-	public ManagerEntity findById(String mNum) {
+	public ManagerEntity findById(int mNum) {
 		return tpl.selectOne("managerMapper.findById", mNum);
 	}
 	
@@ -44,7 +44,7 @@ public class ManagerDao {
 		return tpl.update("managerMapper.update", manager);
 	}
 	
-	public int delete(String mNum) {
+	public int delete(int mNum) {
 		return tpl.selectOne("managerMapper.delete", mNum);
 	}
 	

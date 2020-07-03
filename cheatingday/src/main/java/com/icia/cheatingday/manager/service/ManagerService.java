@@ -126,10 +126,9 @@ public class ManagerService {
 	}
 	
 	//내 정보 읽기
-	public ManagerEntity read(String mNum) {
+	public ManagerEntity read(int mNum) {
 		ManagerEntity manager = managerDao.findById(mNum);
-		if(manager==null)
-			throw new UserNotFoundException();
+		
 		return manager;
 	}
 	

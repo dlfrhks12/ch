@@ -78,9 +78,10 @@ public class ManagerController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//내 정보 읽기
 	@GetMapping("/manager/information")
-	public ModelAndView managerInfoRead() {
+	public ModelAndView managerInfoRead(int mNum) {
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
-				.addObject("viewHeader", "include/noheader.jsp");
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("managerInfo",service.read(mNum));
 	}}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

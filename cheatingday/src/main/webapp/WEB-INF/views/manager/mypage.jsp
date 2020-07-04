@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사업자 메인페이지</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+사업자메인페이지다
 </body>
 </html>

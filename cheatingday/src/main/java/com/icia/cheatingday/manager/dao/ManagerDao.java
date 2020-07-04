@@ -48,4 +48,9 @@ public class ManagerDao {
 		return tpl.selectOne("managerMapper.delete", mNum);
 	}
 	
+	//사업자등록번호로 사업자아이디 읽어오기
+	public String findMusernameByMnum(int mNum) {
+		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);
+	}
+	
 }

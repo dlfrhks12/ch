@@ -28,10 +28,11 @@ public class ManagerController {
 	
 	//메뉴관리 리스트로 이동
 	@GetMapping("/manager/menu_list")
-	public ModelAndView menuList() {
+	public ModelAndView menuList(String mUsername) {
 		return new ModelAndView("main").addObject("viewName", "manager/menulist.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("menuList",service.menuList());
+				.addObject("menuList",service.menuList(mUsername));
+			
 	}
 	
 	
@@ -64,7 +65,6 @@ public class ManagerController {
 	public ModelAndView storeApplyInsert() {
 		return new ModelAndView("main").addObject("viewName", "manager/storeapply.jsp")
 				.addObject("viewHeader", "include/noheader.jsp");
-				
 	}
 	
 	//입점신청
@@ -79,10 +79,34 @@ public class ManagerController {
 	//내 정보 읽기
 	@GetMapping("/manager/information")
 	public ModelAndView managerInfoRead(int mNum) {
+		
+		System.out.println("+++++++++++++");
+		System.out.println(service.read(mNum));
+		
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
 				.addObject("managerInfo",service.read(mNum));
+		
 	}}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

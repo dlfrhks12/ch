@@ -30,7 +30,5 @@ public class ManagerServiceTest {
 		System.out.println(service.read(111111113));
 		
 	}
-	
-	
 
 }

@@ -40,7 +40,7 @@ public class ManagerService {
 	
 	///////////////////////////메뉴/////////////////////////////////////
 	// 메뉴리스트
-	public List<MenuEntity> menuList() {
+	public List<MenuEntity> menuList(String mUsername) {
 		List<MenuEntity> result = new ArrayList<MenuEntity>();
 		List<MenuEntity> list = dao.findAll();
 		for (MenuEntity menuEntity : list) {
@@ -54,7 +54,6 @@ public class ManagerService {
 		System.out.println("-----------");
 		System.out.println(dao.findById(menuno));
 		MenuEntity menu = dao.findById(menuno);
-		
 		
 		System.out.println(menu);
 		return menu;
@@ -128,7 +127,6 @@ public class ManagerService {
 	//내 정보 읽기
 	public ManagerEntity read(int mNum) {
 		ManagerEntity manager = managerDao.findById(mNum);
-		
 		return manager;
 	}
 	

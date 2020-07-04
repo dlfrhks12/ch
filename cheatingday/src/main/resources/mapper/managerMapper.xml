@@ -54,6 +54,11 @@
 		delete from manager where m_num=#{mNum} and rownum=1
 	</delete>
 	
+	<!-- 사업자등록번호로 사업자아이디 읽어오기  -->
+		<select id="findMusernameByMnum" resultType="string">
+			 select m_username from manager where mNum=#{mNum} and rownum=1
+		</select>
+	
 </mapper>
 
 

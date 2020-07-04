@@ -1,44 +1,71 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <style>
-	#user td {
-		height: 60px;
-		line-height: 60px;
-	}
-	
-	#user td input {
-		height: 25px;
-	}
-	
-	#tel1, #tel2, #tel3 {
-		width: 125px;
-	}
-	#btn_update button {
-		border: 1px solid red; 
-		background-color: red; 
-		color: white; 
-		padding: 5px;
-		float: right;
-	}
-	
-	.first {
-		background-color: #f3f3f3;
-		text-align: center;
-	}
-	.key {
-		width: 10%;
-		display: inline-block;
-	}
-	
+#user td {
+	height: 60px;
+	line-height: 60px;
+}
+
+#user td input {
+	height: 25px;
+}
+
+#tel1, #tel2, #tel3 {
+	width: 125px;
+}
+
+#btn_update button {
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+	padding: 5px;
+	float: right;
+}
+
+#btn_delete button {
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+	padding: 5px;
+	float: right;
+}
+
+.first {
+	background-color: #f3f3f3;
+	text-align: center;
+}
+
+.key {
+	width: 10%;
+	display: inline-block;
+}
 </style>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script type="text/javascript">
+		function openDaumZipAddress() {
+			new daum.Postcode({
+				oncomplete:function(data) {
+					jQuery("#zonecode").val(data.zonecode);
+					jQuery("#address").val(data.address);
+					jQuery("#address_etc").focus();
+					console.log(data);
+				}
+			}).open();
+		}
+	</script>
+<script>
 <script>
 function makePage() {
 	$("#passwordArea").hide();
@@ -153,7 +180,25 @@ $(function() {
 		}).done(()=>{ toastr.success("변경 성공", "서버메시지"); })
 		.fail(()=>{ toastr.error("변경 실패", "서버메시지"); })
 	})
+	
+	$("#resign").on("click", function(e) {
+		e.preventDefault();
+		params= {
+			_csrf:"${_csrf.token}",
+			_method:"delete"
+		}
+		const choice = confirm('회원을 탈퇴하시겠습니까?');
+		if(choice==false)
+			return false;
+		$.ajax({
+			url:"/cheatingday/user/resign",
+			method:"post",
+			data:params
+		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "안녕히 가세요", "success"))
+		.then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "안녕히 가세요", "error"))
+	});
 })
+
 </script>
 <body>
 	<table class="table table-hover" id="user">
@@ -166,41 +211,62 @@ $(function() {
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>
-			<td><input type="text" id="irum" value="${user.UIrum}">&nbsp;	<button type="button" class="btn btn-info" id="changeIrum">이름변경</button></td>
+			<td><input type="text" id="irum" value="${user.UIrum}">&nbsp;
+				<button type="button" class="btn btn-info" id="changeIrum">이름변경</button></td>
 		</tr>
 		<tr>
-			<td class="first">아이디</td><td colspan="2"><span id="username">${user.UUsername }</span></td>
+			<td class="first">아이디</td>
+			<td colspan="2"><span id="username">${user.UUsername }</span></td>
 		</tr>
-		<tr><td class="first">비밀번호</td>
+		<tr>
+			<td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
+				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호
+					수정</button>
 				<div id="passwordArea">
-					<span class="key">현재 비밀번호 : </span><input type="password" id="password" ><br>
-					<span class="key">새 비밀번호 : </span><input type="password" id="newPassword"><br>
-					<span class="key">새 비밀번호 확인 : </span><input type="password" id="newPassword2">
-	  				<button type="button" class="btn btn-info" id="changePwd">변경</button>
+					<span class="key">현재 비밀번호 : </span><input type="password"
+						id="password"><br> <span class="key">새 비밀번호 :
+					</span><input type="password" id="newPassword"><br> <span
+						class="key">새 비밀번호 확인 : </span><input type="password"
+						id="newPassword2">
+					<button type="button" class="btn btn-info" id="changePwd">변경</button>
 				</div>
-			</td></tr>
-		<tr><td class="first">이메일</td>
-			<td colspan="2">
-				<input type="text" name="email1" id="email1">&nbsp;@&nbsp;<input type="text" name="email2" id="email2">&nbsp;&nbsp;
-				<select id="selectEmail">
+			</td>
+		</tr>
+		<tr>
+			<td class="first">이메일</td>
+			<td colspan="2"><input type="text" name="email1" id="email1">&nbsp;@&nbsp;<input
+				type="text" name="email2" id="email2">&nbsp;&nbsp; <select
+				id="selectEmail">
 					<option selected="selected">직접 입력</option>
 					<option>naver.com</option>
 					<option>daum.net</option>
 					<option>gmail.com</option>
-				</select>
-			</td></tr>
-		<tr><td class="first">연락처</td>
-			<td colspan="2">
-				<input type="text" name="tel1" id="tel1" maxlength="3">&nbsp;
-				<input type="text" name="tel2" id="tel2" maxlength="4">&nbsp;
-				<input type="text" name="tel3" id="tel3" maxlength="4">
-			</td></tr>
+			</select></td>
+		</tr>
+		<tr>
+			<td class="first">연락처</td>
+			<td colspan="2"><input type="text" name="tel1" id="tel1"
+				maxlength="3">&nbsp; <input type="text" name="tel2"
+				id="tel2" maxlength="4">&nbsp; <input type="text"
+				name="tel3" id="tel3" maxlength="4"></td>
+		</tr>
+		<tr>
+			<td class="first">주소</td>
+			<td>
+				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />
+						&nbsp; <input type="button" onClick="openDaumZipAddress();"
+							value="주소 찾기" class="btn btn-info"/> <br /> <input type="text" id="address" value=""
+							style="width: 240px;" readonly /> <input type="text"
+							id="address_etc" value="" style="width: 200px;" />
+			</td>
+		</tr>
 	</table>
 	<div id="btn_update">
-	<button type="button" class="btn btn-success" id="update" >변경하기</button>
-	<button type="button" class="btn btn-success" id="resign" >회원탈퇴</button>
+		<button type="button" class="btn btn-success" id="update">변경하기</button>
+	</div>
+	<div id="btn_delete">
+		<button type="button" class="btn btn-success" id="resign">회원탈퇴</button>
 	</div>
 </body>
 </html>

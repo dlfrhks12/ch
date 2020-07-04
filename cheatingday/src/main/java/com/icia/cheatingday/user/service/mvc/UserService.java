@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
+import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.user.dao.*;
@@ -29,6 +30,8 @@ public class UserService {
 	private PasswordEncoder pwdEncoder;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private AuthorityDao authDao;
 
 	// 내정보 읽기
 	public UserDto.DtoForRead myPage(String uUsername) {
@@ -93,7 +96,10 @@ public class UserService {
 		return 0;
 	}
 	// 회원탈퇴
-	public int resign(String uUsername) {
-		return userDao.delete(uUsername);
+	public void resign(String uUsername) {
+		if(userDao.findById(uUsername)==null)
+			throw new JobFailException("회원 탈퇴에 실패했습니다");
+		userDao.delete(uUsername);
+		authDao.delete(uUsername);
 	}
 }

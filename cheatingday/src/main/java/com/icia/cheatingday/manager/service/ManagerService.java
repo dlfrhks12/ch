@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.icia.cheatingday.exception.UserNotFoundException;
 import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.dao.ManagerStoreApplyInsertDao;
 import com.icia.cheatingday.manager.dao.MenuDao;
@@ -128,7 +127,6 @@ public class ManagerService {
 	//내 정보 읽기
 	public ManagerEntity read(int mNum) {
 		ManagerEntity manager = managerDao.findById(mNum);
-		
 		return manager;
 	}
 	

@@ -1,12 +1,14 @@
 package com.icia.cheatingday.main.controller.rest;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.icia.cheatingday.main.service.rest.*;
+import com.icia.cheatingday.main.service.rest.MainRestService;
 
 @RestController
 public class MainRestController {
@@ -48,7 +50,7 @@ public class MainRestController {
 	// [사업자] 사업자 등록번호 중복확인
 
 	@GetMapping("/main/m_num_check")
-	public ResponseEntity<Boolean> checkManagerNumber(@RequestParam @NotNull String mNum) {
+	public ResponseEntity<Boolean> checkManagerNumber(@RequestParam @NotNull int mNum) {
 		return ResponseEntity.ok(service.checkManagerNum(mNum));
 	}
 

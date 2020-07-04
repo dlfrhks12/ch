@@ -1,22 +1,14 @@
 
 package com.icia.cheatingday.util.security;
 
-import java.io.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.security.authentication.*;
-import org.springframework.security.core.*;
-import org.springframework.security.web.*;
-import org.springframework.security.web.authentication.*;
-import org.springframework.stereotype.*;
-
-import com.icia.cheatingday.manager.dao.*;
-import com.icia.cheatingday.manager.entity.*;
-import com.icia.cheatingday.user.dao.*;
-import com.icia.cheatingday.user.entity.*;
+import com.icia.cheatingday.manager.dao.ManagerDao;
+import com.icia.cheatingday.user.dao.UserDao;
 
 @Component("loginFailureHandler")
 public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler { // 로그인에 실패한다 // 아이디가 없다 :
@@ -28,6 +20,7 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	private ManagerDao managerDao;
 	private RedirectStrategy rs = new DefaultRedirectStrategy();
 	
+	/*
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
@@ -49,4 +42,6 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 		}
 		rs.sendRedirect(request, response, "/login");
 	}
+	*/
 }
+	

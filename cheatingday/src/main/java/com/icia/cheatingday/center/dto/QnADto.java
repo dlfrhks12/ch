@@ -1,13 +1,17 @@
 package com.icia.cheatingday.center.dto;
 
-import java.util.*;
+import java.util.List;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
-import com.icia.cheatingday.center.entity.*;
+import com.icia.cheatingday.center.entity.QnAComment;
 
-import lombok.*;
-import lombok.experimental.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 public class QnADto {
 	private QnADto() {}

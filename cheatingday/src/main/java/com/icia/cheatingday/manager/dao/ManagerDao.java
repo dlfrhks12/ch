@@ -1,12 +1,13 @@
 package com.icia.cheatingday.manager.dao;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.mybatis.spring.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.icia.cheatingday.manager.entity.*;
+import com.icia.cheatingday.manager.entity.ManagerEntity;
 
 @Repository
 public class ManagerDao {
@@ -47,6 +48,7 @@ public class ManagerDao {
 	public int delete(int mNum) {
 		return tpl.selectOne("managerMapper.delete", mNum);
 	}
+
 	
 	//사업자등록번호로 사업자아이디 읽어오기
 	public String findMusernameByMnum(int mNum) {

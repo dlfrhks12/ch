@@ -10,6 +10,7 @@ public class SystemController {
 	//입점신청완료 메시지창으로 이동
 		@GetMapping("/system/msg")
 		public ModelAndView msg() {
-			return new ModelAndView("main").addObject("viewName", "system/msg.jsp");
+			return new ModelAndView("main").addObject("viewName", "system/msg.jsp")
+					.addObject("viewHeader", "include/noheader.jsp");
 		}
 }

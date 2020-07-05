@@ -10,6 +10,8 @@
 			/WEB-INF/spring/security-context.xml
 		</param-value>
 	</context-param>
+	
+
 	<context-param>
 		<param-name>profileFolder</param-name>
 		<param-value>d:/upload/profile</param-value>

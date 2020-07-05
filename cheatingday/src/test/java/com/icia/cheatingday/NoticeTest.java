@@ -13,6 +13,7 @@ import org.junit.runner.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
 
+import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.center.dao.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.common.dto.*;
@@ -35,6 +36,8 @@ public class NoticeTest {
 	private NoticeService ns;
 	@Inject
 	private NoticeRestService nrs;
+	@Inject
+	private AdminDao adao;
 	
 	
 	//@Test
@@ -57,19 +60,23 @@ public class NoticeTest {
 		List<Notice> list = ndao.findAll(page.getStartRowNum(), page.getEndRowNum());
 		System.out.println(list);
 	}
-	@Test
+	// 리스트(페이징 글번호)
+	//@Test
 	public void wwq() {
 		System.out.println(ns.list(1));
 	}
+	// 읽기(글번호, 아이디)
 	//@Test
 	public void wgq() {
-		System.out.println(ns.read(2, "usy1473"));
+		System.out.println(ns.read(1, "usy1473"));
 	}
+	// 업데이트(아이디)
 	//@Test
 	public void gqg() {
-		Notice notice = Notice.builder().nNo(2).nTitle("예제21").build();
+		Notice notice = Notice.builder().nNo(1).nTitle("예제21").build();
 		nrs.updateNotice(notice, "usy1473");
 	}
+	// 글쓰기(dto.set을 이용 내용입력)
 	//@Test 
 	public void gwsg(){
 		NoticeDto.DtoForWrite dto = new DtoForWrite();
@@ -114,7 +121,7 @@ public class NoticeTest {
 	}
 	//@Test
 	public void rwg() {
-		QnA qna = QnA.builder().qNo(7).qCano(3).build();
+		QnA qna = QnA.builder().qNo(1).qCano(2).build();
 		qdao.update(qna);
 		System.out.println(qna);
 	}
@@ -122,5 +129,17 @@ public class NoticeTest {
 	//@Test
 	public void countf() {
 		assertThat(qdao.count(1), is(1));
+	}
+	//@Test
+	public void ehge() {
+		System.out.println(adao.findById("admin1234"));
+	}
+	@Test
+	public void eghe() {
+		System.out.println(adao.findAllUser());
+	}
+	//@Test
+	public void fcbf() {
+		//adao.blockAll("usy14731");
 	}
 }

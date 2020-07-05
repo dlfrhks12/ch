@@ -1,13 +1,12 @@
 package com.icia.cheatingday.order.controller;
 
-import javax.inject.Inject;
+import javax.inject.*;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
-import com.icia.cheatingday.order.entity.OrderEntity;
+import com.icia.cheatingday.order.entity.*;
 
 @Controller
 public class OrderController {

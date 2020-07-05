@@ -14,7 +14,11 @@ import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
 
 import com.icia.cheatingday.center.dao.*;
+import com.icia.cheatingday.center.dto.*;
+import com.icia.cheatingday.center.dto.QnADto.*;
 import com.icia.cheatingday.center.entity.*;
+import com.icia.cheatingday.center.service.mvc.*;
+import com.icia.cheatingday.center.service.rest.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.util.*;
 
@@ -28,6 +32,10 @@ public class QnaTest {
 		private QnACommentDao cdao;
 		@Inject
 		private QnACategoryDao qcdao;
+		@Inject
+		private QnAService qs;
+		@Inject
+		private QnARestService qrs;
 		
 		//@Test
 		public void intT() {
@@ -87,8 +95,54 @@ public class QnaTest {
 			cdao.update(a);
 			assertThat(cdao.update(a), is(1));
 		}
-		@Test
+		//@Test
 		public void agte() {
 			assertThat(cdao.delete(3), is(1));
 		}
+		//@Test
+		public void qwrh() {
+			System.out.println(qs.list(2, 1));
+		}
+		//@Test
+		public void qwhnn() {
+			System.out.println(qrs.read(1, "usy1473"));
+		}
+		//@Test
+		public void erhtng() {
+			QnADto.DtoForWrite dto = new DtoForWrite();
+			dto.setMNum(121221);
+			dto.setQContent("qwgehw");
+			dto.setQTitle("vvh");
+			dto.setQCano(1);
+			System.out.println(qs.write(dto));
+		}
+		//@Test
+		public void fgehrnrg() {
+			QnAComment qComment = QnAComment.builder().qNo(5).aUsername("usy1413").qcContent("대답").build();
+			qrs.writeQComment(qComment);		
+		}
+		//@Test
+		public void fdbv() {
+			QnAComment aComment = QnAComment.builder().qcNo(25).qcContent("asfgehwhw").build();
+			qrs.updateQnAcomment(aComment);
+		}
+		//@Test
+		public void dhrn() {
+			qrs.deleteComment(5, 27, null);
+		}
+		//@Test
+		public void aegte() {
+			QnADto.DtoForUpdate dto = new DtoForUpdate();
+			dto.setQNo(14);
+			dto.setMNum(122234);
+			dto.setQCano(2);
+			dto.setQContent("아야아야아야");
+			dto.setQTitle("gegege");
+			qrs.updateQnA(dto);
+		}
+		//@Test
+		public void dqw() {
+			qrs.deletQna(15, null);
+		}
+		
 }

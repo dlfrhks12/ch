@@ -19,14 +19,12 @@ public class menuDaoTest {
 
 	@Autowired
 	private MenuDao dao;
-
-	@Test 
-	public void insertTest() {
-		MenuEntity menu = MenuEntity.builder().menuno(1).menusal(8000)
-				.menusajin("aaa.jpg").menuname("짬뽕").sNum("가01").build();
-		assertThat(dao.insert(menu),is(1));
-	}
-	
+	/*
+	 * @Test public void insertTest() { MenuEntity menu =
+	 * MenuEntity.builder().menuno(1).menusal(8000)
+	 * .menusajin("aaa.jpg").menuname("짬뽕").sNum("가01").build();
+	 * assertThat(dao.insert(menu),is(1)); }
+	 */
 	/*
 	 * //@Test public void findAllTest() { assertThat((dao.findAll(3)).size(),
 	 * is(1)); }

@@ -19,10 +19,10 @@
 			화면이 없는 REST 방식일 경우 <sec:http-basic/>을 사용 
 		 -->
 		<sec:form-login
-			username-parameter="username"
-			password-parameter="password"
-			login-page="/main/login"
-			login-processing-url="/main/login"
+			username-parameter="a_username"
+			password-parameter="a_password"
+			login-page="/login"
+			login-processing-url="/login"
 			default-target-url="/" />
 		
 		<!-- 
@@ -31,7 +31,7 @@
 				로그아웃한 다음 이동할 주소
 		 -->
 		<sec:logout
-			logout-url="/main/logout"
+			logout-url="/logout"
 			logout-success-url="/"
 		/>
 	</sec:http>
@@ -40,7 +40,6 @@
 		비밀번호 암호화 객체 : 스프링 시큐리티에서 비밀번호 암호화는 필수 설정
 			https://d2.naver.com/helloworld/318732
 	-->
-	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
 	<!-- 
 		스프링 시큐리티 인증과 인가를 위한 설정
@@ -58,7 +57,7 @@
 		<sec:authentication-provider>
 			<sec:jdbc-user-service 
 				data-source-ref="dataSource"
-				users-by-username-query="select username, password, enabled from users where username=? and rownum=1"
+				users-by-username-query="select a_username, a_password, a_enabled from (select a_username, a_password, a_enabled from admin union SELECT m_username, m_password, m_enabled from manager union select u_username, u_password, u_enabled from users) where a_username=? and rownum=1"
 				authorities-by-username-query="select username, authority from authority where username=?"
 				 />
 			<sec:password-encoder ref="encoder" />

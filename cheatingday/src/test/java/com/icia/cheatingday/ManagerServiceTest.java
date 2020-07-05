@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.Arrays;
+
 import javax.validation.constraints.NotNull;
 
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.manager.service.ManagerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,8 +24,11 @@ public class ManagerServiceTest {
 	@Autowired
 	private ManagerService service;
 	
-	//@Test 테스트 성공
+	@Test
 	public void myinforeadTest() {
-		assertThat(service.read("가-01"), is(notNullValue()));
+		assertThat(service.read(111111113), is(notNullValue()));
+		System.out.println(service.read(111111113));
+		
 	}
+
 }

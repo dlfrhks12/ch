@@ -3,16 +3,16 @@
 <mapper namespace="userMapper">
 	<!-- 아이디 중복확인 -->
 	<select id="existsById" resultType="boolean">
-		select count(*) from users where u_username=#{uUsername} and rownum=1
+		select count(*) from(select u_username from (select u_username from users union SELECT m_username from manager union select a_username from admin)) where u_username=#{uUsername} and rownum=1
 	</select>
 	<!-- 이메일 중복확인 -->
 	<select id="existsByUEmail" resultType="boolean">
-		select count(*) from users where u_username=#{uUsername} and rownum=1
+		select count(*) from(select u_email from (SELECT u_email from users union select m_email from manager)) where u_email=#{uEmail} and rownum=1
 	</select>
 	<!-- 정보 입력 -->
 	<insert id="insert">
 		insert into users(u_username, u_irum, u_email, u_tel, u_address, u_password, u_enabled, u_joindate, u_point, u_login_fail_cnt)
-		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},0,#{uJoinDate},0,0)
+		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},1,sysdate,0,0)
 	</insert>
 	<!-- 정보 변경 -->
 	<update id="update">
@@ -39,7 +39,7 @@
 	</select>
 	<!-- 아이디 찾기 -->
 	<select id="findById" resultType="user">
-		select u_username uUsername, u_irum uIrum, u_tel uTel, u_address uAddress, u_password uPassword, u_enabled uEnabled,
+		select u_username uUsername, u_irum uIrum, u_tel uTel, u_email UEmail, u_address uAddress, u_password uPassword, u_enabled uEnabled,
 		u_joinDate uJoinDate, u_point uPoint, u_login_fail_cnt uLoginFailCnt from users where u_username=#{uUsername} and rownum=1
 	</select>
 	<!-- 이름, 이메일로 아이디 찾기 -->

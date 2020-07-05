@@ -3,12 +3,10 @@ package com.icia.cheatingday.manager.dto;
 
 import java.util.*;
 
-import javax.validation.constraints.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -31,6 +29,7 @@ public class ManagerDto {
 		private String mTel;      //사업자 전화번호
 		@Pattern(regexp = "^[가-힣]{2,5}$", message = "이름은 한글 2~5자입니다")
 		private String mIrum;     //사업자 이름
+		private String sName;
 		private List<String> authorities;
 	}
 	

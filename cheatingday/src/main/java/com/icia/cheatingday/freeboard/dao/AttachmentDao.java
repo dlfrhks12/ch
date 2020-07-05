@@ -19,5 +19,5 @@ public interface AttachmentDao {
 	@Delete("delete from attachment where f_no=#{fno} and rownum = 1")
 	public int deleteById(Integer fno);
 	@Delete("delete from attachment where b_no = #{bno} and rownum = 1")
-	public int deleteAllByBno(Integer bno);
+	public int deleteAllByBno(Integer bno);//ㅁㄴㅇㅁㄴㅇㅁㄴㅇ
 }

@@ -241,7 +241,6 @@ $(function() {
 					</div>
 					<div>
 						<input class="input200" id="zonecode" type="text" value="" style="width: 50px; border: 1px solid black;" readonly />
-
 						&nbsp; <input class="input200" type="button" onClick="openDaumZipAddress();"
 							value="주소 찾기" /> <br /> <input class="input200" type="text" id="address" value=""
 							style="width: 240px;" readonly /> <input class="input200" type="text"

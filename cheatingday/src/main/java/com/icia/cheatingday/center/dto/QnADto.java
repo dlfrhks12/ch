@@ -52,6 +52,7 @@ public class QnADto {
 		private String qTitle;
 		private String qContent;
 		private int mNum;
+		private String mUsername;
 		private int qCano;
 	}
 	@Data

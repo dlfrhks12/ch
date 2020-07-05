@@ -110,7 +110,7 @@ public class QnaTest {
 		//@Test
 		public void erhtng() {
 			QnADto.DtoForWrite dto = new DtoForWrite();
-			dto.setMNum("121221");
+			dto.setMNum(121221);
 			dto.setQContent("qwgehw");
 			dto.setQTitle("vvh");
 			dto.setQCano(1);
@@ -134,7 +134,7 @@ public class QnaTest {
 		public void aegte() {
 			QnADto.DtoForUpdate dto = new DtoForUpdate();
 			dto.setQNo(14);
-			dto.setMNum("121221");
+			dto.setMNum(122234);
 			dto.setQCano(2);
 			dto.setQContent("아야아야아야");
 			dto.setQTitle("gegege");

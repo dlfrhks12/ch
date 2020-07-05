@@ -3,11 +3,11 @@
 <mapper namespace="userMapper">
 	<!-- 아이디 중복확인 -->
 	<select id="existsById" resultType="boolean">
-		select count(*) from(select a_username, a_password, a_enabled from (select a_username, a_password, a_enabled from admin union SELECT m_username, m_password, m_enabled from manager union select u_username, u_password, u_enabled from users)) where a_username=${aUsername} and rownum=1
+		select count(*) from(select u_username from (select u_username from users union SELECT m_username from manager union select a_username from admin)) where u_username=#{uUsername} and rownum=1
 	</select>
 	<!-- 이메일 중복확인 -->
 	<select id="existsByUEmail" resultType="boolean">
-		select count(*) from(select m_username, m_password, m_enabled from (SELECT m_username, m_password, m_enabled from manager union select u_username, u_password, u_enabled from users)) where m_email=${mEmail} and rownum=1
+		select count(*) from(select u_email from (SELECT u_email from users union select m_email from manager)) where u_email=#{uEmail} and rownum=1
 	</select>
 	<!-- 정보 입력 -->
 	<insert id="insert">

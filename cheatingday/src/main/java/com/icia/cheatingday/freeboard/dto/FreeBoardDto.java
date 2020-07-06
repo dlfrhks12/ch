@@ -1,6 +1,5 @@
 package com.icia.cheatingday.freeboard.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -19,17 +18,17 @@ import lombok.experimental.Accessors;
 
 public class FreeBoardDto {
 	private FreeBoardDto() {}
-	//ass
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Builder
 	@Accessors(chain=true)
-	public static class DtoForLIst{
+	public static class DtoForList{
 		private Integer bno;
 		private String username;
 		private String title;
 		private String category;
+		private Integer cateno;
 		private String writeTimeStr;
 		private Integer readCnt;
 	}
@@ -38,11 +37,12 @@ public class FreeBoardDto {
 	@NoArgsConstructor
 	@Builder
 	@Accessors(chain=true)
-	public static class DtoForeRead{
+	public static class DtoForRead{
 		private Integer bno;
 		private String username;
 		private String title;
 		private String category;
+		private Integer cateno;
 		private String writeTimeStr;
 		private Integer readCnt;
 		private Integer goodCnt;

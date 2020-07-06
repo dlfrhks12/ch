@@ -29,15 +29,13 @@ public class NoticeController {
 		String aUsername = principal!=null? principal.getName():null;
 		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/read.jsp").addObject("notice", service.read(nNo, aUsername));
 	}
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/notice/write")
 	public ModelAndView write() {
 		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","notice/write.jsp");
 	}
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/notice/write")
 	public String write(NoticeDto.DtoForWrite dto, Principal principal) {
 		dto.setAUsername(principal.getName());
-		return "redirect:/board/read?bno=" + service.write(dto);
+		return "redirect:/notice/read?nNo=" + service.write(dto);
 	}
 }

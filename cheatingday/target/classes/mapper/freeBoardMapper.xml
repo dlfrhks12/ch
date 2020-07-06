@@ -7,7 +7,7 @@
 	<![CDATA[
 	select * from
 		(select rownum as rnum, b.* from
-			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board) b
+			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt, b_cateno cateno from board) b
 		where rownum<=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>
@@ -17,6 +17,15 @@
 	select * from
 		(select rownum as rnum, b.* from
 			(select /*+ index_desc(board board_pk_bno) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where u_username=#{username}) b
+		where rownum<=#{endRowNum})
+	where rnum>=#{startRowNum}
+	]]>
+	</select>
+	<select id="findAllByCategory" resultType="FreeBoard">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, b.* from
+			(select /*+ index_desc(board board_pk_bno) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where b_cateno=#{cateno}) b
 		where rownum<=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>
@@ -54,6 +63,9 @@
 		<where>
 			<if test="value!=null">and u_username=#{username}</if>
 		</where>
+	</select>
+	<select id="findAllCate" resultType="map">
+		select b_cateno cateno, b_category category from boardcate 
 	</select>
 </mapper>
 

@@ -36,6 +36,10 @@
 	<update id="enabledM">
 		update manager set m_enabled=1 where m_mnum and rownum=1
 	</update>
+	<insert id="insert">
+		insert into admin(a_username, a_password, a_enabled, a_irum)
+		values(#{aUsername},#{aPassword},1,#{aIrum})
+	</insert>
 </mapper>
 
 

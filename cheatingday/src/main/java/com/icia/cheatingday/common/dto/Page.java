@@ -12,8 +12,6 @@ import com.icia.cheatingday.user.dto.*;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class Page {
 	private int startRowNum;
@@ -26,6 +24,6 @@ public class Page {
 	List<NoticeDto.DtoForList> nlist;
 	List<PointDto.DtoForList> plist;
 	List<QnADto.DtoForList> qlist;
+	List<FreeBoardDto.DtoForList> freelist;
 	List<AdminDto.DtoForList> alist;
-	List<FreeBoardDto.DtoForLIst> freelist;
 }

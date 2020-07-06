@@ -3,6 +3,8 @@ package com.icia.cheatingday.manager.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.constraints.*;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,9 +32,14 @@ public class ManagerDao {
 		return tpl.insert("managerMapper.insert", manager);
 	}
 	
+<<<<<<< HEAD
 	public ManagerEntity findById(String mUsername) {
+=======
+	public ManagerEntity findById(@NotNull String mUsername) {
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		return tpl.selectOne("managerMapper.findById", mUsername);
 	}
+	
 	
 	public String findUsernameByIrumAndEmail(String mIrum, String mEmail) {
 		Map<String,String> map = new HashMap<String, String>();
@@ -49,10 +56,9 @@ public class ManagerDao {
 		return tpl.selectOne("managerMapper.delete", mNum);
 	}
 
-	
 	//사업자등록번호로 사업자아이디 읽어오기
 	public String findMusernameByMnum(int mNum) {
 		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);
 	}
-	
+
 }

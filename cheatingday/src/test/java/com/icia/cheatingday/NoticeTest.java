@@ -68,12 +68,12 @@ public class NoticeTest {
 	// 읽기(글번호, 아이디)
 	//@Test
 	public void wgq() {
-		System.out.println(ns.read(2, "usy1473"));
+		System.out.println(ns.read(1, "usy1473"));
 	}
 	// 업데이트(아이디)
 	//@Test
 	public void gqg() {
-		Notice notice = Notice.builder().nNo(2).nTitle("예제21").build();
+		Notice notice = Notice.builder().nNo(1).nTitle("예제21").build();
 		nrs.updateNotice(notice, "usy1473");
 	}
 	// 글쓰기(dto.set을 이용 내용입력)
@@ -121,7 +121,7 @@ public class NoticeTest {
 	}
 	//@Test
 	public void rwg() {
-		QnA qna = QnA.builder().qNo(7).qCano(3).build();
+		QnA qna = QnA.builder().qNo(1).qCano(2).build();
 		qdao.update(qna);
 		System.out.println(qna);
 	}
@@ -134,11 +134,11 @@ public class NoticeTest {
 	public void ehge() {
 		System.out.println(adao.findById("admin1234"));
 	}
-	//@Test
+	@Test
 	public void eghe() {
 		System.out.println(adao.findAllUser());
 	}
-	@Test
+	//@Test
 	public void fcbf() {
 		//adao.blockAll("usy14731");
 	}

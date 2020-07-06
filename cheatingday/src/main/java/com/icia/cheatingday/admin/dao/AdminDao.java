@@ -6,6 +6,7 @@ import org.mybatis.spring.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import com.icia.cheatingday.admin.entity.*;
 import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.user.entity.*;
 
@@ -34,5 +35,8 @@ public class AdminDao {
 	}
 	public int enabledM(ManagerEntity manager) {
 		return tpl.update("adminMapper.enabledM", manager);
+	}
+	public int insert(Admin admin) {
+		return tpl.insert("adminMapper.insert", admin);
 	}
 }

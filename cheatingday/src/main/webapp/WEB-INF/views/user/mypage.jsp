@@ -5,9 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내정보</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 </head>
 <style>
 #user td {
@@ -49,10 +53,7 @@
 	display: inline-block;
 }
 </style>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript">
 		function openDaumZipAddress() {
 			new daum.Postcode({
@@ -63,10 +64,26 @@
 					console.log(data);
 				}
 			}).open();
+=======
+
+<script>
+function openDaumZipAddress() {
+	new daum.Postcode({
+		oncomplete:function(data) {
+			jQuery("#zonecode").val(data.zonecode);
+			jQuery("#address").val(data.address);
+			jQuery("#address_etc").focus();
+			console.log(data);
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		}
-	</script>
-<script>
-<script>
+<<<<<<< HEAD
+		
+		
+=======
+	}).open();
+}
+
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 function makePage() {
 	$("#passwordArea").hide();
 	var email = "${user.UEmail}";
@@ -194,8 +211,8 @@ $(function() {
 			url:"/cheatingday/user/resign",
 			method:"post",
 			data:params
-		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "안녕히 가세요", "success"))
-		.then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "안녕히 가세요", "error"))
+		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "치팅데이 사랑해주셔서 감사합니다", "success"))
+		.then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"))
 	});
 })
 
@@ -211,8 +228,10 @@ $(function() {
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>
-			<td><input type="text" id="irum" value="${user.UIrum}">&nbsp;
-				<button type="button" class="btn btn-info" id="changeIrum">이름변경</button></td>
+			<td>
+				<input type="text" id="irum" value="${user.UIrum}">&nbsp;
+				<button type="button" class="btn btn-info" id="changeIrum">이름변경</button>
+			</td>
 		</tr>
 		<tr>
 			<td class="first">아이디</td>
@@ -221,45 +240,54 @@ $(function() {
 		<tr>
 			<td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호
-					수정</button>
+				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
 				<div id="passwordArea">
-					<span class="key">현재 비밀번호 : </span><input type="password"
-						id="password"><br> <span class="key">새 비밀번호 :
-					</span><input type="password" id="newPassword"><br> <span
-						class="key">새 비밀번호 확인 : </span><input type="password"
-						id="newPassword2">
+					<span class="key">현재 비밀번호 : </span>
+					<input type="password" id="password"><br> 
+					<span class="key">새 비밀번호 : </span>
+					<input type="password" id="newPassword"><br> 
+					<span class="key">새 비밀번호 확인 : </span><input type="password" id="newPassword2">
 					<button type="button" class="btn btn-info" id="changePwd">변경</button>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td class="first">이메일</td>
-			<td colspan="2"><input type="text" name="email1" id="email1">&nbsp;@&nbsp;<input
-				type="text" name="email2" id="email2">&nbsp;&nbsp; <select
-				id="selectEmail">
+			<td colspan="2">
+				<input type="text" name="email1" id="email1">&nbsp;@&nbsp;
+				<input type="text" name="email2" id="email2">&nbsp;&nbsp; 
+				<select id="selectEmail">
 					<option selected="selected">직접 입력</option>
 					<option>naver.com</option>
 					<option>daum.net</option>
 					<option>gmail.com</option>
-			</select></td>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td class="first">연락처</td>
-			<td colspan="2"><input type="text" name="tel1" id="tel1"
-				maxlength="3">&nbsp; <input type="text" name="tel2"
-				id="tel2" maxlength="4">&nbsp; <input type="text"
-				name="tel3" id="tel3" maxlength="4"></td>
+			<td colspan="2">
+				<input type="text" name="tel1" id="tel1" maxlength="3">&nbsp; 
+				<input type="text" name="tel2" id="tel2" maxlength="4">&nbsp; 
+				<input type="text" name="tel3" id="tel3" maxlength="4">
+			</td>
 		</tr>
 		<tr>
 			<td class="first">주소</td>
 			<td>
-				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />
-						&nbsp; <input type="button" onClick="openDaumZipAddress();"
-							value="주소 찾기" class="btn btn-info"/> <br /> <input type="text" id="address" value=""
-							style="width: 240px;" readonly /> <input type="text"
-							id="address_etc" value="" style="width: 200px;" />
+<<<<<<< HEAD
+				<input id="zonecode" type="text" style="width: 50px;" readonly />&nbsp; 
+				<input type="button" onClick="openDaumZipAddress();" value="주소 찾기" class="btn btn-info"/> <br/> 
+				<input type="text" id="address" style="width: 240px;" readonly /> 
+				<input type="text" id="address_etc" value="" style="width: 200px;"/>
 			</td>
+=======
+				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;	
+				<button class="btn btn-info" onClick="openDaumZipAddress();">주소찾기</button><br>
+				<input type="text" id="address" value="" style="width: 240px;" readonly /> 
+				<input type="text" id="address_etc" placeholder="상세주소입력 " style="width: 200px;" />
+			</td> 
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		</tr>
 	</table>
 	<div id="btn_update">

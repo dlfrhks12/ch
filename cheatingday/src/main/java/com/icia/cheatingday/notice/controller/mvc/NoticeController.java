@@ -36,6 +36,6 @@ public class NoticeController {
 	@PostMapping("/notice/write")
 	public String write(NoticeDto.DtoForWrite dto, Principal principal) {
 		dto.setAUsername(principal.getName());
-		return "redirect:/board/read?bno=" + service.write(dto);
+		return "redirect:/notice/read?nNo=" + service.write(dto);
 	}
 }

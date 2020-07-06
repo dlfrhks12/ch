@@ -36,6 +36,7 @@ public class ManagerDao {
 		return tpl.selectOne("managerMapper.findById", mUsername);
 	}
 	
+	
 	public String findUsernameByIrumAndEmail(String mIrum, String mEmail) {
 		Map<String,String> map = new HashMap<String, String>();
 		map.put("mIrum", mIrum);
@@ -56,5 +57,6 @@ public class ManagerDao {
 	public String findMusernameByMnum(int mNum) {
 		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);
 	}
+
 	
 }

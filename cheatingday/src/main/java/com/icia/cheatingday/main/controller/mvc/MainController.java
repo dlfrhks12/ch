@@ -119,6 +119,7 @@ public class MainController {
 		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/userfindpwd.jsp");
 	}
 	
+	
 	// [일반] 비밀번호 찾기 (재설정) Post
 	@PostMapping("/u_find_pwd")
 	public String resetUserPwd(@RequestParam @NotNull String uEmail, @RequestParam @NotNull String uUsername, RedirectAttributes ra) throws MessagingException {
@@ -126,7 +127,6 @@ public class MainController {
 		ra.addFlashAttribute("msg", "이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요");
 		return "redirect:/login";
 	}
-	
 	
 	
 	

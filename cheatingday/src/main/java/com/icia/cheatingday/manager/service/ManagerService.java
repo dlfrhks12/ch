@@ -122,11 +122,13 @@ public class ManagerService {
 		return managerDao.update(manager);
 		
 	}
+
+	
 	
 	//내 정보 읽기
 	public ManagerEntity read(String mUsername) {
 		ManagerEntity manager = managerDao.findById(mUsername);
 		return manager;
 	}
-	
+
 }

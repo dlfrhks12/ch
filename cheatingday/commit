@@ -49,8 +49,7 @@ pwdEncoder를 위한 서큐리티 추가및 수정
 	userjoin.jsp 주소 api 추가
 	userfindid.jsp 생성
 	managerfindid.jsp 생성
-	
-	
+	usefindpwd.jsp 생성
 ================ 회원 commit =================
 2020.07.03
 mypage.jsp
@@ -92,7 +91,6 @@ entity작성
 ================ 사업자 commit ================
 06.25.9:54 menu entity/ menu dao 생성
 10:37 mybatis-config.xml : menuentity 생성
-<<<<<<< HEAD
 11:42 menuMapper.xml 작성
 3:50 menudao 생성 menumapper 생성 . 
 4:05 menuDaoTest 생성

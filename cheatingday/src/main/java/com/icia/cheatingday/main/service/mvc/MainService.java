@@ -85,14 +85,33 @@ public class MainService {
 		if(user.getUEmail().equals(uEmail)==false) 
 			throw new UserNotFoundException();
   
+		String link = "<a href='http://localhost:8081/cheatingday/u_change_pwd?uUsername=" + uUsername + "'>";
 		StringBuffer text = new StringBuffer("<p>Cheating Day 비밀번호 재설정 안내</p>");
-		text.append("<p>새 비밀번호로 변경해주세요</p>"); 
+		text.append("<p>아래 링크를 통해 새 비밀번호로 변경해주세요</p>"); 
+		text.append(link);
+		text.append("클릭하세요</a>");
 		Mail mail = Mail.builder().sender("CheatingDay@icia.com").receiver(uEmail)
 				.title("Cheating Day 비밀번호 재설정 안내").content(text.toString()).build();
 		mailUtil.sendMail(mail); 
 		}
   
   
+	// [일반] 새 비밀번호로 변경
+	public void changeUserPwd(String uPassword, String uNewPassword, String uUsername) {
+		User user = userDao.findById(uUsername);
+		if(user==null)
+			throw new UserNotFoundException();
+		String encodedPassword = user.getUPassword();
+		if(pwdEncoder.matches(uPassword, encodedPassword)==true) {
+			String newEncodedPassword = pwdEncoder.encode(uNewPassword);
+			userDao.update(User.builder().uPassword(newEncodedPassword).uUsername(uUsername).build());
+		}
+		else {
+			throw new JobFailException("잘못된 비밀번호입니다");
+		}
+	}
+	
+	
 	// [사업자] 회원가입 
 	public void ManagerJoin(ManagerDto.DtoForJoin dto) { 
 	ManagerEntity manager = modelMapper.map(dto, ManagerEntity.class);

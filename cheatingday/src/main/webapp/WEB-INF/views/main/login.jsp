@@ -58,10 +58,11 @@ $(function() {
       $("#alert").text(msg);
       $("#msg").show();
    }
+   
    $("#login").on("click", function() {
-      $("#login_form").submit();
+	   $("#login_form").submit();
+	   })
    });
-});
 </script>
 </head>
 <body>

@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
-<title>일반회원 비밀번호 찾기</title>
+<title>사업자회원 비밀번호 찾기</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>
@@ -46,20 +46,20 @@ $(function() {
             <div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
-            <form class="login100-form validate-form flex-sb flex-w" id="find_pwd_form" action="/cheatingday/u_find_pwd" method="post">
-               <span class="login100-form-title p-b-32">일반회원 비밀번호 찾기</span>
+            <form class="login100-form validate-form flex-sb flex-w" id="find_pwd_form" action="/cheatingday/m_find_pwd" method="post">
+               <span class="login100-form-title p-b-32">사업자회원 비밀번호 찾기</span><br>
                
                <div>
-					<label class="txt p-b-11" for="u_username">아이디</label>
+					<label class="txt p-b-11" for="m_username">아이디</label>
 					<div class="wrap-input100 validate-input m-b-36">
-						<input class="input200" type="text" id="u_username" name="uUsername">
+						<input class="input200" type="text" id="m_username" name="mUsername">
 						<span class="focus-input200"></span>
 					</div>
 			   </div>
                <div>
-					<label class="txt p-b-11" for="u_email">이메일</label>
+					<label class="txt p-b-11" for="m_email">이메일</label>
 					<div class="wrap-input100 validate-input m-b-36">
-						<input class="input200" type="text" id="u_email" name="uEmail">
+						<input class="input200" type="text" id="m_email" name="mEmail">
 						<span class="focus-input200"></span>
 					</div>
 			   </div>

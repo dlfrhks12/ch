@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내정보</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
@@ -49,10 +51,6 @@
 	display: inline-block;
 }
 </style>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script type="text/javascript">
 		function openDaumZipAddress() {
 			new daum.Postcode({
@@ -64,9 +62,8 @@
 				}
 			}).open();
 		}
-	</script>
-<script>
-<script>
+		
+		
 function makePage() {
 	$("#passwordArea").hide();
 	var email = "${user.UEmail}";
@@ -211,8 +208,10 @@ $(function() {
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>
-			<td><input type="text" id="irum" value="${user.UIrum}">&nbsp;
-				<button type="button" class="btn btn-info" id="changeIrum">이름변경</button></td>
+			<td>
+				<input type="text" id="irum" value="${user.UIrum}">&nbsp;
+				<button type="button" class="btn btn-info" id="changeIrum">이름변경</button>
+			</td>
 		</tr>
 		<tr>
 			<td class="first">아이디</td>
@@ -221,44 +220,45 @@ $(function() {
 		<tr>
 			<td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호
-					수정</button>
+				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
 				<div id="passwordArea">
-					<span class="key">현재 비밀번호 : </span><input type="password"
-						id="password"><br> <span class="key">새 비밀번호 :
-					</span><input type="password" id="newPassword"><br> <span
-						class="key">새 비밀번호 확인 : </span><input type="password"
-						id="newPassword2">
+					<span class="key">현재 비밀번호 : </span>
+					<input type="password" id="password"><br> 
+					<span class="key">새 비밀번호 : </span>
+					<input type="password" id="newPassword"><br> 
+					<span class="key">새 비밀번호 확인 : </span><input type="password" id="newPassword2">
 					<button type="button" class="btn btn-info" id="changePwd">변경</button>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td class="first">이메일</td>
-			<td colspan="2"><input type="text" name="email1" id="email1">&nbsp;@&nbsp;<input
-				type="text" name="email2" id="email2">&nbsp;&nbsp; <select
-				id="selectEmail">
+			<td colspan="2">
+				<input type="text" name="email1" id="email1">&nbsp;@&nbsp;
+				<input type="text" name="email2" id="email2">&nbsp;&nbsp; 
+				<select id="selectEmail">
 					<option selected="selected">직접 입력</option>
 					<option>naver.com</option>
 					<option>daum.net</option>
 					<option>gmail.com</option>
-			</select></td>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td class="first">연락처</td>
-			<td colspan="2"><input type="text" name="tel1" id="tel1"
-				maxlength="3">&nbsp; <input type="text" name="tel2"
-				id="tel2" maxlength="4">&nbsp; <input type="text"
-				name="tel3" id="tel3" maxlength="4"></td>
+			<td colspan="2">
+				<input type="text" name="tel1" id="tel1" maxlength="3">&nbsp; 
+				<input type="text" name="tel2" id="tel2" maxlength="4">&nbsp; 
+				<input type="text" name="tel3" id="tel3" maxlength="4">
+			</td>
 		</tr>
 		<tr>
 			<td class="first">주소</td>
 			<td>
-				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />
-						&nbsp; <input type="button" onClick="openDaumZipAddress();"
-							value="주소 찾기" class="btn btn-info"/> <br /> <input type="text" id="address" value=""
-							style="width: 240px;" readonly /> <input type="text"
-							id="address_etc" value="" style="width: 200px;" />
+				<input id="zonecode" type="text" style="width: 50px;" readonly />&nbsp; 
+				<input type="button" onClick="openDaumZipAddress();" value="주소 찾기" class="btn btn-info"/> <br/> 
+				<input type="text" id="address" style="width: 240px;" readonly /> 
+				<input type="text" id="address_etc" value="" style="width: 200px;"/>
 			</td>
 		</tr>
 	</table>

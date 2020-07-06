@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
-import com.icia.cheatingday.manager.service.ManagerService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
@@ -61,7 +60,7 @@ public class ManagerDaoTest {
 	//매니저정보수정 update테스트 dao
 	//@Test성공
 	public void updateTest() {
-		ManagerEntity manager = ManagerEntity.builder().mNum(01).mPassword("0101").mEmail("red@naver.com").mTel("010-123-456")
+		ManagerEntity manager = ManagerEntity.builder().mNum(1).mPassword("0101").mEmail("red@naver.com").mTel("010-123-456")
 				.mIrum("예지사장").build();
 		
 		assertThat(dao.update(manager), is(1));

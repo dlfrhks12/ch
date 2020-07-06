@@ -48,18 +48,12 @@ public class ManagerDaoTest {
 	
 	 @Test
 	public void findById() {
-<<<<<<< HEAD
 	//	assertThat(dao.findById(111111113), is(notNullValue()));
 	//	System.out.println(dao.findById(111111113));
-=======
-<<<<<<< HEAD
 	//	assertThat(dao.findById(111111113), is(notNullValue()));
 	//	System.out.println(dao.findById(111111113));
-=======
 		assertThat(dao.findById("1111"), is(notNullValue()));
 		System.out.println(dao.findById("1111"));
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	}
 	
 	//@Test

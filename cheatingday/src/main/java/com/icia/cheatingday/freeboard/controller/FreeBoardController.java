@@ -34,16 +34,18 @@ public class FreeBoardController {
 	private FreeBoardService service;
 	@GetMapping("/board/read")
 	public ModelAndView read(@NonNull Integer bno) {
-		return new ModelAndView("main").addObject("viewName", "board/read.jsp");
+		return new ModelAndView("main").addObject("viewName", "board/read.jsp").addObject("viewHeader", "include/noheader.jsp");
 	}
 
 	@GetMapping("/board/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1")int pageno,@Nullable String username,Integer cateno) {
-		return new ModelAndView("main").addObject("viewName", "board/list.jsp").addObject("page", service.list(pageno, username)).addObject("category", service.getBoardcate());
+		return new ModelAndView("main").addObject("viewName", "board/list.jsp")
+				.addObject("page", service.list(pageno, username))
+				.addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
 	}
 	@GetMapping("/board/write")
 	public ModelAndView write() {
-		return new ModelAndView("main").addObject("viewName", "board/write.jsp").addObject("category", service.getBoardcate());
+		return new ModelAndView("main").addObject("viewName", "board/write.jsp").addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
 		
 	}
 	@PostMapping("/board/write")

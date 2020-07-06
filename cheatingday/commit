@@ -44,6 +44,8 @@ pwdEncoder를 위한 서큐리티 추가및 수정
 	LoginSuccessHandler 생성
 	LoginFailureHandler 생성
 	
+- 2020.07.06
+	
 ================ 회원 commit =================
 2020.07.03
 mypage.jsp

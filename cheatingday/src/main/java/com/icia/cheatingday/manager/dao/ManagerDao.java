@@ -56,5 +56,6 @@ public class ManagerDao {
 	public String findMusernameByMnum(int mNum) {
 		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);
 	}
+
 	
 }

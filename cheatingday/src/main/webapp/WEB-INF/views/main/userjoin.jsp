@@ -171,9 +171,8 @@ $(function() {
 <body>
 	<div class="limiter">
 		<div class="container-login100">
+			<form class="login100-form validate-form flex-sb flex-w" id="join_form" action="/cheatingday/join_user" method="post">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w"
-					id="join_form" action="/cheatingday/join_user" method="post">
 					<span class="login100-form-title p-b-32">일반회원가입</span> <span
 						class="login100-form-title p-b-32"></span>
 					<div>
@@ -219,8 +218,9 @@ $(function() {
 							<input class="input200" type="text" id="u_tel" name="uTel">
 							<span class="focus-input200"></span> <span id="u_tel_msg"></span>
 						</div>
-					</div>
+					 </div>
 					<div>
+					</div>
 						<label class="txt p-b-11" for="u_address">주소</label>
 						<div class="wrap-input100 validate-input m-b-36">
 							<button type="button" onClick="openDaumZipAddress();">검색</button>
@@ -242,6 +242,5 @@ $(function() {
 				</form>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

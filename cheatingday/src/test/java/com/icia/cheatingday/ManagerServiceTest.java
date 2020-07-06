@@ -26,8 +26,13 @@ public class ManagerServiceTest {
 	
 	@Test
 	public void myinforeadTest() {
+<<<<<<< HEAD
 	//	assertThat(service.read(111111113), is(notNullValue()));
 	//	System.out.println(service.read(111111113));
+=======
+		assertThat(service.read("11111"), is(notNullValue()));
+		System.out.println(service.read("11111"));
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		
 	}
 

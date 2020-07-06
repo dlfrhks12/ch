@@ -40,6 +40,7 @@
 		비밀번호 암호화 객체 : 스프링 시큐리티에서 비밀번호 암호화는 필수 설정
 			https://d2.naver.com/helloworld/318732
 	-->
+	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
 	<!-- 
 		스프링 시큐리티 인증과 인가를 위한 설정

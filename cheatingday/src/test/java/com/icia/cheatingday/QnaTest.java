@@ -134,7 +134,7 @@ public class QnaTest {
 		public void aegte() {
 			QnADto.DtoForUpdate dto = new DtoForUpdate();
 			dto.setQNo(14);
-			dto.setMNum(122234);
+			dto.setMUsername("dkdkdk");
 			dto.setQCano(2);
 			dto.setQContent("아야아야아야");
 			dto.setQTitle("gegege");

@@ -3,6 +3,8 @@ package com.icia.cheatingday.manager.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.constraints.*;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,8 +32,8 @@ public class ManagerDao {
 		return tpl.insert("managerMapper.insert", manager);
 	}
 	
-	public ManagerEntity findById(int mNum) {
-		return tpl.selectOne("managerMapper.findById", mNum);
+	public ManagerEntity findById(@NotNull String mUsername) {
+		return tpl.selectOne("managerMapper.findById", mUsername);
 	}
 	
 	public String findUsernameByIrumAndEmail(String mIrum, String mEmail) {

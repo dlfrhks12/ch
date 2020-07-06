@@ -70,8 +70,8 @@ public class AdminService {
 	public List<ManagerEntity> mlist(){
 		return adao.findAllByEnabled();
 	}
-	public ManagerEntity mread(int mNum) {
-		ManagerEntity manager = mdao.findById(mNum);
+	public ManagerEntity mread(String mUsername) {
+		ManagerEntity manager = mdao.findById(mUsername);
 		return manager;
 	}
 	

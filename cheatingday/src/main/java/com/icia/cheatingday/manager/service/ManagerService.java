@@ -124,8 +124,8 @@ public class ManagerService {
 	}
 	
 	//내 정보 읽기
-	public ManagerEntity read(int mNum) {
-		ManagerEntity manager = managerDao.findById(mNum);
+	public ManagerEntity read(String mUsername) {
+		ManagerEntity manager = managerDao.findById(mUsername);
 		return manager;
 	}
 	

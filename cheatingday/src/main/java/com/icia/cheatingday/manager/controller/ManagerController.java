@@ -78,14 +78,14 @@ public class ManagerController {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//내 정보 읽기
 	@GetMapping("/manager/information")
-	public ModelAndView managerInfoRead(int mNum) {
+	public ModelAndView managerInfoRead(String mUsername) {
 		
 		System.out.println("+++++++++++++");
-		System.out.println(service.read(mNum));
+		System.out.println(service.read(mUsername));
 		
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("managerInfo",service.read(mNum));
+				.addObject("managerInfo",service.read(mUsername));
 		
 	}}
 	

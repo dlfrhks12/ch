@@ -171,9 +171,8 @@ $(function() {
 <body>
 	<div class="limiter">
 		<div class="container-login100">
+			<form class="login100-form validate-form flex-sb flex-w" id="join_form" action="/cheatingday/join_user" method="post">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w"
-					id="join_form" action="/cheatingday/join_user" method="post">
 					<span class="login100-form-title p-b-32">일반회원가입</span> <span
 						class="login100-form-title p-b-32"></span>
 					<div>
@@ -221,19 +220,6 @@ $(function() {
 						</div>
 					 </div>
 					<div>
-						<label class="txt p-b-11" for="u_address">주소</label>
-						<a class="btn btn-info" style="background-color:red; color:white; border:1px solid red;" onClick="openDaumZipAddress();">주소찾기</a><br>
-					</div>
-					<div class="wrap-input100 validate-input m-b-36">
-						<input id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;	
-						<input type="text" id="address" value="" style="width: 240px;" readonly /> 
-						<span class="focus-input200"></span>
-					</div>
-					<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
-							<span class="focus-input200"></span>
-					</div>
-					<!-- <div>
 					</div>
 						<label class="txt p-b-11" for="u_address">주소</label>
 						<div class="wrap-input100 validate-input m-b-36">
@@ -245,7 +231,7 @@ $(function() {
 							<input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
 							<span class="focus-input200"></span>
 						</div>
-					</div> -->
+					</div>
 					<div>
 						<input type="hidden" name="authorities" value="ROLE_USER">
 					</div>
@@ -256,6 +242,5 @@ $(function() {
 				</form>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

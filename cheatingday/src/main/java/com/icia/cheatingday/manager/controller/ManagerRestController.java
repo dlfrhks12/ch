@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
@@ -38,8 +39,9 @@ public class ManagerRestController {
 	
 	//내정보 수정
 	@PatchMapping("/manager/information_update")
-	public ResponseEntity<Void> update(ManagerEntity manager){
-		service.update(manager);
+	public ResponseEntity<Void> update(ManagerDto.DtoForUpdate dto, Principal principal){
+		dto.setMUsername(principal.getName());
+		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
 	

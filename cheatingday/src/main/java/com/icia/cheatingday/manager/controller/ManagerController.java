@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,15 +78,14 @@ public class ManagerController {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//내 정보 읽기
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/manager/information")
-	public ModelAndView managerInfoRead(int mNum) {
-		
-		System.out.println("+++++++++++++");
-		System.out.println(service.read(mNum));
-		
+	public ModelAndView managerInfoRead(Principal principal) {
+		System.out.println("----------------");
+		System.out.println(service.read(principal.getName()));
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("managerInfo",service.read(mNum));
+				.addObject("managerInfo",service.read(principal.getName()));
 		
 	}}
 	

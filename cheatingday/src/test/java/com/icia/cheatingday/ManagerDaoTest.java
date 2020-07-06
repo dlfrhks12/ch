@@ -14,13 +14,13 @@ import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
-public class ManagerDaoTest {
-	@Autowired
-	private ManagerDao dao;
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
+//public class ManagerDaoTest {
+	//@Autowired
+//	private ManagerDao dao;
 
-	
+/*	
 	//@Test
 	public void insertTest() {
 		ManagerEntity m = ManagerEntity.builder().mNum("111111").mUsername("spring").mPassword("1234").mEmail("a@a.com")
@@ -29,11 +29,11 @@ public class ManagerDaoTest {
 	}
 	
 	// @Test
-	/*
+	
 	 * public void existsByManagerNumberTest() {
 	 * assertThat(dao.existsByManagerNumber("111111"), is(true));
 	 * assertThat(dao.existsByManagerNumber("010101"), is(false)); }
-	 */
+	 
 	
 	//@Test
 	public void existsByIdTest() {
@@ -73,3 +73,4 @@ public class ManagerDaoTest {
 		//assertThat(dao.findById("가-01"), is(notNullValue()));
 	}
 }
+*/

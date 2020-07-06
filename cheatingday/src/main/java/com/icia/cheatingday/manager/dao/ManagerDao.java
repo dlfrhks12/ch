@@ -30,8 +30,8 @@ public class ManagerDao {
 		return tpl.insert("managerMapper.insert", manager);
 	}
 	
-	public ManagerEntity findById(int mNum) {
-		return tpl.selectOne("managerMapper.findById", mNum);
+	public ManagerEntity findById(String mUsername) {
+		return tpl.selectOne("managerMapper.findById", mUsername);
 	}
 	
 	public String findUsernameByIrumAndEmail(String mIrum, String mEmail) {

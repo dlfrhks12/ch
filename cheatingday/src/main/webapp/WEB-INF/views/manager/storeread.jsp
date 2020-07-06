@@ -111,6 +111,7 @@ $("#update").on("click",function(){
 	</div>
 	
 	<div>
+	**음식점고유번호는 변경이 불가함<br>
 	 음식점 고유번호 :<input type="text" name="SNum" id="SNum" value="${storeRead.SNum}">
 	</div>
 	
@@ -132,6 +133,7 @@ $("#update").on("click",function(){
 	
 	<!-- 음식점 카테고리번호에 해당하는 내용을 읽어와야해  -->
 	<div>
+	**카테고리도 변경이 불가함<br>
 	카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">
 	</div> 
 	

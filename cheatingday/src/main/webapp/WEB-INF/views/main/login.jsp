@@ -18,7 +18,6 @@
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
 <title>Insert title here</title>
-<script src="/cheatingday/script/valid.js"></script>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>

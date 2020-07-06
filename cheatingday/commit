@@ -12,6 +12,7 @@ Page dto 리스트입력
 system 폴더 추가 (msg.jsp추가)
 pwdEncoder를 위한 서큐리티 추가및 수정
 시큐리티설정
+중복확인 수정
 ================ 메인 commit ================
 - 2020.06.25
 	MainController 생성
@@ -42,6 +43,8 @@ pwdEncoder를 위한 서큐리티 추가및 수정
 	* 로그인/로그아웃 완성
 	LoginSuccessHandler 생성
 	LoginFailureHandler 생성
+	
+- 2020.07.06
 	
 ================ 회원 commit =================
 2020.07.03
@@ -96,17 +99,11 @@ manager>menulist.jsp작성
 06.28. 6:32 입점신청 entity,dao,dto,service,controller 생성
             DB에 storeapplyinsert sequence 생성
                           입점신청 daotest 성공-확신은안선다.
-<<<<<<< HEAD
 07.02 메뉴관리 완서유ㅠㅠ
-=======
 06.29 5:10 입점신청 컨트롤러까지 완성 /테스트 성공
                         매니저 내정보 읽기, 업뎃 컨트롤러까지 완성/ 테스트 성공
-<<<<<<< HEAD
 06.30 메뉴리스트jsp                   
 07.02 8:24 가게관련 jsp 빼고 다함.
-=======
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 07.03 가게jsp
 ================ 관리자 commit ================
 2020.06.25
@@ -121,7 +118,8 @@ qna게시판 dao작성
 문의답변 서비스까지작성
 20.06.30
 qna게시판 마무리작업 및 jsp테스트
-관리자 컨트롤러작성중
+관리자 컨트롤러작성
+jsp작성
 ================ 자유게시판 commit ================
 2020.06.24
 freeboardEntity, Attachment Entity 추가

@@ -1,13 +1,17 @@
 package com.icia.cheatingday.center.dto;
 
-import java.util.*;
+import java.util.List;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
-import com.icia.cheatingday.center.entity.*;
+import com.icia.cheatingday.center.entity.QnAComment;
 
-import lombok.*;
-import lombok.experimental.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 public class QnADto {
 	private QnADto() {}
@@ -24,7 +28,7 @@ public class QnADto {
 		private String qWriteTimeStr;
 		private Boolean qIscomment;
 		private String mIrum;
-		private int mNum;
+		private String mUsername;
 		private String qCategory;
 	}
 	
@@ -36,7 +40,7 @@ public class QnADto {
 		private String qContent;
 		private String qWriteTimeStr;
 		private Boolean qIscomment;
-		private int mNum;
+		private String mUsername;
 		private String mIrum;
 		private int qCano;
 		private String qCategory;
@@ -47,7 +51,7 @@ public class QnADto {
 	public static class DtoForWrite {
 		private String qTitle;
 		private String qContent;
-		private int mNum;
+		private String mUsername;
 		private int qCano;
 	}
 	@Data
@@ -59,7 +63,7 @@ public class QnADto {
 		private String qTitle;
 		private String qContent;
 		private int qCano;
-		private int mNum;
+		private String mUsername;
 	}
 
 }

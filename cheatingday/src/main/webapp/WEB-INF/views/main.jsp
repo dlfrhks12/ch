@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Landing Page - Start Bootstrap Theme</title>
 <link href="mainhome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="mainhome/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="mainhome/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
@@ -23,6 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <title>Insert title here</title>
 <title>화면구성</title>
+<title>Cheating Day</title>
 <link rel="stylesheet" href="/cheatingday/css/main.css">
 </head>
 <body>

@@ -10,11 +10,11 @@
    position: absolute;
    top: 10px;
    }
-   
    #logo {
    width: 50px;
    height: 50px;
    }
+   
 </style>
 <script>
 	$(function() {
@@ -48,14 +48,14 @@
                      <a class="btn btn-danger" href="/cheatingday/login">로그인/회원가입</a>
                  </sec:authorize>         
                  
+                 <!-- 일반회원(ROLE_USER)이 로그인 했을 때 보여줄 메뉴 -->
+                 <sec:authorize access="hasRole('ROLE_USER')">
+                    <a class="fas fa-user-circle fa-3x" id="mypage" style="color:red" href="/cheatingday/user/mypage"></a>
+                 </sec:authorize>
+                 
                  <!-- 로그인 했을 때 모든 사용자에게 보여줄 메뉴 -->
                  <sec:authorize access="isAuthenticated()">
                     <a class="btn btn-danger" href="#" id="logout">로그아웃</a>
-                 </sec:authorize>
-                 
-                 <!-- 일반회원(ROLE_USER)이 로그인 했을 때 보여줄 메뉴 -->
-                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <a class="btn btn-danger" href="/cheatingday/user/mypage">마이페이지</a>
                  </sec:authorize>
                  
                  <!-- 사업자회원(ROLE_MANAGER)이 로그인 했을 때 보여줄 메뉴 -->

@@ -48,7 +48,7 @@ public class MainRestController {
 	// [사업자] 사업자 등록번호 중복확인
 
 	@GetMapping("/main/m_num_check")
-	public ResponseEntity<Boolean> checkManagerNumber(@RequestParam @NotNull String mNum) {
+	public ResponseEntity<Boolean> checkManagerNumber(@RequestParam @NotNull int mNum) {
 		return ResponseEntity.ok(service.checkManagerNum(mNum));
 	}
 

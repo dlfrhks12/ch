@@ -239,13 +239,16 @@ $(function() {
 							<span class="focus-input200"></span> <span id="u_tel_msg"></span>
 						</div>
 					</div>
-					<div>
-						<input class="input200" id="zonecode" type="text" value="" style="width: 50px; border: 1px solid black;" readonly />
-
-						&nbsp; <input class="input200" type="button" onClick="openDaumZipAddress();"
-							value="주소 찾기" /> <br /> <input class="input200" type="text" id="address" value=""
-							style="width: 240px;" readonly /> <input class="input200" type="text"
-							id="address_etc" value="" style="width: 200px;" />
+				 	<div>
+						<label class="txt p-b-11" for="u_address">주소</label>
+						<a class="btn btn-info" style="background-color:red; color:white;" onClick="openDaumZipAddress();">주소찾기</a><br>
+						<div class="wrap-input100 validate-input m-b-36">
+						<input id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;	
+						<input type="text" id="address" value="" style="width: 240px;" readonly /> 
+						</div>
+						<div class="wrap-input100 validate-input m-b-36">
+						<input type="text" id="address_etc" placeholder="상세주소입력 " style="width: 200px;" />
+						</div>
 					</div>
 					<div>
 						<input type="hidden" name="authorities" value="ROLE_USER">

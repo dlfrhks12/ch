@@ -36,11 +36,9 @@ public class ManagerRestController {
 		return ResponseEntity.ok(service.menuDelete(menuno));
 	}
 	
-	
 	//내정보 수정
 	@PatchMapping("/manager/information_update")
-	public ResponseEntity<Void> update(ManagerEntity manager,Principal principal){
-		manager.setMNum(principal.getName());//////principal을 기본키인 사업자번호로 넣어줬어.
+	public ResponseEntity<Void> update(ManagerEntity manager){
 		service.update(manager);
 		return ResponseEntity.ok(null);
 	}

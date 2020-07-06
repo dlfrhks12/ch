@@ -18,21 +18,20 @@ import com.icia.cheatingday.util.*;
 
 @Service
 public class AdminService {
-	/*
-	@Autowired
-	private reviewDao rdao;
+	//@Autowired
+	//private reviewDao rdao;
 	@Autowired
 	private UserDao udao;
 	@Autowired
 	private ManagerDao mdao;
-	@Autowired
-	private storeDao sdao;	
+	//@Autowired
+	//private storeDao sdao;	
 	@Autowired
 	private AdminDao adao;
 	@Autowired
 	private ModelMapper mapper;
 	
-	public Page list (int pageno, int rReport) {
+	/*public Page list (int pageno, int rReport) {
 		int countOfBoard = rdao.count(rReport);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
@@ -45,7 +44,7 @@ public class AdminService {
 		List<AdminDto.DtoForList> dtolist = new ArrayList<>();
 		for(Review review:reviewlist) {
 			AdminDto.DtoForList dto = mapper.map(review, AdminDto.DtoForList.class);
-			dto.setRWriteTimeStr(review.getrWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dto.setUIrum(udao.findById(dto.getUUsername()).getUIrum());
 			dto.setSName(sdao.findById(dto.getSNum()).getSName());
 			dtolist.add(dto);
@@ -53,10 +52,11 @@ public class AdminService {
 		page.setAlist(dtolist);
 		return page;
 	}
-
-	public List<User> ulist(){
+*/
+	
+	/*public List<User> ulist(){
 		return adao.findAllUser();;
-	}
+	}*/
 	public List<User> blockList(){
 		return adao.findAllBlock();
 	}
@@ -70,10 +70,9 @@ public class AdminService {
 	public List<ManagerEntity> mlist(){
 		return adao.findAllByEnabled();
 	}
-	public ManagerEntity mread(String mNum) {
+	public ManagerEntity mread(int mNum) {
 		ManagerEntity manager = mdao.findById(mNum);
 		return manager;
 	}
-	*/
 	
 }

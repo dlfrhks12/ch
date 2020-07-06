@@ -20,10 +20,10 @@ import com.icia.cheatingday.freeboard.entity.FreeBoard;
 public class FreeBoardTest {
 	@Inject
 	private FreeBoardDao dao;
-	//@Test
+	@Test
 	public void insertTest() {
 		for(int i=0; i<50; i++) {
-		FreeBoard board = FreeBoard.builder().title("제목").content("alalals").username("양수민").writeTime(LocalDateTime.now()).cateno(1).build();
+		FreeBoard board = FreeBoard.builder().title("제목").content("alalals").username("양수민").writeTime(LocalDateTime.now()).cateno(2).build();
 		assertThat(dao.insert(board), is(1));
 		}
 		

@@ -37,11 +37,11 @@ public class StoreService {
 				result.add(store);}
 				return result;
 	}
-		
 	// 가게읽기
 	public StoreDto storeRead(int sNum){
 		Store store = dao.findBysNum(sNum);
 		StoreDto dto = modelMapper.map(store, StoreDto.class);
+		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
 		return dto;
 	} 
 	

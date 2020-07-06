@@ -41,11 +41,13 @@ public class UserRestController {
 		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
-	// 회원 탈퇴
-	@GetMapping("/user/resign")
-	public ResponseEntity<?> delete(String uUsername, String uPassword) {
-		return ResponseEntity.ok(service.resign(uUsername, uPassword));
-	}
+	/*
+	 * // 회원 탈퇴
+	 * 
+	 * @GetMapping("/user/resign") public ResponseEntity<?> delete(String uUsername,
+	 * String uPassword) { return ResponseEntity.ok(service.resign(uUsername,
+	 * uPassword)); }
+	 */
 
 /*
 	// 날짜 불러오기

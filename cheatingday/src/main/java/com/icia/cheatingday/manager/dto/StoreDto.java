@@ -11,8 +11,9 @@ public class StoreDto {
 	private int sNum;
 	private String sInfo;
 	private String sName;
-	private int sTel;
+	private String sTel;
 	private String sAddress;
 	private int foodNo;
 	private String foodCategory;
+	
 }

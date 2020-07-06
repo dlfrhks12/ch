@@ -167,21 +167,13 @@ public class MainController {
 		return "redirect:/main/login";
 	}
 	
-	// [사업자] '사장님 페이지로' 클릭 시 비밀번호 확인 Get
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/main/m_check_pwd")
-	public ModelAndView checkManagerPwd() {
-		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/checkpwd.jsp");
+	//사업자 페이지로 이동
+	@GetMapping("/manager/main")
+	public ModelAndView managermain() {
+		return new ModelAndView("main").addObject("viewHeader", "include/viewManagerHeader.jsp")
+				.addObject("viewName","manager/main.jsp");
 	}
 	
-	// [사업자] '사장님 페이지로' 클릭 시 비밀번호 확인 Post
-	@PreAuthorize("isAuthenticated()")
-	@PostMapping("/main/m_check_pwd")
-	public String checkManagerPwd(String mPassword, Principal principal, HttpSession session) {
-		service.checkManagerPwd(mPassword, principal.getName());
-		session.setAttribute("isCheck", "true");
-		return "redirect:/manager";
-	}
 	
 	// [사업자] 비밀번호 찾기 (재설정) Get
 	@GetMapping("/main/m_find_pwd")

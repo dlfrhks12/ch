@@ -30,7 +30,7 @@ public class QnAController {
 	}
 	@PostMapping("/center/write")
 	public String write(QnADto.DtoForWrite dto, Principal principal) {
-		dto.setMNum(principal.getName());
+		dto.setMUsername(principal.getName());
 		return "redirect:/center/read?qNo=" +service.write(dto);
 	}
 }

@@ -31,7 +31,7 @@
 			<c:forEach items="${page.nlist}" var="notice">
 				<tr>
 					<td>${notice.NNo}</td>
-					<td>${notice.NTitle}</td>
+					<td><a href="/cheatingday/notice/read?nNo=${notice.NNo}" onclick="openWin()">${notice.NTitle}</a></td>
 					<td>${notice.AIrum}</td>
 					<td>${notice.NReadCnt }</td>
 					<td>${notice.NWriteTimeStr }</td>
@@ -64,7 +64,7 @@
 		</ul>
 	</div>
 	<div class="form-group">
-		<a class="btn btn-info" href="/aboard/board/write">글쓰기</a>
+		<a class="btn btn-info" href="/cheatingday/notice/write">글쓰기</a>
 	</div>
 	
 	<div class="modal fade" id="myModal" role="dialog" style="top:40%;">

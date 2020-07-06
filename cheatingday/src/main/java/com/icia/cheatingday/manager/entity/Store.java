@@ -17,7 +17,7 @@ public class Store {
 	private String sSajin;   //매장사진
 	private String sInfo;    //매장정보
 	private String sName;    //상호명
-	private int sTel;     //음식점 전화번호
+	private String sTel;     //음식점 전화번호
 	private String sAddress; //주소
 	private int foodNo;      //음식 카테고리 번호
 	private int sStarPoint;  //별점평균

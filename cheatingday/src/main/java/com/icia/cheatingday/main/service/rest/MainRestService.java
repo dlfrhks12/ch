@@ -1,14 +1,16 @@
 package com.icia.cheatingday.main.service.rest;
 
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.icia.cheatingday.exception.*;
-import com.icia.cheatingday.manager.dao.*;
-import com.icia.cheatingday.user.dao.*;
+import com.icia.cheatingday.exception.EmailExistException;
+import com.icia.cheatingday.exception.ManagernumExistException;
+import com.icia.cheatingday.exception.UsernameExistException;
+import com.icia.cheatingday.manager.dao.ManagerDao;
+import com.icia.cheatingday.user.dao.UserDao;
 
 
 @Service
@@ -49,7 +51,7 @@ public class MainRestService {
 	}
 	
 	// [사업자] 사업자 등록번호 중복확인 
-	public boolean checkManagerNum(@NotNull String mNum) {
+	public boolean checkManagerNum(@NotNull @NotNull @NotNull int mNum) {
 		if(managerDao.existsByManagerNumber(mNum)==true)
 			throw new ManagernumExistException();
 		return true;

@@ -10,21 +10,18 @@ import com.icia.cheatingday.user.entity.*;
 
 @Service
 public class AdminRestService {
-/*
-	@Autowired
-	private ReviewDao rdao;
-	@Autowired
-	private UserDao udao;
+
+	//@Autowired
+	//private ReviewDao rdao;
 	@Autowired
 	private AdminDao adao;
 
-	public void deleteReport(int rNo) {
+/*	public void deleteReport(int rNo) {
 		Review review = rdao.findById(rNo);
 		rdao.delete(rNo);
-	}
+	}*/
 	public int enabledM(ManagerEntity manager) {
 		return adao.enabledM(manager);
 	}
-	*/
 	
 }

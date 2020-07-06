@@ -17,23 +17,6 @@
    }
 </style>
 <script>
-<<<<<<< HEAD
-   $(function() {
-      $("#logout").on("click", function() {
-         var param = {
-            _csrf:"${_csrf.token}"
-         }
-         $.ajax({
-            url: "/cheatingday/logout",
-            method: "post",
-            data: param,
-            success: function() {
-               location.href = "/cheatingday/login";
-            }
-         })
-      });
-   });
-=======
 	$(function() {
 		$("#logout").on("click", function() {
 			var param = {
@@ -77,7 +60,7 @@
                  
                  <!-- 사업자회원(ROLE_MANAGER)이 로그인 했을 때 보여줄 메뉴 -->
                  <sec:authorize access="hasRole('ROLE_MANAGER')">
-                    <a class="btn btn-danger" href="/cheatingday/manager">사장님페이지</a>
+                    <a class="btn btn-danger" href="/cheatingday/manager/main">사장님페이지</a>
                  </sec:authorize>
                  
                  <!-- 관리자(ROLE_ADMIN)가 로그인했을 때 보여줄 메뉴 -->

@@ -1,15 +1,19 @@
 package com.icia.cheatingday.common.dto;
 
 
-import java.util.*;
+import java.util.List;
 
-import com.icia.cheatingday.admin.dto.*;
-import com.icia.cheatingday.center.dto.*;
-import com.icia.cheatingday.freeboard.dto.*;
-import com.icia.cheatingday.notice.dto.*;
-import com.icia.cheatingday.user.dto.*;
+import com.icia.cheatingday.admin.dto.AdminDto;
+import com.icia.cheatingday.center.dto.QnADto;
+import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
+import com.icia.cheatingday.notice.dto.NoticeDto;
+import com.icia.cheatingday.user.dto.PointDto;
+import com.icia.cheatingday.user.dto.UserDto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +30,6 @@ public class Page {
 	List<NoticeDto.DtoForList> nlist;
 	List<PointDto.DtoForList> plist;
 	List<QnADto.DtoForList> qlist;
+	List<FreeBoardDto.DtoForList> freelist;
 	List<AdminDto.DtoForList> alist;
-	List<FreeBoardDto.DtoForLIst> freelist;
 }

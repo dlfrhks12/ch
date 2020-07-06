@@ -45,6 +45,11 @@ pwdEncoder를 위한 서큐리티 추가및 수정
 	LoginFailureHandler 생성
 	
 - 2020.07.06
+	* 일반/사업자 아이디찾기 기능 완성
+	userjoin.jsp 주소 api 추가
+	userfindid.jsp 생성
+	managerfindid.jsp 생성
+	
 	
 ================ 회원 commit =================
 2020.07.03

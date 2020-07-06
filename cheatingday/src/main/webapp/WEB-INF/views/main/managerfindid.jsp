@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
-<title>일반회원 아이디 찾기</title>
+<title>사업자회원 아이디 찾기</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>
@@ -28,15 +28,15 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <script>
 $(function() {
-   var msg = "${msg}";
-   if(msg!="") {
-      $("#alert").text(msg);
-      $("#msg").show();
-   }
-   $("#find_id").on("click", function() {
-      $("#find_id_form").submit();
-   });
-});
+	   var msg = "${msg}";
+	   if(msg!="") {
+	      $("#alert").text(msg);
+	      $("#msg").show();
+	   }
+	   $("#find_id").on("click", function() {
+	      $("#find_id_form").submit();
+	   });
+	});
 </script>
 </head>
 <body>
@@ -46,20 +46,20 @@ $(function() {
             <div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
-            <form class="login100-form validate-form flex-sb flex-w" id="find_id_form" action="/cheatingday/u_find_id" method="post">
-               <span class="login100-form-title p-b-32">일반회원 아이디 찾기</span>
+            <form class="login100-form validate-form flex-sb flex-w" id="find_id_form" action="/cheatingday/m_find_id" method="post">
+               <span class="login100-form-title p-b-32">사업자회원 아이디 찾기</span>
                
                <div>
-					<label class="txt p-b-11" for="u_irum">이름</label>
+					<label class="txt p-b-11" for="m_irum">이름</label>
 					<div class="wrap-input100 validate-input m-b-36">
-						<input class="input200" type="text" id="u_irum" name="uIrum">
+						<input class="input200" type="text" id="m_irum" name="mIrum">
 						<span class="focus-input200"></span>
 					</div>
 			   </div>
                <div>
-					<label class="txt p-b-11" for="u_email">이메일</label>
+					<label class="txt p-b-11" for="m_email">이메일</label>
 					<div class="wrap-input100 validate-input m-b-36">
-						<input class="input200" type="text" id="u_email" name="uEmail">
+						<input class="input200" type="text" id="m_email" name="mEmail">
 						<span class="focus-input200"></span>
 					</div>
 			   </div>

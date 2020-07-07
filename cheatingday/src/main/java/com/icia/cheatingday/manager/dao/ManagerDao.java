@@ -32,11 +32,7 @@ public class ManagerDao {
 		return tpl.insert("managerMapper.insert", manager);
 	}
 	
-<<<<<<< HEAD
-	public ManagerEntity findById(String mUsername) {
-=======
 	public ManagerEntity findById(@NotNull String mUsername) {
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		return tpl.selectOne("managerMapper.findById", mUsername);
 	}
 	

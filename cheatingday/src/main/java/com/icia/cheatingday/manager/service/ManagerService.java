@@ -141,7 +141,6 @@ public class ManagerService {
 
 	
 	
-<<<<<<< HEAD
 	
     //내 정보 읽기
 	public ManagerDto.DtoForRead read(String mUsername) { 
@@ -150,12 +149,5 @@ public class ManagerService {
 			= modelMapper.map(manager, ManagerDto.DtoForRead.class);
 			return dto; 
 			}
-=======
-	//내 정보 읽기
-	public ManagerEntity read(String mUsername) {
-		ManagerEntity manager = managerDao.findById(mUsername);
-		return manager;
-	}
 
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 }

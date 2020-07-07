@@ -80,23 +80,12 @@ public class ManagerController {
 	//내 정보 읽기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/manager/information")
-<<<<<<< HEAD
-	public ModelAndView managerInfoRead(Principal principal) {
-		System.out.println("----------------");
-		System.out.println(service.read(principal.getName()));
-=======
 	public ModelAndView managerInfoRead(String mUsername) {
-		
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-<<<<<<< HEAD
-				.addObject("managerInfo",service.read(principal.getName()));
-=======
 				.addObject("managerInfo",service.read(mUsername));
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
-		
-	}}
+	}	
+}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

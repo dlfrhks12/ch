@@ -25,11 +25,11 @@ public class AdminController {
 	
 	@GetMapping("/admin/main")
 	public ModelAndView adminmain() {
-		return new ModelAndView("main").addObject("viewHeader", "include/viewManagerHeader.jsp")
+		return new ModelAndView("main").addObject("viewHeader", "include/viewAdminHeader.jsp")
 				.addObject("viewName","admin/main.jsp");
 	}
 	
-	/*
+	
 	@GetMapping("/admin/report_list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, int rReport) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno, rReport));
@@ -71,5 +71,5 @@ public class AdminController {
 	public ModelAndView mread(String mNum) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("manager", service.mread(mNum)).addObject("viewName", "admin/managerread.jsp");
 	}
-*/
+
 }

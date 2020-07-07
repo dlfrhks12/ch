@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewMapper">
+	<select id="count" resultType="int">
+		select count(*) from review
+		<where>
+			<if test="value!=null">r_report=#{value}</if>
+		</where>
+	</select>
+	<select id="findAllByReport" resultType="review">
+		<![CDATA[
+		select * from
+			(select rownum as rnum, b.* from
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report=#{rReport}) b
+			where rownum <=#{endRowNum})
+		 where rnum>=#{startRowNum}
+		 ]]>
+	</select>
+	<select id="findById" resultType="review">
+		select
+		r_no rNo,r_title rTitle,r_write_time rWriteTime,r_content rContent,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_no=#{rNo} and rownum=1
+	</select>
+	<insert id="insert">
+		<selectKey keyProperty="qNo" resultType="int" order="BEFORE">
+			select
+			qna_seq.nextval from dual
+		</selectKey>
+		insert into
+		qna(q_no,q_title,q_content,q_write_time,q_iscomment,m_num,q_cano)
+		values(#{qNo},#{qTitle},#{qContent},sysdate,0,#{mNum},#{qCano})
+	</insert>
+	<update id="update">
+		update qna
+		<trim suffixOverrides="," prefix="set">
+			<if test="qTitle!=null">q_title=#{qTitle},</if>
+			<if test="qContent!=null">q_content=#{qContent},</if>
+			<if test="qCano!=null">q_cano=#{qCano},</if>
+			<if test="qIscomment!=null">q_iscomment=#{qIscomment},</if>
+		</trim>
+		where q_no=#{qNo} and rownum=1
+	</update>
+ 
+	<delete id="delete">
+		delete from review where r_no=#{rNo} and rownum=1
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

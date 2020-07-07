@@ -3,6 +3,8 @@ package com.icia.cheatingday.center.service.mvc;
 import java.time.format.*;
 import java.util.*;
 
+import javax.annotation.*;
+
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -14,8 +16,12 @@ import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.manager.dao.*;
 import com.icia.cheatingday.util.*;
 
+import lombok.*;
+
 @Service
 public class QnAService {
+	@Autowired
+	private QnACommentDao qndao;
 	@Autowired
 	private QnADao qdao;
 	@Autowired
@@ -24,6 +30,13 @@ public class QnAService {
 	private ModelMapper mapper;
 	@Autowired
 	private ManagerDao mdao;
+	@Getter
+	private List<QnACategory> Qcano;
+	
+	@PostConstruct
+	public void init() {
+		Qcano = qcdao.findAll();
+	}
 	
 	public int write(QnADto.DtoForWrite dto) {
 		QnA qna = mapper.map(dto, QnA.class);
@@ -43,11 +56,22 @@ public class QnAService {
 		for(QnA qna:qnalist) {
 			QnADto.DtoForList dto = mapper.map(qna, QnADto.DtoForList.class);
 			dto.setQWriteTimeStr(qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setMIrum(mdao.findById(dto.getMUsername()).getMIrum());
+			dto.setMIrum(mdao.findMusernameByMnum(dto.getMNum()));
 			dto.setQCategory(qcdao.findById(dto.getQCano()));
 			dtolist.add(dto);
 		}
 		page.setQlist(dtolist);
 		return page;
+	}
+	public QnADto.DtoForRead read(Integer qNo, String username){
+		QnA qna = qdao.findById(qNo);
+		QnADto.DtoForRead dto = mapper.map(qna,QnADto.DtoForRead.class);
+		String str = qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
+		dto.setQWriteTimeStr(str);
+		dto.setMIrum(mdao.findMirumeByMnum(dto.getMNum()));
+		dto.setQCategory(qcdao.findById(dto.getQCano()));
+		if(qna.getQIscomment()==true)
+			dto.setComments(qndao.findAllByQno(dto.getQNo()));
+		return dto;
 	}
 }

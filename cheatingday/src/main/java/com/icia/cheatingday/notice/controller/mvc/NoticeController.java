@@ -12,6 +12,8 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
 import com.icia.cheatingday.notice.dto.*;
 import com.icia.cheatingday.notice.service.mvc.*;
 
@@ -19,15 +21,21 @@ import com.icia.cheatingday.notice.service.mvc.*;
 public class NoticeController {
 	@Autowired
 	private NoticeService service;
+	@Autowired
+	private ObjectMapper objectMapper;
 	
 	@GetMapping("/notice/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
 		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/list.jsp").addObject("page", service.list(pageno));
 	}
 	@GetMapping("/notice/read")
-	public ModelAndView read(@NotNull Integer nNo, Principal principal ) {
+	public ModelAndView read(@NotNull Integer nNo, Principal principal ) throws JsonProcessingException {
 		String aUsername = principal!=null? principal.getName():null;
-		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/read.jsp").addObject("notice", service.read(nNo, aUsername));
+		ModelAndView mav = new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/read.jsp");
+		NoticeDto.DtoForRead dto = service.read(nNo, aUsername);
+		String json = objectMapper.writeValueAsString(dto);
+		mav.addObject("notice", json);
+		return mav;
 	}
 	@GetMapping("/notice/write")
 	public ModelAndView write() {

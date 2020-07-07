@@ -61,9 +61,13 @@ import com.icia.cheatingday.manager.entity.ManagerEntity;
 	public void findById() {
 	//	assertThat(dao.findById(111111113), is(notNullValue()));
 	//	System.out.println(dao.findById(111111113));
+<<<<<<< HEAD
+		assertThat(dao.findById("1111"), is(notNullValue()));
+=======
 	//	assertThat(dao.findById(111111113), is(notNullValue()));
 	//	System.out.println(dao.findById(111111113));
 	//	assertThat(dao.findById("1111"), is(notNullValue()));
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		System.out.println(dao.findById("1111"));
 	}
 	

@@ -11,6 +11,10 @@
 <script src="/aboard/ckeditor/ckeditor.js"></script>
 <script>
 $(function() {
+	var ck = CKEDITOR.replace("content",{
+		height:'500px',
+		filebrowserUploadUrl:"http://localhost:8081/aboard/board/ckupload"
+	})
 	// form을 넘기기전에 값 확인
 	$("#write").on("click", function() {
 		console.log($("#writeForm").serialize());
@@ -28,8 +32,7 @@ $(function() {
 		<div class="form-group">
 			<textarea class="form-control" id="content" name="content" style="height: 800px;"></textarea>
 		</div>
-		<in000000...................................................................................................................................................................................................................................................
-		put type="hidden" name="_csrf" value="${_csrf.token}">
+		<input type="hidden" name="_csrf" value="${_csrf.token}">
 		<button type="button" class="btn btn-success" id="write">작성</button>
 	</form>
 </body>

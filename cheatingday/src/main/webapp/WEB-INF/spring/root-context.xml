@@ -47,8 +47,8 @@
 	
 	<!-- 자바메일을 지원하는 스프링 메일 설정 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="username" value="dlfrhks12@gmail.com" />
-		<property name="password" value="wlwhsdl1!!" />
+		<property name="username" value="cheatingday@gmail.com" />
+		<property name="password" value="cheating11" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.starttls.enable">true</prop>

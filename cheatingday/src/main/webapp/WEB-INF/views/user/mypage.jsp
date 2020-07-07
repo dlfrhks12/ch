@@ -275,19 +275,16 @@ $(function() {
 		<tr>
 			<td class="first">주소</td>
 			<td>
-<<<<<<< HEAD
 				<input id="zonecode" type="text" style="width: 50px;" readonly />&nbsp; 
 				<input type="button" onClick="openDaumZipAddress();" value="주소 찾기" class="btn btn-info"/> <br/> 
 				<input type="text" id="address" style="width: 240px;" readonly /> 
 				<input type="text" id="address_etc" value="" style="width: 200px;"/>
 			</td>
-=======
 				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;	
 				<button class="btn btn-info" onClick="openDaumZipAddress();">주소찾기</button><br>
 				<input type="text" id="address" value="" style="width: 240px;" readonly /> 
 				<input type="text" id="address_etc" placeholder="상세주소입력 " style="width: 200px;" />
 			</td> 
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		</tr>
 	</table>
 	<div id="btn_update">

@@ -185,9 +185,9 @@ $(function() {
 					<div>
 						<label class="txt p-b-11" for="u_username">아이디</label>
 						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="u_username"
-								name="uUsername"> <span class="focus-input200"></span> <span
-								id="u_username_msg"></span>
+							<input class="input200" type="text" id="u_username" name="uUsername"> 
+							<span class="focus-input200"></span> 
+							<span id="u_username_msg"></span>
 						</div>
 					</div>
 					<div>

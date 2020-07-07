@@ -20,19 +20,14 @@ public class ManagerDaoTest {
 	private ManagerDao dao;
 
 	
-	//@Test
+	@Test
 	public void insertTest() {
-		ManagerEntity m = ManagerEntity.builder().mNum(111111).mUsername("spring").mPassword("1234").mEmail("a@a.com")
+		ManagerEntity m = ManagerEntity.builder().mNum(1234567890).mUsername("spring").mPassword("1234").mEmail("a@a.com")
 				.mTel("01011111111").mAccount("123").sName("상호명").mIrum("사업자").build();
 		assertThat(dao.insert(m), is(1));
 	}
 	
-	// @Test
-	/*
-	 * public void existsByManagerNumberTest() {
-	 * assertThat(dao.existsByManagerNumber("111111"), is(true));
-	 * assertThat(dao.existsByManagerNumber("010101"), is(false)); }
-	 */
+	 
 	
 	//@Test
 	public void existsByIdTest() {
@@ -46,13 +41,19 @@ public class ManagerDaoTest {
 		assertThat(dao.existsByEmail("b@b.com"), is(false));
 	}
 	
-	 @Test
+	@Test
+	public void existsByManagerNumberTest() {
+		assertThat(dao.existsByManagerNumber(1234567892), is(false));
+		
+	}
+	
+	 //@Test
 	public void findById() {
 	//	assertThat(dao.findById(111111113), is(notNullValue()));
 	//	System.out.println(dao.findById(111111113));
 	//	assertThat(dao.findById(111111113), is(notNullValue()));
 	//	System.out.println(dao.findById(111111113));
-		assertThat(dao.findById("1111"), is(notNullValue()));
+	//	assertThat(dao.findById("1111"), is(notNullValue()));
 		System.out.println(dao.findById("1111"));
 	}
 	

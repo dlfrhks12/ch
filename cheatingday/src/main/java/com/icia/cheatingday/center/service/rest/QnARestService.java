@@ -29,17 +29,6 @@ public class QnARestService {
 	@Autowired
 	private ModelMapper mapper;
 	
-	public QnADto.DtoForRead read(Integer qNo, String username){
-		QnA qna = qdao.findById(qNo);
-		QnADto.DtoForRead dto = mapper.map(qna,QnADto.DtoForRead.class);
-		String str = qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
-		dto.setQWriteTimeStr(str);
-		dto.setMIrum(mdao.findMirumeByMnum(dto.getMNum()));
-		dto.setQCategory(qcdao.findById(dto.getQCano()));
-		if(qna.getQIscomment()==true)
-			dto.setComments(qndao.findAllByQno(dto.getQNo()));
-		return dto;
-	}
 	public List<QnAComment> writeQComment(QnAComment qnAComment){
 		qnAComment.setQcWriteTime(LocalDateTime.now());
 		String commentStr = qnAComment.getQcContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>");

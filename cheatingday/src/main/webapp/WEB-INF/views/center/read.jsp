@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>	
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,27 @@
 	</script>
 </sec:authorize>
 <script>
-var qna = undefined;
-function printQna() {
+function printComment(qnacomment) {
+	var $comments = $("#comments");
+	$comments.empty();
+	$.each(qnacomment, function(i, comment) {
+		var $comment = $("<div>").appendTo($comments);
+		var $upper_div = $("<div>").appendTo($comment);
+		var $center_div = $("<div>").appendTo($comment);
+		var $lower_div = $("<div>").appendTo($comment);
+		$("<span></span>").text(comment.ausername).appendTo($upper_div);
+		$("<span>").text(comment.qcwriteTime).appendTo($lower_div);
+		$("<div>").html(comment.qccontent).appendTo($center_div);  
+		
+		if(comment.ausername===loginId) {
+			var btn = $("<button>").attr("class","delete_comment").attr("data-cno",comment.qcno).attr("data-writer", comment.ausername)
+				.text("삭제").appendTo($center_div).css("float","right");
+		}
+		$("<hr>").appendTo($comment);
+	});
+}
+$(function() {
+	var qna = ${qna};
 	$("#qTitle").val(qna.qtitle);
 	$("#mUsername").text(qna.musername);
 	$("#mIrum").text(qna.mirum);
@@ -43,39 +63,6 @@ function printQna() {
 		$("#comment_textarea").prop("disabled", false);
 		$("#comment_write").prop("disabled", false);
 		
-	} 
-function printComment(qnacomment) {
-	var $comments = $("#comments");
-	$comments.empty();
-	$.each(qnacomment, function(i, comment) {
-		var $comment = $("<div>").appendTo($comments);
-		var $upper_div = $("<div>").appendTo($comment);
-		var $center_div = $("<div>").appendTo($comment);
-		var $lower_div = $("<div>").appendTo($comment);
-		$("<span></span>").text(comment.ausername).appendTo($upper_div);
-		$("<span>").text(comment.qcwriteTime).appendTo($lower_div);
-		$("<div>").html(comment.qccontent).appendTo($center_div);  
-		
-		if(comment.ausername===loginId) {
-			var btn = $("<button>").attr("class","delete_comment").attr("data-cno",comment.qcno).attr("data-writer", comment.ausername)
-				.text("삭제").appendTo($center_div).css("float","right");
-		}
-		$("<hr>").appendTo($comment);
-	});
-}
-$(function() {
-	// 자바객체 -> json -> 자바스크립트 객체
-	var qno = location.search.substr(5);
-	$.ajax({
-		url:"/cheatingday/center/read",
-		data: "qNo=" + qno,
-		method:"post"
-	}).done((result)=>{
-		qna = result;
-		printQna();
-		printComment(qna.comments);
-	});
-	
 	// 1. 댓글 달기
 	$("#comment_write").on("click", function() {
 		if(isLogin===false)
@@ -120,6 +107,7 @@ $(function() {
 		var params = {
 			qNo: qna.qno,
 			qTitle: $("#qTitle").val(),
+			qCano: qna.qcano,
 			qContent: CKEDITOR.instances['qContent'].getData(),
 			_csrf: "${_csrf.token}",
 			_method: "patch"
@@ -163,9 +151,12 @@ $(function() {
 				<input type="hidden" id="qCano">
 				<ul id="lower_left">
 					<li><span id="qWriteTime"></span></li>
-					<li><span id="qCategory"></span></li>
-
 				</ul>
+				<select id="qCategory">
+					<c:choose>
+						<option value="${category.}">
+					</c:choose>
+				</select>
 			</div>
 		</div>
 		<div id="content_div">

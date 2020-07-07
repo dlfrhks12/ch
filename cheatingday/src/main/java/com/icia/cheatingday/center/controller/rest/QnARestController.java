@@ -21,13 +21,6 @@ public class QnARestController {
 	private QnARestService service;
 	
 	
-	@PostMapping("/center/read")
-	public ResponseEntity<?> read(@RequestParam @NotNull Integer qNo, Principal principal) throws JsonProcessingException{
-		String username = principal!=null? principal.getName():null;
-		QnADto.DtoForRead dto = service.read(qNo, username);
-		return ResponseEntity.ok(dto);
-	}
-	
 	@PatchMapping("/center/update")
 	public ResponseEntity<Void> updateQna(@Valid QnADto.DtoForUpdate dto, BindingResult results) throws BindException {
 		if(results.hasErrors())

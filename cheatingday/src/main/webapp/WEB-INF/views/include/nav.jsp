@@ -70,7 +70,7 @@
                  
                  <!-- 관리자(ROLE_ADMIN)가 로그인했을 때 보여줄 메뉴 -->
                  <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-danger" href="/cheatingday/admin">관리자페이지</a>
+                    <a class="btn btn-danger" href="/cheatingday/admin/main">관리자페이지</a>
                  </sec:authorize>
               </ul>
            </div>

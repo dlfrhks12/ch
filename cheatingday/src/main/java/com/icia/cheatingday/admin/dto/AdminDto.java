@@ -1,5 +1,7 @@
 package com.icia.cheatingday.admin.dto;
 
+import java.util.*;
+
 import lombok.*;
 import lombok.experimental.*;
 
@@ -20,5 +22,16 @@ public class AdminDto {
 		private int rReprot;
 		private String sNum;
 		private String sName;
+	}
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Builder
+	@Accessors(chain = true)
+	public static class DtoForJoin{
+		private String aUsername ;
+		private String aPassword;
+		private String aIrum;
+		private List<String> authorities;
 	}
 }

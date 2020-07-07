@@ -22,13 +22,14 @@ public class AdminController {
 	@Autowired
 	private ObjectMapper objectmapper;
 	
-	/*
-	@GetMapping("/admin")
-	public ModelAndView main() {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/adminpage.jsp");
+	
+	@GetMapping("/admin/main")
+	public ModelAndView adminmain() {
+		return new ModelAndView("main").addObject("viewHeader", "include/viewManagerHeader.jsp")
+				.addObject("viewName","admin/main.jsp");
 	}
 	
-	
+	/*
 	@GetMapping("/admin/report_list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, int rReport) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno, rReport));

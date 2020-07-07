@@ -1,23 +1,17 @@
 package com.icia.cheatingday.common.dto;
 
 
-import java.util.List;
+import java.util.*;
 
-import com.icia.cheatingday.admin.dto.AdminDto;
-import com.icia.cheatingday.center.dto.QnADto;
-import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
-import com.icia.cheatingday.notice.dto.NoticeDto;
-import com.icia.cheatingday.user.dto.PointDto;
-import com.icia.cheatingday.user.dto.UserDto;
+import com.icia.cheatingday.admin.dto.*;
+import com.icia.cheatingday.center.dto.*;
+import com.icia.cheatingday.freeboard.dto.*;
+import com.icia.cheatingday.notice.dto.*;
+import com.icia.cheatingday.user.dto.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class Page {
 	private int startRowNum;

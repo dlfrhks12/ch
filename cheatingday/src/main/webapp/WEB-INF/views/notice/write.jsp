@@ -28,7 +28,8 @@ $(function() {
 		<div class="form-group">
 			<textarea class="form-control" id="content" name="content" style="height: 800px;"></textarea>
 		</div>
-		<input type="hidden" name="_csrf" value="${_csrf.token}">
+		<in000000...................................................................................................................................................................................................................................................
+		put type="hidden" name="_csrf" value="${_csrf.token}">
 		<button type="button" class="btn btn-success" id="write">작성</button>
 	</form>
 </body>

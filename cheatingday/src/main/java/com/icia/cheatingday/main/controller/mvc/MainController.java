@@ -58,6 +58,18 @@ public class MainController {
 		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/join.jsp");
 	}
 	
+	// [공용] 일반/사업자 아이디찾기 선택창
+	@GetMapping("/find_id")
+	public ModelAndView findid() {
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findid.jsp");
+	}
+	
+	// [공용] 일반/사업자 비밀번호찾기 선택창
+	@GetMapping("/find_pwd")
+	public ModelAndView findpwd() {
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findpwd.jsp");
+	}
+	
 	// [일반] 회원가입 Get
 	@GetMapping("/join_user")
 	public ModelAndView UserJoin() {
@@ -79,7 +91,7 @@ public class MainController {
 		return "redirect:/system/msg";
 	}
 	
-	
+		
 	// [일반] 아이디 찾기 Get
 	@GetMapping("/u_find_id")
 	public ModelAndView findUserUsername() {
@@ -90,9 +102,9 @@ public class MainController {
 	// [일반] 아이디찾기 Post
 	@PostMapping("/u_find_id")
 	public String findUserUsername(@RequestParam @NotNull String uIrum, @RequestParam @NotNull String uEmail, RedirectAttributes ra) {
-		String username = service.findUserUsername(uIrum, uEmail);
-		ra.addFlashAttribute("msg", "아이디는 " + username + " 입니다.");
-		return "redirect:/login";
+		String uUsername = service.findUserUsername(uIrum, uEmail);
+		ra.addFlashAttribute("msg", "아이디는 " + uUsername + " 입니다");
+		return "redirect:/system/msg";
 	}
 	
 	
@@ -116,7 +128,7 @@ public class MainController {
 	// [일반] 비밀번호 찾기 (재설정) Get
 	@GetMapping("/u_find_pwd")
 	public ModelAndView findUserPwd() {
-		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/userfindpwd.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/userfindpwd.jsp");
 	}
 	
 	
@@ -124,11 +136,24 @@ public class MainController {
 	@PostMapping("/u_find_pwd")
 	public String resetUserPwd(@RequestParam @NotNull String uEmail, @RequestParam @NotNull String uUsername, RedirectAttributes ra) throws MessagingException {
 		service.resetUserPwd(uUsername, uEmail);
-		ra.addFlashAttribute("msg", "이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요");
-		return "redirect:/login";
+		ra.addFlashAttribute("msg", "가입하신 이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요 ^_^");
+		return "redirect:/system/msg";
 	}
 	
 	
+	// [일반] 비밀번호 변경 페이지로 이동
+	@GetMapping("/u_change_pwd")
+	public ModelAndView changeUserPwd() {
+		return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/userchangepwd.jsp");
+	}
+	
+	// [일반] 비밀번호 변경
+	@PostMapping("/u_change_pwd")
+	public String changeUserPwd(@RequestParam @NotNull String uPassword, @RequestParam @NotNull String uNewPassword, Principal principal, RedirectAttributes ra) {
+		service.changeUserPwd(uPassword, uNewPassword, principal.getName());
+		ra.addFlashAttribute("msg", "비밀번호를 변경했습니다");
+		return "redirect:/";
+	}
 	
 	// [사업자] 회원가입 Get
 	@GetMapping("/join_manager")
@@ -153,18 +178,18 @@ public class MainController {
 	
 	
 	// [사업자] 아이디 찾기 Get
-	@GetMapping("/main/m_find_id")
+	@GetMapping("/m_find_id")
 	public ModelAndView findManagerUsername() {
-		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findid.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/managerfindid.jsp");
 	}
 	
 	
 	// [사업자] 아이디찾기 Post
-	@PostMapping("/main/m_find_id")
+	@PostMapping("/m_find_id")
 	public String findManagerUsername(@RequestParam @NotNull String mIrum, @RequestParam @NotNull String mEmail, RedirectAttributes ra) {
 		String mUsername = service.findManagerUsername(mIrum, mEmail);
 		ra.addFlashAttribute("msg", "아이디는 " + mUsername + " 입니다.");
-		return "redirect:/main/login";
+		return "redirect:/system/msg";
 	}
 	
 	//사업자 페이지로 이동
@@ -176,17 +201,17 @@ public class MainController {
 	
 	
 	// [사업자] 비밀번호 찾기 (재설정) Get
-	@GetMapping("/main/m_find_pwd")
+	@GetMapping("/m_find_pwd")
 	public ModelAndView findManagerPwd() {
-		return new ModelAndView().addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/findpwd.jsp");
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/managerfindpwd.jsp");
 	}
 	
 	// [사업자] 비밀번호 찾기  (재설정) Post
-	@PostMapping("/main/m_find_pwd")
+	@PostMapping("/m_find_pwd")
 	public String resetManagerPwd(@RequestParam @NotNull String mEmail, @RequestParam @NotNull String mUsername, RedirectAttributes ra) throws MessagingException {
 		service.resetManagerPwd(mUsername, mEmail);
 		ra.addFlashAttribute("msg", "이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요");
-		return "redirect:/main/login";
+		return "redirect:/system/msg";
 	}
 }
 

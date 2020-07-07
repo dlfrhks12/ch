@@ -13,13 +13,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
-public class ManagerDaoTest {
-	@Autowired
-	private ManagerDao dao;
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
+//public class ManagerDaoTest {
+	//@Autowired
+//	private ManagerDao dao;
 
-	
+/*	
 	//@Test
 	public void insertTest() {
 		ManagerEntity m = ManagerEntity.builder().mNum(111111).mUsername("spring").mPassword("1234").mEmail("a@a.com")
@@ -28,11 +28,11 @@ public class ManagerDaoTest {
 	}
 	
 	// @Test
-	/*
+	
 	 * public void existsByManagerNumberTest() {
 	 * assertThat(dao.existsByManagerNumber("111111"), is(true));
 	 * assertThat(dao.existsByManagerNumber("010101"), is(false)); }
-	 */
+	 
 	
 	//@Test
 	public void existsByIdTest() {
@@ -48,8 +48,18 @@ public class ManagerDaoTest {
 	
 	 @Test
 	public void findById() {
+<<<<<<< HEAD
+	//	assertThat(dao.findById(111111113), is(notNullValue()));
+	//	System.out.println(dao.findById(111111113));
+=======
+<<<<<<< HEAD
+	//	assertThat(dao.findById(111111113), is(notNullValue()));
+	//	System.out.println(dao.findById(111111113));
+=======
 		assertThat(dao.findById("1111"), is(notNullValue()));
 		System.out.println(dao.findById("1111"));
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	}
 	
 	//@Test
@@ -72,3 +82,4 @@ public class ManagerDaoTest {
 		//assertThat(dao.findById("가-01"), is(notNullValue()));
 	}
 }
+*/

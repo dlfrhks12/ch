@@ -17,13 +17,11 @@
 <div>
 		<table class="table table-hover">
 			<colgroup>
-				<col width="25%">
-				<col width="50%">
-				<col width="25%">
+				<col width="60%">
+				<col width="45%">
 			</colgroup>
 			<thead>
 				<tr>
-					<th>메뉴번호</th>
 					<th>메뉴이름</th>
 					<th>메뉴가격</th>
 				</tr>
@@ -31,7 +29,6 @@
 			<tbody id="list">
 			 <c:forEach items="${menuList}" var="menu">
 				<tr>
-					<td>${menu.menuno}</td>
 					<td><a href="/cheatingday/manager/menu_read?menuno=${menu.menuno}">${menu.menuname}</a></td>
 					<td>${menu.menusal}</td>
 				</tr>

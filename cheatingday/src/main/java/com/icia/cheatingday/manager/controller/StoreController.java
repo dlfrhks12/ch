@@ -1,8 +1,10 @@
 package com.icia.cheatingday.manager.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,28 +21,39 @@ public class StoreController {
 	private StoreService service;
 	
 	
-	  //가게리스트 페이지로 이동
-	  @GetMapping("/manager/store_list") public ModelAndView storeList() { 
+	  //가게리스트 페이지로 이동 - 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
+   	  @PreAuthorize("isAuthenticated()")
+	  @GetMapping("/manager/store_list") 
+	  public ModelAndView storeList(String mUsername) { 
 		  return new ModelAndView("main").addObject("viewName","manager/storelist.jsp")
 				  	.addObject("viewHeader", "include/noheader.jsp") 
-				  	.addObject("storeList", service.storeList()); }
+				  	.addObject("storeList", service.storeList(mUsername)); }
 	  
-	  //가게읽기 페이지로 이동
-	  @GetMapping("/manager/store_read") public ModelAndView storeRead(int sNum) {
+   	 
+	  //가게읽기 페이지로 이동 - 해당하는 사장님만 자신의 가게를 읽을 수 있어.
+	  @PreAuthorize("isAuthenticated()")
+	  @GetMapping("/manager/store_read") 
+	  public ModelAndView storeRead(int sNum, Principal principal) {
+		  String username = principal!=null? principal.getName():null;
 		  return new ModelAndView("main").addObject("viewName","manager/storeread.jsp")
 				  	.addObject("viewHeader", "include/noheader.jsp") 
-				  	.addObject("storeRead", service.storeRead(sNum)); }
+				  	.addObject("storeRead", service.storeRead(sNum, username));}
 	  
 	  //가게등록 페이지로 이동
+	  @PreAuthorize("isAuthenticated()")
 	  @GetMapping("/manager/store_insert") public ModelAndView storeInsert() {
 	  return new  ModelAndView("main").addObject("viewName","manager/storeinsert.jsp")
 	  .addObject("viewHeader", "include/noheader.jsp"); }
 	  
 	  
 	  //가게등록
-	  @PostMapping("/manager/store_insert") public String storeInsert(Store store, MultipartFile sajin)
+	  @PreAuthorize("isAuthenticated()")
+	  @PostMapping("/manager/store_insert") 
+	  public String storeInsert(Store store, MultipartFile sajin, Principal principal)
 			  	throws IllegalStateException, IOException {
+	  store.setMUsername(principal.getName());
 	  service.storeInsert(store, sajin); 
-	  return "redirect:/manager/store_list"; }
+	  return "redirect:/manager/store_list"; 
+	  }
 	 
 }

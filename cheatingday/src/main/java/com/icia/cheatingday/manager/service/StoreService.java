@@ -15,6 +15,7 @@ import com.icia.cheatingday.manager.dao.FoodCategoryDao;
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.StoreDto;
 import com.icia.cheatingday.manager.entity.Store;
+import com.icia.cheatingday.manager.exception.IllegalJobException;
 
 @Service
 public class StoreService {
@@ -29,18 +30,22 @@ public class StoreService {
 	@Autowired
 	private FoodCategoryDao foodCategoryDao;
 	
-	// 가게리스트 
-	public List<Store> storeList(){ 
-		List<Store> result = new ArrayList<Store>();
-		List<Store> list = dao.findAll();
-			for(Store store:list) {
-				result.add(store);}
-				return result;
+	// 가게리스트 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
+	public List<Store> storeList(String mUsername){ 
+		
+		System.out.println("==============");
+		System.out.println(dao.findAllBymUsername(mUsername));
+		System.out.println("--------------");
+		//List<Store> result = new ArrayList<Store>();
+		List<Store> list = dao.findAllBymUsername(mUsername);
+		return list;
 	}
 	// 가게읽기
-	public StoreDto storeRead(int sNum){
+	public StoreDto storeRead(int sNum, String username){
 		Store store = dao.findBysNum(sNum);
 		StoreDto dto = modelMapper.map(store, StoreDto.class);
+		//로그인한사람이랑 글쓴사람이랑 같아야헤.
+	
 		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
 		return dto;
 	} 

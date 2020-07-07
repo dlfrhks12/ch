@@ -9,13 +9,22 @@
 	select menuno, menusal, menusajin, menuname, s_num sNum from menu 
 </select>
 
+<select id="findAllById" resultType="menu"><!-- 해당 아이디로 리스트 띄우기  -->
+	select menuno, menusal, menusajin, menuname, s_num sNum 
+	from menu where s_num=#{sNum}
+	
+</select>
+
+
 <select id="findById" resultType="menu"> <!-- 해당하는 메뉴를 클릭하면 나타날 정보들 -->
 	select menuno, menusal, menusajin, menuname, s_num sNum from menu where menuno=#{menuno} and rownum=1
 </select>
 
 
 <insert id="insert">
-	
+	<selectKey keyProperty="menuno" resultType="int" order="BEFORE">
+		select menu_seq.nextval from dual
+	</selectKey>
 	insert into menu(menuno, menusal, menusajin, menuname, s_num) values (#{menuno},#{menusal},#{menusajin, jdbcType=VARCHAR},#{menuname},#{sNum})
 </insert>
 

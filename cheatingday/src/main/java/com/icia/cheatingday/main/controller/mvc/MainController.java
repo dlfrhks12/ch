@@ -136,7 +136,7 @@ public class MainController {
 	@PostMapping("/u_find_pwd")
 	public String resetUserPwd(@RequestParam @NotNull String uEmail, @RequestParam @NotNull String uUsername, RedirectAttributes ra) throws MessagingException {
 		service.resetUserPwd(uUsername, uEmail);
-		ra.addFlashAttribute("msg", "가입하신 이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요 ^_^");
+		ra.addFlashAttribute("msg", "가입하신 이메일로 임시비밀번호를 발송했습니다. 확인해주세요 ^_^");
 		return "redirect:/system/msg";
 	}
 	

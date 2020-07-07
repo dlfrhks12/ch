@@ -18,8 +18,19 @@ public class StoreDao {
 		return tpl.selectOne("storeMapper.findBysNum",sNum);
 	}
 	
-	public List<Store> findAll() {
-		return tpl.selectList("storeMapper.findAll");
+	//findBymUsername으로 찾아야해 
+	public Store findBymUsername(String mUsername) {
+		return tpl.selectOne("storeMapper.findBymUsername", mUsername);
+	}
+	
+	/*
+	 * public List<Store> findAll() { return tpl.selectList("storeMapper.findAll");
+	 * }
+	 */
+	
+	//사업자아이디로 리스트 출력하기
+	public List<Store> findAllBymUsername(String mUsername){
+		return tpl.selectList("storeMapper.findAllBymUsername",mUsername);
 	}
 	
 	public int insert(Store store) {

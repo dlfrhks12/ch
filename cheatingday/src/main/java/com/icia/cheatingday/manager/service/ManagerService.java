@@ -2,19 +2,22 @@ package com.icia.cheatingday.manager.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.icia.cheatingday.exception.JobFailException;
 import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.dao.ManagerStoreApplyInsertDao;
 import com.icia.cheatingday.manager.dao.MenuDao;
+import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.ManagerDto;
+import com.icia.cheatingday.manager.dto.ManagerDto.DtoForUpdate;
 import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
@@ -28,6 +31,8 @@ public class ManagerService {
 	private String menuFolder;
 	@Value("http://localhost:8081/menusajin/")
 	private String menuPath;
+	@Autowired
+	private PasswordEncoder pwdEncoder;
 	// 입점신청
 	@Autowired
 	private ManagerStoreApplyInsertDao storeApplyInsertDao;
@@ -36,16 +41,19 @@ public class ManagerService {
 	// 내정보 수정
 	@Autowired
 	private ManagerDao managerDao;
+	@Autowired
+	private StoreDao storeDao;
 	
 	///////////////////////////메뉴/////////////////////////////////////
 	// 메뉴리스트
 	public List<MenuEntity> menuList(String mUsername) {
-		List<MenuEntity> result = new ArrayList<MenuEntity>();
-		List<MenuEntity> list = dao.findAll();
-		for (MenuEntity menuEntity : list) {
-			result.add(menuEntity);
-		}
-		return result;
+		//음식점에서 m_username으로 s_num을 찾아야해
+		System.out.println("==============");
+		System.out.println(storeDao.findBymUsername(mUsername));
+		int sNum = storeDao.findBymUsername(mUsername).getSNum(); 
+		System.out.println(sNum);
+		List<MenuEntity> list = dao.findAllBymUsername(sNum);   
+		return list;
 	}
 
 	//메뉴 읽기
@@ -118,17 +126,29 @@ public class ManagerService {
 	}
 	//////////////////////////////////////사업자 내정보 ///////////////////////////////////////////////////
 	//내 정보 수정
-	public int update(ManagerEntity manager) {
-		return managerDao.update(manager);
-		
+	public void update(DtoForUpdate dto) {
+		if(dto.getMPassword()!=null) {
+			ManagerEntity managerEntity = managerDao.findById(dto.getMUsername());
+			String encodedPassword = managerEntity.getMPassword();
+			if(pwdEncoder.matches(dto.getMPassword(), encodedPassword)==false)
+				throw new JobFailException("비밀번호를 확인할 수 없습니다.");
+			dto.setMPassword(pwdEncoder.encode(dto.getNewMPassword()));
+			
+		}
+		ManagerEntity managerEntity =modelMapper.map(dto, ManagerEntity.class);
+		managerDao.update(managerEntity);
 	}
 
 	
 	
-	//내 정보 읽기
-	public ManagerEntity read(String mUsername) {
-		ManagerEntity manager = managerDao.findById(mUsername);
-		return manager;
-	}
+	
+    //내 정보 읽기
+	public ManagerDto.DtoForRead read(String mUsername) { 
+			ManagerEntity manager = managerDao.findById(mUsername); 
+			ManagerDto.DtoForRead dto
+			= modelMapper.map(manager, ManagerDto.DtoForRead.class);
+			return dto; 
+			}
+
 
 }

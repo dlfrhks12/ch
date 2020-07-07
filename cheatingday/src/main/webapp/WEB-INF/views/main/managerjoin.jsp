@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="login/images/icons/favicon.ico"/>
+<link rel="icon" type="image/png" href="login/images/icons/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
-<title>Insert title here</title>
+<title>사업자 회원가입</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>
@@ -78,7 +78,7 @@ function checkEmail() {
 
 //사업자 번호 확인
 function checkMnumber() {
-	var pattern = /^([0-9]{3})([0-9]{2})([0-9]{5})$/;
+	var pattern = /^[0-9]{10}$/;
 	return check($("#m_num").val(), pattern, $("#m_num_msg"), "사업자번호는 숫자 10자리입니다")
 }
 
@@ -107,7 +107,10 @@ function ajaxCheckEmail() {
 		data: "mEmail=" + $("#m_email").val()
 	})
 	.done(()=>{$("#m_email_msg").text("사용 가능한 아이디입니다").css({"color":"green", "font-size":"0.75em"})})
-	.fail(()=>{$("#m_email_msg").text("사용중인 아이디입니다").css({"color":"red", "font-size":"0.75em"})});
+	.fail((xhr)=>{
+		console.log(xhr);
+		$("#m_email_msg").text("사용중인 아이디입니다").css({"color":"red", "font-size":"0.75em"})}
+	);
 }
 
 //사업자 등록번호 사용 여부 확인
@@ -122,7 +125,7 @@ function ajaxCheckMnumber() {
 }
 
 
-
+	
 $(function() {
 	$("#m_username").on("blur", function() {
 		var result = checkUsername();

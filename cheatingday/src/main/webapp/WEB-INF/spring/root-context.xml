@@ -47,8 +47,8 @@
 	
 	<!-- 자바메일을 지원하는 스프링 메일 설정 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="username" value="dlfrhks12@gmail.com" />
-		<property name="password" value="wlwhsdl1!!" />
+		<property name="username" value="cheatingday@gmail.com" />
+		<property name="password" value="cheating11" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.starttls.enable">true</prop>
@@ -85,11 +85,13 @@
 	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
-	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/> 
+	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
+	 
+	 
 	<context:component-scan base-package="com.icia.cheatingday">
-		<context:exclude-filter type="annotation" 
-			expression="org.springframework.stereotype.Controller"/>
+	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+	
 	
 	<task:executor id="scheduledExecutor" pool-size="20"/>
 	<task:annotation-driven executor="scheduledExecutor" />

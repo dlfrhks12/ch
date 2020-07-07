@@ -3,7 +3,7 @@
 <mapper namespace="managerMapper">
 
 	<!-- 사업자 등록번호 중복 확인 -->
-	<select id="existsByManagerNumber" resultType="boolean">
+	<select id="existsByManagerNumber" resultType="Boolean">
 		select count(m_num) from manager where m_num=#{mNum} and rownum=1
 	</select>
 	
@@ -23,7 +23,7 @@
 		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 1)
 	</insert>
 	
-	<!-- 사업자등록번호로 조회로 하나 읽어오기 -->
+	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
 		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_username=#{mUsername} and rownum=1
@@ -46,7 +46,7 @@
 			<if test="mAccount!=null">m_account=#{mAccount},</if>
 			<if test="sName!=null">s_name=#{sName}</if>
 		</trim>
-		where m_num=#{mNum} and rownum=1
+		where m_username=#{mUsername} and rownum=1
 	</update>
 	
 	<!-- 탈퇴 -->

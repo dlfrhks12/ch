@@ -16,7 +16,7 @@ public class ManagerDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public Boolean existsByManagerNumber(long mNum) {
+	public boolean existsByManagerNumber(long mNum) {
 		return tpl.selectOne("managerMapper.existsByManagerNumber", mNum);
 	}
 	

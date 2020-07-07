@@ -7,10 +7,10 @@ import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
-import org.springframework.security.access.prepost.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.*;
+
+import com.fasterxml.jackson.core.*;
 import com.icia.cheatingday.center.dto.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.center.service.rest.*;
@@ -22,7 +22,7 @@ public class QnARestController {
 	
 	
 	@PostMapping("/center/read")
-	public ResponseEntity<?> read(@RequestParam @NotNull Integer qNo, Principal principal){
+	public ResponseEntity<?> read(@RequestParam @NotNull Integer qNo, Principal principal) throws JsonProcessingException{
 		String username = principal!=null? principal.getName():null;
 		QnADto.DtoForRead dto = service.read(qNo, username);
 		return ResponseEntity.ok(dto);

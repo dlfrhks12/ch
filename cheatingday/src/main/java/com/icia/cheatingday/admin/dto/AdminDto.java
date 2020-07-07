@@ -20,7 +20,7 @@ public class AdminDto {
 		private String uIrum;
 		private String rWriteTimeStr;
 		private int rReprot;
-		private String sNum;
+		private int sNum;
 		private String sName;
 	}
 	@Data

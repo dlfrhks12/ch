@@ -17,11 +17,11 @@ public class QnAController {
 	private QnAService service;
 
 	@GetMapping("/center/read")
-	public ModelAndView read(@NonNull Integer qNo) {
+	public ModelAndView read(@NonNull Integer qNo, Principal principal) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName","center/read.jsp");
 	}
 	@GetMapping("/center/list")
-	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, int qCano ) {
+	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, @RequestParam(defaultValue = "1")int qCano ) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "center/list.jsp").addObject("page", service.list(pageno, qCano));
 	}
 	@GetMapping("/center/write")

@@ -12,7 +12,7 @@ import com.icia.cheatingday.manager.entity.*;
 public class AdminRestController {
 	@Autowired
 	private AdminRestService service;
-	/*
+
 	@DeleteMapping("/admin/report_delete")
 	public ResponseEntity<?> deleteReport(Integer rNo){
 		service.deleteReport(rNo);
@@ -24,5 +24,5 @@ public class AdminRestController {
 		service.enabledM(manager);
 		return  ResponseEntity.ok(null);
 	}
-	*/
+
 }

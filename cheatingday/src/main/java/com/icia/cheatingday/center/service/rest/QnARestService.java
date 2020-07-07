@@ -34,7 +34,7 @@ public class QnARestService {
 		QnADto.DtoForRead dto = mapper.map(qna,QnADto.DtoForRead.class);
 		String str = qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 		dto.setQWriteTimeStr(str);
-		dto.setMIrum(mdao.findById(dto.getMUsername()).getMIrum());
+		dto.setMIrum(mdao.findMirumeByMnum(dto.getMNum()));
 		dto.setQCategory(qcdao.findById(dto.getQCano()));
 		if(qna.getQIscomment()==true)
 			dto.setComments(qndao.findAllByQno(dto.getQNo()));

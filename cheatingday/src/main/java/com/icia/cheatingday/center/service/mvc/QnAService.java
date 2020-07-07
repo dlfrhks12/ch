@@ -43,7 +43,7 @@ public class QnAService {
 		for(QnA qna:qnalist) {
 			QnADto.DtoForList dto = mapper.map(qna, QnADto.DtoForList.class);
 			dto.setQWriteTimeStr(qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setMIrum(mdao.findById(dto.getMUsername()).getMIrum());
+			dto.setMIrum(mdao.findMusernameByMnum(dto.getMNum()));
 			dto.setQCategory(qcdao.findById(dto.getQCano()));
 			dtolist.add(dto);
 		}

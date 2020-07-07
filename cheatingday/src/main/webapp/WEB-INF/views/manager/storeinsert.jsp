@@ -107,10 +107,10 @@
 			</div>
 			<div>
 				<label for="sAddress_label">음식점 주소</label>
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<input id="sAddress" type="text" class="form-control" name="sAddress">
-				</div> -->
-				<div>
+				</div> 
+				<!-- <div>
 				<input
 					id="zonecode" type="text" value="" style="width: 50px;" readonly />
 
@@ -118,7 +118,7 @@
 					value="주소 찾기" /> <br /> <input type="text" id="address" value=""
 					style="width: 240px;" readonly /> <input type="text"
 					id="address_etc" value="나머지주소입력" style="width: 200px;" />
-					</div>
+					</div> -->
 			</div>
 			<div>
 				<label for="sInfo_label">음식점 소개</label>
@@ -140,17 +140,18 @@
 						<option value="9">프랜차이즈</option>
 				</select></td>
 			</div>
+			<div>
+				<label for="stel_label">사업자아이디</label>
+				<div class="form-group">
+					<input id="mUsername" type="text" class="form-control" name="mUsername"
+						placeholder="사업자아이디를 입력하세요">
+				</div>
+			</div>
 			<div class="form-group" style="text-align: center;">
 				<button type="button" id="write" class="btn btn-info">음식점
 					추가</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
-
-
-
-
-
-
 
 		</form>
 	</div>

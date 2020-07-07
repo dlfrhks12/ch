@@ -8,8 +8,6 @@ import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.access.prepost.*;
-import org.springframework.security.core.*;
-import org.springframework.security.web.authentication.logout.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.*;
 import org.springframework.web.bind.annotation.*;
@@ -86,12 +84,13 @@ public class UserController {
 	// 즐겨찾기
 	
 	// 회원탈퇴
-	@DeleteMapping("/user/resign")
-	public String resign(SecurityContextLogoutHandler handler, HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-		service.resign(authentication.getName());
-		handler.logout(request, response, authentication);
-		return "redirect:/";
-	}
+	/*
+	 * @DeleteMapping("/user/resign") public String
+	 * resign(SecurityContextLogoutHandler handler, HttpServletRequest request,
+	 * HttpServletResponse response, Authentication authentication) {
+	 * service.resign(authentication.getName()); handler.logout(request, response,
+	 * authentication); return "redirect:/"; }
+	 */
 }
 
 

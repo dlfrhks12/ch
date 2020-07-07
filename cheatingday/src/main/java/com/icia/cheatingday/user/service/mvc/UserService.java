@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
-import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.user.dao.*;
@@ -30,8 +29,7 @@ public class UserService {
 	private PasswordEncoder pwdEncoder;
 	@Autowired
 	private ModelMapper modelMapper;
-	@Autowired
-	private AuthorityDao authDao;
+
 
 	// 내정보 읽기
 	public UserDto.DtoForRead myPage(String uUsername) {
@@ -81,7 +79,7 @@ public class UserService {
 		List<PointDto.DtoForList> dtoList = new ArrayList<>();
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
-			dto.setAccumulationDayStr(point.getAccumulationDay().format(DateTimeFormatter.ofPattern("yyyy년 MM일 dd일")));
+			dto.setOOderTimeStr(point.getOOderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dtoList.add(dto);
 		}
 		page.setPlist(dtoList);
@@ -95,11 +93,5 @@ public class UserService {
 		}
 		return 0;
 	}
-	// 회원탈퇴
-	public void resign(String uUsername) {
-		if(userDao.findById(uUsername)==null)
-			throw new JobFailException("회원 탈퇴에 실패했습니다");
-		userDao.delete(uUsername);
-		authDao.delete(uUsername);
-	}
+	
 }

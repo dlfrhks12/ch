@@ -7,6 +7,8 @@ import java.util.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
+import com.icia.cheatingday.user.dto.UserDto;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -42,5 +44,27 @@ public class ManagerDto {
 		private String mIrum; //사업자이름
 		private String mTel; //사업자 전화번호
 		private String mEmail; //사업자이메일
+		private String mUsername; //사업자아이디
+	}
+	
+	@Data
+	@Accessors(chain=true)
+	public static class DtoForRead{
+		private String mUsername;
+		private String mIrum;
+		private int mNum;
+		private String mEmail;
+		private String mTel;
+		private String mPassword;
+	}
+	@Data
+	@Accessors(chain=true)
+	public static class DtoForUpdate {
+		private String mUsername;
+		private String mIrum;
+		private String mPassword;
+		private String newMPassword;
+		private String mTel;
+		private String mEmail;
 	}
 }

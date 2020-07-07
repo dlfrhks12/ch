@@ -26,7 +26,11 @@
 	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
+<<<<<<< HEAD
 		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_username=#{m_username} and rownum=1
+=======
+		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_username=#{mUsername} and rownum=1
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	</select>
 	
 	<!-- 이름과 이메일로 아이디 찾기 -->
@@ -46,7 +50,7 @@
 			<if test="mAccount!=null">m_account=#{mAccount},</if>
 			<if test="sName!=null">s_name=#{sName}</if>
 		</trim>
-		where m_num=#{mNum} and rownum=1
+		where m_username=#{mUsername} and rownum=1
 	</update>
 	
 	<!-- 탈퇴 -->

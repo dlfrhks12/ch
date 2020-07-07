@@ -2,12 +2,15 @@ package com.icia.cheatingday.user.controller.rest;
 
 import java.security.*;
 
+import javax.servlet.http.*;
 import javax.validation.*;
 import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;
+import org.springframework.security.core.*;
+import org.springframework.security.web.authentication.logout.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,13 +44,13 @@ public class UserRestController {
 		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
-	/*
-	 * // 회원 탈퇴
-	 * 
-	 * @GetMapping("/user/resign") public ResponseEntity<?> delete(String uUsername,
-	 * String uPassword) { return ResponseEntity.ok(service.resign(uUsername,
-	 * uPassword)); }
-	 */
+	
+	@PostMapping("/user/resign")
+	public ResponseEntity<Void> resign(SecurityContextLogoutHandler handler, HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+		service.resign(authentication.getName());
+		handler.logout(request, response, authentication);
+		return ResponseEntity.ok(null);
+	}
 
 /*
 	// 날짜 불러오기

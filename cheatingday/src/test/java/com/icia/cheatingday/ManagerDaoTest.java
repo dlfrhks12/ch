@@ -13,20 +13,33 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
-public class ManagerDaoTest {
-	@Autowired
-	private ManagerDao dao;
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
+//public class ManagerDaoTest {
+	//@Autowired
+//	private ManagerDao dao;
 
+<<<<<<< HEAD
 	
 	@Test
+=======
+/*	
+	//@Test
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	public void insertTest() {
 		ManagerEntity m = ManagerEntity.builder().mNum(1234567890).mUsername("spring").mPassword("1234").mEmail("a@a.com")
 				.mTel("01011111111").mAccount("123").sName("상호명").mIrum("사업자").build();
 		assertThat(dao.insert(m), is(1));
 	}
 	
+<<<<<<< HEAD
+=======
+	// @Test
+	
+	 * public void existsByManagerNumberTest() {
+	 * assertThat(dao.existsByManagerNumber("111111"), is(true));
+	 * assertThat(dao.existsByManagerNumber("010101"), is(false)); }
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	 
 	
 	//@Test
@@ -77,3 +90,4 @@ public class ManagerDaoTest {
 		//assertThat(dao.findById("가-01"), is(notNullValue()));
 	}
 }
+*/

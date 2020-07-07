@@ -11,8 +11,9 @@ import lombok.experimental.*;
 @Builder
 @Accessors(chain=true)
 public class Point {
+	private Integer pno;
 	private String uUsername;
 	private String sName;
-	private LocalDateTime accumulationDay;
-	private String accumulationSal;
+	private LocalDateTime oOderTime;
+	private String oNO;
 }

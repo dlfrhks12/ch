@@ -18,6 +18,11 @@ public class StoreDao {
 		return tpl.selectOne("storeMapper.findBysNum",sNum);
 	}
 	
+	//findBymUsername으로 찾아야해 
+	public Store findBymUsername(String mUsername) {
+		return tpl.selectOne("storeMapper.findBymUsername", mUsername);
+	}
+	
 	public List<Store> findAll() {
 		return tpl.selectList("storeMapper.findAll");
 	}

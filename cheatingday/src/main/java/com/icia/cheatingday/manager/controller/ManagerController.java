@@ -84,7 +84,8 @@ public class ManagerController {
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
 				.addObject("managerInfo",service.read(mUsername));
-	}	
+	}
+	
 }
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

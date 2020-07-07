@@ -20,23 +20,13 @@
 
 <script type="text/javascript">
 	function openDaumZipAddress() {
-
 		new daum.Postcode({
-
 			oncomplete : function(data) {
-
-				
-
 				jQuery("#zonecode").val(data.zonecode);
-
 				jQuery("#address").val(data.address);
-
 				jQuery("#address_etc").focus();
-
 				console.log(data);
-
 			}
-
 		}).open();
 
 	}
@@ -107,18 +97,15 @@
 			</div>
 			<div>
 				<label for="sAddress_label">음식점 주소</label>
-				<div class="form-group">
+				<!-- div class="form-group">
 					<input id="sAddress" type="text" class="form-control" name="sAddress">
+				</div>  -->
+				 <div>
+					   <input name="sAddress" id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;
+				       <input type="button" onClick="openDaumZipAddress();" value="주소 찾기" />  <br /> 
+                       <input name="sAddress" type="text" id="address" value="" style="width: 240px;" readonly /> 
+               		   <input name="sAddress" type="text" id="address_etc" value="나머지주소입력" style="width: 200px;" />
 				</div> 
-				<!-- <div>
-				<input
-					id="zonecode" type="text" value="" style="width: 50px;" readonly />
-
-				&nbsp; <input type="button" onClick="openDaumZipAddress();"
-					value="주소 찾기" /> <br /> <input type="text" id="address" value=""
-					style="width: 240px;" readonly /> <input type="text"
-					id="address_etc" value="나머지주소입력" style="width: 200px;" />
-					</div> -->
 			</div>
 			<div>
 				<label for="sInfo_label">음식점 소개</label>

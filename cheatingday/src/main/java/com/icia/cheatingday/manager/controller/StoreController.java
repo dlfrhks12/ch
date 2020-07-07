@@ -22,13 +22,14 @@ public class StoreController {
 	
 	
 	  //가게리스트 페이지로 이동 - 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
-   	 @PreAuthorize("isAuthenticated()")
+   	  @PreAuthorize("isAuthenticated()")
 	  @GetMapping("/manager/store_list") 
-	  public ModelAndView storeList() { 
+	  public ModelAndView storeList(String mUsername) { 
 		  return new ModelAndView("main").addObject("viewName","manager/storelist.jsp")
 				  	.addObject("viewHeader", "include/noheader.jsp") 
-				  	.addObject("storeList", service.storeList()); }
+				  	.addObject("storeList", service.storeList(mUsername)); }
 	  
+   	 
 	  //가게읽기 페이지로 이동 - 해당하는 사장님만 자신의 가게를 읽을 수 있어.
 	  @PreAuthorize("isAuthenticated()")
 	  @GetMapping("/manager/store_read") 

@@ -54,12 +54,12 @@ $(function(){
 				<label for="menusajin">메뉴 사진</label>
 				<input id="sajin" type="file" name="sajin" class="form-control"  accept=".jpg,.jpeg,.png,.gif,.bmp">
 			</div>
-			<div>
+			<!-- <div>
 				<label for="menuno_label">메뉴번호</label>
 				<div class="form-group">
 					<input type="text" class="form-control" id="menuno" name="menuno" placeholder="메뉴번호를 입력해주세요">
 				</div>
-			</div>
+			</div> -->
 			<div>
 				<label for="menuname_label">메뉴이름</label>
 				<div class="form-group">

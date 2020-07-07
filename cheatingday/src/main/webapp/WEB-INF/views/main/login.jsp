@@ -51,17 +51,19 @@
    }
 </style>
 <script>
+
 $(function() {
    var msg = "${msg}";
    if(msg!="") {
       $("#alert").text(msg);
       $("#msg").show();
    }
-   
+
    $("#login").on("click", function() {
 	   $("#login_form").submit();
 	   })
    });
+   
 </script>
 </head>
 <body>
@@ -83,9 +85,7 @@ $(function() {
                
                <span class="txt1 p-b-11">비밀번호</span>
                <div class="wrap-input100 validate-input m-b-12" id="password" data-validate = "Password is required">
-                  <span class="btn-show-pass">
-                     <i class="fa fa-eye"></i>
-                  </span>
+                  <span class="btn-show-pass"></span>
                   <input class="input100" type="password" name="a_password" >
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="password_msg"></span>
@@ -111,6 +111,7 @@ $(function() {
                   <button type="button" class="btn btn-danger" id="login">로그인</button>
                </div>
                </form>
+               
          </div>
       </div>
    </div>

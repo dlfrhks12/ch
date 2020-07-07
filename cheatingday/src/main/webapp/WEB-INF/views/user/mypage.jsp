@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
-<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script type="text/JavaScript"
+	src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/JavaScript"
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 </head>
 <style>
 #user td {
@@ -52,7 +56,7 @@
 }
 </style>
 
-<script>
+<script type="text/javascript">
 function openDaumZipAddress() {
 	new daum.Postcode({
 		oncomplete:function(data) {
@@ -62,21 +66,20 @@ function openDaumZipAddress() {
 			console.log(data);
 		}
 	}).open();
-}
+} 
 
 function makePage() {
 	$("#passwordArea").hide();
 	var email = "${user.UEmail}";
 	var tel = "${user.UTel}";
+	var address = "${user.UAddress}";
 	
 	var indexOfAt = email.indexOf("@");
 	var email1 = email.substr(0, indexOfAt);
 	var email2 = email.substr(indexOfAt+1);
 	$("#email1").val(email1);
 	$("#email2").val(email2).prop("disabled", true);
-	
 	var $options = $("#selectEmail option");
-	
 	$options.each(function(idx, option) {
 		if($(option).text()==email2)
 			$(option).prop("selected", true);
@@ -95,6 +98,14 @@ function makePage() {
 		$("#tel1").val(tel.substr(0,3));
 		$("#tel2").val(tel.substr(3,4));
 		$("#tel3").val(tel.substr(7,4));
+	}
+
+	var array = address.split(",");
+	$("#zonecode").val(array[0]);
+	$("#address").val(array[1]);
+	$("#address_etc").val(array[2]);
+	for(var i=0;i<array.length;i++) {
+		console.log(array[i])
 	}
 }
 $(function() {
@@ -124,7 +135,7 @@ $(function() {
 		console.log(params)
 		$.ajax({
 			url: "/cheatingday/user/update",
-			method: "post",
+			type: "post",
 			data: params,
 		}).done(()=>{toastr.success("이름변경 성공","서버 메시지")})
 		.fail(()=>{toastr.error("이름변경 실패", "서버 메시지")});
@@ -146,7 +157,7 @@ $(function() {
 		};
 		$.ajax({
 			url: "/cheatingday/user/update",
-			method: "post",
+			type: "post",
 			data: params
 		}).done(()=>{toastr.success("비밀번호 변경 성공","서버 메시지")})
 		.fail(()=>{toastr.error("비밀번호 변경 실패", "서버 메시지")});
@@ -158,6 +169,9 @@ $(function() {
 		formData.append("UIrum", $("#irum").val());
 		formData.append("UEmail", email);
 		formData.append("UTel", $("#tel1").val()+$("#tel2").val()+$("#tel3").val());
+		formData.append("UAddress", $("#zonecode").val());
+		formData.append("UAddress", $("#address").val());
+		formData.append("UAddress", $("#address_etc").val());
 		formData.append("_csrf", "${_csrf.token}");
 		formData.append("_method", "put");
 		if($("#password").val()!=="")
@@ -171,16 +185,16 @@ $(function() {
 		$.ajax({
 			url: "/cheatingday/user/update",
 			data: formData,
-			method: "post",
+			type: "post",
 			processData:false,
 			contentType:false
 		}).done(()=>{ toastr.success("변경 성공", "서버메시지"); })
 		.fail(()=>{ toastr.error("변경 실패", "서버메시지"); })
 	})
 	
-	$("#resign").on("click", function(e) {
-		e.preventDefault();
-		params= {
+	$("#resign").on("click", function() {
+		var params= {
+			UUsername:"${user.UUsername}",
 			_csrf:"${_csrf.token}",
 			_method:"delete"
 		}
@@ -189,8 +203,7 @@ $(function() {
 			return false;
 		$.ajax({
 			url:"/cheatingday/user/resign",
-			method:"post",
-			data:params
+			type:"post"
 		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "치팅데이 사랑해주셔서 감사합니다", "success"))
 		.then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"))
 	});
@@ -249,12 +262,12 @@ $(function() {
 				name="tel3" id="tel3" maxlength="4"></td>
 		</tr>
 		<tr>
-			<td class="first">주소</td>
-			<td>
-				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;	
+			<td class="first" id="addr">주소</td>
+			<td colspan="2">
+				<input id="zonecode" type="text" style="width: 50px;" name="uAddress" readonly />&nbsp;	
 				<button class="btn btn-info" onClick="openDaumZipAddress();">주소찾기</button><br>
-				<input type="text" id="address" value="" style="width: 240px;" readonly /> 
-				<input type="text" id="address_etc" placeholder="상세주소입력 " style="width: 200px;" />
+				<input type="text" id="address" style="width: 240px;" name="uAddress" readonly /> 
+				<input type="text" id="address_etc" style="width: 200px;" name="uAddress" placeholder="상세주소입력 "/>
 			</td> 
 		</tr>
 	</table>

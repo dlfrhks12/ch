@@ -6,17 +6,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="login/images/icons/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
-<link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
-<link rel="stylesheet" type="text/css" href="login/vendor/animsition/css/animsition.min.css">
-<link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="login/vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css"
+	href="login/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<link rel="stylesheet" type="text/css"
+	href="login/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="login/vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css"
+	href="login/vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css"
+	href="login/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css"
+	href="login/vendor/daterangepicker/daterangepicker.css">
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
-<link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="path/to/font-awesome/css/font-awesome.min.css">
 <title>일반 회원가입</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
@@ -26,8 +35,10 @@
 <script src="login/vendor/daterangepicker/moment.min.js"></script>
 <script src="login/vendor/daterangepicker/daterangepicker.js"></script>
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
-<script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
-<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/JavaScript"
+	src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/JavaScript"
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	function openDaumZipAddress() {
 		new daum.Postcode({
@@ -171,8 +182,9 @@ $(function() {
 <body>
 	<div class="limiter">
 		<div class="container-login100">
-			<form class="login100-form validate-form flex-sb flex-w" id="join_form" action="/cheatingday/join_user" method="post">
-			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+			<form class="login100-form validate-form flex-sb flex-w"
+				id="join_form" action="/cheatingday/join_user" method="post">
+				<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 					<span class="login100-form-title p-b-32">일반회원가입</span> <span
 						class="login100-form-title p-b-32"></span>
 					<div>
@@ -218,29 +230,26 @@ $(function() {
 							<input class="input200" type="text" id="u_tel" name="uTel">
 							<span class="focus-input200"></span> <span id="u_tel_msg"></span>
 						</div>
-					 </div>
-					<div>
 					</div>
 						<label class="txt p-b-11" for="u_address">주소</label>
 						<div class="wrap-input100 validate-input m-b-36">
-							<button type="button" onClick="openDaumZipAddress();">검색</button>
-							<input id="zonecode" type="text" style="width:50px;" name="uAddress" readonly />&nbsp;
-							<input class="input200" type="text" id="address" name="uAddress" readonly/>
-						</div>
-						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
-							<span class="focus-input200"></span>
-						</div>
+						<button type="button" onClick="openDaumZipAddress();">검색</button>
+						<input id="zonecode" type="text" style="width: 50px;" name="uAddress" readonly />&nbsp; 
+						<input class="input200" type="text" id="address" name="uAddress" readonly />
 					</div>
-					<div>
-						<input type="hidden" name="authorities" value="ROLE_USER">
-					</div>
-					<div class="container-login100-form-btn"
-						style="text-align: center;">
-						<button type="button" class="btn btn-danger" id="join">가입</button>
-					</div>
-				</form>
-			</div>
+					<div class="wrap-input100 validate-input m-b-36">
+                    	 <input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
+                    	 <span class="focus-input200"></span>
+                  </div>
+				</div>
+				<div>
+					<input type="hidden" name="authorities" value="ROLE_USER">
+				</div>
+				<div class="container-login100-form-btn" style="text-align: center;">
+					<button type="button" class="btn btn-danger" id="join">가입</button>
+				</div>
+			</form>
 		</div>
+	</div>
 </body>
 </html>

@@ -1,12 +1,11 @@
 package com.icia.cheatingday.user.service.rest;
 
-import java.io.*;
-
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
+import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.dto.UserDto.*;
@@ -20,6 +19,8 @@ public class UserRestService {
 	private PasswordEncoder pwdEncoder;
 	@Autowired
 	private ModelMapper modelMapper;
+	@Autowired
+	private AuthorityDao authDao;
 	// 아이디 중복확인
 	public boolean checkId(String uUsername) {
 		if(userDao.existsById(uUsername)==true)
@@ -50,11 +51,12 @@ public class UserRestService {
 		userDao.update(user);
 	}
 
-	public int resign(String uUsername, String uPassword) {
-		User user = userDao.findById(uUsername);
-		if(user.getUUsername().equals(uUsername)==true)
-		userDao.delete(uUsername);
-		return 0;
-	}
+	// 회원탈퇴
+		public void resign(String uUsername) {
+			if(userDao.findById(uUsername)==null)
+				throw new JobFailException("회원 탈퇴에 실패했습니다");
+			userDao.delete(uUsername);
+			authDao.delete(uUsername);
+		}	
 
 }

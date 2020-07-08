@@ -35,14 +35,16 @@
 					<td>${qna.QCategory}</td>
 				<td><a href="/cheatingday/center/read?qNo=${qna.QNo}" onclick="openWin()">${qna.QTitle}</a></td>
 					<td>${qna.MIrum}</td>
-					<td>${qna.NWriteTimeStr}</td>
+					<td>${qna.QWriteTimeStr}</td>
 					<td>
-						<c:when test="${qna.QIscomment==1}">
+					<c:choose>
+						<c:when test="${qna.QIscomment==true}">
 							<input type="text" disabled="disabled" value="답변완료">
 						</c:when>
 						<c:otherwise>
 							<input type="text" disabled="disabled" value="답변대기중">
 						</c:otherwise>
+					</c:choose>
 					</td>
 				</tr>
 			</c:forEach>

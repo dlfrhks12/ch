@@ -26,9 +26,9 @@ public class QnADto {
 		private int qCano;
 		private String qTitle;
 		private String qWriteTimeStr;
-		private Boolean qIscomment;
+		private boolean qIscomment;
 		private String mIrum;
-		private String mUsername;
+		private int mNum;
 		private String qCategory;
 	}
 	
@@ -39,9 +39,9 @@ public class QnADto {
 		private String qTitle;
 		private String qContent;
 		private String qWriteTimeStr;
-		private Boolean qIscomment;
 		private String mUsername;
 		private String mIrum;
+		private int mNum;
 		private int qCano;
 		private String qCategory;
 		private List<QnAComment> comments;

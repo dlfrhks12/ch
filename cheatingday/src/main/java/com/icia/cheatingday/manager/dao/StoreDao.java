@@ -23,8 +23,14 @@ public class StoreDao {
 		return tpl.selectOne("storeMapper.findBymUsername", mUsername);
 	}
 	
-	public List<Store> findAll() {
-		return tpl.selectList("storeMapper.findAll");
+	/*
+	 * public List<Store> findAll() { return tpl.selectList("storeMapper.findAll");
+	 * }
+	 */
+	
+	//사업자아이디로 리스트 출력하기
+	public List<Store> findAllBymUsername(String mUsername){
+		return tpl.selectList("storeMapper.findAllBymUsername",mUsername);
 	}
 	
 	public int insert(Store store) {

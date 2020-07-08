@@ -105,7 +105,6 @@ public class QnaTest {
 		}
 		//@Test
 		public void qwhnn() {
-			System.out.println(qrs.read(1, "usy1473"));
 		}
 		//@Test
 		public void erhtng() {

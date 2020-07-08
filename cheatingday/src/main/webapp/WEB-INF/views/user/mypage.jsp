@@ -209,7 +209,7 @@ $(function() {
          return false;
       $.ajax({
          url:"/cheatingday/user/resign",
-         type:"post"
+         type:"post",
       }).then(()=>Swal.fire("이용해 주셔서 감사합니다", "치팅데이 사랑해주셔서 감사합니다", "success"))
       .then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"))
    });

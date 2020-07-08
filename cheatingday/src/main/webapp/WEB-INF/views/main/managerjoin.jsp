@@ -67,6 +67,7 @@ function checkPassword2() {
 		$("#m_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
 		return false;
 	}
+	$("#m_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
 	return true;
 }
 
@@ -106,10 +107,10 @@ function ajaxCheckEmail() {
 		method: "get",
 		data: "mEmail=" + $("#m_email").val()
 	})
-	.done(()=>{$("#m_email_msg").text("사용 가능한 아이디입니다").css({"color":"green", "font-size":"0.75em"})})
+	.done(()=>{$("#m_email_msg").text("사용 가능한 이메일입니다").css({"color":"green", "font-size":"0.75em"})})
 	.fail((xhr)=>{
 		console.log(xhr);
-		$("#m_email_msg").text("사용중인 아이디입니다").css({"color":"red", "font-size":"0.75em"})}
+		$("#m_email_msg").text("사용중인 이메일입니다").css({"color":"red", "font-size":"0.75em"})}
 	);
 }
 

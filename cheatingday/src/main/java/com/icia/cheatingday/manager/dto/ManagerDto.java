@@ -19,7 +19,7 @@ public class ManagerDto {
 	@Data
 	public static class DtoForJoin {
 		@Pattern(regexp = "/^[0-9]{10}$/", message = "사업자번호는 10자리 숫자입니다")
-		private int mNum;      //사업자 등록번호
+		private long mNum;      //사업자 등록번호
 		@Pattern(regexp = "^(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$", message = "비밀번호는 특수문자 포함 영숫자 8~10자입니다")
 		private String mPassword; //사업자 비밀번호
 		@Pattern(regexp = "^[A-Za-z][A-Za-z0-9]{8,10}$", message = "아이디는 영숫자 8~10자입니다")

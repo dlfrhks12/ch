@@ -9,12 +9,12 @@
 	
 	<!-- 아이디 중복 확인 -->
 	<select id="existsById" resultType="boolean">
-		select count(*) from(select u_username from (select u_username from users union SELECT m_username from manager union select a_username from admin)) where u_username=#{uUsername} and rownum=1
+		select count(*) from(select m_username from (select m_username from manager union select u_username from users union select a_username from admin)) where m_username=#{mUsername} and rownum=1
 	</select>
 	
 	<!-- 이메일 중복 확인 -->
 	<select id="existsByEmail" resultType="boolean">
-		select count(*) from(select u_email from (SELECT u_email from users union select m_email from manager)) where u_email=#{uEmail} and rownum=1
+		select count(*) from(select m_email from (select m_email from manager union select u_email from users)) where m_email=#{mEmail} and rownum=1
 	</select>
 	
 	<!-- 회원가입 -->
@@ -26,11 +26,7 @@
 	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
-<<<<<<< HEAD
 		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_username=#{m_username} and rownum=1
-=======
-		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_username=#{mUsername} and rownum=1
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	</select>
 	
 	<!-- 이름과 이메일로 아이디 찾기 -->

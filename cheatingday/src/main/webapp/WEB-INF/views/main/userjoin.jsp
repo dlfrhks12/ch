@@ -93,6 +93,7 @@ function checkPassword2() {
 		$("#u_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
 		return false;
 	}
+	$("#u_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
 	return true;
 }
 

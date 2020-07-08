@@ -23,6 +23,8 @@
 			password-parameter="a_password"
 			login-page="/login"
 			login-processing-url="/login"
+			authentication-failure-handler-ref="loginFailureHandler"
+			authentication-success-handler-ref="loginSuccessHandler"
 			default-target-url="/" />
 		
 		<!-- 

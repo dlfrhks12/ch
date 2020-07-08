@@ -69,7 +69,7 @@ public class UserService {
 		else 
 			throw new JobFailException("잘못된 비밀번호입니다.");
 	}
-	// 포인트 리스트 페이징
+	// 리스트 페이징
 	public Page list(int pageno) {
 		int countOfBoard = pointDao.count();
 		Page page = PagingUtil.getPage(pageno, countOfBoard);

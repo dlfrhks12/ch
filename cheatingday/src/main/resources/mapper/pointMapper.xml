@@ -8,7 +8,7 @@
 	<![CDATA[
 	select * from
 		(select rownum as rnum, p.* from
-			(select /*+ index_desc(point point_pk_n_no)*/ u_username uUsername, s_name sName, accumulation_day accumulationDay, accumulation_sal accumulationSal from point) p
+			(select /*+ index_desc(point point_pk_n_no)*/ u_username uUsername, pno, o_no oNo, accumulation_sal accumulationSal from point) p
 		where rownum <=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>	
@@ -17,20 +17,18 @@
 		<selectKey keyProperty="uUsername" resultType="int" order="BEFORE">
 			select point_seq.nextval from dual
 		</selectKey>
-		insert into point(u_username , s_name , accumulation_day , accumulation_sal )
-		values(#{uUsername},#{sName},#{accumulationDay}, #{accumulationSal})
+		insert into point(u_username, pno ,o_no , accumulation_sal )
+		values(#{uUsername},#{pno}, #{oNo}, #{accumulationSal})
 	</insert>	
 	<update id="update">
 		update point
 		<trim suffixOverrides="," prefix="set">
-			<if test="uUsername">u_username=#{uUsername},</if>
-			<if test="sName">s_name=#{sSname},</if>
-			<if test="accumulationDay">accumulation_day=#{accumulationDay},</if>
-			<if test="accumulationSal">accumulation_sal=#{accumulationSal}</if>
+			<if test="oNO=!null">o_no=#{oNO},</if>
+			<if test="accumulationSal=!null">accumulation_sal=#{accumulationSal}</if>
 		</trim>
-		where u_username=#{uUsername} and rownum=1
+		where pno=#{pno} and rownum=1
 	</update>
 	<delete id="delete">
-		delete from point where u_usernmae=#{uUsername} and rownum=1
+		delete from point where pno=#{pno} and rownum=1
 	</delete>
 </mapper>

@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <title>Insert title here</title>
 <script type="text/JavaScript"
 	src="http://code.jquery.com/jquery-1.7.min.js"></script>
@@ -15,7 +14,6 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-=======
 <title>내정보</title>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
@@ -23,7 +21,6 @@
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 </head>
 <style>
 #user td {
@@ -65,19 +62,6 @@
 	display: inline-block;
 }
 </style>
-<<<<<<< HEAD
-<script type="text/javascript">
-		function openDaumZipAddress() {
-			new daum.Postcode({
-				oncomplete:function(data) {
-					jQuery("#zonecode").val(data.zonecode);
-					jQuery("#address").val(data.address);
-					jQuery("#address_etc").focus();
-					console.log(data);
-				}
-			}).open();
-=======
-
 <script type="text/javascript">
 function openDaumZipAddress() {
 	new daum.Postcode({
@@ -86,16 +70,10 @@ function openDaumZipAddress() {
 			jQuery("#address").val(data.address);
 			jQuery("#address_etc").focus();
 			console.log(data);
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		}
-<<<<<<< HEAD
-		
-		
-=======
 	}).open();
 } 
 
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 function makePage() {
 	$("#passwordArea").hide();
 	var email = "${user.UEmail}";
@@ -239,6 +217,8 @@ $(function() {
 
 </script>
 <body>
+<a style="padding: 300px;">개인정보 변경</a>
+<hr>
 	<table class="table table-hover" id="user">
 		<colgroup>
 			<col width="10%">
@@ -294,27 +274,13 @@ $(function() {
 			</td>
 		</tr>
 		<tr>
-<<<<<<< HEAD
 			<td class="first" id="addr">주소</td>
 			<td colspan="2">
 				<input id="zonecode" type="text" style="width: 50px;" name="uAddress" readonly />&nbsp;	
-=======
-			<td class="first">주소</td>
-			<td>
-<<<<<<< HEAD
-				<input id="zonecode" type="text" style="width: 50px;" readonly />&nbsp; 
-				<input type="button" onClick="openDaumZipAddress();" value="주소 찾기" class="btn btn-info"/> <br/> 
-				<input type="text" id="address" style="width: 240px;" readonly /> 
-				<input type="text" id="address_etc" value="" style="width: 200px;"/>
-			</td>
-=======
-				<input id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;	
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 				<button class="btn btn-info" onClick="openDaumZipAddress();">주소찾기</button><br>
 				<input type="text" id="address" style="width: 240px;" name="uAddress" readonly /> 
 				<input type="text" id="address_etc" style="width: 200px;" name="uAddress" placeholder="상세주소입력 "/>
 			</td> 
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		</tr>
 	</table>
 	<div id="btn_update">

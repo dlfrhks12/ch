@@ -19,7 +19,7 @@ public class ManagerDto {
 	@Data
 	public static class DtoForJoin {
 		@Pattern(regexp = "/^[0-9]{10}$/", message = "사업자번호는 10자리 숫자입니다")
-		private int mNum;      //사업자 등록번호
+		private long mNum;      //사업자 등록번호
 		@Pattern(regexp = "^(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$", message = "비밀번호는 특수문자 포함 영숫자 8~10자입니다")
 		private String mPassword; //사업자 비밀번호
 		@Pattern(regexp = "^[A-Za-z][A-Za-z0-9]{8,10}$", message = "아이디는 영숫자 8~10자입니다")
@@ -39,7 +39,7 @@ public class ManagerDto {
 	public static class DtoForWrite{
 		//원래테이블(storeapplyinsert)
 		private int iNo; //입점신청번호
-		private String mNum; //사업자등록번호
+		private long mNum; //사업자등록번호
 		//외부테이블(manager)
 		private String mIrum; //사업자이름
 		private String mTel; //사업자 전화번호
@@ -52,7 +52,7 @@ public class ManagerDto {
 	public static class DtoForRead{
 		private String mUsername;
 		private String mIrum;
-		private int mNum;
+		private long mNum;
 		private String mEmail;
 		private String mTel;
 		private String mPassword;

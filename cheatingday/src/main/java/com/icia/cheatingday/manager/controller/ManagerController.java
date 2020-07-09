@@ -29,10 +29,10 @@ public class ManagerController {
 	
 	//메뉴관리 리스트로 이동
 	@GetMapping("/manager/menu_list")
-	public ModelAndView menuList(String mUsername) {
+	public ModelAndView menuList(Principal principal) {
 		return new ModelAndView("main").addObject("viewName", "manager/menulist.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("menuList",service.menuList(mUsername));
+				.addObject("menuList",service.menuList(principal.getName()));
 			
 	}
 	
@@ -55,7 +55,8 @@ public class ManagerController {
 	
 	//메뉴쓰기
 	@PostMapping("/manager/menu_write")
-	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
+	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin, Principal principal) throws IllegalStateException, IOException {
+		dto.setMUsername(principal.getName());
 		service.write(dto, sajin);
 		return "redirect:/manager/menu_list";
 	}

@@ -16,7 +16,7 @@ public class ManagerDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public boolean existsByManagerNumber(long mNum) {
+	public Boolean existsByManagerNumber(long mNum) {
 		return tpl.selectOne("managerMapper.existsByManagerNumber", mNum);
 	}
 	
@@ -56,7 +56,7 @@ public class ManagerDao {
 	public String findMusernameByMnum(long mNum) {
 		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);
 	}
-	public String findMirumeByMnum(int mNum) {
+	public String findMirumeByMnum(long mNum) {
 		return tpl.selectOne("managerMapper.findMirumeByMnum", mNum);
 	}
 

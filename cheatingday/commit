@@ -13,6 +13,9 @@ system 폴더 추가 (msg.jsp추가)
 pwdEncoder를 위한 서큐리티 추가및 수정
 시큐리티설정
 중복확인 수정
+security-context 로그인 핸들러 설정
+(loginsuccessHandler)
+(loginFailureHandler)
 ================ 메인 commit ================
 - 2020.06.25
 	MainController 생성

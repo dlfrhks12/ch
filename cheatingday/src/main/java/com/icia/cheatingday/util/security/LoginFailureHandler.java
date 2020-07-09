@@ -18,6 +18,8 @@ import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.entity.*;
 
+
+
 @Component("loginFailureHandler")
 public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler { // 로그인에 실패한다 // 아이디가 없다 :
 	// 로그인에 실패했을 경우
@@ -31,7 +33,7 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		
-		String username = request.getParameter("aUsername");
+		String username = request.getParameter("a_username");
 		HttpSession session = request.getSession();
 		
 		if(exception instanceof InternalAuthenticationServiceException) {
@@ -40,9 +42,8 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 			// 없는 아이디를 쳤다
 			if(user==null || manager==null) 
 				session.setAttribute("msg", "아이디를 찾을 수 없습니다");
-		} else if(exception instanceof BadCredentialsException) {
+		} else
 			session.setAttribute("msg", "비밀번호가 일치하지 않습니다");
-		}
 		rs.sendRedirect(request, response, "/login");
 	}
 }

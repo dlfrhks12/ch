@@ -59,7 +59,7 @@ public class MainService {
 	userDao.insert(user); 
 	}
   
-  
+ 
 	// [일반] 아이디 찾기 
 	public String findUserUsername(String uIrum, String uEmail) {
 		String uUsername = userDao.findUUsernameByUIrumAndUEmail(uIrum, uEmail);
@@ -68,7 +68,7 @@ public class MainService {
 		return uUsername; 
 	}
   
-  
+	
 	// [일반] '마이페이지' 클릭 시 비밀번호 확인 
 	public void checkUserPwd(String uPassword,String uUsername) { 
 		User user = userDao.findById(uUsername); if(user==null)
@@ -170,5 +170,7 @@ public class MainService {
 		Mail mail = Mail.builder().sender("CheatingDay@icia.com").receiver(mEmail)
 				.title("Cheating Day 비밀번호 재설정 안내").content(text.toString()).build();
 		mailUtil.sendMail(mail); 
-  	} 
+  	}
+
+
   }

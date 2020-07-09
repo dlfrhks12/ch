@@ -19,6 +19,8 @@
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script type="text/javascript">
+
+
 	function openDaumZipAddress() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -31,23 +33,24 @@
 
 	}
 
-	//1.이미지 출력입니다
-	function loadImage() {
+	//1. 이미지 출력입니다
+	function loadImage(){
 		var file = $("#sajin")[0].files[0];
-		var maxSize = 1024 * 1024;
-		if (File.size > maxSize) {
+		var maxSize = 1024*1024;
+		if(File.size>maxSize){
 			Swal.fire({
-				icon : 'error',
-				title : '크기오류',
-				text : '사진크기는 1MB를 넘을 수 없습니다'
+				icon: 'error',
+				title: '크기오류',
+				text: '사진크기는 1MB를 넘을 수 없습니다'
 			});
 			$("#sajin").val("");
 			return false;
 		}
-		//하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
+		
+	//하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
 		var reader = new FileReader();
-		reader.onload = function(e) {
-			$("#show_menusajin").attr("src", e.target.result);
+		reader.onload = function(e){
+			$("#show_storesajin").attr("src",e.target.result);
 		}
 		reader.readAsDataURL(file);
 		return true;
@@ -56,8 +59,11 @@
 	$(function() {
 		$("#sajin").on("change", loadImage);
 		$("#write").on("click", function() {
+	
 			$("#write_form").submit();
 		});
+		
+		
 	});
 </script>
 </head>
@@ -66,20 +72,20 @@
 	<div id="wrap">
 		<form id="write_form" action="/cheatingday/manager/store_insert"
 			method="post" enctype="multipart/form-data">
-			<img id="show_storesajin" height="240px"> <input type="hidden"
-				name="_csrf" value="${_csrf.token}">
+			<img id="show_storesajin" height="240px"> 
+			<input type="hidden" name="_csrf" value="${_csrf.token}">
 			<div class="form-group">
-				<label for="storesajin">음식점 사진</label> <input id="sajin" type="file"
-					name="sajin" class="form-control"
+				<label for="storesajin">음식점 사진</label> 
+			<input id="sajin" type="file" name="sajin" class="form-control"
 					accept=".jpg,.jpeg,.png,.gif,.bmp">
 			</div>
-			<div>
+			<!-- <div>
 				<label for="sno__label">음식점 고유번호</label>
 				<div class="form-group">
 					<input type="text" class="form-control" id="sNum" name="sNum"
 						placeholder="음식점 고유번호를 입력해주세요">
 				</div>
-			</div>
+			</div> -->
 			<div>
 				<label for="sname_label">상호명</label>
 				<div class="form-group">
@@ -104,7 +110,7 @@
 					   <input name="sAddress" id="zonecode" type="text" value="" style="width: 50px;" readonly />&nbsp;
 				       <input type="button" onClick="openDaumZipAddress();" value="주소 찾기" />  <br /> 
                        <input name="sAddress" type="text" id="address" value="" style="width: 240px;" readonly /> 
-               		   <input name="sAddress" type="text" id="address_etc" value="나머지주소입력" style="width: 200px;" />
+               		   <input name="sAddress" type="text" id="address_etc" value="" style="width: 200px;" placeholder="나머지주소를 입력해주세요"/>
 				</div> 
 			</div>
 			<div>
@@ -135,8 +141,7 @@
 				</div>
 			</div>
 			<div class="form-group" style="text-align: center;">
-				<button type="button" id="write" class="btn btn-info">음식점
-					추가</button>
+				<button type="button" id="write" class="btn btn-info">음식점추가</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 

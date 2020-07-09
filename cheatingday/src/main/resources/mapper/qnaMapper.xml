@@ -16,6 +16,15 @@
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
+	<select id="findAll" resultType="qna">
+		<![CDATA[
+		select * from
+			(select rownum as rnum, b.* from
+				(select /*+ index_desc(qna qna_pk_q_no)*/q_no qNo,q_title qTitle,q_write_time qWriteTime,q_iscomment qIscomment,m_num mNum,q_cano qCano from qna) b
+			where rownum <=#{endRowNum})
+		 where rnum>=#{startRowNum}
+		 ]]>
+	</select>
 	<select id="findById" resultType="qna">
 		select
 		q_no qNo,q_title qTitle,q_write_time qWriteTime,q_content qContent,q_iscomment qIscomment, m_num mNum, q_cano qCano from qna where q_no=#{qNo} and rownum=1

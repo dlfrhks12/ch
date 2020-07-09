@@ -19,6 +19,12 @@ public class QnADao {
 	public QnA findById(Integer qNo) {
 		return tpl.selectOne("qnaMapper.findById", qNo);
 	}
+	public List<QnA> findAll(int startRowNum, int endRowNum) {
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		return tpl.selectList("qnaMapper.findAll", map);
+	}
 	public List<QnA> findAllByqCano(int startRowNum, int endRowNum, Integer qCano){
 		Map<String, Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);

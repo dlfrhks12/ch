@@ -21,7 +21,15 @@
 			<thead>
 				<tr>
 					<th>번호</th>
-					<th>카테고리</th>
+					<th class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Q&A <span class="caret"></span></a>
+					<ul class="dropdown-menu">				
+						<li><a href="/cheatingday/center/list">전체목록</a></li>		
+		      		 	<li><a href="/cheatingday/center/list?qCano=1">문의목록</a></li>
+		      		 	<li><a href="/cheatingday/center/list?qCano=2">신고목록</a></li>
+		      		 	<li><a href="/cheatingday/center/list?qCano=3">기타</a></li>
+					</ul>
+					</th>
 					<th>제목</th>
 					<th>글쓴이</th>
 					<th>날짜</th>
@@ -54,28 +62,30 @@
 	<div style="text-align:center;">
 		<ul class="pagination">
 			<c:if test="${page.prev==true}">
-				<li><a href="/aboard/board/list?pageno=${page.startPage-1}">이전</a></li>
+				<li><a href="/cheatingday/center/list?pageno=${page.startPage-1}">이전</a></li>
 			</c:if>
 			<c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/aboard/board/list?pageno=${i}">${i}</a>
+							<a href="/cheatingday/center/list?pageno=${i}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/aboard/board/list?pageno=${i}">${i}</a></li>
+						<li><a href="/cheatingday/center/list?pageno=${i}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 				
 			</c:forEach>
 			<c:if test="${page.next==true}">
-				<li><a href="/aboard/board/list?pageno=${page.endPage+1}">다음</a></li>
+				<li><a href="/cheatingday/center/list?pageno=${page.endPage+1}">다음</a></li>
 			</c:if>
 		</ul>
 	</div>
-	<div class="form-group">
-		<a class="btn btn-info" href="/cheatingday/notice/write">글쓰기</a>
-	</div>
+	<sec:authorize access="hasRole('ROLE_MANAGER')">
+		<div class="form-group">
+			<a class="btn btn-info" href="/cheatingday/center/write">글쓰기</a>
+		</div>
+	</sec:authorize>
 </body>
 </html>

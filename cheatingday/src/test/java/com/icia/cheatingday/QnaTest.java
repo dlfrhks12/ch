@@ -116,9 +116,9 @@ public class QnaTest {
 			dto.setQCano(1);
 			System.out.println(qs.write(dto));
 		}
-		//@Test
+		@Test
 		public void fgehrnrg() {
-			QnAComment qComment = QnAComment.builder().qNo(5).aUsername("usy1413").qcContent("대답").build();
+			QnAComment qComment = QnAComment.builder().qNo(0).aUsername("usy1413").qcContent("대답").build();
 			qrs.writeQComment(qComment);		
 		}
 		//@Test

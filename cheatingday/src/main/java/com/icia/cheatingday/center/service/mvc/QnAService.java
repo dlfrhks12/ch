@@ -49,13 +49,11 @@ public class QnAService {
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		
 		List<QnA> qnalist = null;
 		if(qCano!=null)
 			qnalist = qdao.findAllByqCano(srn, ern, qCano);
 		else
 			qnalist = qdao.findAll(srn, ern);
-		
 		List<QnADto.DtoForList> dtolist = new ArrayList<>();
 		for(QnA qna:qnalist) {
 			QnADto.DtoForList dto = mapper.map(qna, QnADto.DtoForList.class);

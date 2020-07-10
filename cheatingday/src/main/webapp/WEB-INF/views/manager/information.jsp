@@ -132,6 +132,23 @@ $(function(){
 		.fail(()=>{toastr.error("변경 실패", "서버 메시지")});
 	});
 	
+	 //사업자 탈퇴 - m_num,m_password,m_username,m_email,m_tel,m_irum,s_name
+	$("#delete").on("click",function(){
+		var params={
+				_csrf: "${_csrf.token}",
+				_method: "delete",
+				MUsername : "${managerInfo.MUsername}"
+				}
+		var choice = confirm('사업자 회원을 탈퇴하시겠습니까?');
+		 
+		 
+		$.ajax({
+				url:"/cheatingday/manager/out",
+				method:"post",
+		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "치팅데이 사랑해주셔서 감사합니다", "success"))
+	      .then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"))
+		
+	}); 
 	
 });
 
@@ -185,6 +202,7 @@ $(function(){
 	</table>
 	<div id="btn_update">
 	<button type="button" class="btn btn-success" id="update" >변경하기</button>
+	<button type="button" class="btn btn-success" id="delete">탈퇴하기</button>
 	</div> 
 </body>
 </html>

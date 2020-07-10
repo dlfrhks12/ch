@@ -20,6 +20,27 @@
 
 <script type="text/javascript">
 
+//정규식 검증
+function check(value, pattern, area, fail_msg){
+	area.text("");
+	if(value.length==0){
+		area.text("필수입력입니다").css({"color":"red", "font-size":"0.75em"});
+		return false;
+	} else if(pattern.test(value)==false){
+		area.text(fail_msg).css({"color":"red", "font-size": "0.75em"});
+		return false;
+	}
+	return true
+}
+
+
+//전화번호 확인
+function checkTel() {
+	var pattern = /^[0-9]{9,11}$/;
+	return check($("#sTel").val(), pattern, $("#sTel_msg"), "전화번호는 9~11자리 숫자입니다")
+}
+
+
 
 	function openDaumZipAddress() {
 		new daum.Postcode({
@@ -57,12 +78,15 @@
 	}
 
 	$(function() {
+		$("#sTel").on("blur",checkTel);
 		$("#sajin").on("change", loadImage);
 		$("#write").on("click", function() {
-	
-			$("#write_form").submit();
+			var r1 = checkTel();
+			
+			if(r1===true){
+				$("#write_form").submit();
+			}
 		});
-		
 		
 	});
 </script>
@@ -91,6 +115,7 @@
 				<div class="form-group">
 					<input type="text" class="form-control" id="sName" name="sName"
 						placeholder="상호명을 입력해주세요">
+					<span id="sName_msg"></span>
 				</div>
 
 			</div>
@@ -99,6 +124,7 @@
 				<div class="form-group">
 					<input id="sTel" type="text" class="form-control" name="sTel"
 						placeholder="음식점 전화번호를  입력해주세요">
+					<span id="sTel_msg"></span>
 				</div>
 			</div>
 			<div>
@@ -133,13 +159,13 @@
 						<option value="9">프랜차이즈</option>
 				</select></td>
 			</div>
-			<div>
+			<!-- <div>
 				<label for="stel_label">사업자아이디</label>
 				<div class="form-group">
 					<input id="mUsername" type="text" class="form-control" name="mUsername"
 						placeholder="사업자아이디를 입력하세요">
 				</div>
-			</div>
+			</div> -->
 			<div class="form-group" style="text-align: center;">
 				<button type="button" id="write" class="btn btn-info">음식점추가</button>
 				&nbsp;&nbsp;&nbsp;&nbsp;

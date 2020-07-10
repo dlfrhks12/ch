@@ -1,20 +1,54 @@
 package com.icia.cheatingday.manager.dto;
 
 
-import java.util.*;
-
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
-import com.icia.cheatingday.user.dto.UserDto;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 public class ManagerDto {
 	
 	private ManagerDto() {}
+	
+	
+	@Data
+	@Accessors(chain=true)
+	public static class DtoForReviewRead{
+		private int rNo; 
+		private String rContent; 
+		private int rStarPoint;
+		private String rWriteTimeStr;
+		private int oNo;
+		private String rTitle;
+		private int rReport;
+		private String uUsername;
+		
+	}
+	
+	
+	
+	
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Accessors(chain=true)
+	@Builder
+	public static class DtoForList {
+		private int rNo;  //리뷰번호
+		private int rStarPoint; //별점
+		private String rWriteTimeStr; //작성시간
+		private String rTitle; //제목
+		private String uUsername; //일반회원아이디
+		private int sNum; //음식점고유번호
+	}
+	
 	
 	@Data
 	public static class DtoForJoin {

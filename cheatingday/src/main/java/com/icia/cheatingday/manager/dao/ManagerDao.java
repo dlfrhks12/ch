@@ -52,6 +52,11 @@ public class ManagerDao {
 		return tpl.selectOne("managerMapper.delete", mNum);
 	}
 
+	//사업자아이디로 탈퇴하기
+	public int deleteByMusername(String mUsername) {
+		return tpl.delete("managerMapper.deleteByMusername", mUsername);
+	}
+	
 	//사업자등록번호로 사업자아이디 읽어오기
 	public String findMusernameByMnum(long mNum) {
 		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);

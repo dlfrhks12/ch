@@ -11,12 +11,13 @@
 <body>
 	<div>
 		<ul>
+		<li><a href="/aboard/system/board/list?job=bad_list">신고글 관리</a></li>
 			<li><a href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#"> 회원정보 관리 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="/cheatingday/admin/user_list">일반 회원 목록</a></li>
-					<li><a href="/cheatingday/admin/m">사업자 목록</a></li>
+					<li><a href="/cheatingday/admin/user_list?job=user_list">일반 회원 목록</a></li>
+					<li><a href="/cheatingday/admin/manager_list">사업자 목록</a></li>
 				</ul>
 			</li>
 			<li><a href="/cheatingday/notice/list">공지사항</a></li>

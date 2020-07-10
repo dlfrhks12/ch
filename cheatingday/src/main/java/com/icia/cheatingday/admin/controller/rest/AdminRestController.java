@@ -5,7 +5,6 @@ import org.springframework.http.*;
 import org.springframework.security.access.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import com.icia.cheatingday.admin.service.rest.*;
-import com.icia.cheatingday.manager.entity.*;
 
 @RestController
 @Secured("ROLE_ADMIN")
@@ -20,9 +19,9 @@ public class AdminRestController {
 	}
 	
 	@PostMapping("/admin/manager_unblock")
-	public ResponseEntity<?> enabledM(ManagerEntity manager){
-		service.enabledM(manager);
-		return  ResponseEntity.ok(null);
+	public ResponseEntity<?> enabledM(int mNum){
+		service.enabledM(mNum);
+		return  ResponseEntity.ok("/cheatingday/admin/manager_list");
 	}
 
 }

@@ -2,6 +2,8 @@ package com.icia.cheatingday.user.entity;
 
 import java.time.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 import lombok.*;
 import lombok.experimental.*;
 

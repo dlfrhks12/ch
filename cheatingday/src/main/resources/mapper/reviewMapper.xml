@@ -3,15 +3,15 @@
 <mapper namespace="reviewMapper">
 	<select id="count" resultType="int">
 		select count(*) from review
-		<where>
-			<if test="value!=null">r_report=#{value}</if>
-		</where>
+	</select>
+	<select id="countByRepoert" resultType="int">
+		select count(*) from review where r_report>=1
 	</select>
 	<select id="findAllByReport" resultType="review">
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report=#{rReport}) b
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report>=1 order by r_report desc) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>

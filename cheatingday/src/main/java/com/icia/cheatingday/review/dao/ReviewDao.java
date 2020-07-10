@@ -14,6 +14,7 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
+<<<<<<< HEAD
 	//사업자> 음식점 고유번호로 리뷰 리스트 페이징
 	public int countBySnum(Integer sNum) {
 		return tpl.selectOne("reviewMapper.countBySnum",sNum);
@@ -34,12 +35,18 @@ public class ReviewDao {
 	////////////////////////////////////////////////////////////////////////////////////
 	public int count(Integer rReport) {
 		return tpl.selectOne("reviewMapper.count", rReport);
+=======
+	public int count() {
+		return tpl.selectOne("reviewMapper.count");
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	}
-	public List<Review> findAllByReport(int startRowNum, int endRowNum, Integer rReport){
+	public int countByRepoert() {	
+		return tpl.selectOne("reviewMapper.countByRepoert");
+	}
+	public List<Review> findAllByReport(int startRowNum, int endRowNum){
 		Map<String, Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
-		map.put("rReport", rReport);
 		return tpl.selectList("reviewMapper.findAllByReport", map);
 	}
 	public Review findById(Integer rNo) {

@@ -51,6 +51,7 @@ public class QnADto {
 	public static class DtoForWrite {
 		private String qTitle;
 		private String qContent;
+		private long mNum;
 		private String mUsername;
 		private int qCano;
 	}

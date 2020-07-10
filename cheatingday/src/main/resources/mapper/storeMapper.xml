@@ -9,6 +9,9 @@
 </select>
 
 
+=======
+<!-- musername 잠시 삭제함 -->
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 <select id="findBysNum" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
 s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername from store where s_num=#{sNum} and rownum=1

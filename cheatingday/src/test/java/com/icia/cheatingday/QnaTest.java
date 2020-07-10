@@ -33,8 +33,6 @@ public class QnaTest {
 		@Inject
 		private QnACategoryDao qcdao;
 		@Inject
-		private QnAService qs;
-		@Inject
 		private QnARestService qrs;
 		
 		//@Test
@@ -100,27 +98,9 @@ public class QnaTest {
 			assertThat(cdao.delete(3), is(1));
 		}
 		//@Test
-		public void qwrh() {
-			System.out.println(qs.list(2, 1));
-		}
-		//@Test
 		public void qwhnn() {
 		}
-		//@Test
-		public void erhtng() {
-			QnADto.DtoForWrite dto = new DtoForWrite();
-			//dto.setMNum(121221);
-			dto.setMUsername("spring");
-			dto.setQContent("qwgehw");
-			dto.setQTitle("vvh");
-			dto.setQCano(1);
-			System.out.println(qs.write(dto));
-		}
-		//@Test
-		public void fgehrnrg() {
-			QnAComment qComment = QnAComment.builder().qNo(5).aUsername("usy1413").qcContent("대답").build();
-			qrs.writeQComment(qComment);		
-		}
+
 		//@Test
 		public void fdbv() {
 			QnAComment aComment = QnAComment.builder().qcNo(25).qcContent("asfgehwhw").build();

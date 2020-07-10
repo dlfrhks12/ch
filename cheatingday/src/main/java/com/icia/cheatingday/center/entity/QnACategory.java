@@ -11,6 +11,6 @@ import lombok.experimental.*;
 @Builder
 @Accessors(chain=true)
 public class QnACategory {
-	private Integer qCano;
-	private String qCategory;
+	private Integer qcano;
+	private String qcategory;
 }

@@ -6,6 +6,7 @@ import java.util.*;
 import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.lang.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
@@ -31,8 +32,8 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin/report_list")
-	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, int rReport) {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno, rReport));
+	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
+		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno));
 	}
 	
 	@GetMapping("/admin/user_list")
@@ -43,7 +44,7 @@ public class AdminController {
 			return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("list", service.ulist()).addObject("viewName", "admin/userlist.jsp").addObject("title","유저 목록");
 	}
 	@PostMapping("/admin/user_block")
-	public String userBlock(@RequestParam @NotNull String uUsernames) {
+	public String userBlock(@RequestParam @NotNull String uUsernames) {	
 		// "11,22,33,"을 받아서 split() 함수로 정수 변환
 		List<String> list = new ArrayList<>();
 		String[] strings = uUsernames.split(",");
@@ -68,8 +69,8 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/manager_read")
-	public ModelAndView mread(String mNum) {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("manager", service.mread(mNum)).addObject("viewName", "admin/managerread.jsp");
+	public ModelAndView mread(String mUsername) {
+		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("manager", service.mread(mUsername)).addObject("viewName", "admin/managerread.jsp");
 	}
 
 }

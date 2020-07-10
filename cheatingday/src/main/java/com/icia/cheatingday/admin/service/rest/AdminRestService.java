@@ -20,9 +20,10 @@ public class AdminRestService {
 	public void deleteReport(int rNo) {
 		Review review = rdao.findById(rNo);
 		rdao.delete(rNo);
+		
 	}
-	public int enabledM(ManagerEntity manager) {
-		return adao.enabledM(manager);
+	public int enabledM(int mNum) {
+		return adao.enabledM(mNum);
 	}
 	
 }

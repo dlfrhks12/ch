@@ -67,7 +67,7 @@ public class ManagerService {
 		List<MenuEntity> list = dao.findAllBymUsername(sNum);   
 		return list;
 	}
-
+	
 	//메뉴 읽기
 	public MenuEntity menuRead(Integer menuno) {
 		System.out.println("-----------");

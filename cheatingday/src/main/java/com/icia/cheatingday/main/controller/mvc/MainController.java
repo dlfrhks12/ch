@@ -146,18 +146,25 @@ public class MainController {
 	
 	
 	// [일반] 비밀번호 변경 페이지로 이동
-	@GetMapping("/change_pwd")
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/u_change_pwd")
 	public ModelAndView changeUserPwd() {
-		return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/userchangepwd.jsp");
+		return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/changepwd.jsp");
 	}
 	
 	// [일반] 비밀번호 변경
-	@PostMapping("/change_pwd")
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/u_change_pwd")
 	public String changeUserPwd(@RequestParam @NotNull String uPassword, @RequestParam @NotNull String uNewPassword, Principal principal, RedirectAttributes ra) {
 		service.changeUserPwd(uPassword, uNewPassword, principal.getName());
-		ra.addFlashAttribute("msg", "비밀번호를 변경했습니다");
 		return "redirect:/";
 	}
+	
+	
+	
+	
+	////////////////////////////////////// 사업자  ////////////////////////////////////////////////////////////
+	
 	
 	// [사업자] 회원가입 Get
 	@GetMapping("/join_manager")
@@ -214,8 +221,25 @@ public class MainController {
 	@PostMapping("/m_find_pwd")
 	public String resetManagerPwd(@RequestParam @NotNull String mEmail, @RequestParam @NotNull String mUsername, RedirectAttributes ra) throws MessagingException {
 		service.resetManagerPwd(mUsername, mEmail);
-		ra.addFlashAttribute("msg", "이메일로 비밀번호 재설정 링크를 발송했습니다. 확인해주세요");
+		ra.addFlashAttribute("msg", "가입하신 이메일로 임시비밀번호를 발송했습니다. 확인해주세요 ^_^");
 		return "redirect:/system/msg";
 	}
+
+	
+	// [사업자] 비밀번호 변경 페이지로 이동
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/m_change_pwd")
+	public ModelAndView changeManagerPwd() {
+		return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/changepwd.jsp");
+	}
+	
+	// [사업자] 비밀번호 변경
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/m_change_pwd")
+	public String changeManagerPwd(@RequestParam @NotNull String mPassword, @RequestParam @NotNull String mNewPassword, Principal principal, RedirectAttributes ra) {
+		service.changeManagerPwd(mPassword, mNewPassword, principal.getName());
+		return "redirect:/";
+	}
+	
 }
 

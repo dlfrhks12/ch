@@ -59,6 +59,8 @@ security-context 로그인 핸들러 설정
 	LoginSuccessHandler
 - 2020.07.10
 	* 일반/사업자 비밀번호찾기 완료!!!!!!!!!!!!!!!!! 오류 드디ㅓㅇ 다고침!!!!
+	changepwd.jsp 생성
+	
 ================ 회원 commit =================
 2020.07.03
 mypage.jsp

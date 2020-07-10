@@ -56,7 +56,7 @@
 </style>
 <script>
 
-// 로그인 실패 시 alert으로 메세지 출력
+// 메세지 출력
 $(function() {
    var msg = "${msg}";
    if(msg!="") {

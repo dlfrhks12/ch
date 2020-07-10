@@ -38,20 +38,22 @@ public class QnAService {
 		Qcano = qcdao.findAll();
 	}
 	
-	public int write(QnADto.DtoForWrite dto) {
+	public int write(QnADto.DtoForWrite dto, String musername) {
+		dto.setMNum(mdao.findById(musername).getMNum());
 		QnA qna = mapper.map(dto, QnA.class);
-		qdao.insert(qna);
+		qdao.insert(qna);		
 		return qna.getQNo();
 	}
-	public Page list(int pageno, int qCano) {
+	public Page list(int pageno, Integer qCano) {
 		int countOfBoard = qdao.count(qCano);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		
 		List<QnA> qnalist = null;
-		qnalist = qdao.findAllByqCano(srn, ern, qCano);
-		
+		if(qCano!=null)
+			qnalist = qdao.findAllByqCano(srn, ern, qCano);
+		else
+			qnalist = qdao.findAll(srn, ern);
 		List<QnADto.DtoForList> dtolist = new ArrayList<>();
 		for(QnA qna:qnalist) {
 			QnADto.DtoForList dto = mapper.map(qna, QnADto.DtoForList.class);
@@ -63,15 +65,5 @@ public class QnAService {
 		page.setQlist(dtolist);
 		return page;
 	}
-	public QnADto.DtoForRead read(Integer qNo, String username){
-		QnA qna = qdao.findById(qNo);
-		QnADto.DtoForRead dto = mapper.map(qna,QnADto.DtoForRead.class);
-		String str = qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
-		dto.setQWriteTimeStr(str);
-		dto.setMIrum(mdao.findMirumeByMnum(dto.getMNum()));
-		dto.setQCategory(qcdao.findById(dto.getQCano()));
-		if(qna.getQIscomment()==true)
-			dto.setComments(qndao.findAllByQno(dto.getQNo()));
-		return dto;
-	}
+
 }

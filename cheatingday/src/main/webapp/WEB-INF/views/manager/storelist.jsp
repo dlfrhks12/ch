@@ -10,6 +10,30 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>음식점 리스트</title>
+<script>
+
+//음식점 등록 버튼관리  - 사업자 1명 : 음식점 1개
+function storeButton(){
+
+	if(store.SName!==null){ //상호명이 존재하면
+		//버튼을 숨김
+		$("#write").hide(); 
+	} else { //상호명이 없으면
+		//버튼이 보임
+		$("#write").show(); 
+	}
+
+});
+
+$(function(){
+	
+	storeButton();
+	
+});
+
+
+</script>
+
 </head>
 <body>
 <div>

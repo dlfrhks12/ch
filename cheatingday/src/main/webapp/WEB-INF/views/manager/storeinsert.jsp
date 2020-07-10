@@ -19,6 +19,8 @@
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script type="text/javascript">
+
+
 	function openDaumZipAddress() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -44,10 +46,11 @@
 			$("#sajin").val("");
 			return false;
 		}
+		
 	//하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
 		var reader = new FileReader();
 		reader.onload = function(e){
-			$("#show_menusajin").attr("src",e.target.result);
+			$("#show_storesajin").attr("src",e.target.result);
 		}
 		reader.readAsDataURL(file);
 		return true;
@@ -56,8 +59,11 @@
 	$(function() {
 		$("#sajin").on("change", loadImage);
 		$("#write").on("click", function() {
+	
 			$("#write_form").submit();
 		});
+		
+		
 	});
 </script>
 </head>

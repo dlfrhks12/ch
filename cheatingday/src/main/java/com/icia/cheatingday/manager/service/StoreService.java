@@ -69,6 +69,7 @@ public class StoreService {
 			store.setSSajin(storePath+"storebasic.jpg"); 
 			} 
 		dao.insert(store);
+		
 	}
 
 	

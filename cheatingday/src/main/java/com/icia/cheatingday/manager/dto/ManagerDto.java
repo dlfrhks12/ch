@@ -39,7 +39,7 @@ public class ManagerDto {
 	public static class DtoForWrite{
 		//원래테이블(storeapplyinsert)
 		private int iNo; //입점신청번호
-		private String mNum; //사업자등록번호
+		private long mNum; //사업자등록번호
 		//외부테이블(manager)
 		private String mIrum; //사업자이름
 		private String mTel; //사업자 전화번호
@@ -52,7 +52,7 @@ public class ManagerDto {
 	public static class DtoForRead{
 		private String mUsername;
 		private String mIrum;
-		private int mNum;
+		private long mNum;
 		private String mEmail;
 		private String mTel;
 		private String mPassword;

@@ -22,5 +22,6 @@ public class ManagerEntity { //사업자회원
 	   private String mIrum;     //사업자 이름
 	   private String sName;     //상호명
 	   private Boolean mEnabled;
+	   private String status;
 	   
 }

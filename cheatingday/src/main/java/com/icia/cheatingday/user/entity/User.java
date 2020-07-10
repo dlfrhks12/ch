@@ -23,4 +23,5 @@ public class User {
 	private LocalDateTime uJoinDate;
 	private int uPoint;
 	private int uLoginFailCnt;
+	private String status;
 }

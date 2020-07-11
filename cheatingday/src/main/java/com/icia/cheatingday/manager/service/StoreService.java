@@ -2,7 +2,6 @@ package com.icia.cheatingday.manager.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -12,10 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.icia.cheatingday.manager.dao.FoodCategoryDao;
+import com.icia.cheatingday.manager.dao.MenuDao;
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.StoreDto;
 import com.icia.cheatingday.manager.entity.Store;
-import com.icia.cheatingday.manager.exception.IllegalJobException;
+import com.icia.cheatingday.manager.exception.sNumExistsException;
 
 @Service
 public class StoreService {
@@ -29,6 +29,14 @@ public class StoreService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private FoodCategoryDao foodCategoryDao;
+	@Autowired
+	private MenuDao menuDao;
+	
+	//매장이 존재하는지 확인
+	public Boolean existsSnum(String mUsername) {
+		return dao.existsSnum(mUsername);
+	}
+	
 	
 	// 가게리스트 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
 	public List<Store> storeList(String mUsername){ 
@@ -86,8 +94,9 @@ public class StoreService {
 		}return dao.update(store);
 	}
 
-	// 가게삭제 
-	public int storeDelete(int sNum) { 
+	// 가게삭제 - 메뉴도 전체 삭제
+	public int storeDelete(int sNum) {
+		menuDao.deleteBySnum(sNum);
 		return dao.delete(sNum); 
 		}
 

@@ -109,12 +109,6 @@ public class NoticeTest {
 	public void deT() {
 		ndao.delete(1);
 	}
-	//@Test
-	public void inartw() {
-		QnA qna = QnA.builder().qTitle("aehhhaaa").qContent("ssweess").qWriteTime(LocalDateTime.now()).mNum("121121221").qCano(1).build();
-		qdao.insert(qna);
-		System.out.println(qna);
-	}
 	
 	//@Test
 	public void finq() {

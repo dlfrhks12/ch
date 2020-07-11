@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="storeMapper">
+<!-- 매장이 존재하는지 안하는지  -->
+<select id="existsSnum" resultType="boolean">
+	select count(*) from store where m_username=#{mUsername} and rownum=1
+</select>
+
 <!-- musername 잠시 삭제함 -->
 <select id="findBysNum" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,

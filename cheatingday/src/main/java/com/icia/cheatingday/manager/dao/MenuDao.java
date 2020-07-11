@@ -47,6 +47,11 @@ public class MenuDao {
 		return tpl.delete("menuMapper.delete",menuno);
 	}
 
+	//메뉴전체삭제
+	public int deleteBySnum(int sNum) {
+		return tpl.delete("menuMapper.deleteBySnum",sNum);
+	}
+	
 	public List<MenuEntity> findAllById(String mUsername) {
 		return tpl.selectList("menuMapper.findAllById",mUsername);
 	}

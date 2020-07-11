@@ -2,8 +2,10 @@ package com.icia.cheatingday.manager.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icia.cheatingday.manager.entity.Store;
 import com.icia.cheatingday.manager.service.StoreService;
 
@@ -19,16 +23,19 @@ public class StoreController {
 
 	@Autowired
 	private StoreService service;
-	
+	@Autowired
+	private ObjectMapper objectMapper;
 	
 	  //가게리스트 페이지로 이동 - 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
-   	  @PreAuthorize("isAuthenticated()")
-	  @GetMapping("/manager/store_list") 
-	  public ModelAndView storeList(Principal principal) { 
-		  return new ModelAndView("main").addObject("viewName","manager/storelist.jsp")
-				  	.addObject("viewHeader", "include/noheader.jsp") 
-				  	.addObject("storeList", service.storeList(principal.getName())); }
-	  
+	
+	 @PreAuthorize("isAuthenticated()")
+	 
+	 @GetMapping("/manager/store_list") 
+	 public ModelAndView storeList(Principal principal) throws JsonProcessingException{ 
+		 return new ModelAndView("main").addObject("viewName","manager/storelist.jsp")
+				 .addObject("viewHeader", "include/noheader.jsp") 
+				 .addObject("storeList", service.storeList(principal.getName())); }
+	 
    	 
 	  //가게읽기 페이지로 이동 - 해당하는 사장님만 자신의 가게를 읽을 수 있어.
 	  @PreAuthorize("isAuthenticated()")

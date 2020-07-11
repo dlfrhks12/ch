@@ -87,8 +87,18 @@ public class ManagerController {
 				.addObject("managerInfo",service.read(mUsername));
 	}
 	
-}
 	
+	/*
+	 * //사업자 탈퇴
+	 * 
+	 * @GetMapping("/manager/out") public ModelAndView managerResign(String
+	 * mUsername) { return new
+	 * ModelAndView("main").addObject("viewName","manager/information.jsp")
+	 * .addObject("viewHeader", "include/noheader.jsp")
+	 * .addObject("managerResign",service.resign(mUsername)); }
+	 */
+	 
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

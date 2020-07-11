@@ -14,6 +14,21 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
+	//사업자> 음식점 고유번호로 리뷰 리스트 페이징
+	public int countBySnum(Integer sNum) {
+		return tpl.selectOne("reviewMapper.countBySnum",sNum);
+	}
+	public List<Review> findAllBysNum(int startRowNum, int endRowNum, Integer sNum){
+		Map<String, Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("sNum", sNum);
+		return tpl.selectList("reviewMapper.findAllBysNum",map);
+	}
+	//사업자> 음식점 리뷰 읽기
+	public Review findByRno(int rNo) {
+		return tpl.selectOne("reviewMapper.findByRno",rNo);
+	}	
 	public int count() {
 		return tpl.selectOne("reviewMapper.count");
 	}

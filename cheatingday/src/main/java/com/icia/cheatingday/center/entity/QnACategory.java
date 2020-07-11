@@ -1,7 +1,5 @@
 package com.icia.cheatingday.center.entity;
 
-import java.time.*;
-
 import lombok.*;
 import lombok.experimental.*;
 

@@ -17,7 +17,6 @@ public class QnA {
 	private String qContent;
 	private LocalDateTime qWriteTime;
 	private Boolean qIscomment;
-	private String mNum;
-	private String mUsername;
+	private int mNum;
 	private Integer qCano;
 }

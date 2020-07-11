@@ -53,10 +53,10 @@ public class ManagerDao {
 	}
 
 	//사업자등록번호로 사업자아이디 읽어오기
-	public String findMusernameByMnum(long mNum) {
+	public String findMusernameByMnum(int mNum) {
 		return tpl.selectOne("managerMapper.findMusernameByMnum", mNum);
 	}
-	public String findMirumeByMnum(long mNum) {
+	public String findMirumeByMnum(int mNum) {
 		return tpl.selectOne("managerMapper.findMirumeByMnum", mNum);
 	}
 

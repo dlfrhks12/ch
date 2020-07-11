@@ -10,6 +10,7 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.common.dto.*;
+import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.manager.dao.*;
 import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.review.dao.*;
@@ -92,6 +93,8 @@ public class AdminService {
 	}
 	public ManagerEntity mread(String mUsername) {
 		ManagerEntity manager = mdao.findById(mUsername);
+		if(manager==null)
+			throw new UserNotFoundException();
 		return manager;
 	}
 	

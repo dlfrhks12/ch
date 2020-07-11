@@ -20,7 +20,7 @@ $(function(){
 			method: "post",
 			data: params
 		})
-		.done((result)=>{ alert("승인하였습니다") })
+		.done((result)=>{ alert("승인하였습니다"); location.href("/cheatingday/admin/manager_list"); })
 		.fail((result)=>{console.log(result)});
 	});
 })

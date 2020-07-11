@@ -9,9 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
+	<div >
 		<ul>
-		<li><a href="/aboard/system/board/list?job=bad_list">신고글 관리</a></li>
 			<li><a href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#"> 회원정보 관리 <span class="caret"></span></a>

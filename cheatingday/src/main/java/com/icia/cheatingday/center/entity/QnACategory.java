@@ -1,7 +1,5 @@
 package com.icia.cheatingday.center.entity;
 
-import java.time.*;
-
 import lombok.*;
 import lombok.experimental.*;
 
@@ -11,6 +9,6 @@ import lombok.experimental.*;
 @Builder
 @Accessors(chain=true)
 public class QnACategory {
-	private Integer qCano;
-	private String qCategory;
+	private Integer qcano;
+	private String qcategory;
 }

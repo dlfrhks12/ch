@@ -82,14 +82,17 @@
 	<mybatis-spring:scan base-package="com.icia.cheatingday.admin.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.center.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.freeboard.dao"/> 
+	<mybatis-spring:scan base-package="com.icia.cheatingday.cart"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
-	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/> 
+	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
+	 
+	 
 	<context:component-scan base-package="com.icia.cheatingday">
-		<context:exclude-filter type="annotation" 
-			expression="org.springframework.stereotype.Controller"/>
+	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
+	
 	
 	<task:executor id="scheduledExecutor" pool-size="20"/>
 	<task:annotation-driven executor="scheduledExecutor" />

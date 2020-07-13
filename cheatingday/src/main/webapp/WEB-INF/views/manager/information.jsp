@@ -14,7 +14,6 @@ function managerPage(){
 	//비밀번호변경 토글 이용하기 위해 숨겨놓음.
 	$("#passwordArea").hide();
 	
-	
 	//이메일 설정
 	var email = "${managerInfo.MEmail}";
 	
@@ -76,6 +75,7 @@ $(function(){
 	$("#changeIrum").on("click",function(){
 		var params = {
 				_method: "patch",
+				MUsername: $("#MUsername").val(),
 				MIrum: $("#irum").val(),
 				MTel: "${managerInfo.MTel}",
 				MEmail: "${managerInfo.MEmail}",
@@ -95,18 +95,18 @@ $(function(){
 		var $newPassword = $("#newPassword").val();
 		var $newPassword2 = $("#newPassword2").val();
 		if($newPassword!==$newPassword2)
-			return true;
+			return false;
 		var params ={
 			_method: "patch",
 			_csrf: "${_csrf.token}",
 			MPassword: $("#password").val(),
 			newMPassword: $("#newPassword").val(),
-			mTel: "${managerInfo.MTel}",
-			MEmail: "${managerInfo,MEmail}"
+			MTel: "${managerInfo.MTel}",
+			MEmail: "${managerInfo.MEmail}"
 		};
 		$.ajax({
 			url: "/cheatingday/manager/information_update",
-			method: "post",
+			method: "post",	
 			data: params
 		}).done(()=>{toastr.success("비밀번호 변경 성공","서버 메시지")})
 		.fail(()=>{toastr.error("비밀번호 변경 실패", "서버 메시지")});
@@ -115,40 +115,47 @@ $(function(){
 	
 	//사업자 정보 전체 변경
 	$("#update").on("click",function(){
-		var email = $("#email1").val() + "@" + $("#email2").val();
-		var formData = new FormData();
-		formData.append("MIrum", $("#irum").val());
-		formData.append("MEmail", email);
-		formData.append("MTel", $("#tel1").val()+$("#tel2").val()+$("#tel3").val());
-		formData.append("_csrf", "${_csrf.tokenn}");
-		formData.append("_method", "patch");
-		
-		
-		//여기 살짝 노이해
-		if($("#password").val()!=="")
-			formData.append("password", $("#password").val());
-		if($("#newPassword").val()===$("#newPassword2"))
-			formData.append("newPassword",$("#newPassword"));
-		for(var key of formData.keys())
-			console.log(key);
-		for(var value of formData.values())
-			console.log(value);
+		var params = {
+				_csrf: "${_csrf.token}",
+				_method: "patch",
+				MIrum: $("#irum").val(),
+				MEmail: $("#email1").val() + "@" + $("#email2").val(),
+				MTel: $("#tel1").val()+$("#tel2").val()+$("#tel3").val(),
+				MUsername: $("#MUsername").val()
+		};
 		
 		$.ajax({
 			url: "/cheatingday/manager/information_update",
-			data: formData,
 			method: "post",
-		}).done(()=>{toastr.success("변경 성공","서버메시지"); })
-		.fail(()=>{toastr.error("변경 실패","서버메시지"); })		
+			data: params
+		}).done(()=>{toastr.success("변경 성공","서버 메시지")})
+		.fail(()=>{toastr.error("변경 실패", "서버 메시지")});
 	});
+	
+	 //사업자 탈퇴 - m_num,m_password,m_username,m_email,m_tel,m_irum,s_name
+	$("#delete").on("click",function(){
+		var params={
+				_csrf: "${_csrf.token}",
+				_method: "delete",
+				MUsername : "${managerInfo.MUsername}"
+				}
+		var choice = confirm('사업자 회원을 탈퇴하시겠습니까?');
+		 
+		 
+		$.ajax({
+				url:"/cheatingday/manager/out",
+				method:"post",
+		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "치팅데이 사랑해주셔서 감사합니다", "success"))
+	      .then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"))
+		
+	}); 
+	
 });
-
 
 </script>
 </head>
 <body>
-히히
-${managerInfo}
+	
 <table class="table table-hover" id="user">
 		<colgroup>
 			<col width="10%">
@@ -195,6 +202,7 @@ ${managerInfo}
 	</table>
 	<div id="btn_update">
 	<button type="button" class="btn btn-success" id="update" >변경하기</button>
-	</div>
+	<button type="button" class="btn btn-success" id="delete">탈퇴하기</button>
+	</div> 
 </body>
 </html>

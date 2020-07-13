@@ -8,9 +8,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="/aboard/ckeditor/ckeditor.js"></script>
+<script src="/cheatingday/ckeditor/ckeditor.js"></script>
 <script>
 $(function() {
+	var ck = CKEDITOR.replace("content",{
+		height:'500px',
+		filebrowserUploadUrl:"http://localhost:8081/cheatingday/notice/ckupload"
+	})
 	// form을 넘기기전에 값 확인
 	$("#write").on("click", function() {
 		console.log($("#writeForm").serialize());

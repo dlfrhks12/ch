@@ -30,7 +30,7 @@
 				<jsp:include page="include/nav.jsp" />
 			</nav>
 			<header>
-				<jsp:include page="${viewHeader}"/>
+				<jsp:include page="${viewHeader }"/>
 			</header>
 			<section>
 				<jsp:include page="${viewName}" />

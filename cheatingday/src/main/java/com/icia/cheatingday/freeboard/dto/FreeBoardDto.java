@@ -18,7 +18,6 @@ import lombok.experimental.Accessors;
 
 public class FreeBoardDto {
 	private FreeBoardDto() {}
-	//ass
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor

@@ -3,6 +3,8 @@ package com.icia.cheatingday.center.service.mvc;
 import java.time.format.*;
 import java.util.*;
 
+import javax.annotation.*;
+
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -14,6 +16,8 @@ import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.manager.dao.*;
 import com.icia.cheatingday.util.*;
 
+import lombok.*;
+
 @Service
 public class QnAService {
 	@Autowired
@@ -24,30 +28,40 @@ public class QnAService {
 	private ModelMapper mapper;
 	@Autowired
 	private ManagerDao mdao;
+	@Getter
+	private List<QnACategory> Qcano;
 	
-	public int write(QnADto.DtoForWrite dto) {
+	@PostConstruct
+	public void init() {
+		Qcano = qcdao.findAll();
+	}
+	
+	public int write(QnADto.DtoForWrite dto, String musername) {
+		dto.setMNum(mdao.findById(musername).getMNum());
 		QnA qna = mapper.map(dto, QnA.class);
-		qdao.insert(qna);
+		qdao.insert(qna);		
 		return qna.getQNo();
 	}
-	public Page list(int pageno, int qCano) {
+	public Page list(int pageno, Integer qCano) {
 		int countOfBoard = qdao.count(qCano);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		
 		List<QnA> qnalist = null;
-		qnalist = qdao.findAllByqCano(srn, ern, qCano);
-		
+		if(qCano!=null)
+			qnalist = qdao.findAllByqCano(srn, ern, qCano);
+		else
+			qnalist = qdao.findAll(srn, ern);
 		List<QnADto.DtoForList> dtolist = new ArrayList<>();
 		for(QnA qna:qnalist) {
 			QnADto.DtoForList dto = mapper.map(qna, QnADto.DtoForList.class);
 			dto.setQWriteTimeStr(qna.getQWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setMIrum(mdao.findById(dto.getMUsername()).getMIrum());
+			dto.setMIrum(mdao.findMusernameByMnum(dto.getMNum()));
 			dto.setQCategory(qcdao.findById(dto.getQCano()));
 			dtolist.add(dto);
 		}
 		page.setQlist(dtolist);
 		return page;
 	}
+
 }

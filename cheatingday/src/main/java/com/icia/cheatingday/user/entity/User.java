@@ -2,6 +2,8 @@ package com.icia.cheatingday.user.entity;
 
 import java.time.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 import lombok.*;
 import lombok.experimental.*;
 
@@ -21,4 +23,5 @@ public class User {
 	private LocalDateTime uJoinDate;
 	private int uPoint;
 	private int uLoginFailCnt;
+	private String status;
 }

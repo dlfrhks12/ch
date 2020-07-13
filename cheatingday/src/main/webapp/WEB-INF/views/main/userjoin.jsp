@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
-<title>일반 회원가입</title>
+<title>일반회원 회원가입</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>
@@ -82,6 +82,7 @@ function checkPassword2() {
 		$("#u_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
 		return false;
 	}
+	$("#u_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
 	return true;
 }
 
@@ -172,74 +173,76 @@ $(function() {
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w"
-					id="join_form" action="/cheatingday/join_user" method="post">
-					<span class="login100-form-title p-b-32">일반회원가입</span> <span
-						class="login100-form-title p-b-32"></span>
+				<form class="login100-form validate-form flex-sb flex-w" id="join_form" action="/cheatingday/join_user" method="post">
+					<span class="login100-form-title p-b-32">일반회원가입</span> 
+					<span class="login100-form-title p-b-32"></span>
 					<div>
 						<label class="txt p-b-11" for="u_irum">이름</label>
 						<div class="wrap-input100 validate-input m-b-36">
 							<input class="input200" type="text" id="u_irum" name="uIrum">
-							<span class="focus-input200"></span> <span id="u_irum_msg"></span>
+							<span class="focus-input200"></span> 
+							<span id="u_irum_msg"></span>
 						</div>
 					</div>
 					<div>
 						<label class="txt p-b-11" for="u_username">아이디</label>
 						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="u_username"
-								name="uUsername"> <span class="focus-input200"></span> <span
-								id="u_username_msg"></span>
+							<input class="input200" type="text" id="u_username" name="uUsername"> 
+							<span class="focus-input200"></span> 
+							<span id="u_username_msg"></span>
 						</div>
 					</div>
 					<div>
 						<label class="txt p-b-11" for="u_password">비밀번호</label>
 						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="password" id="u_password"
-								name="uPassword"> <span class="focus-input200"></span> <span
-								id="u_password_msg"></span>
+							<input class="input200" type="password" id="u_password" name="uPassword"> 
+							<span class="focus-input200"></span> 
+							<span id="u_password_msg"></span>
 						</div>
 					</div>
 					<div>
 						<label class="txt p-b-11" for="u_password2">비밀번호 확인</label>
 						<div class="wrap-input100 validate-input m-b-36">
 							<input class="input200" type="password" id="u_password2">
-							<span class="focus-input200"></span> <span id="u_password2_msg"></span>
+							<span class="focus-input200"></span> 
+							<span id="u_password2_msg"></span>
 						</div>
 					</div>
 					<div>
 						<label class="txt p-b-11" for="u_email">이메일</label>
 						<div class="wrap-input100 validate-input m-b-36">
 							<input class="input200" type="text" id="u_email" name="uEmail">
-							<span class="focus-input200"></span> <span id="u_email_msg"></span>
+							<span class="focus-input200"></span> 
+							<span id="u_email_msg"></span>
 						</div>
 					</div>
 					<div>
 						<label class="txt p-b-11" for="u_tel">전화번호</label>
 						<div class="wrap-input100 validate-input m-b-36">
 							<input class="input200" type="text" id="u_tel" name="uTel">
-							<span class="focus-input200"></span> <span id="u_tel_msg"></span>
+							<span class="focus-input200"></span> 
+							<span id="u_tel_msg"></span>
 						</div>
 					</div>
 					<div>
 						<label class="txt p-b-11" for="u_address">주소</label>
 						<div class="wrap-input100 validate-input m-b-36">
 							<button type="button" onClick="openDaumZipAddress();">검색</button>
-							<input id="zonecode" type="text" style="width:50px;" name="uAddress" readonly />&nbsp;
-							<input class="input200" type="text" id="address" name="uAddress" readonly/>
-						</div>
-						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
-							<span class="focus-input200"></span>
+							<input id="zonecode" type="text" style="width: 50px;" name="uAddress" readonly />&nbsp; 
+							<input class="input200" type="text" id="address" name="uAddress" readonly />
 						</div>
 					</div>
-					<div>
+					<div class="wrap-input100 validate-input m-b-36">
+	                   	 <input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
+	                   	 <span class="focus-input200"></span>
+	                </div>
+	                <div>
 						<input type="hidden" name="authorities" value="ROLE_USER">
 					</div>
-					<div class="container-login100-form-btn"
-						style="text-align: center;">
+					<div class="container-login100-form-btn" style="text-align: center;">
 						<button type="button" class="btn btn-danger" id="join">가입</button>
-					</div>
-				</form>
+	                </div>
+				</form>	
 			</div>
 		</div>
 	</div>

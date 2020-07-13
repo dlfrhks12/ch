@@ -19,6 +19,11 @@ public class MenuDao {
 		return tpl.selectList("menuMapper.findAll");
 	}
 	
+	//mUsername으로 메뉴리스트 띄우기
+	public List<MenuEntity>findAllBymUsername(int sNum){
+		return tpl.selectList("menuMapper.findAllById",sNum);
+	}
+	
 	//메뉴읽기
 	public MenuEntity findById(Integer menuno) {
 		System.out.println("####");
@@ -40,5 +45,14 @@ public class MenuDao {
 	//메뉴삭제
 	public int delete(Integer menuno) {
 		return tpl.delete("menuMapper.delete",menuno);
+	}
+
+	//메뉴전체삭제
+	public int deleteBySnum(int sNum) {
+		return tpl.delete("menuMapper.deleteBySnum",sNum);
+	}
+	
+	public List<MenuEntity> findAllById(String mUsername) {
+		return tpl.selectList("menuMapper.findAllById",mUsername);
 	}
 }

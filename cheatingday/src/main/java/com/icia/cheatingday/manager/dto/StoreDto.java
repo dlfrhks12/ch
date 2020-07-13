@@ -15,5 +15,6 @@ public class StoreDto {
 	private String sAddress;
 	private int foodNo;
 	private String foodCategory;
+	private String mUsername;
 	
 }

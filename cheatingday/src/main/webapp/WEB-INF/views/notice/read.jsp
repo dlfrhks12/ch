@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+<script src="/cheatingday/ckeditor/ckeditor.js"></script>
 <sec:authorize access="isAuthenticated()">
 	<script>
 		var isLogin = true;
@@ -21,27 +21,31 @@
 </sec:authorize>
 <script>
 $(function() {
+	var notice = ${notice};
+	console.log(notice);
 	// 자바객체 -> json -> 자바스크립트 객체
-	$("#nTitle").val("${notice.NTitle}");
-	$("#aIrum").text("${notice.AIrum}");
-	$("#nNo").text("${notice.NNo}");
-	$("#write_time").text("${notice.NWriteTimeStr}");
-	$("#read_cnt").text("${notice.NReadCnt}");
-	//if(isLogin===true && notice.writer===loginId)
-	//	var ck = CKEDITOR.replace("content",{
-	//		filebrowserUploadUrl:"http://localhost:8081/aboard/board/ckupload"
-	//	})
-	$("#content").html("${notice.content}");
+	$("#nTitle").val(notice.ntitle);
+	$("#aUsername").val(notice.ausername);
+	$("#aIrum").text(notice.airum);
+	$("#nNo").text(notice.nno);
+	$("#write_time").text(notice.nwriteTimeStr);
+	$("#read_cnt").text(notice.nreadCnt);
+	if(isLogin===true && notice.ausername===loginId)
+		var ck = CKEDITOR.replace("content",{
+			height:'500px',
+			filebrowserUploadUrl:"http://localhost:8081/cheatingday/notice/ckupload"
+		})
+	$("#content").html(notice.content).css("height","600px").css("overflow","scroll");;
 	// 초기화 - 버튼영역 감추기
 	$("#btn_area").hide();
-	if(isLogin===true && notice.writer===loginId) {
+	if(isLogin===true && notice.ausername===loginId) {
 		$("#nTitle").prop("disabled", false);
 		$("#btn_area").show();
 		$("#content").prop("readonly", false);
 	} 
 	$("#delete").on("click", function(){
 		var params = {
-			nNo : notice.nNo,
+			nNo : notice.nno,
 			_method: "delete",
 			_csrf: "${_csrf.token}"
 		}
@@ -56,9 +60,9 @@ $(function() {
 	})
 	$("#update").on("click", function(){
 		var params = {
-			nNo : notice.nNo,
+			nNo : notice.nno,
 			nTitle : $("#nTitle").val(),
-			content : $("#content").val(),
+			content : CKEDITOR.instances['content'].getData(),
 			_csrf: "${_csrf.token}",
 			_method: "patch"
 		}
@@ -73,17 +77,18 @@ $(function() {
 	})
 });
 </script>
+</head>
 <body>
 <div id="wrap">
 	<div>
 		<div id="title_div">
 			<div id="upper">
-				<input type="text" id="nTitle" disabled="disabled">
-				<span id="aIrum"></span>
+				<input type="text" id="nTitle" disabled="disabled" style="min-width: 600px;">
+				<input type="hidden" id="aUsername">
+				<span style="text-align: " id="aIrum"></span>
 			</div>
 			<div id="lower">
 				<ul id="lower_left">
-					<li>글번호 <span id="nNo"></span></li>
 					<li><span id="write_time"></span></li>
 				</ul>
 				<ul id="lower_right">
@@ -96,7 +101,7 @@ $(function() {
 		</div>
 		<div id="content_div">
 			<div class="form-group">
-				<div class="form-control" id="content" style="overflow: scroll; min-height: 600px;"></div>
+				<div class="form-control" id="content"></div>
 			</div>
 			<div id="btn_area">
 				<button id="update" class="btn btn-info">변경</button>

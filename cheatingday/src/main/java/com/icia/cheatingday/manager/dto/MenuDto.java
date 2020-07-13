@@ -19,7 +19,7 @@ public class MenuDto {
 		
 		//다른클래스
 		private String mUsername;  //사업자이름
-		private String mNum;       //사업자등록번호
+		private long mNum;       //사업자등록번호
 		//다른클래스
 		private String sName; //상호명
 		

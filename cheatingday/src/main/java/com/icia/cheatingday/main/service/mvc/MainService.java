@@ -6,6 +6,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.validation.constraints.*;
 
+import org.apache.commons.lang3.*;
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
@@ -58,7 +59,7 @@ public class MainService {
 	userDao.insert(user); 
 	}
   
-  
+ 
 	// [일반] 아이디 찾기 
 	public String findUserUsername(String uIrum, String uEmail) {
 		String uUsername = userDao.findUUsernameByUIrumAndUEmail(uIrum, uEmail);
@@ -67,7 +68,7 @@ public class MainService {
 		return uUsername; 
 	}
   
-  
+	
 	// [일반] '마이페이지' 클릭 시 비밀번호 확인 
 	public void checkUserPwd(String uPassword,String uUsername) { 
 		User user = userDao.findById(uUsername); if(user==null)
@@ -77,7 +78,7 @@ public class MainService {
 				throw new JobFailException("비밀번호가 일치하지 않습니다"); }
   
   
-	// [일반] 비밀번호 찾기 (재설정) 메일보내기 
+	// [일반] 비밀번호 찾기 (임시비밀번호) 메일보내기 
 	public void resetUserPwd(@NotNull String uUsername, @NotNull String uEmail) throws MessagingException { 
 		User user = userDao.findById(uUsername); 
 		if(user==null) 
@@ -85,14 +86,37 @@ public class MainService {
 		if(user.getUEmail().equals(uEmail)==false) 
 			throw new UserNotFoundException();
   
-		StringBuffer text = new StringBuffer("<p>Cheating Day 비밀번호 재설정 안내</p>");
-		text.append("<p>새 비밀번호로 변경해주세요</p>"); 
+		// 랜덤한 임시비밀번호 생성
+		String uNewPassword = RandomStringUtils.randomAlphanumeric(20);
+		// 임시비번으로 비밀번호 변경
+		userDao.update(User.builder().uUsername(uUsername).uPassword(pwdEncoder.encode(uNewPassword)).build());
+		// 로그인하러가기 링크
+		String link = "<a href='http://localhost:8081/cheatingday/login'>";
+		// 이메일 보낼 제목/내용 작성
+		StringBuffer text = new StringBuffer("<p>Cheating Day 임시비밀번호 안내</p>");
+		text.append("<p>임시 비밀번호는 ").append(uNewPassword).append(" 입니다</p>");
+		text.append("<p>보안을 위해 로그인 후 비밀번호를 변경해주세요</p>"); 
+		text.append(link);
+		text.append("로그인하러가기</a>");
 		Mail mail = Mail.builder().sender("CheatingDay@icia.com").receiver(uEmail)
 				.title("Cheating Day 비밀번호 재설정 안내").content(text.toString()).build();
 		mailUtil.sendMail(mail); 
 		}
   
   
+	// [일반] 새 비밀번호로 변경
+	public void changeUserPwd(String uPassword, String uNewPassword, String uUsername) {
+		User user = userDao.findById(uUsername);
+		if(user==null)
+			throw new UserNotFoundException();
+		String encodedPassword = user.getUPassword();
+		if(pwdEncoder.matches(uPassword, encodedPassword)==true) {
+			String newEncodedPassword = pwdEncoder.encode(uNewPassword);
+			userDao.update(User.builder().uPassword(newEncodedPassword).uUsername(uUsername).build());
+		}
+	}
+	
+	
 	// [사업자] 회원가입 
 	public void ManagerJoin(ManagerDto.DtoForJoin dto) { 
 	ManagerEntity manager = modelMapper.map(dto, ManagerEntity.class);
@@ -120,7 +144,8 @@ public class MainService {
 	public String findManagerUsername(String mIrum, String mEmail) { 
 		String mUsername = managerDao.findUsernameByIrumAndEmail(mIrum, mEmail);
 		if(mUsername==null) 
-			throw new UserNotFoundException(); return mUsername; }
+			throw new UserNotFoundException(); 
+		return mUsername; }
   
   
 	// [사업자] '사장님 페이지로' 클릭 시 비밀번호 확인 
@@ -134,14 +159,42 @@ public class MainService {
   
 	// [사업자] 비밀번호 찾기 
 	public void resetManagerPwd(@NotNull String mUsername, @NotNull String mEmail) throws MessagingException { 
-		ManagerEntity manager = managerDao.findById(mUsername); 
-		if(manager==null) throw new UserNotFoundException(); 
-		if(manager.getMEmail().equals(mEmail)==false) throw new UserNotFoundException();
+		ManagerEntity manager = managerDao.findById(mUsername);
+		if(manager==null) 
+			throw new UserNotFoundException(); 
+		if(manager.getMEmail().equals(mEmail)==false) 
+			throw new UserNotFoundException();
   
-		StringBuffer text = new StringBuffer("<p>Cheating Day 비밀번호 재설정 안내</p>");
-		text.append("<p>새 비밀번호로 변경해주세요</p>"); 
+		// 랜덤한 임시비밀번호 생성
+		String mNewPassword = RandomStringUtils.randomAlphanumeric(20);
+		// 임시비번으로 비밀번호 변경
+		managerDao.update(ManagerEntity.builder().mUsername(mUsername).mPassword(pwdEncoder.encode(mNewPassword)).build());
+		// 로그인하러가기 링크
+		String link = "<a href='http://localhost:8081/cheatingday/login'>";
+		// 이메일 보낼 제목/내용 작성
+		StringBuffer text = new StringBuffer("<p>Cheating Day 임시비밀번호 안내</p>");
+		text.append("<p>임시 비밀번호는 ").append(mNewPassword).append(" 입니다</p>");
+		text.append("<p>보안을 위해 로그인 후 비밀번호를 변경해주세요</p>"); 
+		text.append(link);
+		text.append("로그인하러가기</a>");
 		Mail mail = Mail.builder().sender("CheatingDay@icia.com").receiver(mEmail)
 				.title("Cheating Day 비밀번호 재설정 안내").content(text.toString()).build();
 		mailUtil.sendMail(mail); 
-  	} 
+		}
+		
+	// [사업자] 새 비밀번호로 변경
+		public void changeManagerPwd(String mPassword, String mNewPassword, String mUsername) {
+			ManagerEntity manager = managerDao.findById(mUsername);
+			if(manager==null)
+				throw new UserNotFoundException();
+			String encodedPassword = manager.getMPassword();
+			if(pwdEncoder.matches(mPassword, encodedPassword)==true) {
+				String newEncodedPassword = pwdEncoder.encode(mNewPassword);
+				managerDao.update(ManagerEntity.builder().mPassword(newEncodedPassword).mUsername(mUsername).build());
+			}
+			else {
+				throw new JobFailException("잘못된 비밀번호입니다");
+			}
+		}
+
   }

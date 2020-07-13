@@ -14,12 +14,25 @@ public class StoreDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
+	//매장이 존재하는지 안하는지 확인
+	public boolean existsSnum(String mUsername) {
+		return tpl.selectOne("storeMapper.existsSnum",mUsername);
+	}
+	
+	
 	public Store findBysNum(int sNum) {
 		return tpl.selectOne("storeMapper.findBysNum",sNum);
 	}
 	
-	public List<Store> findAll() {
-		return tpl.selectList("storeMapper.findAll");
+	//findBymUsername으로 찾아야해 
+	public Store findBymUsername(String mUsername) {
+		return tpl.selectOne("storeMapper.findBymUsername", mUsername);
+	}
+	
+	
+	//사업자아이디로 리스트 출력하기
+	public List<Store> findAllBymUsername(String mUsername){
+		return tpl.selectList("storeMapper.findAllBymUsername",mUsername);
 	}
 	
 	public int insert(Store store) {

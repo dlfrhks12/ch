@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,10 +29,10 @@ public class ManagerController {
 	
 	//메뉴관리 리스트로 이동
 	@GetMapping("/manager/menu_list")
-	public ModelAndView menuList(String mUsername) {
+	public ModelAndView menuList(Principal principal) {
 		return new ModelAndView("main").addObject("viewName", "manager/menulist.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("menuList",service.menuList(mUsername));
+				.addObject("menuList",service.menuList(principal.getName()));
 			
 	}
 	
@@ -54,7 +55,8 @@ public class ManagerController {
 	
 	//메뉴쓰기
 	@PostMapping("/manager/menu_write")
-	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
+	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin, Principal principal) throws IllegalStateException, IOException {
+		dto.setMUsername(principal.getName());
 		service.write(dto, sajin);
 		return "redirect:/manager/menu_list";
 	}
@@ -77,18 +79,26 @@ public class ManagerController {
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//내 정보 읽기
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/manager/information")
 	public ModelAndView managerInfoRead(String mUsername) {
-		
-		System.out.println("+++++++++++++");
-		System.out.println(service.read(mUsername));
-		
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
 				.addObject("managerInfo",service.read(mUsername));
-		
-	}}
+	}
 	
+	
+	/*
+	 * //사업자 탈퇴
+	 * 
+	 * @GetMapping("/manager/out") public ModelAndView managerResign(String
+	 * mUsername) { return new
+	 * ModelAndView("main").addObject("viewName","manager/information.jsp")
+	 * .addObject("viewHeader", "include/noheader.jsp")
+	 * .addObject("managerResign",service.resign(mUsername)); }
+	 */
+	 
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

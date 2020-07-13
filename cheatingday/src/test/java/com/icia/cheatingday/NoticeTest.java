@@ -14,6 +14,8 @@ import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
 
 import com.icia.cheatingday.admin.dao.*;
+import com.icia.cheatingday.admin.service.mvc.*;
+import com.icia.cheatingday.admin.service.rest.*;
 import com.icia.cheatingday.center.dao.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.common.dto.*;
@@ -38,6 +40,10 @@ public class NoticeTest {
 	private NoticeRestService nrs;
 	@Inject
 	private AdminDao adao;
+	@Inject
+	private AdminService as;
+	@Inject
+	private AdminRestService ars;
 	
 	
 	//@Test
@@ -103,12 +109,6 @@ public class NoticeTest {
 	public void deT() {
 		ndao.delete(1);
 	}
-	//@Test
-	public void inartw() {
-		QnA qna = QnA.builder().qTitle("aehhhaaa").qContent("ssweess").qWriteTime(LocalDateTime.now()).mNum("121121221").qCano(1).build();
-		qdao.insert(qna);
-		System.out.println(qna);
-	}
 	
 	//@Test
 	public void finq() {
@@ -134,12 +134,34 @@ public class NoticeTest {
 	public void ehge() {
 		System.out.println(adao.findById("admin1234"));
 	}
-	@Test
+	//@Test
 	public void eghe() {
-		System.out.println(adao.findAllUser());
 	}
 	//@Test
 	public void fcbf() {
 		//adao.blockAll("usy14731");
+	}
+	@Test
+	public void sgsndfnvc() {
+		adao.findAllByEnabled();
+	}
+	//@Test
+	public void asdgahrjhtr() {
+		System.out.println(as.mlist());
+	}
+	//@Test
+	public void safasgcv() {
+		System.out.println(adao.enabledM(1231231231));
+		System.out.println(adao.enabledM(1231231231));
+		System.out.println(adao.enabledM(1231231231));
+		System.out.println(adao.enabledM(1231231231));
+	}
+	@Test
+	public void asfbnhg() {
+		System.out.print(ars.enabledM(1231231231));
+		System.out.print(ars.enabledM(1231231231));
+		System.out.print(ars.enabledM(1231231231));
+		System.out.print(ars.enabledM(1231231231));
+		System.out.print(ars.enabledM(1231231231));
 	}
 }

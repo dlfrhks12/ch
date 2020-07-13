@@ -13,6 +13,9 @@ system 폴더 추가 (msg.jsp추가)
 pwdEncoder를 위한 서큐리티 추가및 수정
 시큐리티설정
 중복확인 수정
+security-context 로그인 핸들러 설정
+(loginsuccessHandler)
+(loginFailureHandler)
 ================ 메인 commit ================
 - 2020.06.25
 	MainController 생성
@@ -38,13 +41,25 @@ pwdEncoder를 위한 서큐리티 추가및 수정
 	join.jsp 생성 (일반/사업자 회원가입 선택창)
 	MainRestControllerAdvice 생성
 - 2020.07.03
-	* 일반 회원가입 완성
-	* 사업자 회원가입 완성
-	* 로그인/로그아웃 완성
+	* 일반 회원가입 완료
+	* 사업자 회원가입 완료
+	* 로그인/로그아웃 완료
 	LoginSuccessHandler 생성
 	LoginFailureHandler 생성
-	
 - 2020.07.06
+	* 일반/사업자 아이디찾기 완료
+	userjoin.jsp 주소 api 추가
+	userfindid.jsp 생성
+	managerfindid.jsp 생성
+	usefindpwd.jsp 생성
+- 2020.07.07
+	* 비밀번호 찾기 완료
+- 2020.07.08
+	* 사업자 회원가입 오류 수정
+	LoginSuccessHandler
+- 2020.07.10
+	* 일반/사업자 비밀번호찾기 완료!!!!!!!!!!!!!!!!! 오류 드디ㅓㅇ 다고침!!!!
+	changepwd.jsp 생성
 	
 ================ 회원 commit =================
 2020.07.03
@@ -87,7 +102,6 @@ entity작성
 ================ 사업자 commit ================
 06.25.9:54 menu entity/ menu dao 생성
 10:37 mybatis-config.xml : menuentity 생성
-<<<<<<< HEAD
 11:42 menuMapper.xml 작성
 3:50 menudao 생성 menumapper 생성 . 
 4:05 menuDaoTest 생성

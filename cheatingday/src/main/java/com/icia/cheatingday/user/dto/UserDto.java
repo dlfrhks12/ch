@@ -55,6 +55,7 @@ public class UserDto {
 		private String uIrum;
 		private String uPassword;
 		private String newUPassword;
+		private String uAddress;
 		private String uTel;
 		@Email(message="잘못된 이메일 형식입니다")
 		private String uEmail;

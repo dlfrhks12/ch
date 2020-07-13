@@ -1,8 +1,6 @@
 package com.icia.cheatingday.manager.dao;
 
-import org.apache.ibatis.annotations.Select;
-
-import com.icia.cheatingday.manager.entity.FoodCategory;
+import org.apache.ibatis.annotations.*;
 
 public interface FoodCategoryDao {
 

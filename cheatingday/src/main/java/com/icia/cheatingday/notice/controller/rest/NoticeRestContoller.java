@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 
 import com.icia.cheatingday.notice.entity.*;
 import com.icia.cheatingday.notice.service.rest.*;
@@ -26,5 +27,9 @@ public class NoticeRestContoller {
 	public ResponseEntity<?> Noticedelete(Integer nNo, Principal principal){
 		service.deleteNotice(nNo, principal.getName());
 		return ResponseEntity.ok("/cheatingday/notice/list");
+	}
+	@PostMapping("/notice/ckupload")
+	public ResponseEntity<?> ckUpload(MultipartFile upload){
+		return ResponseEntity.ok(service.saveCkImage(upload));	
 	}
 }

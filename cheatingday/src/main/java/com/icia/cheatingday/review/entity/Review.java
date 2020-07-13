@@ -1,4 +1,4 @@
-package com.icia.cheatingday.user.entity;
+package com.icia.cheatingday.review.entity;
 
 import java.time.*;
 
@@ -13,12 +13,11 @@ import lombok.experimental.*;
 public class Review {
 	private int rNo; 
 	private String rContent; 
-	private String rStarPoint;
+	private int rStarPoint;
 	private LocalDateTime rWriteTime;
 	private int oNo;
 	private String rTitle;
 	private int rReport;
 	private String uUsername;
 	private int sNum;
-	private int rcNo;
 }

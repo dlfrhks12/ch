@@ -1,4 +1,4 @@
-package com.icia.cheatingday.review;
+package com.icia.cheatingday.review.entity;
 
 import java.time.*;
 

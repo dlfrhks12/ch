@@ -3,18 +3,18 @@
 <mapper namespace="managerMapper">
 
 	<!-- 사업자 등록번호 중복 확인 -->
-	<select id="existsByManagerNumber" resultType="boolean">
+	<select id="existsByManagerNumber" resultType="Boolean">
 		select count(m_num) from manager where m_num=#{mNum} and rownum=1
 	</select>
 	
 	<!-- 아이디 중복 확인 -->
 	<select id="existsById" resultType="boolean">
-		select count(*) from(select u_username from (select u_username from users union SELECT m_username from manager union select a_username from admin)) where u_username=#{uUsername} and rownum=1
+		select count(*) from(select m_username from (select m_username from manager union select u_username from users union select a_username from admin)) where m_username=#{mUsername} and rownum=1
 	</select>
 	
 	<!-- 이메일 중복 확인 -->
 	<select id="existsByEmail" resultType="boolean">
-		select count(*) from(select u_email from (SELECT u_email from users union select m_email from manager)) where u_email=#{uEmail} and rownum=1
+		select count(*) from(select m_email from (select m_email from manager union select u_email from users)) where m_email=#{mEmail} and rownum=1
 	</select>
 	
 	<!-- 회원가입 -->
@@ -23,7 +23,7 @@
 		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 1)
 	</insert>
 	
-	<!-- 사업자등록번호로 조회로 하나 읽어오기 -->
+	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
 		m_irum mIrum, s_name sName, m_enabled mEnabled from manager where m_username=#{mUsername} and rownum=1
@@ -56,7 +56,12 @@
 	
 	<!-- 사업자등록번호로 사업자아이디 읽어오기  -->
 		<select id="findMusernameByMnum" resultType="string">
-			 select m_username from manager where mNum=#{mNum} and rownum=1
+			 select m_username from manager where m_num=#{mNum} and rownum=1
+		</select>
+		
+		
+		<select id="findMirumeByMnum" resultType="string">
+			 select m_irum from manager where m_num=#{mNum} and rownum=1
 		</select>
 	
 </mapper>

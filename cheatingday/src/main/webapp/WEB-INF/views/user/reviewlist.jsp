@@ -9,6 +9,68 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${review}
+<div>
+		<table class="table table-hover">
+			<colgroup>
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>글번호</th>
+					<th>아이디</th>
+					<!-- <th>카테고리</th> -->
+					<th>상호명</th>
+					<!-- <th>주문내역</th> -->
+					<th>제목</th>
+					<th>작성일자</th>
+					<th>별점</th>
+				</tr>
+			</thead>
+			<tbody id="list">
+			<c:forEach items="${page.rlist}" var="review">
+				<tr>
+					<td>${review.RNo}</td>
+					<td>${review.UUsername}</td>
+					<%-- <td>${review.카테고리}</td> --%>
+					<td>${review.SName}</td>
+					<td><a href="/cheatingday/buylist/read?sName=${review.RContent}" onclick="openWin()">${review.RContent}</a></td>
+					<%-- <td>${review.주문내역}</td> --%>
+					<td>${review.RWriteTimeStr}</td>
+					<td>${review.RStarPoint}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	<div style="text-align:center;">
+		<ul class="pagination">
+			<c:if test="${page.prev==true}">
+				<li><a href="/cheatingday/reviewlist/list?pageno=${page.startPage-1}">이전</a></li>
+			</c:if>
+			<c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
+				<c:choose>
+					<c:when test="${page.pageno eq i }">
+						<li class="active">
+							<a href="/cheatingday/buylist/list?pageno=${i}">${i}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/cheatingday/buylist/list?pageno=${i}">${i}</a></li>
+					</c:otherwise>
+				</c:choose>
+				
+			</c:forEach>
+			<c:if test="${page.next==true}">
+				<li><a href="/cheatingday/buylist/list?pageno=${page.endPage+1}">다음</a></li>
+			</c:if>
+		</ul>
+	</div>
 </body>
 </html>

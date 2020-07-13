@@ -22,7 +22,7 @@
 	고객센터
 </div>
 
-<div><a href="/cheatingday/manager/information">
+<div><a href="/cheatingday/manager/information?mUsername=${username}">
 	임시 내정보 관리 - 지금하는중</a>
 </div>
 <div><a href="/cheatingday/manager/store_list?mUsername=${username}">

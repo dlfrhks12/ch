@@ -52,7 +52,7 @@ public class ManagerService {
 		System.out.println(storeDao.findBymUsername(mUsername));
 		int sNum = storeDao.findBymUsername(mUsername).getSNum(); 
 		System.out.println(sNum);
-		List<MenuEntity> list = dao.findAllBymUsername(sNum);    //findAllById(sNum);
+		List<MenuEntity> list = dao.findAllBymUsername(sNum);   
 		return list;
 	}
 
@@ -149,5 +149,6 @@ public class ManagerService {
 			= modelMapper.map(manager, ManagerDto.DtoForRead.class);
 			return dto; 
 			}
+
 
 }

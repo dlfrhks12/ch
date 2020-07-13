@@ -10,18 +10,40 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>음식점 리스트</title>
+<script>
+
+//음식점 등록 버튼관리  - 사업자 1명 : 음식점 1개
+function storeButton(){
+
+	if(store.SName!==null){ //상호명이 존재하면
+		//버튼을 숨김
+		$("#write").hide(); 
+	} else { //상호명이 없으면
+		//버튼이 보임
+		$("#write").show(); 
+	}
+
+});
+
+$(function(){
+	
+	storeButton();
+	
+});
+
+
+</script>
+
 </head>
 <body>
 <div>
 		<table class="table table-hover">
 			<colgroup>
-				<col width="20%">
-				<col width="30%">
-				<col width="50%">
+				<col width="40%">
+				<col width="60%">
 			</colgroup>
 			<thead>
 				<tr>
-					<th>음식점 고유번호</th>
 					<th>상호명</th>
 					<th>음식점 주소</th>
 				</tr>
@@ -29,7 +51,6 @@
 			<tbody id="list">
 			 <c:forEach items="${storeList}" var="store">
 				<tr>
-					<td>${store.SNum}</td>
 					<td><a href="/cheatingday/manager/store_read?sNum=${store.SNum}">${store.SName}</a></td>
 					<td>${store.SAddress}</td>
 				</tr>

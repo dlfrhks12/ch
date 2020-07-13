@@ -7,10 +7,10 @@ import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
-import org.springframework.security.access.prepost.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.*;
+
+import com.fasterxml.jackson.core.*;
 import com.icia.cheatingday.center.dto.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.center.service.rest.*;
@@ -20,13 +20,6 @@ public class QnARestController {
 	@Autowired
 	private QnARestService service;
 	
-	
-	@PostMapping("/center/read")
-	public ResponseEntity<?> read(@RequestParam @NotNull Integer qNo, Principal principal){
-		String username = principal!=null? principal.getName():null;
-		QnADto.DtoForRead dto = service.read(qNo, username);
-		return ResponseEntity.ok(dto);
-	}
 	
 	@PatchMapping("/center/update")
 	public ResponseEntity<Void> updateQna(@Valid QnADto.DtoForUpdate dto, BindingResult results) throws BindException {

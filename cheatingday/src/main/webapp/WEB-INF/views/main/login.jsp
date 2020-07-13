@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
-<title>Insert title here</title>
+<title>로그인</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>
@@ -40,28 +40,35 @@
    
    #account {
    font-size: 13px;
-    color: #999999;
+   color: #999999;
    }
    
    #joinbutton {
    font-size: 15px;
    color: red;
-   position: abdolute;
-   top: 407px;
+   }
+   
+   #txt {
+   position: absolute;
+   top: 335px;
+   left: 330px;
    }
 </style>
 <script>
+
+// 로그인 실패 시 alert으로 메세지 출력
 $(function() {
    var msg = "${msg}";
    if(msg!="") {
-      $("#alert").text(msg);
-      $("#msg").show();
+		alert(msg);
    }
-   
+
+// 로그인 버튼 누르면 로그인정보 submit & 로그인처리
    $("#login").on("click", function() {
-	   $("#login_form").submit();
-	   })
-   });
+	  $("#login_form").submit();
+	 })
+})
+
 </script>
 </head>
 <body>
@@ -83,34 +90,33 @@ $(function() {
                
                <span class="txt1 p-b-11">비밀번호</span>
                <div class="wrap-input100 validate-input m-b-12" id="password" data-validate = "Password is required">
-                  <span class="btn-show-pass">
-                     <i class="fa fa-eye"></i>
-                  </span>
+                  <span class="btn-show-pass"></span>
                   <input class="input100" type="password" name="a_password" >
                   <span class="focus-input100"></span>
                   <span class="helper_text" id="password_msg"></span>
                </div>
                <div class="flex-sb-m w-full p-b-48">
-                  <div class="contact100-form-checkbox">
-                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                     <label class="label-checkbox100" for="ckb1">아이디 저장</label>
-                  </div>
-                  <div>
-                     <a href="/cheatingday/find_id" class="txt3">아이디찾기</a>
-                     <a> / </a>
-                     <a href="/cheatingday/find_pwd" class="txt3">비밀번호찾기</a>
-                  </div>
-                  <div id="join">
-                     <a id="account">계정이 없으신가요?&nbsp;&nbsp;</a>
-                     <a href="/cheatingday/join" class="txt3" id="joinbutton">  회원가입하기</a>
-                  </div>
-                  
+               		<div class="contact100-form-checkbox">
+                     	<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                     	<label class="label-checkbox100" for="ckb1">아이디 저장</label>
+                  	</div>
                </div>
                <div class="container-login100-form-btn">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   <button type="button" class="btn btn-danger" id="login">로그인</button>
                </div>
                </form>
+               <div>
+                  <div id="join">
+                     <a id="account">계정이 없으신가요?&nbsp;&nbsp;</a>
+                     <a href="/cheatingday/join" class="txt3" id="joinbutton">  회원가입하기</a>
+                  </div>
+                  <div id="txt">
+                     <a href="/cheatingday/find_id" class="txt3">아이디찾기</a>
+                     <a> / </a>
+                     <a href="/cheatingday/find_pwd" class="txt3">비밀번호찾기</a>
+                  </div>
+               </div>
          </div>
       </div>
    </div>

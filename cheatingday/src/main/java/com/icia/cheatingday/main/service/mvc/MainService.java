@@ -6,6 +6,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.validation.constraints.*;
 
+import org.apache.commons.lang3.*;
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
@@ -58,7 +59,7 @@ public class MainService {
 	userDao.insert(user); 
 	}
   
-  
+ 
 	// [일반] 아이디 찾기 
 	public String findUserUsername(String uIrum, String uEmail) {
 		String uUsername = userDao.findUUsernameByUIrumAndUEmail(uIrum, uEmail);
@@ -67,7 +68,7 @@ public class MainService {
 		return uUsername; 
 	}
   
-  
+	
 	// [일반] '마이페이지' 클릭 시 비밀번호 확인 
 	public void checkUserPwd(String uPassword,String uUsername) { 
 		User user = userDao.findById(uUsername); if(user==null)
@@ -77,7 +78,7 @@ public class MainService {
 				throw new JobFailException("비밀번호가 일치하지 않습니다"); }
   
   
-	// [일반] 비밀번호 찾기 (재설정) 메일보내기 
+	// [일반] 비밀번호 찾기 (임시비밀번호) 메일보내기 
 	public void resetUserPwd(@NotNull String uUsername, @NotNull String uEmail) throws MessagingException { 
 		User user = userDao.findById(uUsername); 
 		if(user==null) 
@@ -85,11 +86,18 @@ public class MainService {
 		if(user.getUEmail().equals(uEmail)==false) 
 			throw new UserNotFoundException();
   
-		String link = "<a href='http://localhost:8081/cheatingday/u_change_pwd?uUsername=" + uUsername + "'>";
-		StringBuffer text = new StringBuffer("<p>Cheating Day 비밀번호 재설정 안내</p>");
-		text.append("<p>아래 링크를 통해 새 비밀번호로 변경해주세요</p>"); 
+		// 랜덤한 임시비밀번호 생성
+		String uNewPassword = RandomStringUtils.randomAlphanumeric(20);
+		// 임시비번으로 비밀번호 변경
+		userDao.update(User.builder().uUsername(uUsername).uPassword(pwdEncoder.encode(uNewPassword)).build());
+		// 로그인하러가기 링크
+		String link = "<a href='http://localhost:8081/cheatingday/login'>";
+		// 이메일 보낼 제목/내용 작성
+		StringBuffer text = new StringBuffer("<p>Cheating Day 임시비밀번호 안내</p>");
+		text.append("<p>임시 비밀번호는 ").append(uNewPassword).append(" 입니다</p>");
+		text.append("<p>보안을 위해 로그인 후 비밀번호를 변경해주세요</p>"); 
 		text.append(link);
-		text.append("클릭하세요</a>");
+		text.append("로그인하러가기</a>");
 		Mail mail = Mail.builder().sender("CheatingDay@icia.com").receiver(uEmail)
 				.title("Cheating Day 비밀번호 재설정 안내").content(text.toString()).build();
 		mailUtil.sendMail(mail); 
@@ -162,5 +170,7 @@ public class MainService {
 		Mail mail = Mail.builder().sender("CheatingDay@icia.com").receiver(mEmail)
 				.title("Cheating Day 비밀번호 재설정 안내").content(text.toString()).build();
 		mailUtil.sendMail(mail); 
-  	} 
+  	}
+
+
   }

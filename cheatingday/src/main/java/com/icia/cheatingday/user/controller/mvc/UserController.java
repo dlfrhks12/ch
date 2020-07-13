@@ -30,28 +30,28 @@ public class UserController {
 	
 	// 포인트 리스트
 	@GetMapping("/user/point")
-	public ModelAndView pointList(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
+	public ModelAndView pointList(@RequestParam(defaultValue = "1") int pageno, Principal principal) {
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/user_header.jsp")
 				.addObject("viewName", "user/point.jsp")
-				.addObject("point", service.list(pageno));
+				.addObject("page", service.pointList(pageno, principal.getName()));
 	}
 	// 리뷰 리스트
-	/*@GetMapping("/user/review")
-	public ModelAndView reviewList(@RequestParam(defaultValue = "1")int pageno ) {
+	@GetMapping("/user/reviewlist")
+	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, Principal principal ) {
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/user_header.jsp")
-				.addObject("viewName", "user/review.jsp")
-				.addObject("review", service.list(pageno));
-	}*/
+				.addObject("viewName", "user/reviewlist.jsp")
+				.addObject("page", service.reviewList(pageno, principal.getName()));
+	}
 	// 구매내역 리스트
-	/*@GetMapping("/user/buylist")
-	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno) {
+	@GetMapping("/user/buylist")
+	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, Principal principal) {
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/user_header.jsp")
 				.addObject("viewName", "user/buylist.jsp")
-				.addObject("buylist", service.list(pageno));
-	}*/
+				.addObject("page", service.buyList(pageno, principal.getName()));
+	}
 	
 	// 내 정보 읽기
 	@PreAuthorize("isAuthenticated()")

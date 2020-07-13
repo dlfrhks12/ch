@@ -12,14 +12,23 @@ select s_num sNum, s_sajin sSajin, s_info sInfo,
 s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername from store where m_username=#{mUsername} and rownum=1
 </select>
 
-<select id="findAll" resultType="store">
+<!-- <select id="findAll" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
 s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
 s_star_point sStarPoint, s_review_cnt sReviewCnt, m_username mUsername from store
-</select>
+</select> -->
 	
+<select id="findAllBymUsername" resultType="store">
+select s_num sNum, s_sajin sSajin, s_info sInfo,
+s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
+s_star_point sStarPoint, s_review_cnt sReviewCnt, m_username mUsername from store where m_username=#{mUsername} 
+</select>
 
 <insert id="insert">
+<selectKey order="BEFORE" resultType="int" keyProperty="sNum">
+select store_seq.nextval from dual
+</selectKey>
+
 insert into store(s_num,s_sajin,s_info,s_name,s_tel,s_address,
 food_no,s_star_point,s_review_cnt,m_username) values(#{sNum},#{sSajin},#{sInfo},#{sName},
 #{sTel},#{sAddress},#{foodNo},0,0,#{mUsername})

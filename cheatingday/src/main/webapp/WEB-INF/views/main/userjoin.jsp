@@ -93,6 +93,7 @@ function checkPassword2() {
 		$("#u_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
 		return false;
 	}
+	$("#u_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
 	return true;
 }
 
@@ -197,9 +198,9 @@ $(function() {
 					<div>
 						<label class="txt p-b-11" for="u_username">아이디</label>
 						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="u_username"
-								name="uUsername"> <span class="focus-input200"></span> <span
-								id="u_username_msg"></span>
+							<input class="input200" type="text" id="u_username" name="uUsername"> 
+							<span class="focus-input200"></span> 
+							<span id="u_username_msg"></span>
 						</div>
 					</div>
 					<div>

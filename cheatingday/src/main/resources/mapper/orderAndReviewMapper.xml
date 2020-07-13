@@ -50,11 +50,6 @@
 		delete from detailorder
 		where d_no = #{dNo}
 	</delete>
-	
-	
-
-	
-	
 </mapper>
 
 

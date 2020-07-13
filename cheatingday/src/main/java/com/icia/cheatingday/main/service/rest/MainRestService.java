@@ -51,7 +51,7 @@ public class MainRestService {
 	}
 	
 	// [사업자] 사업자 등록번호 중복확인 
-	public boolean checkManagerNum(@NotNull @NotNull @NotNull int mNum) {
+	public boolean checkManagerNum(@NotNull long mNum) {
 		if(managerDao.existsByManagerNumber(mNum)==true)
 			throw new ManagernumExistException();
 		return true;

@@ -12,7 +12,6 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Builder
 @Accessors(chain = true)
-
 //o_no NUMBER(10) NOT NULL, /* 주문번호 */
 //o_total NUMBER(10) NOT NULL, /* 총금액 */
 //o_order_time DATE NOT NULL, /* 주문일 */

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.icia.cheatingday.common.dto.Page;
+import com.icia.cheatingday.manager.dao.ReviewCheckDao;
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.review.dao.ReviewDao;
@@ -24,6 +25,24 @@ public class MReviewOrderService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private StoreDao storeDao;
+	@Autowired
+	private ReviewCheckDao reviewCheckDao;
+	
+	//사업자 리뷰 신고--신고는 한번만 할수있게 막아.
+	public int reviewSingoUpdate(int rNo, String username) {
+		Review review = reviewDao.findById(rNo);
+		System.out.println(review);
+		
+		if(reviewCheckDao.alreadyExist(username,rNo)!=null) { //username이 존재한다면
+			int result = review.getRReport();  //결과에 신고를 불러와.
+			return result;
+		}
+			//username이 존재하지 않다면
+		reviewCheckDao.insert(username,rNo);
+			//신고수를 1개 늘려
+		return reviewDao.reviewSingoUpdate(rNo);
+	}
+	
 	
 	//sNum으로 리뷰리스트 페이징
 	public Page list (int pageno, String mUsername) {

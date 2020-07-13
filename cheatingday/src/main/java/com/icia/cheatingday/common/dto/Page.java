@@ -32,11 +32,7 @@ public class Page {
 	List<QnADto.DtoForList> qlist;
 	List<FreeBoardDto.DtoForList> freelist;
 	List<AdminDto.DtoForList> alist;
-<<<<<<< HEAD
 	List<ManagerDto.DtoForList> mList;
-
-=======
 	List<AdminDto.DtoForuserList> aulist;
 	List<AdminDto.DtoForblockList> ablist;
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 }

@@ -7,11 +7,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#topmenu{
+		margin-left: -40px;
+		height: 30px;
+		width: 120%;
+	}
+	#topmenu ul li{
+		list-style: none;
+		color: white;
+		background-color: #2d2d2d;
+		float: left;
+		line-height: 30px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	#topmenu li a{
+		text-decoration: none;
+		color: white;
+		display: block;
+		width: 400px;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	#topmenu li a:hover{
+		color: red;
+		background-color: #4d4d4d;
+	}
+</style>
 </head>
 <body>
-	<div>
+	<div id="topmenu">
 		<ul>
-		<li><a href="/aboard/system/board/list?job=bad_list">신고글 관리</a></li>
 			<li><a href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#"> 회원정보 관리 <span class="caret"></span></a>

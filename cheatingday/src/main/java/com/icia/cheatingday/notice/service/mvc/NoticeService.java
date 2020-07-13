@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.common.dto.Page;
+import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.notice.dao.NoticeDao;
 import com.icia.cheatingday.notice.dto.NoticeDto;
 import com.icia.cheatingday.notice.entity.Notice;
@@ -43,6 +44,8 @@ public class NoticeService {
 	}
 	public NoticeDto.DtoForRead read(Integer nNo, String aUsername) {
 		Notice notice = dao.findById(nNo);
+		if(notice==null)
+			throw new JobFailException("공지를 찾을 수  없습니다");
 		NoticeDto.DtoForRead dto
 			= modelMapper.map(notice, NoticeDto.DtoForRead.class);
 		if(aUsername!=null && aUsername.equals(dto.getAUsername())==false)

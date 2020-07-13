@@ -28,6 +28,7 @@ $(function(){
 </head>
 <body>
 <div id="review">
+	<span style="font-size: x-large; font-weight: bold; color: red;" >신고 리뷰 관리</span>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">

@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import com.icia.cheatingday.admin.dao.*;
-import com.icia.cheatingday.manager.entity.*;
+import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.review.dao.*;
-import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.entity.*;
 
 @Service
@@ -19,6 +18,8 @@ public class AdminRestService {
 
 	public void deleteReport(int rNo) {
 		Review review = rdao.findById(rNo);
+		if(review==null)
+			throw new JobFailException("해당 리뷰를 찾을 수 없습니다");
 		rdao.delete(rNo);
 		
 	}

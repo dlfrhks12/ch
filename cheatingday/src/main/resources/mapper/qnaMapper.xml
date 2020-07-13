@@ -11,7 +11,7 @@
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(qna qna_pk_q_no)*/q_no qNo,q_title qTitle,q_write_time qWriteTime,q_iscomment qIscomment,m_num mNum,q_cano qCano from qna where q_cano=#{qCano}) b
+				(select /*+ index_desc(qna qna_pk_q_no)*/q_no qNo,q_title qTitle,q_write_time qWriteTime,q_iscomment qIscomment,m_num mNum,q_cano qCano from qna where q_cano=#{qCano} order by q_no desc) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>
@@ -20,7 +20,7 @@
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(qna qna_pk_q_no)*/q_no qNo,q_title qTitle,q_write_time qWriteTime,q_iscomment qIscomment,m_num mNum,q_cano qCano from qna) b
+				(select /*+ index_desc(qna qna_pk_q_no)*/q_no qNo,q_title qTitle,q_write_time qWriteTime,q_iscomment qIscomment,m_num mNum,q_cano qCano from qna order by q_no desc) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>

@@ -48,7 +48,7 @@ $(function() {
 </head>
 <body>
 	<div>
-		<h1>${title}</h1>
+		<span style="font-size: x-large; font-weight: bold; color: red;" >${title}</span>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">

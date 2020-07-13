@@ -10,7 +10,7 @@
 </head>
 <body>
 <div>
-		<h1>사업자 가입신청 목록</h1>
+		<span style="font-size: x-large; font-weight: bold; color: red;" >사업자 가입신청 목록</span>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">

@@ -34,13 +34,7 @@ public class QnaTest {
 		private QnACategoryDao qcdao;
 		@Inject
 		private QnARestService qrs;
-		
-		//@Test
-		public void intT() {
-			QnA qna = QnA.builder().qTitle("질뮨이요").qContent("항복").qWriteTime(LocalDateTime.now()).qIscomment(false).mNum("2315615").qCano(1).build();
-			dao.insert(qna);
-			System.out.println(qna);
-		}
+
 		//@Test
 		public void cout() {
 			System.out.println(dao.count(1));

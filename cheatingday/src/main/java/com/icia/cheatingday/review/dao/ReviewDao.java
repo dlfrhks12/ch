@@ -19,7 +19,6 @@ public class ReviewDao {
 		return tpl.update("reviewMapper.reviewSingo",rNo);
 	}
 	
-	
 	//사업자> 음식점 고유번호로 리뷰 리스트 페이징
 	public int countBySnum(Integer sNum) {
 		return tpl.selectOne("reviewMapper.countBySnum",sNum);
@@ -33,7 +32,6 @@ public class ReviewDao {
 		map.put("sNum", sNum);
 		return tpl.selectList("reviewMapper.findAllBysNum",map);
 	}
-	
 	//사업자> 음식점 리뷰 읽기
 	public Review findByRno(int rNo) {
 		return tpl.selectOne("reviewMapper.findByRno",rNo);

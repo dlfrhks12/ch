@@ -20,7 +20,7 @@ import com.icia.cheatingday.freeboard.entity.FreeBoard;
 public class FreeBoardTest {
 	@Inject
 	private FreeBoardDao dao;
-	@Test
+	//@Test
 	public void insertTest() {
 		for(int i=0; i<50; i++) {
 		FreeBoard board = FreeBoard.builder().title("제목").content("alalals").username("양수민").writeTime(LocalDateTime.now()).cateno(2).build();
@@ -51,6 +51,11 @@ public class FreeBoardTest {
 	}
 	//@Test
 	public void countTet() {
-		assertThat(dao.count("양수민"), is(50));
+		assertThat(dao.count(1), is(50));
 	}
+	//@Test
+	public void findAllByCateno() {
+		assertThat(dao.findAllByCategory(1, 10, 1), is(1));
+	}
+
 }

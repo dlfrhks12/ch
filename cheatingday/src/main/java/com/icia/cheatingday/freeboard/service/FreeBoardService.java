@@ -48,40 +48,42 @@ public class FreeBoardService {
 		Boardcate = dao.findAllCate();
 	}
 	
-	public Page list(int pageno, String username) {
-		int countOfBoard = (int) dao.count(username);
+	public Page list(int pageno, String username, Integer cateno) {
+		int countOfBoard = dao.count(cateno);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
-		System.out.println("3333333333333");
-		System.out.println(page);
 		int srn = page.getStartRowNum();
-		System.out.println(srn);
 		int ern = page.getEndRowNum();
-		System.out.println(ern);
-		List<FreeBoard> list = dao.findAll(srn, ern);;
+		List<FreeBoard> list = null;
+		System.out.println("..........................................");
+		System.out.println(cateno);
+		if(cateno!=null)
+			list = dao.findAllByCategory(srn, ern, cateno);
+		else 
+			list = dao.findAll(srn, ern);
+		System.out.println("2222222222222222222222222222222");
 		System.out.println(list);
 		List<FreeBoardDto.DtoForList> dtoList = new ArrayList<FreeBoardDto.DtoForList>();
-		System.out.println(dtoList);
-		for(FreeBoard board1: list) {
-			FreeBoardDto.DtoForList dto = modelMapper.map(board1, FreeBoardDto.DtoForList.class);
-			dto.setWriteTimeStr(board1.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
-			dto.setCategory(categoryDao.findByCateno(board1.getCateno()));
+		for(FreeBoard board: list) {
+			FreeBoardDto.DtoForList dto = modelMapper.map(board, FreeBoardDto.DtoForList.class);
+			dto.setWriteTimeStr(board.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
+			dto.setCategory(categoryDao.findByCateno(board.getCateno()));
 			dtoList.add(dto);
 		}
+		
 		page.setFreelist(dtoList);
-		System.out.println("//////////////////////////////");
-		System.out.println(dtoList);
 		return page;
 		
 	}
 	public int write(FreeBoardDto.DtoForWrite dto) throws IOException {
+		dto.setCategory(categoryDao.findByCateno(dto.getCateno()));
 		FreeBoard board = modelMapper.map(dto, FreeBoard.class);
 		
-		if(dto.getAttachment()!=null)
-			board.setAttachementCnt(dto.getAttachment().size());
+		if(dto.getAttachments()!=null)
+			board.setAttachmentCnt(dto.getAttachments().size());
 		else
-			board.setAttachementCnt(0);
+			board.setAttachmentCnt(0);
 		dao.insert(board);
-		List<MultipartFile> attachment = dto.getAttachment();
+		List<MultipartFile> attachment = dto.getAttachments();
 		
 		if(attachment!=null) {
 			for(MultipartFile mf:attachment) {
@@ -90,12 +92,13 @@ public class FreeBoardService {
 				long time = System.nanoTime();
 				String saveFileName = time+"-"+originalFileName;
 				boolean isImage = mf.getContentType().toLowerCase().startsWith("image/");
-				attachments.setBno(board.getBno()).setImage(isImage).setWriter(board.getUsername()).setFlength((int)mf.getSize()).setOriginalFileName(originalFileName).setSaveFileName(saveFileName);
+				attachments.setBno(board.getBno()).setIsImage(isImage).setWriter(board.getUsername()).setFlength((int)mf.getSize()).setOriginalFileName(originalFileName).setSaveFileName(saveFileName);
 				File file = new File("d:/upload/attachment",saveFileName);
 				FileCopyUtils.copy(mf.getBytes(), file);
 			    attachmentDao.insert(attachments);
 			}
 		}
+		System.out.println(board);
 		return board.getBno();
 	}
 	public FreeBoardDto.DtoForRead read(Integer bno, String username){
@@ -107,10 +110,11 @@ public class FreeBoardService {
 		String str = board.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일"));
 		dto.setWriteTimeStr(str);
 		dto.setCategory(categoryDao.findByCateno(dto.getCateno()));
-		if(board.getAttachementCnt()>0)
-			dto.setAttachment(attachmentDao.findAllByBno(dto.getBno()));
+		if(board.getAttachmentCnt()>0)
+			dto.setAttachments(attachmentDao.findAllByBno(dto.getBno()));
 		if(board.getCommentCnt()>0)
-			dto.setComment(commentDao.findAllByBno(dto.getBno()));
+			dto.setComments(commentDao.findAllByBno(dto.getBno()));
+		System.out.println(dto);
 		return dto;
 		
 		

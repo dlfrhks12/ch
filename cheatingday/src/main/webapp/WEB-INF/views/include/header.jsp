@@ -41,7 +41,7 @@
                         <div class="form-row">
                         <button class="fas fa-street-view fa-2x" id="but"></button>
                             <div class="col-12 col-md-9 mb-2 mb-md-0">
-                                <input type="email" class="form-control form-control-lg" placeholder="건물명, 도로명, 지번으로 검색하세요.">
+                                <input type="email" class="form-control form-control-lg" placeholder="건물명, 도로명, 지번으로 검색하세요." id="">
                             </div>
                             <div class="col-12 col-md-3">
                                 <button type="submit" class="btn btn-block btn-lg btn-danger" id="search">검색</button>

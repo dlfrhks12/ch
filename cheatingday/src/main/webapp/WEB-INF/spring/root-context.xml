@@ -82,8 +82,12 @@
 	<mybatis-spring:scan base-package="com.icia.cheatingday.admin.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.center.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.freeboard.dao"/> 
+<<<<<<< HEAD
+	<mybatis-spring:scan base-package="com.icia.cheatingday.cart"/> 
+=======
 	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/cheatingday.git
 	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	 

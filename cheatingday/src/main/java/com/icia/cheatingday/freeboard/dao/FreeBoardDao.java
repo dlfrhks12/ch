@@ -42,6 +42,8 @@ public class FreeBoardDao {
 		return tpl.selectOne("freeBoardMapper.findById",bno);
 	}
 	public int insert(FreeBoard board) {
+		System.out.println("999999999999999999");
+		System.out.println(board);
 		return tpl.insert("freeBoardMapper.insert",board);
 	}
 	public int update(FreeBoard board) {
@@ -50,8 +52,8 @@ public class FreeBoardDao {
 	public int delete(Integer bno) {
 		return tpl.delete("freeBoardMapper.delete",bno);
 	}
-	public int count(String username) {
-		return tpl.selectOne("freeBoardMapper.count",username);
+	public int count(Integer cateno) {
+		return tpl.selectOne("freeBoardMapper.count",cateno);
 	}
 	public List<Map> findAllCate() {
 		return tpl.selectList("freeBoardMapper.findAllCate");

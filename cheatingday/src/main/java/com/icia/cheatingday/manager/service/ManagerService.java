@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.icia.cheatingday.authority.dao.AuthorityDao;
 import com.icia.cheatingday.exception.JobFailException;
 import com.icia.cheatingday.manager.dao.ManagerDao;
 import com.icia.cheatingday.manager.dao.ManagerStoreApplyInsertDao;
@@ -21,6 +22,7 @@ import com.icia.cheatingday.manager.dto.ManagerDto.DtoForUpdate;
 import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
+import com.icia.cheatingday.manager.exception.sNumNotFoundException;
 
 @Service
 public class ManagerService {
@@ -43,19 +45,29 @@ public class ManagerService {
 	private ManagerDao managerDao;
 	@Autowired
 	private StoreDao storeDao;
+	@Autowired
+	private AuthorityDao authDao;
+	@Autowired
+	private MenuDao menuDao;
 	
 	///////////////////////////메뉴/////////////////////////////////////
 	// 메뉴리스트
 	public List<MenuEntity> menuList(String mUsername) {
 		//음식점에서 m_username으로 s_num을 찾아야해
 		System.out.println("==============");
-		System.out.println(storeDao.findBymUsername(mUsername));
+		System.out.println(storeDao.findBymUsername(mUsername).getSNum());//mUsername이 null이래
+		System.out.println("+++++++++++");
+		//if(mUsername==null)
+		//	throw new sNumNotFoundException("매장 등록 후 이용 가능합니다");
 		int sNum = storeDao.findBymUsername(mUsername).getSNum(); 
 		System.out.println(sNum);
+		//if(sNum==0) //음식점이 등록되지 않아 sNum이 null일때,
+		//	throw new sNumNotFoundException("매장 등록 후 이용 가능합니다");
+		
 		List<MenuEntity> list = dao.findAllBymUsername(sNum);   
 		return list;
 	}
-
+	
 	//메뉴 읽기
 	public MenuEntity menuRead(Integer menuno) {
 		System.out.println("-----------");
@@ -113,6 +125,7 @@ public class ManagerService {
 		return dao.delete(menuno);
 	}
 
+
 	/////////////////////////////////////////입점신청//////////////////////////////////////////////////////////////
 	// 입점신청추가
 	public int write(ManagerDto.DtoForWrite dto) {
@@ -140,8 +153,6 @@ public class ManagerService {
 	}
 
 	
-	
-	
     //내 정보 읽기
 	public ManagerDto.DtoForRead read(String mUsername) { 
 			ManagerEntity manager = managerDao.findById(mUsername); 
@@ -150,5 +161,14 @@ public class ManagerService {
 			return dto; 
 			}
 
+	
+	//사업자 탈퇴
+	public void resign(String mUsername) {
+		if(managerDao.findById(mUsername)==null)
+			throw new JobFailException("사업자 회원 탈퇴에 실패했습니다");
+		managerDao.deleteByMusername(mUsername);
+		authDao.delete(mUsername);
+		
+	}
 
 }

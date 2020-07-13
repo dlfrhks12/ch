@@ -1,12 +1,8 @@
 package com.icia.cheatingday.manager.dao;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
-import com.icia.cheatingday.manager.dto.ManagerDto.DtoForWrite;
-import com.icia.cheatingday.manager.entity.ManagerEntity;
-import com.icia.cheatingday.manager.entity.StoreApplyInsert;
+import com.icia.cheatingday.manager.dto.ManagerDto.*;
 
 public interface ManagerStoreApplyInsertDao {
 

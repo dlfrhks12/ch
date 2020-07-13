@@ -16,7 +16,7 @@
 	<![CDATA[
 	select * from
 		(select rownum as rnum, b.* from
-			(select /*+ index_desc(board board_pk_bno) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where u_username=#{username}) b
+			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where u_username=#{username}) b
 		where rownum<=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>
@@ -25,13 +25,13 @@
 	<![CDATA[
 	select * from
 		(select rownum as rnum, b.* from
-			(select /*+ index_desc(board board_pk_bno) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where b_cateno=#{cateno}) b
+			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt,b_cateno cateno from board where b_cateno=#{cateno}) b
 		where rownum<=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>
 	</select>
 	<select id="findById" resultType="FreeBoard">
-		select b_no bno, b_title title,b_content content,b_write_time writeTime,b_read_cnt readCnt, b_good_cnt goodCnt,
+		select b_no bno, b_title title,b_content content,b_write_time writeTime,b_read_cnt readCnt, b_good_cnt goodCnt,b_attachment_cnt attachmentCnt,
 		b_bad_cnt badCnt,b_cateno cateno, b_comment_cnt commentCnt, u_username username
 		from board
 		where b_no = #{bno} and rownum = 1
@@ -40,8 +40,8 @@
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			select board_seq.nextval from dual
 		</selectKey>
-		insert into board(b_no,b_title,u_username,b_content,b_write_time,b_read_cnt,b_good_cnt,b_bad_cnt,b_cateno,b_comment_cnt)
-		values(#{bno},#{title},#{username},#{content},sysdate,0,0,0,#{cateno},0)
+		insert into board(b_no,b_title,u_username,b_content,b_write_time,b_read_cnt,b_good_cnt,b_bad_cnt,b_cateno,b_comment_cnt,b_attachment_cnt)
+		values(#{bno},#{title},#{username},#{content},sysdate,0,0,0,#{cateno},0,#{attachmentCnt})
 	</insert>
 	<update id="update">
 		update board
@@ -50,8 +50,9 @@
 			<if test="content!=null">b_content=#{content},</if>
 			<if test="readCnt!=null">b_read_cnt=b_read_cnt+1,</if>
 			<if test="commentCnt!=null">b_comment_cnt=b_comment_cnt+1,</if>
-			<if test="goodCnt!=null">b_good_cnt=#{goodCnt},</if>
-			<if test="badCnt!=null">b_bad_cnt=#{badCnt},</if>
+			<if test="goodCnt!=null">b_good_cnt=b_good_cnt+1,</if>
+			<if test="attachmentCnt!=null">b_attachment_cnt=b_attachment_cnt-1,</if>	
+			<if test="badCnt!=null">b_bad_cnt=b_bad_cnt+1,</if>
 		</trim>
 		where b_no=#{bno} and rownum = 1
 	</update>
@@ -61,7 +62,7 @@
 	<select id="count" resultType="int">
 		select count(*) from board 
 		<where>
-			<if test="value!=null">and u_username=#{username}</if>
+			<if test="value!=null">and b_cateno=#{cateno}</if>
 		</where>
 	</select>
 	<select id="findAllCate" resultType="map">

@@ -5,15 +5,18 @@
 	<select id="existsById" resultType="boolean">
 		select count(*) from(select u_username from (select u_username from users union SELECT m_username from manager union select a_username from admin)) where u_username=#{uUsername} and rownum=1
 	</select>
+	
 	<!-- 이메일 중복확인 -->
 	<select id="existsByUEmail" resultType="boolean">
 		select count(*) from(select u_email from (SELECT u_email from users union select m_email from manager)) where u_email=#{uEmail} and rownum=1
 	</select>
+	
 	<!-- 정보 입력 -->
 	<insert id="insert">
-		insert into users(u_username, u_irum, u_email, u_tel, u_address, u_password, u_enabled, u_joindate, u_point, u_login_fail_cnt)
-		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},1,sysdate,0,0)
+		insert into users(u_username, u_irum, u_email, u_tel, u_address, u_password, u_enabled, u_joindate, u_point, u_login_fail_cnt, status)
+		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},1,sysdate,0,0,1)
 	</insert>
+	
 	<!-- 정보 변경 -->
 	<update id="update">
 		update users
@@ -29,19 +32,32 @@
 		</trim>
 		where u_username=#{uUsername} and rownum=1
 	</update>
+
+	<!-- 
+	
+	<update id="update">
+		update users u, manager m set from(select u_email from (select u_email from users union select m_email from manager)) where u_email=#{uEmail} and rownum=1
+	</update>
+	
+	 -->	
+
+	
 	<!-- 아이디로 비밀번호 찾기 -->	
 	<select id="findPasswordById" resultType="string">
 		select u_password from users where u_username=#{uUsername} and rownum=1
 	</select>
+	
 	<!-- 아이디로 정보 불러오기 -->
 	<select id="findById" resultType="user">
 		select u_username uUsername, u_irum uIrum, u_tel uTel, u_email UEmail, u_address uAddress, u_password uPassword, u_enabled uEnabled,
-		u_joinDate uJoinDate, u_point uPoint, u_login_fail_cnt uLoginFailCnt from users where u_username=#{uUsername} and rownum=1
+		u_joinDate uJoinDate, u_point uPoint, u_login_fail_cnt uLoginFailCnt, status from users where u_username=#{uUsername} and rownum=1
 	</select>
+	
 	<!-- 이름, 이메일로 아이디 찾기 -->
 	<select id="findUUsernameByUIrumAndUEmail" resultType="string">
 		select u_username from users where u_irum=#{uIrum} and u_email=#{uEmail} and rownum=1
 	</select>
+	
 	<!-- 회원 탈퇴 -->
 	<delete id="delete">
 		delete from users where u_username=#{uUsername} and rownum=1

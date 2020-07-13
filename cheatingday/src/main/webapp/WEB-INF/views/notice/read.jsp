@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/aboard/ckeditor/ckeditor.js"></script>
+<script src="/cheatingday/ckeditor/ckeditor.js"></script>
 <sec:authorize access="isAuthenticated()">
 	<script>
 		var isLogin = true;
@@ -35,7 +35,7 @@ $(function() {
 			height:'500px',
 			filebrowserUploadUrl:"http://localhost:8081/cheatingday/notice/ckupload"
 		})
-	$("#content").html(notice.content);
+	$("#content").html(notice.content).css("height","600px").css("overflow","scroll");;
 	// 초기화 - 버튼영역 감추기
 	$("#btn_area").hide();
 	if(isLogin===true && notice.ausername===loginId) {

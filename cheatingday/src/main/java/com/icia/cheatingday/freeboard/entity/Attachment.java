@@ -19,5 +19,5 @@ public class Attachment {
 	private String saveFileName;
 	private Integer flength;
 	private Integer bno;
-	private boolean isImage;
+	private Boolean isImage;
 }

@@ -12,6 +12,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>음식점 정보</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script>
 //다음 지도API
 function openDaumZipAddress() {
@@ -70,13 +72,10 @@ $("#SSajin").on("change",loadImage);
  			method: "post",
  			data: params
  		}).done(()=> {location.href="/cheatingday/manager/store_list"})
- 		.fail(()=>{console.log("메뉴삭제를 실패했습니다.")})
+ 		.fail(()=>{console.log("음식점 삭제를 실패했습니다.")})
  	});
  
- //4.메뉴전체삭제
- 	$("#menu_delete").on("click"),function(){
-	 	
- }
+
  
  //5.주소API ,로 잘라 보이기
  	var beforejusoStr = "${storeRead.SAddress}";
@@ -153,7 +152,6 @@ $("#SSajin").on("change",loadImage);
 	</div>
 	
 	<div>
-	**주소도 원래 변경이 되야하는데 지금 변경이 안됨
 	주소: <!--  <input type="text" name="SAddress" id="SAddress" value="${storeRead.SAddress}">-->
 		 <input name="sAddress" id="zonecode" type="text"  style="width: 50px;" readonly />&nbsp;
 		 <button type="button" class="btn btn-info" onClick="openDaumZipAddress();" >주소찾기</button> <br /> 
@@ -168,7 +166,6 @@ $("#SSajin").on("change",loadImage);
 	</div> 
 	
 	<button type="button" class="btn btn-success" id="update">변경하기</button>
-	<button type="button" class="btn btn-success" id="menu_delete">메뉴 전체 삭제하기</button>
 	<button type="button" class="btn btn-success" id="delete">매장 삭제하기</button>  
 </body>
 </body>

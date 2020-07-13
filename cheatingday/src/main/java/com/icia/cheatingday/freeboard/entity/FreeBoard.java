@@ -23,7 +23,7 @@ public class FreeBoard {
 	private Integer badCnt;
 	private Integer cateno;
 	private Integer commentCnt;
-	private Integer attachementCnt;
+	private Integer attachmentCnt;
 	private Integer deleteCommentCnt;
 	private Integer fno;
 	private Integer cno;

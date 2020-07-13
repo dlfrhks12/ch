@@ -41,14 +41,15 @@ public class FreeBoardDto {
 		private Integer bno;
 		private String username;
 		private String title;
+		private String content;
 		private String category;
 		private Integer cateno;
 		private String writeTimeStr;
 		private Integer readCnt;
 		private Integer goodCnt;
 		private Integer badCnt;
-		private List<Comment> comment;
-		private List<Attachment> attachment;
+		private List<Comment> comments;
+		private List<Attachment> attachments;
 		
 	}
 	@Data
@@ -61,7 +62,9 @@ public class FreeBoardDto {
 		private String title;
 		private String content;
 		private String username;
-		private List<MultipartFile> attachment;
+		private Integer cateno;
+		private String category;
+		private List<MultipartFile> attachments;
 	}
 	
 	@Data

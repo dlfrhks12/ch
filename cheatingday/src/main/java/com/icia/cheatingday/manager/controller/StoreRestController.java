@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.Store;
+import com.icia.cheatingday.manager.service.ManagerService;
 import com.icia.cheatingday.manager.service.StoreService;
 
 @RestController
 public class StoreRestController {
 	  @Autowired 
 	  private StoreService service;
+	
 	  
 	  //가게수정
 	  @PreAuthorize("isAuthenticated()")
@@ -32,5 +33,7 @@ public class StoreRestController {
 	  	public ResponseEntity<?>storeDelete(int sNum){ 
 		  return ResponseEntity.ok(service.storeDelete(sNum)); 
 		 }
+	  
+		
 	 
 }

@@ -33,12 +33,13 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		
-		String username = request.getParameter("a_username");
+		String uUsername = request.getParameter("u_username");
+		String mUsername = request.getParameter("m_username");
 		HttpSession session = request.getSession();
 		
 		if(exception instanceof InternalAuthenticationServiceException) {
-			User user = userDao.findById(username);
-			ManagerEntity manager = managerDao.findById(username);
+			User user = userDao.findById(uUsername);
+			ManagerEntity manager = managerDao.findById(mUsername);
 			// 없는 아이디를 쳤다
 			if(user==null || manager==null) 
 				session.setAttribute("msg", "아이디를 찾을 수 없습니다");

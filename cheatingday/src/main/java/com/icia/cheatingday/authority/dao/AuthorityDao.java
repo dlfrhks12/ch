@@ -8,4 +8,5 @@ public interface AuthorityDao {
 	
 	@Delete("delete from authority where username=#{username} and rownum=1")
 	void delete(String username);
+	
 }

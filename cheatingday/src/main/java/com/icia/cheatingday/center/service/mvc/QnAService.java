@@ -21,8 +21,6 @@ import lombok.*;
 @Service
 public class QnAService {
 	@Autowired
-	private QnACommentDao qndao;
-	@Autowired
 	private QnADao qdao;
 	@Autowired
 	private QnACategoryDao qcdao;

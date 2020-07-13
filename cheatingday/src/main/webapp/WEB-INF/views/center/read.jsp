@@ -178,7 +178,7 @@ $(function() {
 			_method: "delete"
 		}
 		$.ajax({
-			url: "/aboard/board/delete",
+			url: "/cheatingday/center/delete",
 			method: "post",
 			data: params
 		})

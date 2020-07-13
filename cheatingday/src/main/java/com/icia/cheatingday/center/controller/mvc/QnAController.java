@@ -4,12 +4,11 @@ import java.security.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.lang.*;
+import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.databind.*;
 import com.icia.cheatingday.center.dto.*;
 import com.icia.cheatingday.center.service.mvc.*;
 
@@ -17,20 +16,23 @@ import com.icia.cheatingday.center.service.mvc.*;
 public class QnAController {
 	@Autowired
 	private QnAService service;
-
+	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/center/read")
 	public ModelAndView read(@NonNull Integer qNo) {
 		return new ModelAndView("main").addObject("viewName","center/read.jsp").addObject("viewHeader", "include/header.jsp");
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/center/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, Integer qCano ) {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "center/list.jsp").addObject("page", service.list(pageno, qCano));
 	}
+	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@GetMapping("/center/write")
 	public ModelAndView read() {
 		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "center/write.jsp").addObject("category", service.getQcano());
 	}
+	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@PostMapping("/center/write")
 	public String write(QnADto.DtoForWrite dto, Principal principal) {
 		return "redirect:/center/read?qNo=" +service.write(dto,principal.getName());

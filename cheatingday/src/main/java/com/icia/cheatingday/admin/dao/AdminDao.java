@@ -14,11 +14,16 @@ import com.icia.cheatingday.user.entity.*;
 public class AdminDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
-	
+	public int count() {
+		return tpl.selectOne("adminMapper.count");
+	}
+	public int countblock() {
+		return tpl.selectOne("adminMapper.countblock");
+	}
 	public String findById(String aUsername) {
 		return tpl.selectOne("adminMapper.findById", aUsername);
 	}
-	public List<User> findAllUser(){
+	public List<User> findAllUser(){;
 		return tpl.selectList("adminMapper.findAllUser");
 	}
 	public void blockAll(List<String> uUsernames) {
@@ -33,8 +38,8 @@ public class AdminDao {
 	public List<ManagerEntity> findAllByEnabled(){
 		return tpl.selectList("adminMapper.findAllByEnabled");
 	}
-	public int enabledM(ManagerEntity manager) {
-		return tpl.update("adminMapper.enabledM", manager);
+	public int enabledM(int mNum) {
+		return tpl.update("adminMapper.enabledM", mNum);
 	}
 	public int insert(Admin admin) {
 		return tpl.insert("adminMapper.insert", admin);

@@ -20,15 +20,13 @@
 	<!-- 회원가입 -->
 	<insert id="insert">
 		insert into manager(m_num, m_password, m_username, m_email, m_tel, m_account, m_irum, s_name, m_enabled, status) 
-		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 1, 1)
+		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 1, 0)
 	</insert>
-	
 	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
 		m_irum mIrum, s_name sName, m_enabled mEnabled, status from manager where m_username=#{m_username} and rownum=1
 	</select>
-	
 	<!-- 이름과 이메일로 아이디 찾기 -->
 	<select id="findUsernameByIrumAndEmail" resultType="string">
 		select m_username from manager where m_irum=#{mIrum} and m_email=#{mEmail} and rownum=1
@@ -52,6 +50,11 @@
 	<!-- 탈퇴 -->
 	<delete id="delete">
 		delete from manager where m_num=#{mNum} and rownum=1
+	</delete>
+	
+	<!-- 탈퇴 mUsername으로 -->
+	<delete id="deleteByMusername">
+		delete from manager where m_username=#{mUsername} and rownum=1
 	</delete>
 	
 	<!-- 사업자등록번호로 사업자아이디 읽어오기  -->

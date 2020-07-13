@@ -1,7 +1,9 @@
 package com.icia.cheatingday.freeboard.service.rest;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,12 +15,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icia.cheatingday.freeboard.dao.AttachmentDao;
 import com.icia.cheatingday.freeboard.dao.CommentDao;
 import com.icia.cheatingday.freeboard.dao.FreeBoardDao;
+import com.icia.cheatingday.freeboard.dao.UserBoardDao;
 import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
 import com.icia.cheatingday.freeboard.entity.Attachment;
 import com.icia.cheatingday.freeboard.entity.Comment;
@@ -40,6 +44,8 @@ public class FreeBoardRestService {
 	private ObjectMapper objectMapper;
 	@Autowired
 	private CommentDao commentDao;
+	@Autowired
+	private UserBoardDao userBoardDao;
 	@Value("http://localhost8081/ckimage/")
 	private String ckUrl;
 	@Value("${imageFolder}")
@@ -50,14 +56,14 @@ public class FreeBoardRestService {
 	Pattern ckImagePattern = Pattern.compile("src=\".+\"\\s");
 	
 	
-	public Attachment readAttachment(Integer bno) {
-		return attachmentDao.findById(bno);
+	public Attachment readAttachment(Integer fno) {
+		return attachmentDao.findById(fno);
 	}
 	
 	public List<Comment> writeComment(Comment comment){
 		comment.setWriteTime(LocalDateTime.now());
-		String commentStr = comment.getContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
-		comment.setContent(commentStr);
+		String commentContentStr = comment.getContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
+		comment.setContent(commentContentStr);
 		commentDao.insert(comment);
 		boardDao.update(FreeBoard.builder().bno(comment.getBno()).commentCnt(1).build());
 		return commentDao.findAllByBno(comment.getBno());
@@ -114,40 +120,59 @@ public class FreeBoardRestService {
 				attachmentDao.deleteById(fno);
 			}
 		}
-		boardDao.update(FreeBoard.builder().bno(bno).attachementCnt(1).build());
+		boardDao.update(FreeBoard.builder().bno(bno).attachmentCnt(1).build());
 		return attachmentDao.findAllByBno(bno);
 	}
 	
-	  public String saveCkImage(MultipartFile upload) {
-	         Map<String, String> map = new HashMap<String, String>();
-	        //업로드가 되면
-	         if (upload!= null) {
-	        	 //image/로 시작되면
-	        	 
-	            if (upload.getContentType().toLowerCase().startsWith("image/")) {
-	               String imageName = UUID.randomUUID().toString() + ".jpg";
-	               try {
-	                  File file = new File("d:/upload/ckimage", imageName);
-	                  // FileCopyUtils.copy(upload.getBytes(), file);
-	                  upload.transferTo(file);
-	                  map.put("uploaded", "1");
-	                  map.put("fileName", imageName);
-	                  map.put("url", ckUrl + imageName);
-	                  return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
-	               } catch (Exception e) {
-	                  e.printStackTrace();
-	               }
-	            }
-	         }
-	         return null;
-	      }
+	public String saveCkImage(MultipartFile upload) throws IOException {
+		Map<String,String> map = new HashMap<String, String>();
+		if(upload!=null) {
+			if(upload.getContentType().toLowerCase().startsWith("image/")){
+				String imageName = UUID.randomUUID().toString() + ".jpg";
+				File file = new File(imageFolder, imageName);
+				FileCopyUtils.copy(upload.getBytes(), file);
+				String fileUrl = imagePath + imageName;
+				// json 데이터로 등록
+				// {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
+				// 이런 형태로 리턴이 나가야함.
+				map.put("uploaded", "1");
+				map.put("fileName", imageName);
+				map.put("url", fileUrl);
+                return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
+			}
+		}
+		return null;
+	}
 	  public int updateBoard(FreeBoardDto.DtoForUpdate dto) {
 		  FreeBoard board = boardDao.findById(dto.getBno());
 		  //board가 null일때랑 글쓴이가 다를 때 exception 보낼거 만들어줘야대
 		  board = modelMapper.map(dto, FreeBoard.class);
 		  return boardDao.update(board);
 	  }
-	  
+	  public int goodOrBad(Integer bno, boolean isGood, String username) {
+		  FreeBoard board = boardDao.findById(bno);
+		  System.out.println(board);
+		  System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+		  System.out.println(userBoardDao.alreadyExist(username, bno)==null);
+		  System.out.println(username);
+		  System.out.println(bno);
+		  if(userBoardDao.alreadyExist(username, bno)!=null) {
+			  System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			  System.out.println(isGood);
+			  int result = isGood==true? board.getGoodCnt() : board.getBadCnt();
+			  System.out.println(result);
+			  return result;
+		  }
+		  userBoardDao.insert(username, bno);
+		  if(isGood==true) {
+			  boardDao.update(FreeBoard.builder().bno(bno).goodCnt(board.getGoodCnt()+1).build());
+			  return board.getGoodCnt()+1;
+		  }else {
+			  boardDao.update(FreeBoard.builder().bno(bno).badCnt(board.getBadCnt()+1).build());
+			  return board.getBadCnt()+1;
+			  
+		  }
+	  }
 	  
 
 }

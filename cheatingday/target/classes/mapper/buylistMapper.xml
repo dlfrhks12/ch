@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buylistMapper">
+	<select id="count" resultType="int">
+		select count(*) from orders
+	</select>
+	<!-- 아이디로 주문내역불러오기-->
+	<select id="findById" resultType="buylist">
+		select o_no oNo, o_total oTotal, o_order_time oOrderTime, u_username uUsername,
+		o_check oCheck, s_num sNum from orders where u_username = #{uUsername} and rownum =1
+	</select>
+	<select id="findONoById" resultType="buylist">
+		select o_no oNo, o_total oTotal, o_order_time oOrderTime, u_username uUsername,
+		o_check oCheck, s_num sNum from orders where o_no = #{oNo} and rownum =1
+	</select>
+	<select id="findAll" resultType="buylist">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, o.* from
+			(select /*+ index_desc(orders orders_pk_u_username)*/ o_no oNo, o_total oTotal, o_order_time oOrderTime, u_username uUsername,o_check oCheck, s_num sNum from orders) o
+		where rownum <=#{endRowNum})
+	where rnum>=#{startRowNum}	
+	]]>
+	</select>
+	
+</mapper>

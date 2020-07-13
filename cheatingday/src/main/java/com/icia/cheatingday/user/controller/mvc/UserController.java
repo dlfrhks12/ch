@@ -29,10 +29,29 @@ public class UserController {
 	private UserService service;
 	
 	// 포인트 리스트
-			@GetMapping("/point/list")
-			public ModelAndView list(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
-				return new ModelAndView("main").addObject("viewName", "point/list.jsp").addObject("page", service.list(pageno));
-			}
+	@GetMapping("/user/point")
+	public ModelAndView pointList(@RequestParam(defaultValue = "1") int pageno, Principal principal) {
+		return new ModelAndView("main")
+				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewName", "user/point.jsp")
+				.addObject("page", service.pointList(pageno, principal.getName()));
+	}
+	// 리뷰 리스트
+	@GetMapping("/user/reviewlist")
+	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, Principal principal ) {
+		return new ModelAndView("main")
+				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewName", "user/reviewlist.jsp")
+				.addObject("page", service.reviewList(pageno, principal.getName()));
+	}
+	// 구매내역 리스트
+	@GetMapping("/user/buylist")
+	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, Principal principal) {
+		return new ModelAndView("main")
+				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewName", "user/buylist.jsp")
+				.addObject("page", service.buyList(pageno, principal.getName()));
+	}
 	
 	// 내 정보 읽기
 	@PreAuthorize("isAuthenticated()")
@@ -42,7 +61,7 @@ public class UserController {
 			return new ModelAndView("redirect:/user/check_pwd");
 		else 
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/noheader.jsp")
+			.addObject("viewHeader", "include/user_header.jsp")
 			.addObject("viewName", "user/mypage.jsp")
 			.addObject("user",service.myPage(principal.getName()));
 	}
@@ -52,7 +71,7 @@ public class UserController {
 	@GetMapping("/user/check_pwd")
 	public ModelAndView checkPwd() {
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/noheader.jsp")
+			.addObject("viewHeader", "include/user_header.jsp")
 			.addObject("viewName","user/check_pwd.jsp");
 			
 	}
@@ -70,7 +89,7 @@ public class UserController {
 	@GetMapping("/user/change_pwd")
 	public ModelAndView changePwd() {
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/noheader.jsp")
+			.addObject("viewHeader", "include/user_header.jsp")
 			.addObject("viewName","user/change_pwd.jsp");
 	}
 	// 비밀번호 변경 post

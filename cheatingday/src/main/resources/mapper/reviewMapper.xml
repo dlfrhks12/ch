@@ -1,17 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewMapper">
+	
+	<!-- 리뷰 신고 (일반회원, 사업자회원) -->
+	<update id="reviewSingo">
+		update review set r_report=r_report+1 where r_no=#{rNo}
+	</update>
+	<!-- 사업자 -->
+	<!-- 음식점 고유번호로 검색  -->
+	<select id="countBySnum" resultType="int">
+		select count(*) from review where s_num=#{sNum}
+	</select>
+	
+	<!-- 음식점 고유번호로 리뷰 페이징 하기   -->
+	<select id="findAllBysNum" resultType="review">
+	<![CDATA[select * from
+		(select rownum as rnum, b.* from
+			(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_star_point rStarPoint,r_write_time rWriteTime,r_title rTitle,u_username uUsername,s_num sNum from review where s_num=#{sNum}) b
+		where rownum <=#{endRowNum})
+	where rnum>=#{startRowNum}
+	]]>
+	</select>
+
+	<!-- 리뷰 읽기  해야해-->
+	<select id="findByRno" resultType="review">
+		select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, o_no oNo, r_title rTitle, r_report rReport, u_username uUsername, s_num sNum 
+		from review where r_no=#{rNo} and rownum=1
+	</select>
 	<select id="count" resultType="int">
 		select count(*) from review
 		<where>
 			<if test="value!=null">r_report=#{value}</if>
+			<if test="value!=null">u_username=#{UUsername}</if>
 		</where>
+	</select>
+	<select id="countByRepoert" resultType="int">
+		select count(*) from review where r_report>=1
+	</select>
+	<select id="findAll" resultType="review">
+		<![CDATA[
+		select * from
+			(select rownum as rnum, b.* from
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review) b
+			where rownum <=#{endRowNum})
+		 where rnum>=#{startRowNum}
+		 ]]>
 	</select>
 	<select id="findAllByReport" resultType="review">
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report=#{rReport}) b
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report=#{rReport}) b
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report>=1 order by r_report desc) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>

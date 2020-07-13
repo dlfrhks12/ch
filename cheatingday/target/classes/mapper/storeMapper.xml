@@ -5,11 +5,6 @@
 <select id="existsSnum" resultType="boolean">
 	select count(*) from store where m_username=#{mUsername} and rownum=1
 </select>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 <!-- musername 잠시 삭제함 -->
 <select id="findBysNum" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,

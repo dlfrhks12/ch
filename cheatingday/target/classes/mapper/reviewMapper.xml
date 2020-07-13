@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewMapper">
-<<<<<<< HEAD
 	
 	<!-- 리뷰 신고 (일반회원, 사업자회원) -->
 	<update id="reviewSingo">
 		update review set r_report=r_report+1 where r_no=#{rNo}
 	</update>
-	
-=======
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	<!-- 사업자 -->
 	<!-- 음식점 고유번호로 검색  -->
 	<select id="countBySnum" resultType="int">

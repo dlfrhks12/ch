@@ -35,30 +35,40 @@ public class CartController {
 
 	// ********************************* 메뉴 리스트
 	// ****************************************
-	@GetMapping("/cart/list")
+	@GetMapping("/cart/cartlist")
 	public ModelAndView list() {
 //		return new ModelAndView("cart/cartlist").addObject("list", proservice.list());
-		return new ModelAndView("main").addObject("viewName", "cart/cartlist.jsp");
+		return new ModelAndView("main").addObject("viewName", "cart/cartlist.jsp").addObject("viewHeader", "include/noheader.jsp").addObject("cartlist", proservice.list());
 	}
 // ***********************************************
 	
 	 // 장바구니  추가--------------------------
-    @PostMapping("/cart/add")
-    public ResponseEntity<?> insert(CartEntity cart, Principal principal) {
-        System.out.println("컨트롤러+++++++++++++++++++++++++++++++++++++++++++++");
-       	System.out.println("컨트롤러 카트 : " + cart);
-       	System.out.println("컨트롤러 해당아이디 : " + principal);
-       	System.out.println("컨트롤러 끝 ----------------------------------------------");
+	@PostMapping("/cart/add")
+    public ResponseEntity<?> insert(CartEntity cart,Principal principal) {
+		System.out.println("컨트롤러 장바구니 추가 부분 시작 ++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("컨트롤러 카트 : "+cart);
+        System.out.println("controller=================");
         return ResponseEntity.ok(cartservice.add(cart));
     }
     
     // 장바구니 리스트
-    @GetMapping("/cart/cartview")
+    @GetMapping("/cart/list")
 	public ModelAndView view(String uUsername) {
 		return new ModelAndView("main").addObject("viewName", "cart/cartview").addObject("cartList", cartservice.findAllCartNo(uUsername));
 	}
     
-    @GetMapping("/cart/read")
+    @GetMapping("/bag/view")
+    public ModelAndView view() {
+       return new ModelAndView("main").addObject("viewName","cart/cartview");
+    }
+    
+    @GetMapping("/bag/list1")
+    public ModelAndView findAllBagByUsername1(Principal principal) {
+       return new ModelAndView("main").addObject("viewName", "cart/cartview")
+	.addObject("bagList",cartservice.findAllCartNo(principal.getName()));
+    }
+    
+    @GetMapping("/cart/list2")
 	public ResponseEntity<?> read(Principal principal) throws JsonProcessingException {
 		return ResponseEntity.ok(cartservice.findAllCartNo(principal.getName()));
 	}

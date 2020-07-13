@@ -37,6 +37,15 @@ public class CartService {
 		return cartdao.insert(cart);
 	}
 	
+	
+	
+	
+	public int insertByBag(String uUsername, CartDto.DtoForList dto) {
+		CartEntity cart = modelMapper.map(dto, CartEntity.class);
+		ProductEntity pro = modelMapper.map(dto, ProductEntity.class);
+		return cartdao.insert(cart);
+	}
+	
 	public List<CartDto.DtoForList> findAllCartNo(String uUsername) {
 		CartDto.DtoForList dto1 = new CartDto.DtoForList();
 		List<CartEntity> cartList = cartdao.findCartList(uUsername);

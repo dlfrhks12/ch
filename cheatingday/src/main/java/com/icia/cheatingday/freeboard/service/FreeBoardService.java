@@ -16,12 +16,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.icia.cheatingday.common.dto.Page;
-import com.icia.cheatingday.freeboard.dao.AttachmentDao;
 import com.icia.cheatingday.freeboard.dao.BoardCateDao;
 import com.icia.cheatingday.freeboard.dao.CommentDao;
 import com.icia.cheatingday.freeboard.dao.FreeBoardDao;
 import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
-import com.icia.cheatingday.freeboard.entity.Attachment;
 import com.icia.cheatingday.freeboard.entity.FreeBoard;
 import com.icia.cheatingday.util.PagingUtil;
 
@@ -33,8 +31,6 @@ public class FreeBoardService {
 	//리스트 페이지, 글쓰기, 글 읽기,
 	@Autowired
 	private FreeBoardDao dao;
-	@Autowired
-	private AttachmentDao attachmentDao;
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
@@ -85,20 +81,7 @@ public class FreeBoardService {
 		dao.insert(board);
 		List<MultipartFile> attachment = dto.getAttachments();
 		
-		if(attachment!=null) {
-			for(MultipartFile mf:attachment) {
-				Attachment attachments = new Attachment();
-				String originalFileName = mf.getOriginalFilename();
-				long time = System.nanoTime();
-				String saveFileName = time+"-"+originalFileName;
-				boolean isImage = mf.getContentType().toLowerCase().startsWith("image/");
-				attachments.setBno(board.getBno()).setIsImage(isImage).setWriter(board.getUsername()).setFlength((int)mf.getSize()).setOriginalFileName(originalFileName).setSaveFileName(saveFileName);
-				File file = new File("d:/upload/attachment",saveFileName);
-				FileCopyUtils.copy(mf.getBytes(), file);
-			    attachmentDao.insert(attachments);
-			}
-		}
-		System.out.println(board);
+		
 		return board.getBno();
 	}
 	public FreeBoardDto.DtoForRead read(Integer bno, String username){
@@ -110,8 +93,7 @@ public class FreeBoardService {
 		String str = board.getWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일"));
 		dto.setWriteTimeStr(str);
 		dto.setCategory(categoryDao.findByCateno(dto.getCateno()));
-		if(board.getAttachmentCnt()>0)
-			dto.setAttachments(attachmentDao.findAllByBno(dto.getBno()));
+		
 		if(board.getCommentCnt()>0)
 			dto.setComments(commentDao.findAllByBno(dto.getBno()));
 		System.out.println(dto);

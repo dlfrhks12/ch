@@ -12,7 +12,7 @@ $(function(){
 	$("#enabled").on("click", function() {
 		var params = {
 			mNum : $("#mNum").val(),
-			_csrf: "${_csrf.token}",
+			_csrf: "${_csrf.token}"
 		}
 		console.log(params);
 		$.ajax({

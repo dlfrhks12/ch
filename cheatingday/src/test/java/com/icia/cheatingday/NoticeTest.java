@@ -19,6 +19,8 @@ import com.icia.cheatingday.admin.service.rest.*;
 import com.icia.cheatingday.center.dao.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.common.dto.*;
+import com.icia.cheatingday.main.service.mvc.*;
+import com.icia.cheatingday.manager.dao.*;
 import com.icia.cheatingday.notice.dao.*;
 import com.icia.cheatingday.notice.dto.*;
 import com.icia.cheatingday.notice.dto.NoticeDto.*;
@@ -44,7 +46,10 @@ public class NoticeTest {
 	private AdminService as;
 	@Inject
 	private AdminRestService ars;
-	
+	@Inject
+	private StoreDao sdao;
+	@Inject
+	private MainService ms;
 	
 	//@Test
 	public void init() {
@@ -156,12 +161,19 @@ public class NoticeTest {
 		System.out.println(adao.enabledM(1231231231));
 		System.out.println(adao.enabledM(1231231231));
 	}
-	@Test
+	//@Test
 	public void asfbnhg() {
 		System.out.print(ars.enabledM(1231231231));
 		System.out.print(ars.enabledM(1231231231));
 		System.out.print(ars.enabledM(1231231231));
 		System.out.print(ars.enabledM(1231231231));
 		System.out.print(ars.enabledM(1231231231));
+	}
+	//@Test
+	public void vcbvcn() {
+		System.out.println(sdao.count(2));
+	}
+	//@Test
+	public void cvbnvcn()	{
 	}
 }

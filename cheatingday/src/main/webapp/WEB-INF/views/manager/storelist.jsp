@@ -39,7 +39,7 @@
 		<c:when test="${empty storeList}">
 			<div class="form-group">
 			<a href="/cheatingday/manager/store_insert">
-			<button type="button" id="write" class="btn btn-info" >음식점 추가</button></a>
+			<button type="button" id="write" class="btn btn-danger" >음식점 추가</button></a>
 			</div>
 		</c:when>
 		<c:otherwise>

@@ -11,6 +11,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.lang.*;
 import org.springframework.stereotype.*;
@@ -27,12 +30,15 @@ import org.springframework.web.servlet.*;
 
 import com.icia.cheatingday.freeboard.dto.*;
 import com.icia.cheatingday.freeboard.service.*;
+import com.icia.cheatingday.handler.MessagingHandler;
 
 
 @Controller
 public class FreeBoardController {
 	@Autowired
 	private FreeBoardService service;
+	@Autowired
+	private MessagingHandler handler;
 	@GetMapping("/board/read")
 	public ModelAndView read(@NonNull Integer bno) {
 		return new ModelAndView("main").addObject("viewName", "board/read.jsp").addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
@@ -40,13 +46,16 @@ public class FreeBoardController {
 
 	@GetMapping("/board/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1")int pageno,@Nullable String username, Integer cateno) {
-		System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-		System.out.println(pageno);
-		System.out.println(username);
-		System.out.println(cateno);
+		
 		return new ModelAndView("main").addObject("viewName", "board/list.jsp")
 				.addObject("page", service.list(pageno, username, cateno))
 				.addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
+	}
+	@PostMapping("/board/list")
+	public String index(Principal principal, Model model) {
+		if(principal!=null)
+			model.addAttribute("username",principal.getName());
+		return "board/list";
 	}
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/board/write")
@@ -68,6 +77,8 @@ public class FreeBoardController {
 		}
 		return "redirect:/";
 	}
+	
+	
 	
 }
 

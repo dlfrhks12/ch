@@ -37,6 +37,12 @@ public class ManagerRestController {
 		return ResponseEntity.ok(storeService.existsSnum(mUsername));
 	}
 	
+	//(매장이 존재하고)해당매장리뷰가 존재하는지 확인
+	@GetMapping("/manager/exists_review")
+	public ResponseEntity<Boolean> existsReview(String mUsername){
+		return ResponseEntity.ok(storeService.existsreview(mUsername));
+	}
+	
 	//메뉴수정
 	@PatchMapping("/manager/menu_update")//음식점고유번호랑 로그인한사람 같으면, 
 	public ResponseEntity<?> menuUpdate(MenuDto.DtoForRead dto,MultipartFile sajin) throws IllegalStateException, IOException{
@@ -64,12 +70,7 @@ public class ManagerRestController {
 	public ResponseEntity<Void> managerResign(SecurityContextLogoutHandler handler, HttpServletRequest request, 
 			HttpServletResponse response, Authentication authentication) {
 		service.resign(authentication.getName());
-		System.out.println(authentication);
-		System.out.println(authentication);
-		System.out.println(authentication);
-		System.out.println(authentication);
-		System.out.println(authentication);
-		System.out.println(authentication);
+	
 		handler.logout(request, response, authentication);
 		return ResponseEntity.ok(null);
 		

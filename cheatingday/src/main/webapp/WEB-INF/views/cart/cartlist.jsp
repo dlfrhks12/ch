@@ -16,9 +16,7 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
 $(function() {
-
 	// 3. 장바구니에 추가
 	$(".cart").on("click", function() {
 		var params = {
@@ -34,14 +32,13 @@ $(function() {
 			if(choice==true)
 				location.href = "/cheatingday/cart/cartview"
 		}).fail((xhr)=>{
-			alert(xhr.responseText); 
+			alert(xhr.responseText);
 		})
 	});
 });
 </script>
 </head>
 <body>
-${cartList }
 	<a href="/cheatingday/cart/cartview">장바구니로</a><br>
 	<c:forEach items="${cartlist}" var="product" varStatus="status">
 		<div style="width: 176px; margin-right: 25px;">
@@ -59,6 +56,5 @@ ${cartList }
 			<hr>
 		</c:if --%>
 	</c:forEach>
-
 </body>
 </html>

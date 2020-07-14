@@ -247,5 +247,14 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/store_list")
+	public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, Integer foodNo) {
+		if(job.equals("review_list"))
+			return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(foodNo));
+		else if(job.equals("star_list"))			
+			return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(foodNo));
+		return null;
+	}
 }
 

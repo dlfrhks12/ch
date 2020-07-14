@@ -11,7 +11,6 @@
 <script>
 var isLogin = true;
 var loginId = "${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}"
-var socket = null;
 </script>
 </sec:authorize>
 <sec:authorize access="isAnonymous()">
@@ -21,56 +20,47 @@ var socket = null;
 	</script>
 </sec:authorize>
 <script>
-$(function() {
-    $("#chat").on("keypress", function(e){
-        var keyCode = e.keyCode;
-        if(keyCode==13){
-           socket.send($("#chat").val());
-           $("#chat").val("");
-        }
-     });
-   $("#connect").on("click", function(){
-      socket = new WebSocket("ws://localhost:8081/cheatingday/board/chat");
-      console.log(socket);
-   socket.onmessage = function(e){
-	   var f = document.getElementById("chat").contentDocument;
-	   console.log("aaaaaaaaaaa")
-	   console.log(f);
-	   var msg = JSON.parse(e.data);  
-	   console.log("ssssssssssssssss")
-	   console.log(msg);
-	  switch(msg.type){
-	  case "id":
-		  clientID = msg.id;
-	  	  setUsername();
-	  	  break;
-	  case "username":
-		  text = "<b>User<em>"+msg.name +"</em>signed in at </b><br>";
-	  	  break;
-	  }
-	  if(text.length){
-		  f.write(text);
-		  document.getElementById("chat").contentWindow.scrollByPages(1);
-	  }
-	  
-   }
-     
-         
-   });
-   $("#disconnect").on("click", function(){
-      socket.close();
-   })
-function sendText(){
-	var msg = {
-		type : "message",
-		text: document.getElementById("chat").value,
-		id: clientID,
-		date: Date.now()
+	var wsocket;
+	function send(){
+		var msg = $("#message").val();
+		wsocket.send(msg);
+		$("#message").val("");
 	}
-	socket.send(JSON.stringify(msg))
-}
-});
-  
+	$(document).ready(function(){
+		var username = "${username}"
+		wsocket = new WebSocket("ws://localhost:8081/cheatingday/chat");
+		
+		$("#message").on("keypresss",function(evt){
+			var keycode = evt.keyCode;
+			if(keycode==13)
+				send();
+		});
+		$("#connect").on("click",function(){
+			wsocket.onmessage = function(e){
+				$("#chat_area").append(e.data+"<br>");
+			}
+		})
+		$("#disconnect").on("click",function(){
+			wsocket.close();
+		})
+		if(username!=""){
+			wsocket.onmessage = function(e){
+				$("#chatMessageArea").append(e.data+"<br>");
+			}
+			wsocket.onclose = function(){
+				console.log("연결이 종료되었습니다.");
+			}
+			wsocket.onopen = function(){
+				console.log("연결되었습니다.");
+			}
+		}
+		$("#send").on("click",function(){
+			console.log($("#message").val());
+			wsocket.send($("#message").val());
+			$("#message").val("")
+		})
+		
+	})
 </script>
 <style>
    #chat_area { width:300px; height:350px; overflow:auto; border: 3px solid gray; margin-bottom: 15px;}
@@ -97,10 +87,12 @@ function sendText(){
 	<div >
       <h1>실시간 대화창</h1>
       <div id="chat_area">
+      	<div id = "chatMessageArea"></div>
       </div>
-      <input type="text" id="chat" placeholder="대화하기">
-      <button id="connect" class = "btn btn-success">대화시작하기</button>
-      <button id="disconnect" class = "btn btn-danger">대화 끝내기</button>
+      <input type="text" id="message" placeholder="대화하기"><button id = "send" class = "btn btn-outline-info" >메시지 보내기</button>
+      <button id="connect" class = "btn btn-outline-success">대화시작하기</button>
+      <button id="disconnect" class = "btn btn-outline-danger">대화 끝내기</button>
+      
    </div>
    </div> 
   <div id = "all">

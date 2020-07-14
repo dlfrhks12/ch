@@ -3,16 +3,17 @@
 <mapper namespace="productMapper">
 
 	
-	
+	<!-- 메뉴 전체 보이기 -->
 	<select id="findAll" resultType="product">
 		select m_no mNo, m_name mName, m_price mPrice, m_count mCount, image
 		from menu
 	</select>
 	
+	<!-- 장바구니담기 했을떄 메뉴번호 넘겨주기 -->
 	<select id="findByMNo" resultType="product">
 		select m_no mNo, m_name mName, m_price mPrice, m_count mCount, image
 		from menu
-		where m_no=#{mNo} and rownum=1
+		where m_no=#{mNo}
 	</select>
 	
 </mapper>

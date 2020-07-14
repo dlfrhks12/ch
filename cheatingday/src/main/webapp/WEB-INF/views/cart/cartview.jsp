@@ -38,7 +38,7 @@ function printCart(CartEntity, dest) {
 	var $tr = $("<tr>").appendTo($table);
 
 	// 상품마다 5개의 <td>를 가짐. 순서대로 first, second, third, fourth, fifth 클래스 선택자 지정
-	$("<td class='first'>").append($("<input>").attr("type","checkbox").attr("class","select").attr("data-cartNo", CartEntity.cartNo)).appendTo($tr);
+	$("<td class='first'>").append($("<input>").attr("type","checkbox").attr("class","select").attr("data-mno", CartEntity.mno)).appendTo($tr);
 	$("<td class='second'>").append($("<img>").attr("src", CartEntity.image).css("width", "135px")).appendTo($tr);
 	$("<td class='third'>").text(CartEntity.cartName).appendTo($tr);
 
@@ -46,17 +46,17 @@ function printCart(CartEntity, dest) {
 	var $td = $("<td class='fourth'>").appendTo($tr);
 	$("<div class='price'>").text(CartEntity.cartJumunMoney + "원").appendTo($td);
 	var $div = $("<div class='button_area'>").appendTo($td);
-	$("<a href='#'>+</a>").attr("class","inc").attr("data-cartNo", CartEntity.cartNo).appendTo($div);
+	$("<a href='#'>+</a>").attr("class","inc").attr("data-mno", CartEntity.mno).appendTo($div);
 	$("<span>").text(CartEntity.cartCount).appendTo($div);
-	$("<a href='#'>-</a>").attr("class","dec").attr("data-cartNo", CartEntity.cartNo).appendTo($div);
-
+	console.log(CartEntity.cartCount);
+	$("<a href='#'>-</a>").attr("class","dec").attr("data-mno", CartEntity.mno).appendTo($div);
 	// 5번째 td에는 <button> 2개를 붙일 것임. 따라서 var $td로 저장
 	var $td = $("<td class='fifth'>").appendTo($tr);
-	$("<button>").attr("class","buy").attr("data-cartNo", CartEntity.cartNo).text("구입").appendTo($td);
-	$("<button>").attr("class","delete").attr("data-cartNo", CartEntity.cartNo).text("삭제").appendTo($td);
+	$("<button>").attr("class","buy").attr("data-mno", CartEntity.mno).text("구입").appendTo($td);
+	$("<button>").attr("class","delete").attr("data-mno", CartEntity.mno).text("삭제").appendTo($td);
 } 
 
-// 1-2. 장바구니 전체 출력함수 - printCart()를 호출해 각 장바구니를 출력
+//1-2. 장바구니 전체 출력함수 - printCart()를 호출해 각 장바구니를 출력
 function printCartList() {
 	// 장바구니 출력 영역을 선택한 다음 내용을 제거
 	var $cartArea = $("#cart_area");
@@ -64,7 +64,7 @@ function printCartList() {
 
 	// 장바구니 목록이 비어있다면 empty_cart.jpg 출력하고 선택삭제, 주문하기 버튼 영역을 안보이게
 	if(cartList.length==0) {
-		$("<img>").attr("src","/bcart/img/empty_cart.jpg").appendTo($cartArea);
+		$("<img>").attr("src","/cheatingday/img/empty_cart.jpg").appendTo($cartArea);
 		$("#button_area").hide();
 		return;
 	} 
@@ -78,7 +78,7 @@ $(function() {
 	// 1-1. 전체선택 체크박스의 기본 상태는 비활성화
 	$("#check_all").prop("checked", false);
 	$.ajax({
-		url: "/bcart/cart/read",
+		url: "/cheatingday/cart/read",
 		method: "get",
 	}).done((result)=>{ 
 		cartList = result;
@@ -90,24 +90,26 @@ $(function() {
 		// <a>태그는 클릭하면 이동한다. 기본동작 이동을 막는다
 		e.preventDefault();
 			var params = {
-				_csrf: "${_csrf.token}}",
+				_csrf: "${_csrf.token}",
 				_method: "patch",
-				cartNo: $(this).attr("data-cartNo"),
-				isIncrese: "1"
+				mNo: $(this).attr("data-mno"),
+				isIncrease: "1"
 			}
+			console.log(params);
 			return $.ajax({
-				url:"/bcart/cart/change",
+				url:"/cheatingday/cart/change",
 				data: params,
 				method: "post"
 			}).then((CartEntity)=>{
-			$(this).parent().prev().text(CartEntity.cartJumunMoney + "원");
-			$(this).next().text(CartEntity.cartCount);
-		}).fail((xhr)=>{
-			alert(xhr.responseText)
-			console.log(xhr);
-			console.log(xhr.status);
-		});
+	            $(this).next().text(CartEntity.cartCount);
+	            $(this).parent().prev().text(CartEntity.cartJumunMoney + "원");
+	         }).fail(()=>{
+	            alert("실패");
+	         })
 	});
+	
+	
+	
 
 	// 5. <a href='#' class='dec'>+</a> 를 클릭하면 상품 개수 감소
 	$("#cart_area").on("click", ".dec", function(e) {
@@ -115,35 +117,36 @@ $(function() {
 
 		// + 개수 - 이므로 클릭한 - 앞의 <span>에 개수가 출력되고 있다
 		var count = parseInt($(this).prev().text());
-		
 		if(count<=1)
 			return;
-		
+		console.log(count);
 		var params = {
 			_csrf: "${_csrf.token}}",
 			_method: "patch",
-			cartNo: $(this).attr("data-cartNo"),
-			isIncrese: "0"
+			mNo: $(this).attr("data-mno"),
+			isIncrease: "0"
 		}
 		$.ajax({
-			url:"/bcart/cart/change",
+			url:"/cheatingday/cart/change",
 			data: params,
 			method: "post",
-		}).done((CartEntity)=>{
-			$(this).parent().prev().text(CartEntity.cartJumunMoney + "원")
-			$(this).prev().text(CartEntity.cartCount);
-		}).fail((result)=>{ console.log("fail")})
+		}).then((CartEntity)=>{
+            $(this).parent().prev().text(CartEntity.cartJumunMoney + "원")
+            $(this).prev().text(CartEntity.cartCount);
+         }).fail(()=>{
+            alert("실팽");
+         })
 	})
 	
 	// 삭제버튼을 클릭하면 해당 상품을 장바구니에서 삭제
 	$("#cart_area").on("click", ".delete", function() {
 		var params = {
-			_csrf: "${_csrf.token}",
+			_csrf: "${_csrf.token}}",
 			_method: "delete",
-			cartNo: $(this).attr("data-cartNo")	
+			mNo: $(this).attr("data-mno")	
 		}
 		$.ajax({
-			url:"/bcart/cart/delete",
+			url:"/cheatingday/cart/delete",
 			data: params,
 			method: "post"
 		}).done((result)=>{
@@ -154,11 +157,11 @@ $(function() {
 	
 	// 주문 버튼을 클릭하면 해당 상품을 구입 후 이동
 	$("#cart_area").on("click", ".buy", function() {
-		var $form = $("<form>").attr("action","/acart/order/buy").attr("method","post");
-		$("<input>").attr("type","hidden").attr("name","cartNo").val($(this).data("cartNo")).appendTo($form);
+		var $form = $("<form>").attr("action","/cheatingday/order/buy").attr("method","post");
+		$("<input>").attr("type","hidden").attr("name","mno").val($(this).data("mno")).appendTo($form);
 		var countStr = $(this).parent().prev().children().find("span").text();
 		var count = parseInt(countStr);
-		$("<input>").attr("type","hidden").attr("name","count").val(count).appendTo($form);
+		$("<input>").attr("type","hidden").attr("name","cartCount").val(cartCount).appendTo($form);
 		$("<input>").attr("type","hidden").attr("name","_csrf").val("${_csrf.token}").appendTo($form);
 		$form.appendTo($("body")).submit();	
 	});
@@ -174,16 +177,16 @@ $(function() {
 		var ar = [];
 		$(".select").each(function(idx) {
 			if($(this).prop("checked")) {
-				ar.push($(this).data("cartNo"));
+				ar.push($(this).data("mno"));
 			}
 		});
 		var params = {
-			_csrf: "${_csrf.token}",
+			_csrf: "${_csrf.token}}",
 			_method: "delete",
 			pnos: JSON.stringify(ar)
 		}
 		$.ajax({
-			url:"/bcart/cart/delete_all",
+			url:"/cheatingday/cart/delete_all",
 			data: params,
 			method: "post",
 		}).done((result)=>{
@@ -203,21 +206,20 @@ $(function() {
 				var countStr = $(this).parent().next().next().next().children().find("span").text();
 				var count = parseInt(countStr);
 				var obj = {
-					cartNo : $(this).data("cartNo"),
-					count : count 
+					mno : $(this).data("mno"),
+					cartCount : cartCount 
 				};
 				ar.push(obj);
 			}
 		});
 	
-		var $form = $("<form>").attr("action","/bcart/order/buy_all").attr("method","post");
+		var $form = $("<form>").attr("action","/cheatingday/order/buy_all").attr("method","post");
 		$("<input>").attr("type","hidden").attr("name","json").val(JSON.stringify(ar)).appendTo($form);
 		$("<input>").attr("type","hidden").attr("name","_csrf").val("${_csrf.token}").appendTo($form);
 		$form.appendTo($("body")).submit();
 	});
 	
 })
-
 </script>
 <style>
 	a {  color: black; text-decoration: none;}
@@ -225,6 +227,7 @@ $(function() {
 </style>
 </head>
 <body>
+${cartview }
 	<div id="cart_area">
 	</div>
 	<div id="button_area">

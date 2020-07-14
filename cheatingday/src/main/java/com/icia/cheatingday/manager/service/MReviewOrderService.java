@@ -26,6 +26,7 @@ public class MReviewOrderService {
 	@Autowired
 	private ReviewCheckDao reviewCheckDao;
 	
+	
 	//사업자 리뷰 신고--신고는 한번만 할수있게 막아.
 	public int reviewSingoUpdate(int rNo, String username) {
 		Review review = reviewDao.findById(rNo);
@@ -74,6 +75,7 @@ public class MReviewOrderService {
 		return dto;
 		
 	}
-	
+
+
 	
 }

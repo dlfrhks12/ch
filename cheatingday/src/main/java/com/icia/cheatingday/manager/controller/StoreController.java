@@ -27,13 +27,11 @@ public class StoreController {
 	private ObjectMapper objectMapper;
 	
 	  //가게리스트 페이지로 이동 - 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
-	
 	 @PreAuthorize("isAuthenticated()")
-	 
 	 @GetMapping("/manager/store_list") 
 	 public ModelAndView storeList(Principal principal) throws JsonProcessingException{ 
 		 return new ModelAndView("main").addObject("viewName","manager/storelist.jsp")
-				 .addObject("viewHeader", "include/noheader.jsp") 
+				 .addObject("viewHeader", "include/viewManagerHeader.jsp") 
 				 .addObject("storeList", service.storeList(principal.getName())); }
 	 
    	 
@@ -43,14 +41,15 @@ public class StoreController {
 	  public ModelAndView storeRead(int sNum, Principal principal) {
 		  String username = principal!=null? principal.getName():null;
 		  return new ModelAndView("main").addObject("viewName","manager/storeread.jsp")
-				  	.addObject("viewHeader", "include/noheader.jsp") 
+				  	.addObject("viewHeader", "include/viewManagerHeader.jsp") 
 				  	.addObject("storeRead", service.storeRead(sNum, username));}
+	  
 	  
 	  //가게등록 페이지로 이동
 	  @PreAuthorize("isAuthenticated()")
 	  @GetMapping("/manager/store_insert") public ModelAndView storeInsert() {
 	  return new  ModelAndView("main").addObject("viewName","manager/storeinsert.jsp")
-	  .addObject("viewHeader", "include/noheader.jsp"); }
+	  .addObject("viewHeader", "include/viewManagerHeader.jsp"); }
 	  
 	  
 	  //가게등록

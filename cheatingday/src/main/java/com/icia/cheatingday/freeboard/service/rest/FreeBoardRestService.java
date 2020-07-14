@@ -19,12 +19,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.icia.cheatingday.freeboard.dao.AttachmentDao;
 import com.icia.cheatingday.freeboard.dao.CommentDao;
 import com.icia.cheatingday.freeboard.dao.FreeBoardDao;
 import com.icia.cheatingday.freeboard.dao.UserBoardDao;
 import com.icia.cheatingday.freeboard.dto.FreeBoardDto;
-import com.icia.cheatingday.freeboard.entity.Attachment;
 import com.icia.cheatingday.freeboard.entity.Comment;
 import com.icia.cheatingday.freeboard.entity.FreeBoard;
 
@@ -34,8 +32,6 @@ public class FreeBoardRestService {
 	//attachment delete
 	//board delete
 	//aa
-	@Autowired
-	private AttachmentDao attachmentDao;
 	@Autowired
 	private FreeBoardDao boardDao;
 	@Autowired
@@ -56,9 +52,7 @@ public class FreeBoardRestService {
 	Pattern ckImagePattern = Pattern.compile("src=\".+\"\\s");
 	
 	
-	public Attachment readAttachment(Integer fno) {
-		return attachmentDao.findById(fno);
-	}
+
 	
 	public List<Comment> writeComment(Comment comment){
 		comment.setWriteTime(LocalDateTime.now());
@@ -95,34 +89,11 @@ public class FreeBoardRestService {
 				file.delete();
 		}
 		
-		List<Attachment> list = attachmentDao.findAllByBno(bno);
-		for(Attachment a: list) {
-			File file = new File("d:/upload/attachment",a.getSaveFileName());
-			//파일이 있는게 맞으면 지우기
-			if(file.exists()==true)
-				file.delete();
-		}
-		attachmentDao.deleteAllByBno(bno);
+		
 		boardDao.delete(bno);
 		
 	}
-	public List<Attachment> deleteAttachment(Integer fno,Integer bno,String username){
-		Attachment attachment = attachmentDao.findById(bno);
-		//null이 아니면
-		if(attachment!=null) {
-			//글쓴이가 같은지 확인하고
-			if(attachment.getWriter().equals(username)==true) {
-				//파일 경로에 파일이 있으면은
-				File file = new File("d:/upload/attachment",attachment.getSaveFileName());
-				if(file.exists()==true)
-					//지워
-					file.delete();
-				attachmentDao.deleteById(fno);
-			}
-		}
-		boardDao.update(FreeBoard.builder().bno(bno).attachmentCnt(1).build());
-		return attachmentDao.findAllByBno(bno);
-	}
+	
 	
 	public String saveCkImage(MultipartFile upload) throws IOException {
 		Map<String,String> map = new HashMap<String, String>();

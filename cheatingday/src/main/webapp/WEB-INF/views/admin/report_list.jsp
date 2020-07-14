@@ -7,6 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.pagination{margin-top:20px;white-space: nowrap; text-align: center; height: 37px; line-height:37px;}
+.pagination a{display:inline-block; border:1px solid #f7f7f7; height:35px; width:35px;  vertical-align:middle; text-align:center; text-decoration:none; font-size:15px; color:#898989;background:#f7f7f7;}
+.pagination .on{color:#fff; font-weight:bold; background:#333;}
+.pagination .prev,.pagination .next{height:35px; width:35px; border:1px solid #ebebeb;overflow:hidden;position:relative; font-size:0;}
+.pagination .prev.end,.pagination .next.end{height:35px; width:35px; font-size:0;}
+.pagination .prev{background:#ebebeb url("") no-repeat center center; margin-right:11px;}
+.pagination .prev.end{background:#ebebeb url("") no-repeat center center; margin-right:4px; border-right:0;}
+.pagination .next{background:#ebebeb url("") no-repeat center center; margin-left:12px;}
+.pagination .next.end{background:#ebebeb url("") no-repeat center center; margin-left:4px; border-left:0;}
+</style>
 <script>
 $(function(){
 	$("#delete").on("click", function() {
@@ -53,7 +64,7 @@ $(function(){
 				<tr>
 					<td>${report.SName}</td>
 					<td>${report.UIrum}</td>
-					<td><a href="/cheatingday/reviw/read?rNo=${report.RNo}" onclick="openWin()">${report.RTitle}</a></td>
+					<td><a href="/cheatingday/review/read?rNo=${report.RNo}" onclick="openWin()">${report.RTitle}</a></td>
 					<td>${report.RWriteTimeStr}</td>
 					<td>${report.RReport}</td>
 					<td><button type="button" class="btn btn-danger" id="delete">리뷰삭제</button></td>
@@ -65,23 +76,23 @@ $(function(){
 	<div style="text-align:center;">
 		<ul class="pagination">
 			<c:if test="${page.prev==true}">
-				<li><a href="/cheatingday/center/list?pageno=${page.startPage-1}">이전</a></li>
+				<li><a class="prev" href="/cheatingday/admin/report_list?pageno=${page.startPage-1}">이전</a></li>
 			</c:if>
 			<c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/cheatingday/center/list?pageno=${i}">${i}</a>
+							<a href="/cheatingday/admin/report_list?pageno=${i}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/cheatingday/center/list?pageno=${i}">${i}</a></li>
+						<li><a href="/cheatingday/admin/report_list?pageno=${i}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 				
 			</c:forEach>
 			<c:if test="${page.next==true}">
-				<li><a href="/cheatingday/center/list?pageno=${page.endPage+1}">다음</a></li>
+				<li><a class="" href="/cheatingday/admin/report_list?pageno=${page.endPage+1}">다음</a></li>
 			</c:if>
 		</ul>
 	</div>

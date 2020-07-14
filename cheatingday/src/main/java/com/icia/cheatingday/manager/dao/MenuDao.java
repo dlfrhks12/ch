@@ -14,6 +14,12 @@ public class MenuDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
+	//주문을 위한 메뉴읽기 (전체회원 보기가능)
+	public List<MenuEntity> orderMenuRead(int sNum){
+		return tpl.selectList("menuMapper.findAllById",sNum);
+	}
+
+	
 	//메뉴리스트
 	public List<MenuEntity> findAll(){
 		return tpl.selectList("menuMapper.findAll");

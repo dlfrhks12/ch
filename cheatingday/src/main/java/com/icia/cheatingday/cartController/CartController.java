@@ -23,13 +23,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icia.cheatingday.cart.CartEntity;
 import com.icia.cheatingday.cart.CartService;
 import com.icia.cheatingday.cart.ProductEntity;
+import com.icia.cheatingday.manager.service.ManagerService;
+import com.icia.cheatingday.manager.service.StoreService;
 
 @Controller
 public class CartController {
 	@Autowired
 	private CartService service;
 	private ObjectMapper objectMapper = new ObjectMapper();
+	@Autowired
+	private StoreService storeService;
+	@Autowired
+	private ManagerService managerService;
+	
 
+	
+	
+	
+	//예
+	//주문하기위해 가게읽기 페이지로 이동
+	////주문을 위한 메뉴읽기 (전체회원 보기가능)
+	@GetMapping("/order/orderPage")
+	public ModelAndView orderStoreRead(int sNum) {
+		return new ModelAndView("main").addObject("viewName", "order/orderPage.jsp")
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("storeRead", storeService.orderStoreRead(sNum))
+				.addObject("menuRead", managerService.orderMenuRead(sNum));
+	}
+	
+	
 	// 메뉴 리스트 출력
 	@GetMapping("/cart/cartlist")
 	public ModelAndView list() throws JsonProcessingException {

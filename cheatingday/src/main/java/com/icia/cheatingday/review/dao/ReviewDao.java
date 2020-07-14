@@ -14,6 +14,8 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
+	
+	
 	//사업자&일반회원 리뷰신고
 	public int reviewSingoUpdate(int rNo) {
 		return tpl.update("reviewMapper.reviewSingo",rNo);

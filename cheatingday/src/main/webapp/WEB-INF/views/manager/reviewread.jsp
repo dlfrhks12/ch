@@ -56,7 +56,7 @@ $(function(){
 아이디: ${reviewRead.UUsername}
 </div>
 <div>
-<button type="button" id="report">리뷰 신고하기
+<button type="button"  class="btn btn-danger" id="report">리뷰 신고하기
 </button>
 </div>
 </body>

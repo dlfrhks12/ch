@@ -1,22 +1,48 @@
 package com.icia.cheatingday;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import java.time.LocalDateTime;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.icia.cheatingday.manager.service.ManagerService;
+import com.icia.cheatingday.manager.dao.StoreDao;
+import com.icia.cheatingday.manager.service.StoreService;
+import com.icia.cheatingday.user.entity.Review;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
 public class ManagerServiceTest {
 
 	@Autowired
-	private ManagerService service;
+	private StoreDao sd;
+	@Autowired
+	private StoreService sr;
+	private Object Review;
+	
+	@Test
+	public void page() {
+		
+		//for(int i=0; i<123; i++) 
+		//	Review review = Review.builder().rNo(1).rContent("내용들").rStarPoint(3).rWriteTime(LocalDateTime.now())
+			//		.oNo(33).rTitle("제목이다").rReport(0).uUsername("닉네임").sNum(28).build();
+		
+		
+		}
+		
+	
+	
+	//@Test
+	public void sss() {
+	//	System.out.println(sd.myReviewCnt(40));
+	}
+	
+	//@Test
+	public void sa() {
+		//System.out.println(sr.myReviewCnt(40));
+	}
 	
 	/*
 	@Test
@@ -36,5 +62,12 @@ public class ManagerServiceTest {
 		
 	}
 	*/
-
+	//@Test
+	public void asadasfasf() {
+		System.out.println(sd.findBymUsername("yyg12345"));
+	}
+	//@Test
+	public void asfasf() {
+		System.out.println(sr.existsreview("yyg12345"));
+	}
 }

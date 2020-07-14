@@ -80,16 +80,6 @@ public class MainController {
 	}
 	
 	
-	/*
-	// [공용] 현재위치 api 
-	@GetMapping("/geolocation")
-	public ModelAndView geolocation(double latitude, double longitude) throws Exception {
-		GpsToAddress gps = new GpsToAddress(latitude, longitude);
-		System.out.println(gps.getAddress());
-		return new ModelAndView("main").addObject("latitude", latitude).addObject("longitude", longitude);
-	}
-	*/
-	
 	// [일반] 회원가입 Get
 	@GetMapping("/join_user")
 	public ModelAndView UserJoin() {

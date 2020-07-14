@@ -20,6 +20,12 @@ public class ManagerServiceTest {
 	private Object Review;
 	
 	@Test
+	public void ss() {
+		System.out.println(sr.orderStoreRead(41));
+	}
+	
+	
+	//@Test
 	public void page() {
 		
 		//for(int i=0; i<123; i++) 

@@ -65,7 +65,7 @@ $(function() {
     
 	<li class="nav-item active">
   	<div id="reviewManage">
-  	 <a class="nav-link" href="#">
+  	 <a class="nav-link" href="#" >
   		 매장 리뷰 관리</a></div> 
     </li>
  

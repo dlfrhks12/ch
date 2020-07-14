@@ -67,7 +67,7 @@ public class StoreService {
 		return list;
 	}
 	
-	// 가게읽기
+	// 가게읽기 - 사업자
 	public StoreDto storeRead(int sNum, String username){
 		Store store = dao.findBysNum(sNum);
 		StoreDto dto = modelMapper.map(store, StoreDto.class);
@@ -76,6 +76,16 @@ public class StoreService {
 		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
 		return dto;
 	} 
+	
+	
+	// 주문을 위한 가게읽기 - 모든회원
+	public StoreDto orderStoreRead(int sNum) {
+		Store store = dao.findBysNum(sNum);
+		StoreDto dto = modelMapper.map(store, StoreDto.class);
+		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
+		return dto;
+		
+	}
 	
 	// 가게등록 
 	public void storeInsert(Store store, MultipartFile sajin) throws IllegalStateException, IOException { 

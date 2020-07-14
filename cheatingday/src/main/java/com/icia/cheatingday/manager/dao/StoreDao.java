@@ -14,14 +14,11 @@ public class StoreDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 
-
-	
-	
 	/*//내 매장 리뷰갯수 읽기
 	public int myReviewCnt(int sNum) {
 		return tpl.selectOne("storeMapper.myReviewCnt",sNum);
 	}*/
-	
+
 	
 	//매장이 존재하는지 안하는지 확인
 	public boolean existsSnum(String mUsername) {

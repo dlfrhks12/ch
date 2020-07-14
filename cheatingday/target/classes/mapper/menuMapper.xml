@@ -6,7 +6,6 @@
 메뉴번호  /  메뉴가격      /  메뉴사진     / 메뉴이름          / 음식점고유번호 -->
 
 
-
 <select id="findAll" resultType="menu"><!-- 리스트에 보여질 메뉴내용들  -->
 	select menuno, menusal, menusajin, menuname, s_num sNum from menu 
 </select>

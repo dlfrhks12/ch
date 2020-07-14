@@ -119,4 +119,16 @@ public class StoreService {
 		return dao.delete(sNum); 
 		}
 
+	/*
+	public List<Store> listByStar(String searchOption, String keyword) {
+		return dao.findAllByStar(searchOption, keyword);
+	}
+
+	public int countArticle(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	 */
+
+
 }

@@ -52,10 +52,6 @@ public class FreeBoardServiceTest {
 		assertThat(service.list(1, "양수민", 1),is(1));
 	}
 	//@Test
-	public void  readAttachment() {
-		assertThat(restService.readAttachment(8), is(1));
-	}
-	//@Test
 	public void updateBoardTest() {
 		FreeBoardDto.DtoForUpdate dto = new DtoForUpdate();
 		dto.setTitle("aaa");

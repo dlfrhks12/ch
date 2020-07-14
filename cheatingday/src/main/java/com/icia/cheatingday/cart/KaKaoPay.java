@@ -66,4 +66,4 @@ private static final String HOST = "https://kapi.kakao.com";
     
 }
  
-}
+

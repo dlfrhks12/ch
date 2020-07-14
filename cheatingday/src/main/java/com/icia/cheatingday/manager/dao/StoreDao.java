@@ -1,6 +1,6 @@
 package com.icia.cheatingday.manager.dao;
 
-import java.util.List;
+import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,15 @@ public class StoreDao {
 
 	@Autowired
 	private SqlSessionTemplate tpl;
+
+
+	
+	
+	/*//내 매장 리뷰갯수 읽기
+	public int myReviewCnt(int sNum) {
+		return tpl.selectOne("storeMapper.myReviewCnt",sNum);
+	}*/
+	
 	
 	//매장이 존재하는지 안하는지 확인
 	public boolean existsSnum(String mUsername) {
@@ -45,5 +54,24 @@ public class StoreDao {
 	
 	public int delete(int sNum) {
 		return tpl.delete("storeMapper.delete",sNum);
+	}
+
+
+	public int count(Integer foodNo) {
+		return tpl.selectOne("storeMapper.count", foodNo);
+	}
+
+	public List<Store> findAllByfoodNoAndStar(Integer foodNo) {
+		return tpl.selectList("storeMapper.findAllByfoodNoAndStar", foodNo);
+	}
+	public List<Store> findAllByfoodNoAndReview(Integer foodNo) {
+		return tpl.selectList("storeMapper.findAllByfoodNoAndReview", foodNo);
+	}
+
+	public List<Store> findAllByReview() {
+		return tpl.selectList("storeMapper.findAllByReview");
+	}
+	public List<Store> findAllByStar() {
+		return tpl.selectList("storeMapper.findAllByStar");
 	}
 }

@@ -14,7 +14,7 @@
 	<!-- 정보 입력 -->
 	<insert id="insert">
 		insert into users(u_username, u_irum, u_email, u_tel, u_address, u_password, u_enabled, u_joindate, u_point, u_login_fail_cnt, status)
-		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},1,sysdate,0,0,1)
+		values(#{uUsername},#{uIrum},#{uEmail},#{uTel},#{uAddress},#{uPassword},1,sysdate,0,0,0)
 	</insert>
 	
 	<!-- 정보 변경 -->

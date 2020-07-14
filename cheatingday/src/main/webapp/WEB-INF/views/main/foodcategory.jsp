@@ -23,22 +23,22 @@
 <body>
     <table>
         <tr>
-            <td><a href="#"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
-            <td><a href="#"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
-            <td><a href="#"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
-            <td><a href="#"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=1"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=2"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=3"><img class="product__image" src="mainhome/images/1.png" alt="Product 1" /></a></td>
         </tr>
         
 
         <tr>
-            <td><a href="#"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
-            <td><a href="#"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
-            <td><a href="#"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
-            <td><a href="#"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=4"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=5"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=6"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/store_list?foodNo=7"><img class="product__image" src="mainhome/images/5.png" alt="Product 1" /></a></td>
         </tr>
 
         <tr>
-            <td><a href="#"><img class="product__image" src="mainhome/images/6.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/board/list"><img class="product__image" src="mainhome/images/6.png" alt="Product 1" /></a></td>
             <td><a href="#"><img class="product__image" src="mainhome/images/6.png" alt="Product 1" /></a></td>
             <td><a href="#"><img class="product__image" src="mainhome/images/6.png" alt="Product 1" /></a></td>
             <td><a href="#"><img class="product__image" src="mainhome/images/6.png" alt="Product 1" /></a></td>

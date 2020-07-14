@@ -32,9 +32,27 @@ public class StoreService {
 	@Autowired
 	private MenuDao menuDao;
 	
+	
+	/*//내 매장 리뷰갯수 읽기
+	public int myReviewCnt(int sNum) {
+		return dao.myReviewCnt(sNum);
+	}
+	*/
+	
+	
 	//매장이 존재하는지 확인
 	public Boolean existsSnum(String mUsername) {
 		return dao.existsSnum(mUsername);
+	}
+	
+	//(매장이 존재하고)해당매장리뷰가 존재하는지 확인
+	public boolean existsreview(String mUsername) {
+		Store store = dao.findBymUsername(mUsername);
+		Integer count = store.getSReviewCnt(); //리뷰갯수를 가져와서
+			if(count==0)
+				return false;
+			else
+				return true;
 	}
 	
 	
@@ -48,6 +66,7 @@ public class StoreService {
 		List<Store> list = dao.findAllBymUsername(mUsername);
 		return list;
 	}
+	
 	// 가게읽기
 	public StoreDto storeRead(int sNum, String username){
 		Store store = dao.findBysNum(sNum);

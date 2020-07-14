@@ -167,19 +167,19 @@ $(function(){
 		<tr>
 			<td class="first">이름</td>
 			<td><input type="text" id="irum" value="${managerInfo.MIrum}">&nbsp;	
-			<button type="button" class="btn btn-info" id="changeIrum">이름변경</button></td>
+			<button type="button"  class="btn btn-danger" id="changeIrum">이름변경</button></td>
 		</tr>
 		<tr>
 			<td class="first">아이디</td><td colspan="2"><span id="username">${managerInfo.MUsername}</span></td>
 		</tr>
 		<tr><td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
+				<button type="button"  class="btn btn-danger" id="activateChangePwd">비밀번호 수정</button>
 				<div id="passwordArea">
 					<span class="key">현재 비밀번호 : </span><input type="password" id="password" ><br>
 					<span class="key">새 비밀번호 : </span><input type="password" id="newPassword"><br>
 					<span class="key">새 비밀번호 확인 : </span><input type="password" id="newPassword2">
-	  				<button type="button" class="btn btn-info" id="changePwd">변경</button>
+	  				<button type="button"  class="btn btn-danger" id="changePwd">변경</button>
 				</div>
 			</td></tr>
 		<tr><td class="first">이메일</td>
@@ -201,8 +201,8 @@ $(function(){
 			</td></tr>
 	</table>
 	<div id="btn_update">
-	<button type="button" class="btn btn-success" id="update" >변경하기</button>
-	<button type="button" class="btn btn-success" id="delete">탈퇴하기</button>
+	<button type="button"  class="btn btn-danger" id="update" >변경하기</button>
+	<button type="button"  class="btn btn-danger" id="delete">탈퇴하기</button>
 	</div> 
 </body>
 </html>

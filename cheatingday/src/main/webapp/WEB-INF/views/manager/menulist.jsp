@@ -38,7 +38,7 @@
 	</div>
 	<div class="form-group">
 	<a href="/cheatingday/manager/menu_write">
-		<button type="button" id="write" class="btn btn-info">메뉴추가</button></a>
+		<button type="button" id="write"  class="btn btn-danger">메뉴추가</button></a>
 	</div>
 	 
 </body>

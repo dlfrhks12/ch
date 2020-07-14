@@ -73,7 +73,7 @@ public class UserTest {
 	
 	//@Test
 	public void pageList() {
-		System.out.println(uservice.list(1));
+//		System.out.println(uservice.(1));
 	}
 	//@Test
 	public void myPage() {
@@ -82,6 +82,6 @@ public class UserTest {
 	
 	@Test
 	public void wfgw() {
-		System.out.println(dao.existsById("usy14731"));
+		System.out.println(uservice.pointList(1, null));
 	}
 }

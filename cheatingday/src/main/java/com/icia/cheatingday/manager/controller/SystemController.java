@@ -11,6 +11,6 @@ public class SystemController {
 		@GetMapping("/system/msg")
 		public ModelAndView msg() {
 			return new ModelAndView("main").addObject("viewName", "system/msg.jsp")
-					.addObject("viewHeader", "include/noheader.jsp");
+					.addObject("viewHeader", "include/viewManagerHeader.jsp");
 		}
 }

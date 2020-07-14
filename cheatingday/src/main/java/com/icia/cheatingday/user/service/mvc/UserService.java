@@ -10,8 +10,15 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
+import com.icia.cheatingday.buylist.dao.*;
+import com.icia.cheatingday.buylist.dto.*;
+import com.icia.cheatingday.buylist.entity.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
+import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.review.dao.*;
+import com.icia.cheatingday.review.dto.*;
+import com.icia.cheatingday.review.entity.*;
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.user.entity.*;
@@ -23,6 +30,12 @@ public class UserService {
 	private UserDao userDao;
 	@Autowired
 	private PointDao pointDao;
+	@Autowired
+	private ReviewDao reviewDao;
+	@Autowired
+	private BuylistDao buylistDao;
+	@Autowired
+	private StoreDao storeDao;
 	@Autowired
 	private FavoriteDao favoriteDao;
 	@Autowired
@@ -70,7 +83,7 @@ public class UserService {
 			throw new JobFailException("잘못된 비밀번호입니다.");
 	}
 	// 포인트 리스트 페이징
-	public Page list(int pageno) {
+	public Page pointList(int pageno, String uUsername) {
 		int countOfBoard = pointDao.count();
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
@@ -79,11 +92,53 @@ public class UserService {
 		List<PointDto.DtoForList> dtoList = new ArrayList<>();
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
-			dto.setOOderTimeStr(point.getOOderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setOOrderTimeStr(buylistDao.findById(uUsername).getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setSNum(buylistDao.findONoById(point.getONo()).getSNum());
+			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}
 		page.setPlist(dtoList);
 		return page;
+	}
+	// 리뷰 리스트 페이징
+	public Page reviewList(int pageno, String uUsername) {
+		int countOfBoard = reviewDao.count(null, uUsername);
+		Page page = PagingUtil.getPage(pageno, countOfBoard);
+		int srn = page.getStartRowNum();
+		int ern = page.getEndRowNum();
+		List<Review> reviewList = reviewDao.findAll(srn, ern);
+		List<ReviewDto.DtoForList> dtoList = new ArrayList<>();
+		for(Review review:reviewList) {
+			ReviewDto.DtoForList dto = modelMapper.map(review, ReviewDto.DtoForList.class);
+			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+			dtoList.add(dto);
+		}
+		System.out.println(reviewList);
+		System.out.println(reviewList);
+		System.out.println(reviewList);
+		System.out.println(reviewList);
+		System.out.println(reviewList);
+		page.setRlist(dtoList);
+		return page;
+	}
+	// 구매내역 리스트 페이징
+	public Page buyList(int pageno, String uUsername) {
+		int countOfBoard = buylistDao.count();
+		Page page = PagingUtil.getPage(pageno, countOfBoard);
+		int srn = page.getStartRowNum();
+		int ern = page.getEndRowNum();
+		List<Buylist> buyList = buylistDao.findAll(srn, ern);
+		List<BuylistDto.DtoForList> dtoList = new ArrayList<>();
+		for(Buylist buylist:buyList) {
+			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
+			dto.setOOrderTimeStr(buylist.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+			dtoList.add(dto);
+		}
+		page.setBlist(dtoList);
+		return page;
+		
 	}
 	// 즐겨찾기
 	public int favorite(int sNum, String uUsername ) {

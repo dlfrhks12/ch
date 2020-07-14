@@ -31,7 +31,7 @@ public class ManagerController {
 	@GetMapping("/manager/menu_list")
 	public ModelAndView menuList(Principal principal) {
 		return new ModelAndView("main").addObject("viewName", "manager/menulist.jsp")
-				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewHeader", "include/viewManagerHeader.jsp")
 				.addObject("menuList",service.menuList(principal.getName()));
 			
 	}
@@ -41,7 +41,7 @@ public class ManagerController {
 	@GetMapping("/manager/menu_read")
 	public ModelAndView menuRead(Integer menuno) {
 		return new ModelAndView("main").addObject("viewName", "manager/menuread.jsp")
-				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewHeader", "include/viewManagerHeader.jsp")
 				.addObject("menuRead",service.menuRead(menuno));
 	}
 	
@@ -49,7 +49,7 @@ public class ManagerController {
 	@GetMapping("/manager/menu_write")
 	public ModelAndView menuWrite() {
 		return new ModelAndView("main").addObject("viewName", "manager/menuwrite.jsp")
-				.addObject("viewHeader", "include/noheader.jsp");
+				.addObject("viewHeader", "include/viewManagerHeader.jsp");
 	}
 	
 	
@@ -66,7 +66,7 @@ public class ManagerController {
 	@GetMapping("/manager/store_apply")
 	public ModelAndView storeApplyInsert() {
 		return new ModelAndView("main").addObject("viewName", "manager/storeapply.jsp")
-				.addObject("viewHeader", "include/noheader.jsp");
+				.addObject("viewHeader", "include/viewManagerHeader.jsp");
 	}
 	
 	//입점신청
@@ -83,20 +83,11 @@ public class ManagerController {
 	@GetMapping("/manager/information")
 	public ModelAndView managerInfoRead(String mUsername) {
 		return new ModelAndView("main").addObject("viewName","manager/information.jsp")
-				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewHeader", "include/viewManagerHeader.jsp")
 				.addObject("managerInfo",service.read(mUsername));
 	}
 	
-	
-	/*
-	 * //사업자 탈퇴
-	 * 
-	 * @GetMapping("/manager/out") public ModelAndView managerResign(String
-	 * mUsername) { return new
-	 * ModelAndView("main").addObject("viewName","manager/information.jsp")
-	 * .addObject("viewHeader", "include/noheader.jsp")
-	 * .addObject("managerResign",service.resign(mUsername)); }
-	 */
+
 	 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,6 +14,7 @@ import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.manager.dao.*;
 import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.review.dao.*;
+import com.icia.cheatingday.review.entity.*;
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.util.*;

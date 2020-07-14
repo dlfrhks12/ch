@@ -135,8 +135,8 @@ $("#SSajin").on("change",loadImage);
 	</div>
 	
 	<div>
-	**음식점고유번호는 변경이 불가함<br>
-	 음식점 고유번호 :<input type="text" name="SNum" id="SNum" value="${storeRead.SNum}">
+	<!--음식점 고유번호 :<input type="text" name="SNum" id="SNum" value="${storeRead.SNum}">-->
+	 매장 고유번호: <span id="SNum">${storeRead.SNum}</span>
 	</div>
 	
 	<div>
@@ -148,25 +148,33 @@ $("#SSajin").on("change",loadImage);
 	</div>
 	
 	<div>
-	음식점 전화번호: <input type="text" name="STel" id="STel" value="${storeRead.STel}">
+	매장 전화번호: <input type="text" name="STel" id="STel" value="${storeRead.STel}">
 	</div>
 	
 	<div>
 	주소: <!--  <input type="text" name="SAddress" id="SAddress" value="${storeRead.SAddress}">-->
 		 <input name="sAddress" id="zonecode" type="text"  style="width: 50px;" readonly />&nbsp;
-		 <button type="button" class="btn btn-info" onClick="openDaumZipAddress();" >주소찾기</button> <br /> 
+		 <button type="button"  class="btn btn-danger" onClick="openDaumZipAddress();" >주소찾기</button> <br /> 
          <input name="sAddress" type="text" id="address"  style="width: 240px;" readonly /> 
          <input name="sAddress" type="text" id="address_etc"  style="width: 200px;" />
 	</div>
 	
 	<!-- 음식점 카테고리번호에 해당하는 내용을 읽어와야해  -->
 	<div>
-	**카테고리도 변경이 불가함<br>
-	카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">
+	<!-- 카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">  -->
+	카테고리:<span id="foodcategory">${storeRead.foodCategory}</span>
 	</div> 
 	
-	<button type="button" class="btn btn-success" id="update">변경하기</button>
-	<button type="button" class="btn btn-success" id="delete">매장 삭제하기</button>  
+	<div>
+	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt}</span>
+	</div>
+	
+	<div>
+	별점평균:<span id="SStarPoint">${storeRead.SStarPoint}</span>
+	</div>
+	
+	<button type="button"  class="btn btn-danger" id="update">변경하기</button>
+	<button type="button"  class="btn btn-danger" id="delete">매장 삭제하기</button>  
 </body>
 </body>
 </html>

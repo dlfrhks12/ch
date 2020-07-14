@@ -26,7 +26,7 @@
 					<th>작성시간</th>
 					<th>별점</th>
 				</tr>
-			</thead>
+			</thead> 
 			<tbody id="list">
 			<c:forEach items="${page.MList}" var="manager">
 				<tr>

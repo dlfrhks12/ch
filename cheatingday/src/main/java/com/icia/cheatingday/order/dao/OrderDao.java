@@ -1,14 +1,13 @@
 package com.icia.cheatingday.order.dao;
 
-import java.util.List;
+import java.util.*;
 
-import javax.inject.Inject;
+import javax.inject.*;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.stereotype.Repository;
+import org.mybatis.spring.*;
+import org.springframework.stereotype.*;
 
-import com.icia.cheatingday.order.entity.DetailorderEntity;
-import com.icia.cheatingday.order.entity.OrderEntity;
+import com.icia.cheatingday.order.entity.*;
 
 @Repository
 public class OrderDao {
@@ -54,4 +53,6 @@ public class OrderDao {
 	public List<OrderEntity> resList() {
 		return tpl.selectList("orderAndReviewMapper.resList");
 	}
+	
+	
 }

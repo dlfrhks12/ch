@@ -1,4 +1,4 @@
-/*
+
 package com.icia.cheatingday;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -19,7 +19,7 @@ import com.icia.cheatingday.freeboard.service.*;
 import com.icia.cheatingday.freeboard.service.rest.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring//-context.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
 public class FreeBoardServiceTest {
 	@Autowired
 	private FreeBoardService service;
@@ -28,19 +28,16 @@ public class FreeBoardServiceTest {
 	@Autowired
 	private FreeBoardDao dao;
 	
-	@Test
-	 public void writeTest() {
-	 assertThat(service.write(FreeBoardDto.DtoForWrite.class), is(notNullValue()));
-}
+	
 
 	//@Test
 	public void writeTest() throws IOException {
 		FreeBoardDto.DtoForWrite dto = new DtoForWrite();
-		File targetFile = new File("d:/puffy.jpg");
-		
+		File targetFile = new File("d:/attachment/1591854040995-anony.jpg");
 		dto.setUsername("dddd");
 		dto.setTitle("첫번째");
 		dto.setContent("ㅁㅁㅁ");
+		dto.setCateno(1);
 		assertThat(service.write(dto), is(notNullValue()));
 	}
 	//@Test
@@ -50,15 +47,11 @@ public class FreeBoardServiceTest {
 		System.out.println(board);
 		assertThat(service.read(173, "양수민"), is(notNullValue()));
 	}
-	//@Test
-	public void listTest() {
-		assertThat(service.list(1, "양수민"), is(50));
-	}
-	//@Test
-	public void  readAttachment() {
-		assertThat(restService.readAttachment(8), is(1));
-	}
 	@Test
+	public void listTest() {
+		assertThat(service.list(1, "양수민", 1),is(1));
+	}
+	//@Test
 	public void updateBoardTest() {
 		FreeBoardDto.DtoForUpdate dto = new DtoForUpdate();
 		dto.setTitle("aaa");
@@ -68,4 +61,4 @@ public class FreeBoardServiceTest {
 		assertThat(restService.updateBoard(dto), is(notNullValue()) );
 	}	
 }
-*/
+

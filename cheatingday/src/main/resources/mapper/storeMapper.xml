@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="storeMapper">
+
+
+<!--내 매장 리뷰갯수 읽기 
+<select id="myReviewCnt" resultType="int">
+	select count(*) from review where s_num=#{sNum}
+</select> -->
+
 <!-- 매장이 존재하는지 안하는지  -->
 <select id="existsSnum" resultType="boolean">
 	select count(*) from store where m_username=#{mUsername} and rownum=1
@@ -14,7 +21,7 @@ s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUserna
 
 <select id="findBymUsername" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
-s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername from store where m_username=#{mUsername} and rownum=1
+s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername, s_review_cnt sReviewCnt, s_star_point sStarPoint from store where m_username=#{mUsername} and rownum=1
 </select>
 
 <!-- <select id="findAll" resultType="store">
@@ -47,6 +54,8 @@ update store
 		<if test="sName!=null">s_name=#{sName},</if>
 		<if test="sTel!=null">s_tel=#{sTel},</if>
 		<if test="sAddress!=null">s_address=#{sAddress},</if>
+		<if test="sStarPoint!=null">s_star_point=#{sStarPoint},</if>
+		<if test="sReviewCnt!=null">s_review_cnt=#{sReviewCnt},</if>
 	</trim>
 	where s_num=#{sNum} and rownum=1
 </update>	

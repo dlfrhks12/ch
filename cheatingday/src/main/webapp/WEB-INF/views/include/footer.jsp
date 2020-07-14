@@ -17,6 +17,7 @@ color: #999999;
 </style>
 </head>
 <body>
+	<hr>
 	<div id="footer" class="container-fluid">
 		<p>Cheating Day</p>
 		<div id="ch">

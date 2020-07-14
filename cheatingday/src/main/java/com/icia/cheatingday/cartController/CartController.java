@@ -30,6 +30,17 @@ public class CartController {
 	private CartService service;
 	private ObjectMapper objectMapper = new ObjectMapper();
 
+	
+	//예
+	//주문하기위해 가게읽기 페이지로 이동
+	@GetMapping("/order/orderPage")
+	public ModelAndView orderStoreRead() {
+		return new ModelAndView("main").addObject("viewName", "order/orderPage")
+				.addObject("viewHeader", "include/noheader.jsp");
+	}
+	
+	
+	
 	// 메뉴 리스트 출력
 	@GetMapping("/cart/cartlist")
 	public ModelAndView list() throws JsonProcessingException {

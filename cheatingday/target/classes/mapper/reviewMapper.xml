@@ -3,8 +3,6 @@
 <mapper namespace="reviewMapper">
 	
 	
-	
-	
 	<!-- 리뷰 신고 (일반회원, 사업자회원) -->
 	<update id="reviewSingo">
 		update review set r_report=r_report+1 where r_no=#{rNo}
@@ -31,6 +29,8 @@
 		select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, o_no oNo, r_title rTitle, r_report rReport, u_username uUsername, s_num sNum 
 		from review where r_no=#{rNo} and rownum=1
 	</select>
+	
+	
 	<select id="count" resultType="int">
 		select count(*) from review
 		<where>

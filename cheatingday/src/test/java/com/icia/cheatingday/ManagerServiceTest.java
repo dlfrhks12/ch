@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.service.StoreService;
-import com.icia.cheatingday.user.entity.Review;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/**/*-context.xml")

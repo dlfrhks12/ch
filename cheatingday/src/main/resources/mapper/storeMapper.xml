@@ -63,6 +63,24 @@ update store
 <delete id="delete">
 	delete from store where s_num=#{sNum} and rownum=1
 </delete>
+<select id="count" resultType="int">
+		select count(*) from store 
+		<where>
+			<if test="value!=null">and food_no=#{value}</if>
+		</where>
+	</select>
+<select id="findAllByfoodNoAndStar" resultType="store">
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_star_point desc
+</select>
+<select id="findAllByfoodNoAndReview" resultType="store">
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_review_cnt desc
+</select>
+<select id="findAllByReview" resultType="store">
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_review_cnt desc
+</select>
+<select id="findAllByStar" resultType="store">
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_star_point desc
+</select>
 </mapper>
 
 

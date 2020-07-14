@@ -1,7 +1,5 @@
 package com.icia.cheatingday;
 
-import java.time.LocalDateTime;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,18 +44,12 @@ public class ManagerServiceTest {
 	/*
 	@Test
 	public void myinforeadTest() {
-<<<<<<< HEAD
 	//	assertThat(service.read(111111113), is(notNullValue()));
 		//System.out.println(service.read(111111113));
-=======
-<<<<<<< HEAD
 	//	assertThat(service.read(111111113), is(notNullValue()));
 	//	System.out.println(service.read(111111113));
-=======
 		assertThat(service.read("11111"), is(notNullValue()));
 		System.out.println(service.read("11111"));
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		
 	}
 	*/

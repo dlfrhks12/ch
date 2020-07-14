@@ -80,16 +80,6 @@ public class MainController {
 	}
 	
 	
-	/*
-	// [공용] 현재위치 api 
-	@GetMapping("/geolocation")
-	public ModelAndView geolocation(double latitude, double longitude) throws Exception {
-		GpsToAddress gps = new GpsToAddress(latitude, longitude);
-		System.out.println(gps.getAddress());
-		return new ModelAndView("main").addObject("latitude", latitude).addObject("longitude", longitude);
-	}
-	*/
-	
 	// [일반] 회원가입 Get
 	@GetMapping("/join_user")
 	public ModelAndView UserJoin() {
@@ -257,5 +247,14 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/store_list")
+	public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, Integer foodNo) {
+		if(job.equals("review_list"))
+			return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(foodNo));
+		else if(job.equals("star_list"))			
+			return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(foodNo));
+		return null;
+	}
 }
 

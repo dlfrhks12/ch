@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="detailorderMapper">
+	<select id="count" resultType="int">
+		select count(*) from detailorder
+		<where>
+			<if test="dNo=!null">and d_no=#{dNo}</if>
+		</where>
+	</select>
+	<select id="findAll" resultType="detailorder">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, d.* from
+			(select /*+ index_desc(detailorder detailorder_pk_dNo) d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder) d
+		where rownum<=#{endRowNum})
+	where rnum>=#{startRowNum}	
+	]]>
+	</select>
+	<select id="findById" resultType="detailorder">
+		select d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder where d_no=#{dNo} and rownum=1
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

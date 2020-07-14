@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="login/css/util.css">
 <link rel="stylesheet" type="text/css" href="login/css/main.css">
 <link rel="stylesheet" type="text/css" href="path/to/font-awesome/css/font-awesome.min.css">
-<title>일반회원 아이디 찾기</title>
+<title>사업자회원 아이디 찾기</title>
 <script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="login/vendor/animsition/js/animsition.min.js"></script>
 <script src="login/vendor/bootstrap/js/popper.js"></script>
@@ -28,15 +29,15 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <script>
 $(function() {
-   var msg = "${msg}";
-   if(msg!="") {
-      $("#alert").text(msg);
-      $("#msg").show();
-   }
-   $("#find_id").on("click", function() {
-      $("#find_id_form").submit();
-   });
-});
+	   var msg = "${msg}";
+	   if(msg!="") {
+	      $("#alert").text(msg);
+	      $("#msg").show();
+	   }
+	   $("#u_find_id").on("click", function() {
+	      $("#u_find_id_form").submit();
+	   });
+	});
 </script>
 </head>
 <body>
@@ -46,7 +47,7 @@ $(function() {
             <div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
-            <form class="login100-form validate-form flex-sb flex-w" id="find_id_form" action="/cheatingday/u_find_id" method="post">
+            <form class="login100-form validate-form flex-sb flex-w" id="u_find_id_form" action="/cheatingday/u_find_id" method="post">
                <span class="login100-form-title p-b-32">일반회원 아이디 찾기</span>
                
                <div>
@@ -64,10 +65,11 @@ $(function() {
 					</div>
 			   </div>
                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-               <button type="button" class="btn btn-danger" id="find_id">아이디 찾기</button>
+               <button type="button" class="btn btn-danger" id="u_find_id">아이디 찾기</button>
             </form>
     		</div>
 		</div>
 	</div>
+
 </body>
 </html>

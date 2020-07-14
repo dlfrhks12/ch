@@ -1,6 +1,5 @@
 package com.icia.cheatingday.user.dao;
 
-import java.sql.*;
 import java.util.*;
 
 import org.mybatis.spring.*;

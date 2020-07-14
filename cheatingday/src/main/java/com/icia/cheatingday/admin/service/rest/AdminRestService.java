@@ -6,7 +6,7 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.admin.dao.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.review.dao.*;
-import com.icia.cheatingday.user.entity.*;
+import com.icia.cheatingday.review.entity.*;
 
 @Service
 public class AdminRestService {

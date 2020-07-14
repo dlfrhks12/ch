@@ -1,6 +1,5 @@
 package com.icia.cheatingday.user.dto;
 
-import java.time.*;
 import java.util.*;
 
 import javax.validation.constraints.*;

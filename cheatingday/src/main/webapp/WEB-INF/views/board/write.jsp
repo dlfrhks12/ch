@@ -89,7 +89,6 @@ $(function() {
  		<div class = "form-group">
  			<textarea class = "form-control" id = "content" name = "content"></textarea>
  		</div>
-		<button type="button"class="btn btn-outline-info" id="add">사진추가하기</button>
  		<button type="button" class="btn btn-outline-danger" id="write">WRITE</button>
 		<div id="attachment_div"></div>
  	</form>

@@ -45,7 +45,6 @@
 	<context:component-scan base-package="com.icia.cheatingday.main.controller.mvc" />
 	<context:component-scan base-package="com.icia.cheatingday.main.controller.rest" />
 	<context:component-scan base-package="com.icia.cheatingday.notice.controller" />
-	<context:component-scan base-package="com.icia.cheatingday.freeboard.controller" />
 	<context:component-scan base-package="com.icia.cheatingday.system.controller" />
 	<context:component-scan base-package="com.icia.cheatingday.cartController" />
 	
@@ -70,8 +69,8 @@
 		</interceptor>
 	</interceptors>
 
-		<beans:bean id="chatHandler" class="com.icia.cheatingday.freeboard.controller.ChatController"></beans:bean>
 	<websocket:handlers>
-		<websocket:mapping handler="chatHandler" path="/board/chat"/>
+		<websocket:mapping handler="myHandler" path="/chat"/>
 	</websocket:handlers>
+	<beans:bean id = "myHandler" class = "com.icia.cheatingday.handler.MessagingHandler"></beans:bean>
 </beans:beans>

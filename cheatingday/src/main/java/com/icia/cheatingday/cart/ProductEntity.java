@@ -18,7 +18,7 @@ public class ProductEntity {
 //	m_count NUMBER(10), /* 수량 */
 //	image VARCHAR2(100), /* 사진 */
 //	m_stock NUMBER(10) /* 재고 */
-	private Integer mNo;
+	private int mNo;
 	private String mName;
 	private int mPrice;
 	private int mCount;

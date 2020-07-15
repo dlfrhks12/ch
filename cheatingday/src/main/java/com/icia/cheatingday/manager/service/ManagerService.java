@@ -65,11 +65,11 @@ public class ManagerService {
 		System.out.println(storeDao.findBymUsername(mUsername).getSNum());//mUsername이 null이래
 		System.out.println("+++++++++++");
 		//if(mUsername==null)
-		//	throw new sNumNotFoundException("매장 등록 후 이용 가능합니다");
+		//	throw new sNumenunotFoundException("매장 등록 후 이용 가능합니다");
 		int sNum = storeDao.findBymUsername(mUsername).getSNum(); 
 		System.out.println(sNum);
 		//if(sNum==0) //음식점이 등록되지 않아 sNum이 null일때,
-		//	throw new sNumNotFoundException("매장 등록 후 이용 가능합니다");
+		//	throw new sNumenunotFoundException("매장 등록 후 이용 가능합니다");
 		
 		List<MenuEntity> list = dao.findAllBymUsername(sNum);   
 		return list;

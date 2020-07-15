@@ -24,10 +24,11 @@ public class BuylistDao {
 	public int count() {
 		return tpl.selectOne("buylistMapper.count");
 	}
-	public List<Buylist> findAll(int startRowNum, int endRowNum) {
-		Map<String,Integer> map = new HashMap<>();
+	public List<Buylist> findAll(int startRowNum, int endRowNum, String uUsername) {
+		Map<String,Object> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
+		map.put("uUsername", uUsername);
 		return tpl.selectList("buylistMapper.findAll", map);
 	}
 }

@@ -1,12 +1,12 @@
 package com.icia.cheatingday.cart;
 
-import java.util.List;
+import java.util.*;
 
-import javax.inject.Inject;
+import javax.inject.*;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.mybatis.spring.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
 @Repository
 public class CartDao {

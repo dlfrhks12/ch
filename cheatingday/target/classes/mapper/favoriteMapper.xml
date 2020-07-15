@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="favoriteMapper">
-	<!-- 제품번호와 사용자 이름을 이용해 즐겨찾기 db에 데이터를 넣음 -->
-	<insert id="insertFavorite">
-		<selectKey keyProperty="uUsername" resultType="int" order="BEFORE">
-			select favorite_seq.nextval from dual
-		</selectKey>
-		insert into favorite (u_username, sNum) values(#{uUSernmae},#{sNum})
+	<insert id="favoriteIn">
+		insert into favorites(u_username, s_num) values(#{uUsername}, #{sNum})
 	</insert>
-	<!-- 사용자가 등록한 즐겨찾기의 개수를 찾아주는 것 -->
 	<select id="favorteCount" resultType="int">
-		select count(*) from favorite where u_username=#{uUsername}
+		select count(*) from favorites where u_username=#{uUsername}
 	</select>
-	<!-- 즐겨찾기 중복을 방지하기 위한 중복검사 -->
-	<select id="findFavoriteById" resultType="int">
-		select u_username from favorite where u_username=#{uUsername} and s_num=#{sNum} and rownum=1
+	<select id="findFavoriteById" resultType="boolean">
+		select count(*) from favorites where u_username=#{uUsername} and s_num=#{sNum} and rownum=1
+	</select>
+	<select id="existsByFav" resultType="string">
+		select u_username from favorites where u_username=#{uUsername} and rownum=1
+	</select>
+	<delete id="deleteFavorite">
+		delete from favorites where u_username=#{uUsername} and s_num=#{sNum}
+	</delete>
+	<select id="favCheck" resultType="boolean">
+		select count(*) from favorites where u_username=#{uUsername} and s_num=#{sNum}
 	</select>
 </mapper>

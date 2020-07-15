@@ -32,4 +32,11 @@ public class PointDao {
 	public int delete(String uUsername) {
 		return tpl.delete("pointMapper.delete", uUsername);
 	}
+	public int pointAdd(Point point) {
+		return tpl.update("pointMapper.pointAdd", point);
+	}
+	public int pointMin(Point point) {
+		return tpl.update("pointMapper.pointMin", point);
+	}
+	
 }

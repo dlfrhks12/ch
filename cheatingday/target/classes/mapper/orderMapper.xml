@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="orderAndReviewMapper">
+<mapper namespace="orderMapper">
 <!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum --> 
 
 	<!-- 1. 장바구니 추가 -->
@@ -15,7 +15,7 @@
 	</insert>
 	
 	<!-- 2. 장바구니 목록 -->
-	<select id="order" resultType="orderAndReview">
+	<select id="order" resultType="order">
 		select d_no dNo, 
 			   u_username uUsername,
 			   menuno menuno,

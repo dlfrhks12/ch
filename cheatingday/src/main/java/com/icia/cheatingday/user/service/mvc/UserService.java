@@ -37,11 +37,12 @@ public class UserService {
 	@Autowired
 	private StoreDao storeDao;
 	@Autowired
-	private FavoriteDao favoriteDao;
+	private FavoriteDao favDao;
 	@Autowired
 	private PasswordEncoder pwdEncoder;
 	@Autowired
 	private ModelMapper modelMapper;
+	
 
 
 	// 내정보 읽기
@@ -114,11 +115,6 @@ public class UserService {
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}
-		System.out.println(reviewList);
-		System.out.println(reviewList);
-		System.out.println(reviewList);
-		System.out.println(reviewList);
-		System.out.println(reviewList);
 		page.setRlist(dtoList);
 		return page;
 	}
@@ -128,25 +124,16 @@ public class UserService {
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Buylist> buyList = buylistDao.findAll(srn, ern);
+		List<Buylist> buyList = buylistDao.findAll(srn, ern, uUsername);
 		List<BuylistDto.DtoForList> dtoList = new ArrayList<>();
 		for(Buylist buylist:buyList) {
 			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
 			dto.setOOrderTimeStr(buylist.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+			dto.setFavCheck(favDao.findFavoriteById(dto.getUUSername(),dto.getSNum()));
 			dtoList.add(dto);
 		}
 		page.setBlist(dtoList);
 		return page;
-		
 	}
-	// 즐겨찾기
-	public int favorite(int sNum, String uUsername ) {
-		int num = favoriteDao.findFavoriteById(uUsername, sNum);
-		if(num != 0) {
-			return num;
-		}
-		return 0;
-	}
-	
 }

@@ -18,7 +18,6 @@
 		<typeAlias type="com.icia.cheatingday.center.entity.QnAComment" alias="qnacomment"/>
 		<typeAlias type="com.icia.cheatingday.order.entity.DetailorderEntity" alias="detailorder"/>
 		<typeAlias type="com.icia.cheatingday.center.entity.QnAComment" alias="qnacomment"/>
-		<typeAlias type="com.icia.cheatingday.cart.ProductEntity" alias="product"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.Store" alias="store"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.FoodCategory" alias="foodCategory"/>
 	</typeAliases>

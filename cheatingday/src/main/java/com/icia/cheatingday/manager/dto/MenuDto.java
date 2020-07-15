@@ -23,6 +23,8 @@ public class MenuDto {
 		//다른클래스
 		private String sName; //상호명
 		
+		private int mcount;
+		
 	}
 	
 }

@@ -203,13 +203,17 @@ public class MainService {
 			}
 		}
 
-		/*
-		public List<MainDto.DtoForList> list(Integer foodNo) {
+		
+		public Page list(int pageno, Integer foodNo) {
+			int countOfBoard = storeDao.count(foodNo);
+			Page page = PagingUtil.getPage(pageno, countOfBoard);
+			int srn = page.getStartRowNum();
+			int ern = page.getEndRowNum();
 			List<Store> storelist = null;
 			if(foodNo!=null) 
-				storelist = storeDao.findAllByfoodNoAndStar(foodNo);
+				storelist = storeDao.findAllByfoodNoAndStar(srn, ern, foodNo);
 			else
-				storelist = storeDao.findAllByStar();
+				storelist = storeDao.findAllByStar(srn, ern);
 			List<MainDto.DtoForList> dtolist= new ArrayList<>();
 			for(Store store:storelist) {
 				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
@@ -217,14 +221,19 @@ public class MainService {
 				dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 				dtolist.add(dto);
 			}
-			return dtolist;
+			page.setMainlist(dtolist);
+			return page;
 		}
-		public List<MainDto.DtoForList> listReview(Integer foodNo) {
+		public Page listReview(int pageno, Integer foodNo) {
+			int countOfBoard = storeDao.count(foodNo);
+			Page page = PagingUtil.getPage(pageno, countOfBoard);
+			int srn = page.getStartRowNum();
+			int ern = page.getEndRowNum();
 			List<Store> storelist = null;
 			if(foodNo!=null) 
-				storelist = storeDao.findAllByfoodNoAndReview(foodNo);
+				storelist = storeDao.findAllByfoodNoAndReview(srn, ern, foodNo);
 			else
-				storelist = storeDao.findAllByReview();
+				storelist = storeDao.findAllByReview(srn, ern);
 			List<MainDto.DtoForList> dtolist= new ArrayList<>();
 			for(Store store:storelist) {
 				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
@@ -232,8 +241,9 @@ public class MainService {
 				dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 				dtolist.add(dto);
 			}
-			return dtolist;
+			page.setMainlist(dtolist);
+			return page;
 		}
-		 */
+		
 
   }

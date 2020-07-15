@@ -33,15 +33,6 @@
 /////////////////////////////////   공용       //////////////////////////////////////////////////
 
 
-// alert 출력
-$(function() {
-	var msg = "${msg}";
-	if(msg!="") {
-		alert(msg);
-	}
-})
-
-   
 // 정규식 검증
 function check(value, pattern, area, fail_msg) {
 	area.text("");
@@ -81,11 +72,38 @@ function checkUserPassword() {
    	return true;
    }
    
-   
+
+ //비밀번호 확인
+   function checkManagerPassword() {
+   	var pattern = /(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$/;
+      	return check($("#mNewPassword").val(), pattern, $("#m_password_msg"), "비밀번호는 특수문자 포함 영숫자 8~10자입니다");
+      }
+
+   //비밀번호 일치 확인
+      function checkManagerPassword2() {
+      	$("#m_password2_msg").text("");
+      	var pwd1 = $("#mNewPassword").val();
+      	var pwd2 = $("#mNewPassword2").val();
+      	if(pwd1!==pwd2) {
+      		$("#m_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
+      		return false;
+      	} else {
+   	   	$("#m_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
+      		return true;
+      	}
+   }
+      
+      
 
 $(function() {   
+	var msg = "${msg}";
+	if(msg!="") {
+		alert(msg);
+	}
 	$("#uNewPassword").on("blur", checkUserPassword);
 	$("#uNewPassword2").on("blur", checkUserPassword2);
+	$("#mNewPassword").on("blur", checkManagerPassword);
+	$("#mNewPassword2").on("blur", checkManagerPassword2);
 	
 	$("#uChangePwd").on("click", function() {
 		var r1 = checkUserPassword();
@@ -99,41 +117,11 @@ $(function() {
 		     }).done(()=>{
 		    	 alert("비밀번호가 변경되었습니다");
 		    	 href.location = "/"})}
+		
+		
+		
 	})
-})
-
-
-
-/////////////////////////////////   사업자회원 정규식 검증       //////////////////////////////////////////////////
-
-
-
-//비밀번호 확인
-function checkManagerPassword() {
-	var pattern = /(?=.*[!@#$%^&*])^[A-Za-z0-9!@#$%^&*]{8,10}$/;
-   	return check($("#mNewPassword").val(), pattern, $("#m_password_msg"), "비밀번호는 특수문자 포함 영숫자 8~10자입니다");
-   }
-
-//비밀번호 일치 확인
-   function checkManagerPassword2() {
-   	$("#m_password2_msg").text("");
-   	var pwd1 = $("#mNewPassword").val();
-   	var pwd2 = $("#mNewPassword2").val();
-   	if(pwd1!==pwd2) {
-   		$("#m_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
-   		return false;
-   	} else {
-	   	$("#m_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
-   		return true;
-   	}
-}
-   
-   
-$(function() {   
-	$("#mNewPassword").on("blur", checkManagerPassword);
-	$("#mNewPassword2").on("blur", checkManagerPassword2);
-	
-	$("#mChangePwd").on("click", function() {
+		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
 		var r2 = checkManagerPassword2();
 		var result = r1 && r2
@@ -147,6 +135,11 @@ $(function() {
 		    	 href.location = "/"})}
 	})
 })
+
+
+
+/////////////////////////////////   사업자회원 정규식 검증       //////////////////////////////////////////////////
+
 </script>
 </head>
 <body>

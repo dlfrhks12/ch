@@ -8,26 +8,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-function moveurl(url) { 
-   var cate = "${store}";
-	if(cate==[])
-		alert("해당카테고리의 매장이 존재하지 않습니다");
-	else
-		location.href = url;
-		console.log(cate);
-} 
+$(function(){
+	var start =${store.startPage}-1;
+	var end = ${store.endPage}+1;
+	console.log(start);
+	console.log(end);
+	var foodNo = location.search.substr(8,1);
+		console.log(foodNo);
+	var filter = location.search.substr(8);
+		console.log(filter);
+	$("#filter").on("change", function(){
+		console.log(this.value);
+		if(this.value=="review")
+			location.href="/cheatingday/store_list?foodNo="+foodNo+"&&job=review_list";
+		if(this.value=="star")
+			location.href="/cheatingday/store_list?foodNo="+foodNo+"&&job=star_list";
+	})
+	$(".page-item").on("click", function(){
+			location.href="/cheatingday/store_list?foodNo="+filter;
+	})
+})
 </script>
 </head>
 <body>
 <div>
-	<form name=move  method=post>
-		<select name=url onchange="moveurl(this.value);">
+		<select id="filter">
 			<option selected="selected">정렬</option>
-			<option value="/cheatingday/store_list?job=review_list&&foodNo=${store[0].foodNo}">리뷰순 정렬</option>
-			<option value="/cheatingday/store_list?job=star_list&&foodNo=${store[0].foodNo}">별점순 정렬</option>
+			<option value="review">리뷰순 정렬</option>
+			<option value="star">별점순 정렬</option>
 		</select>
-	</form>
-		<br>	
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
@@ -49,7 +58,7 @@ function moveurl(url) {
 				</tr>
 			</thead>
 			<tbody id="list">
-				<c:forEach items="${store}" var="store">
+				<c:forEach items="${store.mainlist}" var="store">
 					<tr>
 						<td>${store.SName}</td>
 						<td>${store.SSajin}</td>
@@ -61,5 +70,28 @@ function moveurl(url) {
 			</tbody>
 		</table>
 	</div>
+	 <div style="text-align:center; display: inline-block; padding-left: 600px; ">
+      <ul class="pagination" class="pagination pagination-lg">
+         <c:if test="${store.prev==true}">
+            <li class="page-item"><a href="/cheatingday/store_list?pageno=${store.startPage-1}">이전</a></li>
+         </c:if>
+         <c:forEach begin="${store.startPage}" end="${store.endPage}" var="i">
+            <c:choose>
+               <c:when test="${store.pageno eq i }">
+                  <li  class="page-item">
+                     <a class="page-link" href="/cheatingday/store_list?pageno=${i}">${i}</a>
+                  </li>
+               </c:when>
+               <c:otherwise>
+                  <li class="page-item"><a class="page-link"  href="/cheatingday/store_list?pageno=${i}">${i}</a></li>
+               </c:otherwise>
+            </c:choose>
+            
+         </c:forEach>
+         <c:if test="${store.next==true}">
+            <li  class="page-item"><a class="page-link" href="/cheatingday/board/list?pageno=${store.endPage+1}">다음</a></li>
+         </c:if>
+      </ul>
+   </div>   
 </body>
 </html>

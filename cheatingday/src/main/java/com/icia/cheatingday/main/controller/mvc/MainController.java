@@ -250,18 +250,19 @@ public class MainController {
       return "redirect:/";
    }
    
-   /*
+   
    // 메인화면 카테고리 선택 후 가게 리스트
    @PreAuthorize("isAuthenticated()")
    @GetMapping("/store_list")
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, Integer foodNo) {
+   @ResponseBody
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(foodNo));
+         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo));
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(foodNo));
+         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo));
       return null;
    }
-    */
+  
    
 
 }

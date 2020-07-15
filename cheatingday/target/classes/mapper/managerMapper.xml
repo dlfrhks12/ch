@@ -27,7 +27,7 @@
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
 		m_irum mIrum, s_name sName, m_enabled mEnabled, status from manager where m_username=#{m_username} and rownum=1
 	</select>
-	<!-- 이름과 이메일로 아이		디 찾기 -->
+	<!-- 이름과 이메일로 아이디 찾기 -->
 	<select id="findUsernameByIrumAndEmail" resultType="string">
 		select m_username from manager where m_irum=#{mIrum} and m_email=#{mEmail} and rownum=1
 	</select>

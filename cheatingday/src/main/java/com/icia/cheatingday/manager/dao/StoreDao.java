@@ -15,6 +15,7 @@ public class StoreDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 
+
 	/*//내 매장 리뷰갯수 읽기
 	public int myReviewCnt(int sNum) {
 		return tpl.selectOne("storeMapper.myReviewCnt",sNum);
@@ -70,6 +71,7 @@ public class StoreDao {
 		return tpl.selectList("storeMapper.findAllByReview");
 	}
 	
+	/*
 	public List<Store> findAllByStar(String searchOption, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);
@@ -83,4 +85,5 @@ public class StoreDao {
 		map.put("keyword", keyword);
 		return tpl.selectOne("storeMapper.countArticle", map);
 	}
+	 */
 }

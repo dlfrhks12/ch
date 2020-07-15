@@ -58,17 +58,17 @@
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/cheatingday/buylist/list?pageno=${i}">${i}</a>
+							<a href="/cheatingday/reviewlist/list?pageno=${i}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/cheatingday/buylist/list?pageno=${i}">${i}</a></li>
+						<li><a href="/cheatingday/reviewlist/list?pageno=${i}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 				
 			</c:forEach>
 			<c:if test="${page.next==true}">
-				<li><a href="/cheatingday/buylist/list?pageno=${page.endPage+1}">다음</a></li>
+				<li><a href="/cheatingday/reviewlist/list?pageno=${page.endPage+1}">다음</a></li>
 			</c:if>
 		</ul>
 	</div>

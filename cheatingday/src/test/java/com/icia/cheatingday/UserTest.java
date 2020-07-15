@@ -28,6 +28,7 @@ public class UserTest {
 	@Inject
 	private UserRestService urservice;
 	
+	
 	//@Test
 	public void insert() {
 		User user = User.builder().uUsername("cheat").uIrum("cheating").uEmail("cheating@naver.com")
@@ -80,7 +81,7 @@ public class UserTest {
 		System.out.println(uservice.myPage("spring"));
 	}
 	
-	@Test
+	//@Test
 	public void wfgw() {
 		System.out.println(uservice.pointList(1, null));
 	}

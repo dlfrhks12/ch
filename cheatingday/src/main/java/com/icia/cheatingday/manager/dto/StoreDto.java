@@ -16,5 +16,7 @@ public class StoreDto {
 	private int foodNo;
 	private String foodCategory;
 	private String mUsername;
+	private int sStarPoint;  
+	private int sReviewCnt; 
 	
 }

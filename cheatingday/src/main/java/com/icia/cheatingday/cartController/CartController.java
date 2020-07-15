@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,125 +20,112 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.icia.cheatingday.cart.CartDto;
 import com.icia.cheatingday.cart.CartEntity;
 import com.icia.cheatingday.cart.CartService;
-import com.icia.cheatingday.cart.ProductService;
+import com.icia.cheatingday.cart.ProductEntity;
+import com.icia.cheatingday.manager.service.ManagerService;
+import com.icia.cheatingday.manager.service.StoreService;
 
 @Controller
 public class CartController {
-	@Inject
-	private CartService cartservice;
-
-	@Inject
-	private ProductService proservice;
-
+	@Autowired
+	private CartService service;
 	private ObjectMapper objectMapper = new ObjectMapper();
+	@Autowired
+	private StoreService storeService;
+	@Autowired
+	private ManagerService managerService;
+	
 
-	// ********************************* 메뉴 리스트
-	// ****************************************
+	
+	
+	
+	//예
+	//주문하기위해 가게읽기 페이지로 이동
+	////주문을 위한 메뉴읽기 (전체회원 보기가능)
+	@GetMapping("/order/orderPage")
+	public ModelAndView orderStoreRead(int sNum) {
+		return new ModelAndView("main").addObject("viewName", "order/orderPage.jsp")
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("storeRead", storeService.orderStoreRead(sNum))
+				.addObject("menuRead", managerService.orderMenuRead(sNum));
+	}
+	
+	
+	// 메뉴 리스트 출력
 	@GetMapping("/cart/cartlist")
-	public ModelAndView list() {
-//		return new ModelAndView("cart/cartlist").addObject("list", proservice.list());
-		return new ModelAndView("main").addObject("viewName", "cart/cartlist.jsp").addObject("viewHeader", "include/noheader.jsp").addObject("cartlist", proservice.list());
-	}
-// ***********************************************
-	
-	 // 장바구니  추가--------------------------
-	@PostMapping("/cart/add")
-    public ResponseEntity<?> insert(CartEntity cart,Principal principal) {
-		System.out.println("컨트롤러 장바구니 추가 부분 시작 ++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("컨트롤러 카트 : "+cart);
-        System.out.println("controller=================");
-        return ResponseEntity.ok(cartservice.add(cart));
-    }
-    
-    // 장바구니 리스트
-    @GetMapping("/cart/list")
-	public ModelAndView view(String uUsername) {
-		return new ModelAndView("main").addObject("viewName", "cart/cartview").addObject("cartList", cartservice.findAllCartNo(uUsername));
-	}
-    
-    @GetMapping("/bag/view")
-    public ModelAndView view() {
-       return new ModelAndView("main").addObject("viewName","cart/cartview");
-    }
-    
-    @GetMapping("/bag/list1")
-    public ModelAndView findAllBagByUsername1(Principal principal) {
-       return new ModelAndView("main").addObject("viewName", "cart/cartview")
-	.addObject("bagList",cartservice.findAllCartNo(principal.getName()));
-    }
-    
-    @GetMapping("/cart/list2")
-	public ResponseEntity<?> read(Principal principal) throws JsonProcessingException {
-		return ResponseEntity.ok(cartservice.findAllCartNo(principal.getName()));
-	}
-    
-	
-    // 수량
- 	@PostMapping("/cart/change")
- 	public ResponseEntity<?> change(int mNo, boolean isIncrese) {
- 		CartEntity cart = cartservice.change(mNo, isIncrese);
- 		return ResponseEntity.ok(cart);
- 	}
- 	
- 	@DeleteMapping("/cart/cartDelete")
- 	public ResponseEntity<?> delete(String mNo, Principal principal) throws JsonParseException, JsonMappingException, IOException {
- 		System.out.println("deleteController artno======="+mNo);
-        List<Integer> list = objectMapper.readValue(mNo, new TypeReference<List<Integer>>() {});
-        List<CartDto.DtoForList> bagList = cartservice.multipleDelete(list, principal.getName());
-        return ResponseEntity.ok(bagList);
- 	}
-		
-		
-		
-		
-/*
-	// ***************************** 장바구니
-	// ********************************************
-	@GetMapping("/cart/view")
-	public ModelAndView view(int cartNo) {
-		return new ModelAndView("cart/view").addObject("cartview", cartservice.findAllCartNo(cartNo));
+	public ModelAndView list() throws JsonProcessingException {
+		return new ModelAndView("main")
+				.addObject("viewName", "cart/cartlist.jsp")
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("cartlist", service.list());
 	}
 	
-
+	// 장바구니 리스트출력
+	@GetMapping("/cart/cartview")
+	public ModelAndView view() {
+		return new ModelAndView("main")
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewName", "cart/cartview.jsp");
+	}
+	
+	// 장바구니 담기 했을 때 담기는거 출력
 	@GetMapping("/cart/read")
-	public ResponseEntity<?> read() throws JsonProcessingException {
-		return ResponseEntity.ok(cartservice.read());
-	}
-
-	// 수량
-	@PostMapping("/cart/change")
-	public ResponseEntity<?> change(int cartNo, boolean isIncrese) {
-		CartEntity cart = cartservice.change(cartNo, isIncrese);
-		return ResponseEntity.ok(cart);
-	}
-	
-	*/
-	
-/*
-	@RequestMapping(value="/cart/delete" , method={RequestMethod.POST})
-	@DeleteMapping("/cart/delete")
-	public ResponseEntity<?> delete(HttpSession session, int cartNo) {
-		System.out.println("컨트롤러 시작 +++++++++++++++++++++++++++++++++++++");
-		System.out.println("컨트롤러 세션 : " + session);
-		System.out.println("컨트롤러 카트번호 : " + cartNo);
-		
-		List<CartEntity> cartList = cartservice.delete(session, cartNo);
-		System.out.println("컨트롤러 카트리스트 : " + cartList);
-		System.out.println("컨트롤러 끝 --------------------------------------");
+	public ResponseEntity<?> read(HttpSession session) {
+		//System.out.println("컨트롤러 read 시작 +++++++++++++++++++++++++++++");
+		//System.out.println("컨트롤러 read 세션 : " + session);
+		List<CartEntity> cartList = service.read(session);
+		//System.out.println("컨트롤러 read 카트리스트 : " + cartList);
+		//System.out.println("컨트롤러 read 끝 ---------------------------------");
 		return ResponseEntity.ok(cartList);
 	}
-	*/
-	/*
-	@RequestMapping(value="/cart/delete_all" , method={RequestMethod.POST})
-	@DeleteMapping("/cart/delete_all")
-	public ResponseEntity<?> delete(String pnos, int cartNo)
-			throws JsonParseException, JsonMappingException, IOException {
-		List<Integer> list = objectMapper.readValue(pnos, new TypeReference<List<Integer>>() {});
-		List<CartEntity> bagList = cartservice.multipleDelete(list,cartNo);
-		return ResponseEntity.ok(bagList);
+	
+	// 장바구니 담기 insert
+	@PostMapping("/cart/add")
+	public ResponseEntity<?> insert(Integer mNo, HttpSession session, Principal prin) {
+		//System.out.println("컨트롤러 insert 시작 +++++++++++++++++++++++++");
+		//System.out.println("컨트롤러 insert 메뉴 번호 : " + mNo);
+		//System.out.println("컨트롤러 insert 세션 : " + session);
+		
+		List<CartEntity> cartList = service.add(session, mNo, prin.getName());
+		//System.out.println("컨트롤러 insert 카트리스트 : " + cartList);
+		
+		session.setAttribute("cartList", cartList);
+		//System.out.println("컨트롤러 insert 마지막 세션 : " + session);
+		//System.out.println("컨트롤러 insert 마지막 카트리스트 : " + cartList);
+		//System.out.println("컨트롤러 insert 끝 -----------------------------");
+		
+		return ResponseEntity.ok(cartList);
 	}
-*/
+	
+	// 개수 증가 감소
+	@PatchMapping("/cart/change")
+	public ResponseEntity<?> change(HttpSession session, boolean isIncrease, Integer mNo) {
+		//System.out.println("컨트롤러 개수 시작 ++++++++++++++++++++++++++++");
+		//System.out.println("컨트롤러 개수 세션 : " + session);
+		//System.out.println("컨트롤러 개수 개수 : " + isIncrease);
+		//System.out.println("컨트롤러 개수 메뉴번호 : " + mNo);
+		
+		ProductEntity pro;
+		CartEntity cart = service.change(session, isIncrease, mNo);
+		//System.out.println("컨트롤러 개수 카트 : " + cart);
+		//System.out.println("컨트롤러 개수 끝 ------------------------------");
+		return ResponseEntity.ok(cart);
+	}
+
+	@DeleteMapping("/cart/delete")
+	public ResponseEntity<?> delete(HttpSession session, Integer mNo) {
+		List<CartEntity> cartList = service.delete(session, mNo);
+		return ResponseEntity.ok(cartList);
+	}
+
+	// JSON으로 넘겨주기위해 String pnos(mNo)를 사용
+	@DeleteMapping("/cart/delete_all")
+	public ResponseEntity<?> multipleDelete(HttpSession session, String pnos)
+			throws JsonParseException, JsonMappingException, IOException {
+		List<Integer> list = objectMapper.readValue(pnos, new TypeReference<List<Integer>>() {
+		});
+		List<CartEntity> cartList = service.multipleDelete(session, list);
+		return ResponseEntity.ok(cartList);
+	}
 }

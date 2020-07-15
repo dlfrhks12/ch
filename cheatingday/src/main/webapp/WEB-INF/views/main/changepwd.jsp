@@ -144,9 +144,7 @@ $(function() {
 		        data: $('#m_change_pwd_form').serialize(),
 		     }).done(()=>{
 		    	 alert("비밀번호가 변경되었습니다");
-		    	 href.location = "/"})
-		}
-		false;
+		    	 href.location = "/"})}
 	})
 })
 </script>

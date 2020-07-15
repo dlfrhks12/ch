@@ -110,7 +110,7 @@ $("#update").on("click",function(){
 	메뉴가격: <input type="text" name="menusal" id="menusal" value="${menuRead.menusal}">
 	</div>
 	
-	<button type="button" class="btn btn-success" id="update">변경하기</button>
-	<button type="button" class="btn btn-success" id="delete">삭제하기</button> 
+	<button type="button"  class="btn btn-danger"" id="update">변경하기</button>
+	<button type="button"  class="btn btn-danger" id="delete">삭제하기</button> 
 </body>
 </html>

@@ -7,7 +7,6 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.icia.cheatingday.freeboard.entity.Attachment;
 import com.icia.cheatingday.freeboard.entity.Comment;
 
 import lombok.AllArgsConstructor;
@@ -49,7 +48,6 @@ public class FreeBoardDto {
 		private Integer goodCnt;
 		private Integer badCnt;
 		private List<Comment> comments;
-		private List<Attachment> attachments;
 		
 	}
 	@Data

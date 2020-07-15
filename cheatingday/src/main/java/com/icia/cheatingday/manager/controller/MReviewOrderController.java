@@ -18,6 +18,7 @@ public class MReviewOrderController {
 	@Autowired
 	private MReviewOrderService service;
 	
+	
 	  //리뷰신고
 	 @PatchMapping("manager/reviewRepoart")
 	 public ResponseEntity<?> managerReviewReport(int rNo, Principal principal){
@@ -25,12 +26,11 @@ public class MReviewOrderController {
 	 }
 	
 	
-	
 	  //매장리뷰 목록 페이징
 	  @GetMapping("/manager/review_list") 
 	  public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String mUsername) { 
 		  return new ModelAndView("main").addObject("viewName","manager/reviewlist.jsp")
-				  .addObject("viewHeader", "include/header.jsp")
+				  .addObject("viewHeader", "include/viewManagerHeader.jsp")
 				  .addObject("page", service.list(pageno, mUsername));
 	}
 	  
@@ -38,7 +38,7 @@ public class MReviewOrderController {
 	 @GetMapping("/manager/review_read")
 	 public ModelAndView reviewRead(int rNo) {
 		 return new ModelAndView("main").addObject("viewName","manager/reviewread.jsp")
-				 .addObject("viewHeader","include/header.jsp")
+				 .addObject("viewHeader","include/viewManagerHeader.jsp")
 				 .addObject("reviewRead", service.read(rNo));
 	 }
 	 

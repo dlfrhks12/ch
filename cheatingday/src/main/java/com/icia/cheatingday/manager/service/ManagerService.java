@@ -22,7 +22,6 @@ import com.icia.cheatingday.manager.dto.ManagerDto.DtoForUpdate;
 import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
-import com.icia.cheatingday.manager.exception.sNumNotFoundException;
 
 @Service
 public class ManagerService {
@@ -49,6 +48,14 @@ public class ManagerService {
 	private AuthorityDao authDao;
 	@Autowired
 	private MenuDao menuDao;
+	
+	
+	//주문을 위한 메뉴읽기 (전체회원 보기가능)
+	public List<MenuEntity> orderMenuRead(int sNum){
+		List<MenuEntity> list = menuDao.orderMenuRead(sNum);
+		return list;
+	}
+	
 	
 	///////////////////////////메뉴/////////////////////////////////////
 	// 메뉴리스트

@@ -60,6 +60,9 @@ security-context 로그인 핸들러 설정
 - 2020.07.10
 	* 일반/사업자 비밀번호찾기 완료!!!!!!!!!!!!!!!!! 오류 드디ㅓㅇ 다고침!!!!
 	changepwd.jsp 생성
+- 2020.07.14
+	* header.jsp -> 카카오 지도 API 추가, 현재위치 추적
+	
 	
 ================ 회원 commit =================
 2020.07.03
@@ -97,8 +100,9 @@ userDto추가
 userService 추가
 userException 추가
 ================ 주문/결제 commit ================
-06.25 16:27
-entity작성
+07.14.14:52
+entity,service,controller,jsp 작업 완성
+예정 : 카카오 API를 이용하여 결제하기
 ================ 사업자 commit ================
 06.25.9:54 menu entity/ menu dao 생성
 10:37 mybatis-config.xml : menuentity 생성

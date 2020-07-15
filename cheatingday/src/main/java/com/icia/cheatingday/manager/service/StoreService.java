@@ -32,9 +32,27 @@ public class StoreService {
 	@Autowired
 	private MenuDao menuDao;
 	
+	
+	/*//내 매장 리뷰갯수 읽기
+	public int myReviewCnt(int sNum) {
+		return dao.myReviewCnt(sNum);
+	}
+	*/
+	
+	
 	//매장이 존재하는지 확인
 	public Boolean existsSnum(String mUsername) {
 		return dao.existsSnum(mUsername);
+	}
+	
+	//(매장이 존재하고)해당매장리뷰가 존재하는지 확인
+	public boolean existsreview(String mUsername) {
+		Store store = dao.findBymUsername(mUsername);
+		Integer count = store.getSReviewCnt(); //리뷰갯수를 가져와서
+			if(count==0)
+				return false;
+			else
+				return true;
 	}
 	
 	
@@ -48,7 +66,8 @@ public class StoreService {
 		List<Store> list = dao.findAllBymUsername(mUsername);
 		return list;
 	}
-	// 가게읽기
+	
+	// 가게읽기 - 사업자
 	public StoreDto storeRead(int sNum, String username){
 		Store store = dao.findBysNum(sNum);
 		StoreDto dto = modelMapper.map(store, StoreDto.class);
@@ -57,6 +76,16 @@ public class StoreService {
 		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
 		return dto;
 	} 
+	
+	
+	// 주문을 위한 가게읽기 - 모든회원
+	public StoreDto orderStoreRead(int sNum) {
+		Store store = dao.findBysNum(sNum);
+		StoreDto dto = modelMapper.map(store, StoreDto.class);
+		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
+		return dto;
+		
+	}
 	
 	// 가게등록 
 	public void storeInsert(Store store, MultipartFile sajin) throws IllegalStateException, IOException { 
@@ -99,5 +128,17 @@ public class StoreService {
 		menuDao.deleteBySnum(sNum);
 		return dao.delete(sNum); 
 		}
+
+	/*
+	public List<Store> listByStar(String searchOption, String keyword) {
+		return dao.findAllByStar(searchOption, keyword);
+	}
+
+	public int countArticle(String searchOption, String keyword) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	 */
+
 
 }

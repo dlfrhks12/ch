@@ -15,9 +15,11 @@ import org.springframework.stereotype.Service;
 import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
+import com.icia.cheatingday.main.dto.*;
 import com.icia.cheatingday.manager.dao.*;
 import com.icia.cheatingday.manager.dto.*;
 import com.icia.cheatingday.manager.entity.*;
+import com.icia.cheatingday.manager.entity.Store;
 import com.icia.cheatingday.user.dao.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.user.entity.*;
@@ -29,7 +31,11 @@ public class MainService {
 	@Autowired 
 	private UserDao userDao;
 	@Autowired 
+	private StoreDao storeDao;
+	@Autowired 
 	private ManagerDao managerDao;
+	@Autowired
+	private FoodCategoryDao foodDao;
 	@Autowired 
 	private AuthorityDao authorityDao;
 	@Autowired
@@ -196,5 +202,38 @@ public class MainService {
 				throw new JobFailException("잘못된 비밀번호입니다");
 			}
 		}
+
+		/*
+		public List<MainDto.DtoForList> list(Integer foodNo) {
+			List<Store> storelist = null;
+			if(foodNo!=null) 
+				storelist = storeDao.findAllByfoodNoAndStar(foodNo);
+			else
+				storelist = storeDao.findAllByStar();
+			List<MainDto.DtoForList> dtolist= new ArrayList<>();
+			for(Store store:storelist) {
+				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
+				dto.setFoodCategory(foodDao.findByFoodNo(dto.getFoodNo()));
+				dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+				dtolist.add(dto);
+			}
+			return dtolist;
+		}
+		public List<MainDto.DtoForList> listReview(Integer foodNo) {
+			List<Store> storelist = null;
+			if(foodNo!=null) 
+				storelist = storeDao.findAllByfoodNoAndReview(foodNo);
+			else
+				storelist = storeDao.findAllByReview();
+			List<MainDto.DtoForList> dtolist= new ArrayList<>();
+			for(Store store:storelist) {
+				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
+				dto.setFoodCategory(foodDao.findByFoodNo(dto.getFoodNo()));
+				dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+				dtolist.add(dto);
+			}
+			return dtolist;
+		}
+		 */
 
   }

@@ -28,7 +28,7 @@ public class CartEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private Integer mNo;
+	private int mNo;
 	private String uUsername;
 	private String cartName;
 	private int cartPrice;
@@ -36,5 +36,14 @@ public class CartEntity implements Serializable {
 	private int cartCount;
 	private String image;
 	private int cartJumunMoney;
+	
+	public void increase() {
+		cartCount++;
+		cartJumunMoney = cartCount * cartPrice;
+	}
+	public void decrease() {
+		cartCount--;
+		cartJumunMoney = cartCount * cartPrice;
+	}
 	
 }

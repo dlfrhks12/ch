@@ -10,23 +10,34 @@
 <style>
 	#topmenu{
 		margin-left: -40px;
-		height: 30px;
-		width: 120%;
+		height: 40px;
+		width: 105%;
 	}
-	#topmenu ul li{
+	#a, #b, #c, #d{
+		list-style: none;
+		color: white;
+		background-color: red;
+		float: left;
+		width:25%;
+		line-height: 40px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	#e{
 		list-style: none;
 		color: white;
 		background-color: #2d2d2d;
 		float: left;
-		line-height: 30px;
+		width:100%;
+		line-height: 20px;
 		vertical-align: middle;
 		text-align: center;
 	}
+	
 	#topmenu li a{
 		text-decoration: none;
 		color: white;
 		display: block;
-		width: 400px;
 		font-size: 12px;
 		font-weight: bold;
 	}
@@ -34,21 +45,22 @@
 		color: red;
 		background-color: #4d4d4d;
 	}
+	.
 </style>
 </head>
 <body>
 	<div id="topmenu">
 		<ul>
-			<li><a href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
-			<li class="dropdown"><a class="dropdown-toggle"
+			<li id="a"><a href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
+			<li class="dropdown" id="d"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#"> 회원정보 관리 <span class="caret"></span></a>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu" id="e">
 					<li><a href="/cheatingday/admin/user_list?job=user_list">일반 회원 목록</a></li>
 					<li><a href="/cheatingday/admin/manager_list">사업자 목록</a></li>
 				</ul>
 			</li>
-			<li><a href="/cheatingday/notice/list">공지사항</a></li>
-			<li><a href="/cheatingday/center/list">Q&A</a></li>
+			<li id="b"><a href="/cheatingday/notice/list">공지사항</a></li>
+			<li id="c"><a href="/cheatingday/center/list">Q&A</a></li>
 		</ul>
 	</div>
 </body>

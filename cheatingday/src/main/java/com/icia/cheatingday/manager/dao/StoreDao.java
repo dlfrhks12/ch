@@ -15,7 +15,10 @@ public class StoreDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	/*//내 매장 리뷰갯수 읽기
 	public int myReviewCnt(int sNum) {
 		return tpl.selectOne("storeMapper.myReviewCnt",sNum);

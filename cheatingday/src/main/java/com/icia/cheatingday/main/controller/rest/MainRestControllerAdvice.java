@@ -7,6 +7,7 @@ import com.icia.cheatingday.exception.*;
 
 @ControllerAdvice
 public class MainRestControllerAdvice {
+<<<<<<< HEAD
    @ExceptionHandler(UsernameExistException.class)
    public ResponseEntity<String> usernameExistExceptionHandler() {
       return ResponseEntity.status(HttpStatus.CONFLICT).body("사용중인 아이디입니다");   //CONFLICT : 409 발생시키기
@@ -17,3 +18,15 @@ public class MainRestControllerAdvice {
       return ResponseEntity.status(HttpStatus.CONFLICT).body("사용중인 이메일입니다");
    }
 }
+=======
+	@ExceptionHandler(UsernameExistException.class)
+	public ResponseEntity<String> usernameExistExceptionHandler() {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body("사용중인 아이디입니다");	//CONFLICT : 409 발생시키기
+	}
+	
+	@ExceptionHandler(EmailExistException.class)
+	public ResponseEntity<String> emailExistExceptionHandler() {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body("사용중인 이메일입니다");
+	}
+}
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git

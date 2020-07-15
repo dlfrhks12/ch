@@ -112,11 +112,8 @@ $(function(){
 		
 	</c:forEach>
 	
-	<%-- <div>
-		메뉴가격: ${menuRead}
-		 메뉴사진: ${menuRead.menusajin}
-		메뉴이름: ${menuRead.menuname} 
-	</div> --%>
+	
+	<button id="button">주문하기</button>
 	
 	
 

@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.Service;
 
-import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
@@ -204,7 +203,7 @@ public class MainService {
 			}
 		}
 
-
+		/*
 		public List<MainDto.DtoForList> list(Integer foodNo) {
 			List<Store> storelist = null;
 			if(foodNo!=null) 
@@ -235,5 +234,6 @@ public class MainService {
 			}
 			return dtolist;
 		}
+		 */
 
   }

@@ -2,6 +2,7 @@ package com.icia.cheatingday.manager.dao;
 
 import java.util.*;
 
+import org.apache.ibatis.session.*;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -68,7 +69,18 @@ public class StoreDao {
 	public List<Store> findAllByReview() {
 		return tpl.selectList("storeMapper.findAllByReview");
 	}
-	public List<Store> findAllByStar() {
-		return tpl.selectList("storeMapper.findAllByStar");
+	
+	public List<Store> findAllByStar(String searchOption, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		return tpl.selectList("storeMapper.findAllByStar", map);
+	}
+
+	public int countArticle(String searchOption, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		return tpl.selectOne("storeMapper.countArticle", map);
 	}
 }

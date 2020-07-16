@@ -63,6 +63,7 @@ public class StoreDao {
 	public List<Store> findAllByfoodNoAndStar(Integer foodNo) {
 		return tpl.selectList("storeMapper.findAllByfoodNoAndStar", foodNo);
 	}
+	
 	public List<Store> findAllByfoodNoAndReview(Integer foodNo) {
 		return tpl.selectList("storeMapper.findAllByfoodNoAndReview", foodNo);
 	}
@@ -71,19 +72,21 @@ public class StoreDao {
 		return tpl.selectList("storeMapper.findAllByReview");
 	}
 	
-	/*
-	public List<Store> findAllByStar(String searchOption, String keyword) {
+	public List<Store> findAllByStar() {
+		return tpl.selectList("storeMapper.findAllByStar");
+	}
+
+	public List<Store> listAll(String searchOption, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
-		return tpl.selectList("storeMapper.findAllByStar", map);
+		return tpl.selectList("storeMapper.listAll", map);
 	}
-
+	
 	public int countArticle(String searchOption, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchOption", searchOption);
 		map.put("keyword", keyword);
 		return tpl.selectOne("storeMapper.countArticle", map);
 	}
-	 */
 }

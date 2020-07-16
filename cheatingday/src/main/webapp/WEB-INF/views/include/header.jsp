@@ -173,7 +173,12 @@ $(function() {
 	$("#but").on("click", function() {
 		$("#map").toggle();
 	})
+	
+	$("#search").on("click", function() {
+		location.href="/cheatingday/manager/search_list";
+	})
 })
+
 </script>
 </body>
 </html>

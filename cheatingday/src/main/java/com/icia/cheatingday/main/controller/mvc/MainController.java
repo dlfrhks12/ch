@@ -84,16 +84,16 @@ public class MainController {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/kakaoAPI.jsp");
    }
    
-   
    // 메인화면 카테고리 선택 후 가게 리스트
    @PreAuthorize("isAuthenticated()")
    @GetMapping("/store_list")
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, Integer foodNo) {
-	   if(job.equals("review_list"))
-		   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(foodNo));
-	   else if(job.equals("star_list"))         
-		   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(foodNo));
-	   return null;
+   @ResponseBody
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo) {
+      if(job.equals("review_list"))
+         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo)).addObject("filter", "review_list").addObject("foodno", foodNo);
+      else if(job.equals("star_list"))         
+         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo)).addObject("filter", "star_list").addObject("foodno", foodNo);
+      return null;
    }
    
    // 메인화면 주소 검색 후 가게 리스트
@@ -286,5 +286,7 @@ public class MainController {
    }
    
    
+
+  
 }
 

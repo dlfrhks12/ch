@@ -51,6 +51,11 @@ public class UserRestController {
 		handler.logout(request, response, authentication);
 		return ResponseEntity.ok(null);
 	}
+	
+	@PutMapping("/user/favorite")
+	public ResponseEntity<Integer> fav(int SNum, Principal principal) {
+		return ResponseEntity.ok(service.fav(SNum,principal.getName()));
+	}
 
 /*
 	// 날짜 불러오기

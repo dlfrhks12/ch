@@ -20,7 +20,7 @@ $(function() {
 	// 3. 장바구니에 추가
 	$(".cart").on("click", function() {
 		var params = {
-			mNo: $(this).attr("data-mno"),
+			menuno: $(this).attr("data-menuno"),
 			_csrf: "${_csrf.token}"
 		}
 		$.ajax({ 
@@ -49,7 +49,7 @@ $(function() {
 				<span style="font-size: 0.75em;">${product.MName }</span>
 			</div>
 			<div>
-				<button class="cart" data-mno="${product.MNo}">장바구니 담기</button>
+				<button class="cart" data-menuno="${product.menuno}">장바구니 담기</button>
 			</div>
 		</div>
 		<%-- <c:if test="${status.MCount ==5}">

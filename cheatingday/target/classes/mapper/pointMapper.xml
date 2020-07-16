@@ -28,6 +28,12 @@
 		</trim>
 		where u_username=#{UUsername} and rownum=1
 	</update>
+	<update id="pointAdd" parameterType="point">
+		update member set point=point+#{Point} where u_username=#{UUsername}
+	</update>
+	<update id="pointMin" parameterType="point">
+		update member set point=point-#{Point} where u_username=#{UUsername}
+	</update>
 	<delete id="delete">
 		delete from point where u_username=#{UUsername} and rownum=1
 	</delete>

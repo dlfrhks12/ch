@@ -6,7 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	div, span {
+		display: inline-block;
+	}
+	span {
+		width: 175px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+////////////////////////////////////////////////////예지///////////////////////////////////////////
 //메뉴사진 읽기
 function loadImage(){
 	
@@ -44,9 +54,31 @@ $(function(){
  	$("#zonecode").val(afterjusoStr[0]);
  	$("#address").val(afterjusoStr[1]);
  	$("#address_etc").val(afterjusoStr[2]);
+ 	
+///////////////////////////////////////////////////////////예지///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////일관///////////////////////////////
+
+	// 3. 장바구니에 추가
+	$(".cart").on("click", function() {
+		var params = {
+			menuno: $(this).attr("data-menuno"),
+			_csrf: "${_csrf.token}"
+		}
+		$.ajax({ 
+			url: "/cheatingday/cart/add",
+			method: "post",
+			data: params,
+		}).done(()=>{
+			var choice = confirm("상품을 장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
+			if(choice==true)
+				location.href = "/cheatingday/cart/cartview"
+		}).fail((xhr)=>{
+			alert(xhr.responseText);
+		})
+	});
+ 	
 })
-
-
 
 </script>
 </head>
@@ -56,11 +88,6 @@ $(function(){
 	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
 	</div>
 	
-	
-	<%-- <div>
-	<!--음식점 고유번호 :<input type="text" name="SNum" id="SNum" value="${storeRead.SNum}">-->
-	 매장 고유번호: <span id="SNum">${storeRead.SNum}</span>
-	</div> --%>
 	
 	<div>
 	매장정보: <span id="SInfo">${storeRead.SInfo}</span>
@@ -94,26 +121,35 @@ $(function(){
 </div>
 
 <div id="menuInfo">
-
-	<c:forEach items="${menuRead}"  var="menu">
-		
+	<%-- <c:forEach items="${menuRead}"  var="menu">
 		<div id="menusajin">
 			<img id="show_menusajin" height="200px;" src="${menu.menusajin}">
 		</div>
-		
 		<div id="menuname">
 			${menu.menuname}
 		</div>
-		
 		<div id="menusal">
 			${menu.menusal}
 		</div>	
-		
-		
+	</c:forEach> --%>
+	
+	<a href="/cheatingday/cart/cartview">장바구니로</a><br>
+	<c:forEach items="${cartlist}" var="product" varStatus="status">
+		<div style="width: 176px; margin-right: 25px;">
+			<img src="${product.menusajin}" width="175px">
+			<div>
+				<span>${product.menusal}원</span>
+				<!--  <span style="font-size: 0.75em;">1개당 ${product.menusal/product.mcount}원</span>-->
+				<span style="font-size: 0.75em;">${product.menuname}</span>
+			</div>
+			<div>
+				<button class="cart" data-menuno="${product.menuno}">장바구니 담기</button>
+			</div>
+		</div>
+		<%-- <c:if test="${status.MCount ==5}">
+			<hr>
+		</c:if --%>
 	</c:forEach>
-	
-	
-	<button id="button">주문하기</button>
 	
 	
 

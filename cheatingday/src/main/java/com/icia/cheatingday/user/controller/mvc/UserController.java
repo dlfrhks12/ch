@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.mvc.support.*;
 
+import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.user.service.mvc.*;
 import com.icia.cheatingday.util.editor.*;
 
@@ -100,7 +101,6 @@ public class UserController {
 		ra.addFlashAttribute("msg", "비밀번호를 변경했습니다");
 		return "redirect:/";
 	}
-	// 즐겨찾기
 	
 	// 회원탈퇴
 	/*

@@ -11,6 +11,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>메뉴읽기</title>
+<style>
+	#wrap{position: absolute; left:35%}
+
+</style>
 
 <script>
 	//1. 메뉴사진 읽기
@@ -90,8 +94,9 @@ $("#update").on("click",function(){
 </script>
 </head>
 <body>
- <div>
- 
+ 	<div id="wrap">
+ 	
+ 	<div>
 		<img id="show_menusajin" height="200px;" src="${menuRead.menusajin}">
 	</div>
 	<div>
@@ -112,5 +117,7 @@ $("#update").on("click",function(){
 	
 	<button type="button"  class="btn btn-danger"" id="update">변경하기</button>
 	<button type="button"  class="btn btn-danger" id="delete">삭제하기</button> 
+	
+	</div>
 </body>
 </html>

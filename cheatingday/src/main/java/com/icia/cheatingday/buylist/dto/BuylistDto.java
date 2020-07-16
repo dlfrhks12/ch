@@ -18,5 +18,6 @@ public class BuylistDto {
 	private Integer oCheck;
 	private int sNum;
 	private String sName;
+	private Boolean favCheck;
 	}
 }

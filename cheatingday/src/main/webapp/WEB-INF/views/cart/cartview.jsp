@@ -213,7 +213,7 @@ $(function() {
 			}
 		});
 	
-		var $form = $("<form>").attr("action","/cheatingday/order/buy_all").attr("method","post");
+		var $form = $("<form>").attr("action","/cheatingday/order/kakaoPay").attr("method","post");
 		$("<input>").attr("type","hidden").attr("name","json").val(JSON.stringify(ar)).appendTo($form);
 		$("<input>").attr("type","hidden").attr("name","_csrf").val("${_csrf.token}").appendTo($form);
 		$form.appendTo($("body")).submit();

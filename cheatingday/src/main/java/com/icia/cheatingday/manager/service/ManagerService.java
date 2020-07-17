@@ -22,7 +22,6 @@ import com.icia.cheatingday.manager.dto.ManagerDto.DtoForUpdate;
 import com.icia.cheatingday.manager.dto.MenuDto;
 import com.icia.cheatingday.manager.entity.ManagerEntity;
 import com.icia.cheatingday.manager.entity.MenuEntity;
-import com.icia.cheatingday.manager.exception.sNumNotFoundException;
 
 @Service
 public class ManagerService {
@@ -50,6 +49,14 @@ public class ManagerService {
 	@Autowired
 	private MenuDao menuDao;
 	
+	
+	//주문을 위한 메뉴읽기 (전체회원 보기가능)
+	public List<MenuEntity> orderMenuRead(int sNum){
+		List<MenuEntity> list = menuDao.orderMenuRead(sNum);
+		return list;
+	}
+	
+	
 	///////////////////////////메뉴/////////////////////////////////////
 	// 메뉴리스트
 	public List<MenuEntity> menuList(String mUsername) {
@@ -58,11 +65,11 @@ public class ManagerService {
 		System.out.println(storeDao.findBymUsername(mUsername).getSNum());//mUsername이 null이래
 		System.out.println("+++++++++++");
 		//if(mUsername==null)
-		//	throw new sNumNotFoundException("매장 등록 후 이용 가능합니다");
+		//	throw new sNumenunotFoundException("매장 등록 후 이용 가능합니다");
 		int sNum = storeDao.findBymUsername(mUsername).getSNum(); 
 		System.out.println(sNum);
 		//if(sNum==0) //음식점이 등록되지 않아 sNum이 null일때,
-		//	throw new sNumNotFoundException("매장 등록 후 이용 가능합니다");
+		//	throw new sNumenunotFoundException("매장 등록 후 이용 가능합니다");
 		
 		List<MenuEntity> list = dao.findAllBymUsername(sNum);   
 		return list;

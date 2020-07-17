@@ -11,6 +11,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<style>
+
+
+</style>
 <script>
 $(function() {
 	
@@ -56,6 +60,8 @@ $(function() {
 
 
 <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+
+<div id="wrap">
  <ul class="navbar-nav">
  
      
@@ -65,7 +71,7 @@ $(function() {
     
 	<li class="nav-item active">
   	<div id="reviewManage">
-  	 <a class="nav-link" href="#">
+  	 <a class="nav-link" href="#" >
   		 매장 리뷰 관리</a></div> 
     </li>
  
@@ -93,6 +99,10 @@ $(function() {
     </li>
   
   </ul>
+  
+  
+ </div> 
+  
 </nav>
 
 

@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<sec:authentication property="principal.username" var="username"/>
 <div>
 		<table class="table table-hover">
 			<colgroup>
@@ -43,22 +44,22 @@
 	<div style="text-align:center;">
 		<ul class="pagination">
 			<c:if test="${page.prev==true}">
-				<li><a href="/cheatingday/manager/review_list?pageno=${page.startPage-1}">이전</a></li>
+				<li><a href="/cheatingday/manager/review_list?pageno=${page.startPage-1}&mUsername=${username}">이전</a></li>
 			</c:if>
 			<c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/cheatingday/manager/review_list?pageno=${i}">${i}</a>
+							<a href="/cheatingday/manager/review_list?pageno=${i}&mUsername=${username}">${i}</a>
 						</li>
-					</c:when>
+					</c:when>     
 					<c:otherwise>
-						<li><a href="/cheatingday/manager/review_list?pageno=${i}">${i}</a></li>
+						<li><a href="/cheatingday/manager/review_list?pageno=${i}&mUsername=${username}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${page.next==true}">
-				<li><a href="/cheatingday/manager/review_list?pageno=${page.endPage+1}">다음</a></li>
+				<li><a href="/cheatingday/manager/review_list?pageno=${page.endPage+1}&mUsername=${username}">다음</a></li>
 			</c:if>
 		</ul>
 	</div> 

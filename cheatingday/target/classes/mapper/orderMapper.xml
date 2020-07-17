@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderMapper">
+<!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum --> 
+
+	<!-- 1. 장바구니 추가 -->
+	<insert id="orderInsert">
+		<selectKey keyProperty="dNo" resultType="int" order="BEFORE">
+			select detailorder_seq.nextval from dual
+		</selectKey>
+		insert into detailorder(d_no, d_sal, d_menu_cnt, d_menu_name,
+								o_no, menuno, u_username)
+		values(#{dNo}, #{dSal},#{dMenuCnt}, #{dMenuName},
+			   #{oNo}, #{menuno}, #{uUserName})	
+	</insert>
+	
+	<!-- 2. 장바구니 목록 -->
+	<select id="order" resultType="order">
+		select d_no dNo, 
+			   u_username uUsername,
+			   menuno menuno,
+			   m.menuname menuname,
+			   d_menu_cnt dMenuCnt,
+			   menusal menusal,
+			   d_sal
+		from detailorder
+		where u_username = #{uUsername} and
+			  menuno = #{menuno}
+		order by d_no
+	</select>
+	
+	<!-- 3. 장바구니 전체 금액 orderAllSum -->
+	<select id="orderAllSum" resultType="int">
+		select nvl(sum(menusal * d_menu_cnt), 0) money
+		from detailorder
+		where menuno = #{menuno} and
+			  u_username  = #{uUsername}
+	</select>
+	
+	<!-- 4. 장바구니 수정 -->
+	<update id="orderUpdate">
+		update detailorder
+		set d_menu_cnt = #{dMenuCnt}
+		where u_username = #{uUsername} adn
+			  d_no = #{dno}
+	</update>
+	
+	<!-- 5. 장바구니 삭제 -->
+	<delete id="orderDelete">
+		delete from detailorder
+		where d_no = #{dNo}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

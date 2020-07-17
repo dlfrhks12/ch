@@ -2,6 +2,7 @@ package com.icia.cheatingday.manager.dao;
 
 import java.util.*;
 
+import org.apache.ibatis.session.*;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,13 +16,11 @@ public class StoreDao {
 	private SqlSessionTemplate tpl;
 
 
-	
-	
 	/*//내 매장 리뷰갯수 읽기
 	public int myReviewCnt(int sNum) {
 		return tpl.selectOne("storeMapper.myReviewCnt",sNum);
 	}*/
-	
+
 	
 	//매장이 존재하는지 안하는지 확인
 	public boolean existsSnum(String mUsername) {
@@ -61,17 +60,47 @@ public class StoreDao {
 		return tpl.selectOne("storeMapper.count", foodNo);
 	}
 
-	public List<Store> findAllByfoodNoAndStar(Integer foodNo) {
-		return tpl.selectList("storeMapper.findAllByfoodNoAndStar", foodNo);
+	public List<Store> findAllByfoodNoAndStar(int startRowNum, int endRowNum, Integer foodNo) {
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("foodNo", foodNo);
+		return tpl.selectList("storeMapper.findAllByfoodNoAndStar", map);
 	}
-	public List<Store> findAllByfoodNoAndReview(Integer foodNo) {
-		return tpl.selectList("storeMapper.findAllByfoodNoAndReview", foodNo);
+	
+	public List<Store> findAllByfoodNoAndReview(int startRowNum, int endRowNum, Integer foodNo) {
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("foodNo", foodNo);
+		return tpl.selectList("storeMapper.findAllByfoodNoAndReview", map);
 	}
 
-	public List<Store> findAllByReview() {
-		return tpl.selectList("storeMapper.findAllByReview");
+	public List<Store> findAllByReview(int startRowNum, int endRowNum) {
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		return tpl.selectList("storeMapper.findAllByReview", map);
 	}
-	public List<Store> findAllByStar() {
-		return tpl.selectList("storeMapper.findAllByStar");
+	
+	public List<Store> findAllByStar(int startRowNum, int endRowNum) {
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		return tpl.selectList("storeMapper.findAllByStar", map);
+	}
+	
+	public List<Store> listAll(String searchOption, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		return tpl.selectList("storeMapper.listAll", map);
+	}
+	
+	public int countArticle(String searchOption, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		return tpl.selectOne("storeMapper.countArticle", map);
 	}
 }

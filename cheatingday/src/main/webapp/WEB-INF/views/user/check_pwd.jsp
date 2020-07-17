@@ -17,8 +17,8 @@ $(function(){
 	<form id="check_pwd_frm" action="/cheatingday/user/check_pwd" method="post">
 		비밀번호:<input type="password" id="uPassword" name="uPassword"><br>
 		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}">
-		<button type="button" id="check_pwd">로그인</button>
+			value="${_csrf.token}"><br>
+		<button type="button" class="btn btn-info" id="check_pwd">로그인</button>
 	</form>
 </body>
 </html>

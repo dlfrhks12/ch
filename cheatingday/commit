@@ -62,6 +62,7 @@ security-context 로그인 핸들러 설정
 	changepwd.jsp 생성
 - 2020.07.14
 	* header.jsp -> 카카오 지도 API 추가, 현재위치 추적
+- 2020.07.15
 	
 	
 ================ 회원 commit =================

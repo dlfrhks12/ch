@@ -1,5 +1,7 @@
 package com.icia.cheatingday.user.service.rest;
 
+import java.util.*;
+
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.user.dao.*;
+import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.user.dto.UserDto.*;
 import com.icia.cheatingday.user.entity.*;
 
@@ -21,6 +24,8 @@ public class UserRestService {
 	private ModelMapper modelMapper;
 	@Autowired
 	private AuthorityDao authDao;
+	@Autowired
+	private FavoriteDao favDao;
 	// 아이디 중복확인
 	public boolean checkId(String uUsername) {
 		if(userDao.existsById(uUsername)==true)
@@ -50,6 +55,17 @@ public class UserRestService {
 		System.out.println(dto);
 		userDao.update(user);
 	}
+	// 즐겨찾기
+	public int fav(int sNum, String uUsername) {
+		if(favDao.findFavoriteById(uUsername, sNum)==false) {
+			favDao.favoriteIn(uUsername,sNum);
+			return 1;
+		}
+		else {
+			favDao.deleteFavorite(sNum, uUsername);
+			return 2;
+		}
+	}
 
 	// 회원탈퇴
 		public void resign(String uUsername) {
@@ -58,5 +74,5 @@ public class UserRestService {
 			userDao.delete(uUsername);
 			authDao.delete(uUsername);
 		}	
-
+	// 포인트
 }

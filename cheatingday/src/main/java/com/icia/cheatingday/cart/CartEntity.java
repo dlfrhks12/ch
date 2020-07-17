@@ -28,13 +28,14 @@ public class CartEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private int mNo;
+	private int menuno;
 	private String uUsername;
 	private String cartName;
 	private int cartPrice;
 	private LocalDateTime cartDay;
 	private int cartCount;
 	private String image;
+	private int sNum;
 	private int cartJumunMoney;
 	
 	public void increase() {

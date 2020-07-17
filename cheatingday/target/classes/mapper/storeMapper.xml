@@ -16,7 +16,7 @@
 <!-- musername 잠시 삭제함 -->
 <select id="findBysNum" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
-s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername from store where s_num=#{sNum} and rownum=1
+s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername, s_review_cnt sReviewCnt, s_star_point sStarPoint from store where s_num=#{sNum} and rownum=1
 </select>
 
 <select id="findBymUsername" resultType="store">
@@ -63,24 +63,71 @@ update store
 <delete id="delete">
 	delete from store where s_num=#{sNum} and rownum=1
 </delete>
+
 <select id="count" resultType="int">
 		select count(*) from store 
 		<where>
 			<if test="value!=null">and food_no=#{value}</if>
 		</where>
-	</select>
+</select>
+	
+	
 <select id="findAllByfoodNoAndStar" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_star_point desc
+	<![CDATA[
+		select * from
+		(select rownum as rnum, b.* from
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_star_point desc) b
+			where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum}
+	]]>
 </select>
+
 <select id="findAllByfoodNoAndReview" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_review_cnt desc
+		<![CDATA[
+		select * from
+		(select rownum as rnum, b.* from
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_review_cnt desc) b
+			where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum}
+	]]>
 </select>
+
 <select id="findAllByReview" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_review_cnt desc
+	<![CDATA[
+		select * from
+		(select rownum as rnum, b.* from
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_review_cnt desc) b
+			where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum}
+	]]>
 </select>
+
 <select id="findAllByStar" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_star_point desc
+	<![CDATA[
+		select * from
+		(select rownum as rnum, b.* from
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_star_point desc) b
+			where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum}
+	]]>
 </select>
+
+
+<select id="listAll" resultType="store">
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_num desc
+</select>
+
+<select id="countArticle" resultType="int">
+	select count(*) from store <include refid="search"></include>
+</select>
+
+<sql id="search">
+	<choose>
+		<when test="searchOPtion=='all'">
+			where s_address like '%'||#{keyword}||'%'
+		</when>
+	</choose>
+</sql>
 </mapper>
 
 

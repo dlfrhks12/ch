@@ -5,21 +5,27 @@
 <!-- menuno / menusal / menusajin / menuname / sNum
 메뉴번호  /  메뉴가격      /  메뉴사진     / 메뉴이름          / 음식점고유번호 -->
 
-
+	<!-- 장바구니담기 했을떄 메뉴번호 넘겨주기 -->
+	<select id="findBymenuno" resultType="menu">
+		select menuno, menuname, menusal, mcount, menusajin, s_num sNum
+		from menu
+		where menuno=#{menuno}
+	</select>
+	
 
 <select id="findAll" resultType="menu"><!-- 리스트에 보여질 메뉴내용들  -->
-	select menuno, menusal, menusajin, menuname, s_num sNum from menu 
+	select menuno, menusal, menusajin, menuname, mcount, s_num sNum from menu 
 </select>
 
 <select id="findAllById" resultType="menu"><!-- 해당 아이디로 리스트 띄우기  -->
-	select menuno, menusal, menusajin, menuname, s_num sNum 
+	select menuno, menusal, menusajin, menuname, mcount, s_num sNum 
 	from menu where s_num=#{sNum}
 	
 </select>
 
 
 <select id="findById" resultType="menu"> <!-- 해당하는 메뉴를 클릭하면 나타날 정보들 -->
-	select menuno, menusal, menusajin, menuname, s_num sNum from menu where menuno=#{menuno} and rownum=1
+	select menuno, menusal, menusajin, menuname, mcount, s_num sNum from menu where menuno=#{menuno} and rownum=1
 </select>
 
 
@@ -27,7 +33,8 @@
 	<selectKey keyProperty="menuno" resultType="int" order="BEFORE">
 		select menu_seq.nextval from dual
 	</selectKey>
-	insert into menu(menuno, menusal, menusajin, menuname, s_num) values (#{menuno},#{menusal},#{menusajin, jdbcType=VARCHAR},#{menuname},#{sNum})
+	insert into menu(menuno, menusal, menusajin, menuname, s_num, mcount) 
+	values (#{menuno},#{menusal},#{menusajin, jdbcType=VARCHAR},#{menuname},#{sNum}, #{mcount}+1)
 </insert>
 
 <!-- menuno / menusal / menusajin / menuname / sNum

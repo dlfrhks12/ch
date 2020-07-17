@@ -61,7 +61,7 @@ function printCartList() {
 	// 장바구니 출력 영역을 선택한 다음 내용을 제거
 	var $cartArea = $("#cart_area");
 	$cartArea.empty();
-
+	console.log(cartList);
 	// 장바구니 목록이 비어있다면 empty_cart.jpg 출력하고 선택삭제, 주문하기 버튼 영역을 안보이게
 	if(cartList.length==0) {
 		$("<img>").attr("src","/cheatingday/img/empty_cart.jpg").appendTo($cartArea);
@@ -73,7 +73,6 @@ function printCartList() {
 		printCart(CartEntity, $cartArea);
 	});
 }
-
 $(function() {
 	// 1-1. 전체선택 체크박스의 기본 상태는 비활성화
 	$("#check_all").prop("checked", false);
@@ -108,9 +107,6 @@ $(function() {
 	         })
 	});
 	
-	
-	
-
 	// 5. <a href='#' class='dec'>+</a> 를 클릭하면 상품 개수 감소
 	$("#cart_area").on("click", ".dec", function(e) {
 		e.preventDefault();
@@ -155,6 +151,8 @@ $(function() {
 		})
 	})
 	
+	
+	
 	// 주문 버튼을 클릭하면 해당 상품을 구입 후 이동
 	$("#cart_area").on("click", ".buy", function() {
 		var $form = $("<form>").attr("action","/cheatingday/order/buy").attr("method","post");
@@ -186,13 +184,13 @@ $(function() {
 			pnos: JSON.stringify(ar)
 		}
 		$.ajax({
-			url:"/cheatingday/cart/delete_all",
-			data: params,
-			method: "post",
-		}).done((result)=>{
-			cartList = result;
-			printCartList();
-		})
+			   url:"/cheatingday/cart/delete_all",
+			   data: params,
+			   method: "post",
+			  }).done((result)=>{
+			   cartList = result;
+			   printCartList();
+			  })
 	});
 
 	// 선택한 상품 구매. !!!!!!!!!!! 상품번호와 개수로 구성된 자바스크립트 객체를 만들어 배열에 담는다
@@ -219,6 +217,8 @@ $(function() {
 		$form.appendTo($("body")).submit();
 	});
 	
+	
+	
 })
 </script>
 <style>
@@ -234,6 +234,7 @@ $(function() {
 	</div>
 	<input type="checkbox" id="check_all">전체 선택 
 	<button id="delete_all">선택삭제</button>
+	<span id=" totalprice"></span>
 	<button type="button" id="buy_all">주문하기</button>
 </body>
 </html>

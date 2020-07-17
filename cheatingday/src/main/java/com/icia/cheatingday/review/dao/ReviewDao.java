@@ -13,11 +13,8 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public int count(Integer rReport, String uUsername) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("rReport", rReport);
-		map.put("uUsername", uUsername);
-		return tpl.selectOne("reviewMapper.count", map);
+	public int count(String uUsername) {
+		return tpl.selectOne("reviewMapper.count", uUsername);
 	}
 	public List<Review> findAll(int startRowNum, int endRowNum) {
 		Map<String, Integer> map = new HashMap<>();

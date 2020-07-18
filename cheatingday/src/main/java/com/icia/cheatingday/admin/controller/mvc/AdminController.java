@@ -27,7 +27,7 @@ public class AdminController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/main")
 	public ModelAndView adminmain() {
-		return new ModelAndView("main").addObject("viewHeader", "include/viewAdminHeader.jsp")
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")
 				.addObject("viewName","admin/main.jsp");
 	}
 	

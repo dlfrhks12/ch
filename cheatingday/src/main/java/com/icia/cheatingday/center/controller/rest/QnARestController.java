@@ -23,6 +23,7 @@ public class QnARestController {
 	@Autowired
 	private QnARestService service;
 	
+	//QNA 불러서읽기
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/center/read")
 	public ResponseEntity<?> read(@RequestParam @NotNull Integer qNo, Principal principal) throws JsonProcessingException {
@@ -30,6 +31,7 @@ public class QnARestController {
 		QnADto.DtoForRead dto = service.read(qNo, username);
 		return ResponseEntity.ok(dto);
 	}
+	//사업자권한/QNA변경
 	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@PatchMapping("/center/update")
 	public ResponseEntity<Void> updateQna(@Valid QnADto.DtoForUpdate dto, BindingResult results) throws BindException {
@@ -38,18 +40,21 @@ public class QnARestController {
 		service.updateQnA(dto);
 		return ResponseEntity.ok(null);
 	}
+	//사업자권한/QNA삭제
 	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@DeleteMapping("/center/delete")
 	public ResponseEntity<?> deleteQna(Integer qNo, Principal principal) {
 		service.deletQna(qNo, principal.getName());
 		return ResponseEntity.ok("/cheatingday/center/list");
 	}
+	//관리자권한/댓글작성
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/center/comment_write")
 	public ResponseEntity<?> writeComment(QnAComment qnAComment, BindingResult bindingResult, Principal principal){
 		qnAComment.setAUsername(principal.getName());
 		return ResponseEntity.ok(service.writeQComment(qnAComment,principal.getName()));	
 	}
+	//관리자권한/댓글변경
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PatchMapping("/center/comment_update")
 	public ResponseEntity<Void> updatecomment(@Valid QnAComment qnAComment, BindingResult results) throws BindException {
@@ -58,11 +63,13 @@ public class QnARestController {
 		service.updateQnAcomment(qnAComment);
 		return ResponseEntity.ok(null);
 	}
+	//관리자권한/댓글삭제
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/center/comment_delete")
 	public ResponseEntity<?> deletecomment(Integer qNo, Integer qcNo, Principal principal) {
 		return ResponseEntity.ok(service.deleteComment(qNo, qcNo, principal.getName()));
 	}
+	//CK업로더
 	@PostMapping("/center/ckupload")
 	public ResponseEntity<?> ckUpload(MultipartFile upload) throws IOException {
 		return ResponseEntity.ok(service.saveCkImage(upload));

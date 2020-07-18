@@ -227,7 +227,7 @@ $(function() {
 </style>
 </head>
 <body>
-
+	
 	<div id="cart_area">
 	</div>
 	<div id="button_area">

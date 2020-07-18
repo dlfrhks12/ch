@@ -16,6 +16,7 @@ public class AdminRestService {
 	@Autowired
 	private AdminDao adao;
 
+	//신고된 댓글 삭제
 	public void deleteReport(int rNo) {
 		Review review = rdao.findById(rNo);
 		if(review==null)
@@ -23,6 +24,7 @@ public class AdminRestService {
 		rdao.delete(rNo);
 		
 	}
+	//사업자 가입승인
 	public int enabledM(int mNum) {
 		return adao.enabledM(mNum);
 	}

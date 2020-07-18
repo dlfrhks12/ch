@@ -10,6 +10,7 @@
 </head>
 <body>
 <div>
+	<a href="/cheatingday/notice/list" style="font-size: large; background-color: skyblue; ">공지사항</a>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">

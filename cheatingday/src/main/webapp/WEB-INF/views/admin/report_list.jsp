@@ -89,7 +89,6 @@ $(function(){
 						<li><a href="/cheatingday/admin/report_list?pageno=${i}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
-				
 			</c:forEach>
 			<c:if test="${page.next==true}">
 				<li><a class="" href="/cheatingday/admin/report_list?pageno=${page.endPage+1}">다음</a></li>

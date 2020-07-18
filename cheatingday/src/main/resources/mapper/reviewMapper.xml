@@ -56,7 +56,7 @@
 	</select>
 	<select id="findById" resultType="review">
 		select
-		r_no rNo,r_title rTitle,r_write_time rWriteTime,r_content rContent,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_no=#{rNo} and rownum=1
+		r_no rNo,r_title rTitle,r_write_time rWriteTime,r_content rContent,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint,cateno from review where r_no=#{rNo} and rownum=1
 	</select>
  
 	<delete id="delete">
@@ -101,11 +101,11 @@
 		<selectKey keyProperty="rNo" resultType="int" order="BEFORE">
 			select review_seq.nextval from dual
 		</selectKey>
-		insert into review(r_no, r_title, u_username, cateno, r_star_point, r_content, r_write_time, o_no, s_num,r_commnet)
-	    values(#{rNo}, #{rTitle}, #{uUsername}, #{cateno}, #{rStarPoint}, #{rContent}, #{rWriteTime}, #{oNo}, #{sNum}, #{rCommnet})
+		insert into review(r_no, r_title, u_username, cateno, r_star_point, r_content, r_write_time, o_no, s_num)
+	    values(#{rNo}, #{rTitle}, #{uUsername}, #{cateno}, #{rStarPoint}, #{rContent}, #{rWriteTime}, #{oNo}, #{sNum})
 	</insert>
 	
-	<update id="reviewUpdate">
+	<update id="update">
 		update review
 		<trim suffixOverrides="," prefix="set">
 			<if test="rTitle!=rTitle">r_title=#{rTitle},</if>
@@ -119,7 +119,7 @@
 		select cateno, cartegory from reviewcarta
 	</select>
 </mapper>
-
+<!-- findAllByHit -->
 
 
 

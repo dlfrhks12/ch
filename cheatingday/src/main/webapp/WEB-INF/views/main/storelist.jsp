@@ -90,16 +90,15 @@ $(function(){
                   <li  class="page-item">
                      <a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${i}">${i}</a>
                   </li>
-               </c:when>
-               <c:otherwise>
-                  <li class="page-item"><a class="page-link"  href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${i}&&job=${filter}">${i}</a></li>
-               </c:otherwise>
-            </c:choose>
-            
-         </c:forEach>
-         <c:if test="${store.next==true}">
-            <li  class="page-item"><a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${store.endPage+1}&&job=${filter}">다음</a></li>
-         </c:if>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link"  href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${i}&&job=${filter}">${i}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${store.next==true}">
+			<li  class="page-item"><a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${store.endPage+1}&&job=${filter}">다음</a></li>
+		</c:if>
       </ul>
    </div>   
 </body>

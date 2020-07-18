@@ -30,26 +30,21 @@
 		from review where r_no=#{rNo} and rownum=1
 	</select>
 	
-	
 	<select id="count" resultType="int">
 		select count(*) from review
 		<where>
-			<if test="value!=null">r_report=#{value}</if>
-			<if test="value!=null">u_username=#{UUsername}</if>
+			<if test="value!=null">u_username=#{value}</if>
 		</where>
 	</select>
+	
+	
 	<select id="countByRepoert" resultType="int">
-		select count(*) from review where r_report>=1
+		select count(*) from review 
+		<where>
+			<if test="value!=null">and cateno=#{cateno}</if>
+		</where>
 	</select>
-	<select id="findAll" resultType="review">
-		<![CDATA[
-		select * from
-			(select rownum as rnum, b.* from
-				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review) b
-			where rownum <=#{endRowNum})
-		 where rnum>=#{startRowNum}
-		 ]]>
-	</select>
+	
 	<select id="findAllByReport" resultType="review">
 		<![CDATA[
 		select * from
@@ -63,29 +58,66 @@
 		select
 		r_no rNo,r_title rTitle,r_write_time rWriteTime,r_content rContent,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_no=#{rNo} and rownum=1
 	</select>
-	<insert id="insert">
-		<selectKey keyProperty="qNo" resultType="int" order="BEFORE">
-			select
-			qna_seq.nextval from dual
-		</selectKey>
-		insert into
-		qna(q_no,q_title,q_content,q_write_time,q_iscomment,m_num,q_cano)
-		values(#{qNo},#{qTitle},#{qContent},sysdate,0,#{mNum},#{qCano})
-	</insert>
-	<update id="update">
-		update qna
-		<trim suffixOverrides="," prefix="set">
-			<if test="qTitle!=null">q_title=#{qTitle},</if>
-			<if test="qContent!=null">q_content=#{qContent},</if>
-			<if test="qCano!=null">q_cano=#{qCano},</if>
-			<if test="qIscomment!=null">q_iscomment=#{qIscomment},</if>
-		</trim>
-		where q_no=#{qNo} and rownum=1
-	</update>
  
 	<delete id="delete">
 		delete from review where r_no=#{rNo} and rownum=1
 	</delete>
+	
+	<!-- z -->
+	
+	<!-- 리뷰 전체 리스트 -->
+	<select id="findAll" resultType="review">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, b.* from
+			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo s_num sNum, cateno, r_commnet rCommnet from reivew) b
+		where rownum<=#{endRowNum})
+	where rnum>=#{startRowNum}
+	]]>
+	</select>
+
+	
+	<select id="findAllByUsername" resultType="review">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, b.* from
+			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_write_time rWriteTime from reivew) b
+		where rownum<=#{endRowNum})
+	where rnum>=#{startRowNum}
+	]]>
+	</select>
+	
+	<select id="findAllByCategory" resultType="review">
+	<![CDATA[
+	select * from
+		(select rownum as rnum, b.* from
+			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo s_num sNum, cateno from reivew) b
+		where rownum<=#{endRowNum})
+	where rnum>=#{startRowNum}
+	]]>
+	</select>
+	
+	<insert id="insert">
+		<selectKey keyProperty="rNo" resultType="int" order="BEFORE">
+			select review_seq.nextval from dual
+		</selectKey>
+		insert into review(r_no, r_title, u_username, cateno, r_star_point, r_content, r_write_time, o_no, s_num,r_commnet)
+	    values(#{rNo}, #{rTitle}, #{uUsername}, #{cateno}, #{rStarPoint}, #{rContent}, #{rWriteTime}, #{oNo}, #{sNum}, #{rCommnet})
+	</insert>
+	
+	<update id="reviewUpdate">
+		update review
+		<trim suffixOverrides="," prefix="set">
+			<if test="rTitle!=rTitle">r_title=#{rTitle},</if>
+			<if test="rStarPoint!=rStarPoint">r_star_point=#{rStarPoint},</if>
+			<if test="rContent!=rContent">=r_content#{rContent},</if>
+			<if test="rCommnet!=rCommnet">=r_commnet#{rCommnet},</if>
+		</trim>
+		where r_no=#{rNo} and rownum=1
+	</update>
+	<select id="findAllCate" resultType="map">
+		select cateno, cartegory from reviewcarta
+	</select>
 </mapper>
 
 

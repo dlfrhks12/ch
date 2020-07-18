@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,8 @@ import com.icia.cheatingday.cart.CartService;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 import com.icia.cheatingday.manager.service.StoreService;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class CartController {
@@ -64,11 +67,13 @@ public class CartController {
 	
 	// 장바구니 리스트출력
 	@GetMapping("/cart/cartview")
-	public ModelAndView view() {
+	public ModelAndView view()throws JsonProcessingException{
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/noheader.jsp")
 				.addObject("viewName", "cart/cartview.jsp");
+			
 	}
+	
 	
 	// 장바구니 담기 했을 때 담기는거 출력
 	@GetMapping("/cart/read")
@@ -129,4 +134,12 @@ public class CartController {
 		List<CartEntity> cartList = service.multipleDelete(session, list);
 		return ResponseEntity.ok(cartList);
 	}
+	/*
+	@PostMapping("/cart/adon")
+	public ResponseEntity<?> adon(HttpSession session, Integer mNo) {
+		CartEntity cartList = service.don(session, mNo);
+		return ResponseEntity.ok(cartList);
+	}
+	
+	*/
 }

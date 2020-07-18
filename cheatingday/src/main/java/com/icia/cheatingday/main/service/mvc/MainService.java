@@ -198,9 +198,6 @@ public class MainService {
 				String newEncodedPassword = pwdEncoder.encode(mNewPassword);
 				managerDao.update(ManagerEntity.builder().mPassword(newEncodedPassword).mUsername(mUsername).build());
 			}
-			else {
-				throw new JobFailException("잘못된 비밀번호입니다");
-			}
 		}
 
 		//별점순 리스트
@@ -224,7 +221,6 @@ public class MainService {
 			page.setMainlist(dtolist);
 			return page;
 		}
-		//리뷰순 리스트
 		public Page listReview(int pageno, Integer foodNo) {
 			int countOfBoard = storeDao.count(foodNo);
 			Page page = PagingUtil.getPage(pageno, countOfBoard);
@@ -245,6 +241,15 @@ public class MainService {
 			page.setMainlist(dtolist);
 			return page;
 		}
-		
+
+		// 주소 검색 후 가게 리스트
+		public List<Store> listAll(String searchOption, String keyword) {
+			return storeDao.listAll(searchOption, keyword);
+		}
+
+		// count
+		public int countArticle(String searchOption, String keyword) {
+			return storeDao.countArticle(searchOption, keyword);
+		}
 
   }

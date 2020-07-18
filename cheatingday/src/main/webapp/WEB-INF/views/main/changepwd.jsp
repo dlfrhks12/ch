@@ -116,23 +116,27 @@ $(function() {
 		        data: $('#u_change_pwd_form').serialize(),
 		     }).done(()=>{
 		    	 alert("비밀번호가 변경되었습니다");
+<<<<<<< HEAD
+		    	 location.href = "/cheatingday"})}
+=======
 		    	 href.location = "/"})}
 		
 		
 		
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	})
 		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
 		var r2 = checkManagerPassword2();
 		var result = r1 && r2
-		if(result===true)  {
+		if(result===true && $("#uNewPassword").val()!=="" && $("#uNewPassword2").val()!=="")  {
 			$.ajax({
 		        url: "/cheatingday/m_change_pwd",
 		        type: "post",
 		        data: $('#m_change_pwd_form').serialize(),
 		     }).done(()=>{
 		    	 alert("비밀번호가 변경되었습니다");
-		    	 href.location = "/"})}
+		    	 location.href = "/cheatingday"})}
 	})
 })
 

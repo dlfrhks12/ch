@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 <style>
    #topmenu{
-      margin-left: -40px;
       height: 40px;
-      width: 105%;
+      width: 100%;
+      margin-left: -40px;
    }
    #a, #b, #c, #d{
       list-style: none;
@@ -44,9 +44,6 @@
 <sec:authentication property="principal.username" var="username"/>
 <nav>
 <div id="topmenu">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/cheatingday/"><img class="logo_image" src="/cheatingday/mainhome/images/logo.png" id="navLogo"/></a>
-		</div>
 		<ul>
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<li id="a"><a href="/cheatingday/user/mypage?uUsername=${username}">내 정보</a></li>

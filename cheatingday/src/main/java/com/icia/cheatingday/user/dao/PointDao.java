@@ -14,14 +14,18 @@ public class PointDao {
 	@Inject
 	private SqlSessionTemplate tpl;
 	
-	public int count() {
-		return tpl.selectOne("pointMapper.count");
+	public int count(String uUsername) {
+		return tpl.selectOne("pointMapper.count", uUsername);
 	}
-	public List<Point> findAll(int startRowNum, int endRowNum) {
-		Map<String, Integer> map = new HashMap<>();
+	public List<Point> findAll(int startRowNum, int endRowNum, String uUsername) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
+		map.put("uUsername", uUsername);
 		return tpl.selectList("pointMapper.findAll", map);
+	}
+	public int findByTotalpoint(String uUsername) {
+		return tpl.selectOne("pointMapper.findByTotalpoint", uUsername);
 	}
 	public int insert(Point point) {
 		return tpl.insert("pointMapper.insert", point);

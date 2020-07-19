@@ -16,6 +16,7 @@ import com.icia.cheatingday.buylist.entity.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.order.dao.*;
 import com.icia.cheatingday.review.dao.*;
 import com.icia.cheatingday.review.dto.*;
 import com.icia.cheatingday.review.entity.*;
@@ -37,7 +38,13 @@ public class UserService {
 	@Autowired
 	private StoreDao storeDao;
 	@Autowired
+	private DetailorderDao detailorderDao;
+	@Autowired
+	private MenuDao menuDao;
+	@Autowired
 	private FavoriteDao favDao;
+	@Autowired
+	private FoodCategoryDao foodCategoryDao;
 	@Autowired
 	private PasswordEncoder pwdEncoder;
 	@Autowired
@@ -45,6 +52,11 @@ public class UserService {
 	
 
 
+	
+	public int count(String uUsername) {
+		int count = userDao.findById(uUsername).getUPoint();
+		return count;
+	}
 	// 내정보 읽기
 	public UserDto.DtoForRead myPage(String uUsername) {
 		User user = userDao.findById(uUsername);
@@ -85,11 +97,11 @@ public class UserService {
 	}
 	// 포인트 리스트 페이징
 	public Page pointList(int pageno, String uUsername) {
-		int countOfBoard = pointDao.count();
+		int countOfBoard = pointDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Point> pointList = pointDao.findAll(srn, ern);
+		List<Point> pointList = pointDao.findAll(srn, ern, uUsername);
 		List<PointDto.DtoForList> dtoList = new ArrayList<>();
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
@@ -103,16 +115,22 @@ public class UserService {
 	}
 	// 리뷰 리스트 페이징
 	public Page reviewList(int pageno, String uUsername) {
-		int countOfBoard = reviewDao.count(null, uUsername);
+		int countOfBoard = reviewDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Review> reviewList = reviewDao.findAll(srn, ern);
+		List<Review> reviewList = reviewDao.findAllByUsername(srn, ern, uUsername);
 		List<ReviewDto.DtoForList> dtoList = new ArrayList<>();
 		for(Review review:reviewList) {
 			ReviewDto.DtoForList dto = modelMapper.map(review, ReviewDto.DtoForList.class);
 			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+			dto.setSName(storeDao.findBysNum(review.getSNum()).getSName());
+			int foodNo = storeDao.findBysNum(review.getSNum()).getFoodNo();
+			String categoryName = foodCategoryDao.findByFoodNo(foodNo);
+			dto.setCategory(categoryName);
+			dto.setMenuname(detailorderDao.findByONo(review.getONo()).getDMenuName());
+			int menuno = detailorderDao.findByONo(review.getONo()).getMenuno();
+			dto.setSajin(menuDao.findById(menuno).getMenusajin());
 			dtoList.add(dto);
 		}
 		page.setRlist(dtoList);
@@ -120,7 +138,7 @@ public class UserService {
 	}
 	// 구매내역 리스트 페이징
 	public Page buyList(int pageno, String uUsername) {
-		int countOfBoard = buylistDao.count();
+		int countOfBoard = buylistDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();

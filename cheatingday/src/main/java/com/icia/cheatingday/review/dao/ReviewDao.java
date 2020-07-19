@@ -13,11 +13,8 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public int count(Integer rReport, String uUsername) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("rReport", rReport);
-		map.put("uUsername", uUsername);
-		return tpl.selectOne("reviewMapper.count", map);
+	public int count(String uUsername) {
+		return tpl.selectOne("reviewMapper.count", uUsername);
 	}
 	public List<Review> findAll(int startRowNum, int endRowNum) {
 		Map<String, Integer> map = new HashMap<>();
@@ -55,6 +52,13 @@ public class ReviewDao {
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("reviewMapper.findAllByReport", map);
+	}
+	public List<Review> findAllByUsername(int startRowNum, int endRowNum, String uUsername){
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("uUsername", uUsername);
+		return tpl.selectList("reviewMapper.findAllByUsername", map);
 	}
 	public Review findById(Integer rNo) {
 		return tpl.selectOne("reviewMapper.findById", rNo);

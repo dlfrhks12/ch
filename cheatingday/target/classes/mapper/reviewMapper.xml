@@ -32,11 +32,7 @@
 	
 	
 	<select id="count" resultType="int">
-		select count(*) from review
-		<where>
-			<if test="value!=null">r_report=#{value}</if>
-			<if test="value!=null">u_username=#{UUsername}</if>
-		</where>
+		select count(*) from review where u_username=#{uUsername}
 	</select>
 	<select id="countByRepoert" resultType="int">
 		select count(*) from review where r_report>=1
@@ -46,6 +42,15 @@
 		select * from
 			(select rownum as rnum, b.* from
 				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review) b
+			where rownum <=#{endRowNum})
+		 where rnum>=#{startRowNum}
+		 ]]>
+	</select>
+	<select id="findAllByUsername" resultType="review">
+		<![CDATA[
+		select * from
+			(select rownum as rnum, b.* from
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where u_username=#{uUsername}) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>

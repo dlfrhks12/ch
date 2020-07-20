@@ -18,7 +18,7 @@ public class AdminRestService {
 
 	//[관리자]신고된 댓글 삭제
 	public void deleteReport(int rNo) {
-		Review review = rdao.findById(rNo);
+		Review review = rdao.findByRno(rNo);
 		if(review==null)
 			throw new JobFailException("해당 리뷰를 찾을 수 없습니다");
 		rdao.delete(rNo);

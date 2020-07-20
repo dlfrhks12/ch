@@ -12,8 +12,6 @@ import org.springframework.stereotype.*;
 public class CartDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
-	@Inject
-	private CartService service;
 
 	// 장바구니
 	// 장바구니추가

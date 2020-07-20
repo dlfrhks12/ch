@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
+<!-- 로그인여부 확인 및 아이디꺼내오기 -->
 <sec:authorize access="isAuthenticated()">
 	<script>
 		var isLogin = true;
@@ -22,7 +23,9 @@
 	</script>
 </sec:authorize>
 <script>
+//공백상태
 var qna = undefined;
+//읽어올 요소출력
 function printQna() {
 	$("#qTitle").val(qna.qtitle);
 	$("#mUsername").text(qna.musername);
@@ -53,6 +56,7 @@ function printQna() {
 		$("#comment_write").prop("disabled", false);
 	}
 }
+//댓글출력
 function printComment(qnacomment) {
 	var $comments = $("#comments");
 	$comments.empty();
@@ -79,6 +83,7 @@ function printComment(qnacomment) {
 
 }
 $(function() { 
+	//위 요소 출력
 	var qNo = location.search.substr(5);
 	console.log(qNo);
 	$.ajax({
@@ -152,7 +157,7 @@ $(function() {
 		.done((result)=>{alert("변경되었습니다"); console.log(result); })
 		.fail((result)=>{console.log(params);});
 	});
-	
+	//글 업데이트
 	$("#update").on("click", function() {
 		var params = {
 			qNo: qna.qno,
@@ -170,7 +175,7 @@ $(function() {
 		.done((result)=>{ location.reload(); })
 		.fail((result)=>{console.log(result)});
 	});
-	
+	// 글 삭제
 	$("#delete").on("click", function() {
 		var params = {
 			qNo: qna.qno,
@@ -190,17 +195,18 @@ $(function() {
 </head>
 <body>
 	<hr>
-	<div id="wrap">
+	<div id="wrap" style="width: 1000px; min-height: 800px; position:relative;  left : 20%;">
 		<div>
 			<div id="title_div">
 				<div id="upper">
 					<input type="text" id="qTitle" disabled="disabled"
 						style="min-width: 600px;"> <input type="hidden"
-						id="mUsername"> <span id="mIrum"></span>
+						id="mUsername">
 				</div>
 				<div id="lower">
 					<input type="hidden" id="qCano">
 					<ul id="lower_left">
+						<li><span id="mIrum"></span></li>
 						<li><span id="qWriteTime"></span></li>
 					</ul>
 					<span id="qCategory"></span>

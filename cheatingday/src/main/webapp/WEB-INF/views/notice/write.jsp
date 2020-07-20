@@ -11,6 +11,7 @@
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
 <script>
 $(function() {
+	//ck에디터 업로더
 	var ck = CKEDITOR.replace("content",{
 		height:'500px',
 		filebrowserUploadUrl:"http://localhost:8081/cheatingday/notice/ckupload"

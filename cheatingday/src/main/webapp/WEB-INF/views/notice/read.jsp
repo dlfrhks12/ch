@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
+<!-- 로그인여부 확인 및 아이디꺼내오기 -->
 <sec:authorize access="isAuthenticated()">
 	<script>
 		var isLogin = true;
@@ -21,9 +22,9 @@
 </sec:authorize>
 <script>
 $(function() {
+	//공지 불러오기
 	var notice = ${notice};
 	console.log(notice);
-	// 자바객체 -> json -> 자바스크립트 객체
 	$("#nTitle").val(notice.ntitle);
 	$("#aUsername").val(notice.ausername);
 	$("#aIrum").text(notice.airum);
@@ -43,6 +44,7 @@ $(function() {
 		$("#btn_area").show();
 		$("#content").prop("readonly", false);
 	} 
+	//공지 삭제
 	$("#delete").on("click", function(){
 		var params = {
 			nNo : notice.nno,
@@ -58,6 +60,7 @@ $(function() {
 		.fail((result)=>{console.log(result)});
 
 	})
+	//공지 변경
 	$("#update").on("click", function(){
 		var params = {
 			nNo : notice.nno,
@@ -79,16 +82,16 @@ $(function() {
 </script>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" style="width: 1000px; min-height: 800px; position:relative;  left : 20%;">
 	<div>
 		<div id="title_div">
 			<div id="upper">
 				<input type="text" id="nTitle" disabled="disabled" style="min-width: 600px;">
 				<input type="hidden" id="aUsername">
-				<span style="text-align: " id="aIrum"></span>
 			</div>
 			<div id="lower">
 				<ul id="lower_left">
+					<li><span style="text-align: " id="aIrum"></span></li>
 					<li><span id="write_time"></span></li>
 				</ul>
 				<ul id="lower_right">

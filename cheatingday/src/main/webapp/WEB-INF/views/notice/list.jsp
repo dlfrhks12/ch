@@ -9,14 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
+<div style="width: 1000px; min-height: 800px; position:relative;  left : 20%;">
 	<a href="/cheatingday/notice/list" style="font-size: large; background-color: skyblue; ">공지사항</a>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
-				<col width="20%">
 				<col width="10%">
-				<col width="30%">
+				<col width="10%">
+				<col width="10%">
 				<col width="10%">
 			</colgroup>
 			<thead>

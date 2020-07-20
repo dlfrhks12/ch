@@ -51,9 +51,7 @@ public class ReviewDao {
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("reviewMapper.findAllByReport", map);
 	}
-	public Review findById(Integer rNo) {
-		return tpl.selectOne("reviewMapper.findById", rNo);
-	}
+	
 	public int delete(Integer rNo) {
 		return tpl.delete("reviewMapper.delete", rNo);
 	}

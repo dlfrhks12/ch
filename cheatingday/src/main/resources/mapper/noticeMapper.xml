@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="noticeMapper">
+	<!-- 페이징 카운트 -->
 	<select id="count" resultType="int">
 		select count(*) from notice
 	</select>
+	<!-- 공지 페이징 목록 -->
 	<select id="findAll" resultType="notice">
 		<![CDATA[
 		select * from
@@ -13,6 +15,7 @@
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
+	<!-- 공지읽기 -->
 	<select id="findById" resultType="notice">
 		select
 		n_no nNo,n_title
@@ -20,7 +23,7 @@
 		from notice where n_no=#{nNo}
 		and rownum=1
 	</select>
-
+	<!-- 공지추가 -->
 	<insert id="insert">
 		<selectKey keyProperty="nNo" resultType="int" order="BEFORE">
 			select
@@ -30,7 +33,7 @@
 		notice(n_no,n_title,n_write_time,n_readcnt,content,a_username)
 		values(#{nNo},#{nTitle},sysdate,0,#{content},#{aUsername})
 	</insert>
-
+	<!-- 공지 변경 -->
 	<update id="update">
 		update notice
 		<trim suffixOverrides="," prefix="set">
@@ -40,7 +43,7 @@
 		</trim>
 		where n_no=#{nNo} and rownum=1
 	</update>
-
+	<!-- 공지 삭제 -->
 	<delete id="delete">
 		delete from notice where n_no=#{nNo} and rownum=1
 	</delete>

@@ -23,7 +23,7 @@ public class AdminRestController {
 	//[관리자]가입신청 승인
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/admin/manager_unblock")
-	public ResponseEntity<?> enabledM(int mNum){
+	public ResponseEntity<?> enabledM(long mNum){
 		service.enabledM(mNum);
 		return  ResponseEntity.ok(null);
 	}

@@ -11,6 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
 <script>
+//ck에디터 업로더
 $(function() {
 	var ck = CKEDITOR.replace("qContent",{
 		height:'500px',

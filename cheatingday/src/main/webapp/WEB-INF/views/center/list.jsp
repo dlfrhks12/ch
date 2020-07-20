@@ -9,11 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
+<div style="width: 1200px; min-height: 800px; position:relative;  left : 15%;">
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
-				<col width="20%">
+				<col width="10%">
+				<col width="10%">
 				<col width="10%">
 				<col width="30%">
 				<col width="10%">

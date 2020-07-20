@@ -37,14 +37,14 @@ public class QnAService {
 	public void init() {
 		Qcano = qcdao.findAll();
 	}
-	//QNA작성
+	//[사업자]QNA작성
 	public int write(QnADto.DtoForWrite dto, String musername) {
 		dto.setMNum(mdao.findById(musername).getMNum());
 		QnA qna = mapper.map(dto, QnA.class);
 		qdao.insert(qna);		
 		return qna.getQNo();
 	}
-	//QNA리스트 카테고리 유무 판단후 출력
+	//[관리자,사업자]QNA리스트 카테고리 유무 판단후 출력
 	public Page list(int pageno, Integer qCano) {
 		int countOfBoard = qdao.count(qCano);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);

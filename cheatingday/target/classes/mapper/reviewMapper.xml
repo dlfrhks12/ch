@@ -54,11 +54,6 @@
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
-	<select id="findById" resultType="review">
-		select
-		r_no rNo,r_title rTitle,r_write_time rWriteTime,r_content rContent,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint,cateno from review where r_no=#{rNo} and rownum=1
-	</select>
- 
 	<delete id="delete">
 		delete from review where r_no=#{rNo} and rownum=1
 	</delete>

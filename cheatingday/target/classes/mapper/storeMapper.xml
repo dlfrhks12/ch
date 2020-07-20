@@ -64,6 +64,7 @@ update store
 	delete from store where s_num=#{sNum} and rownum=1
 </delete>
 
+<!-- 카테고리별 카운트 -->
 <select id="count" resultType="int">
 		select count(*) from store 
 		<where>
@@ -71,7 +72,7 @@ update store
 		</where>
 </select>
 	
-	
+<!-- 별점순 정렬 목록 카테고리조건 -->
 <select id="findAllByfoodNoAndStar" resultType="store">
 	<![CDATA[
 		select * from
@@ -81,7 +82,7 @@ update store
 		where rnum>=#{startRowNum}
 	]]>
 </select>
-
+<!-- 리뷰순 정렬목록 카테고리조건 -->
 <select id="findAllByfoodNoAndReview" resultType="store">
 		<![CDATA[
 		select * from
@@ -92,6 +93,7 @@ update store
 	]]>
 </select>
 
+<!-- 리뷰순 정렬목록 -->
 <select id="findAllByReview" resultType="store">
 	<![CDATA[
 		select * from
@@ -101,7 +103,7 @@ update store
 		where rnum>=#{startRowNum}
 	]]>
 </select>
-
+<!-- 별점순 정렬목록 -->
 <select id="findAllByStar" resultType="store">
 	<![CDATA[
 		select * from

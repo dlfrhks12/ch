@@ -221,6 +221,7 @@ public class MainService {
 			page.setMainlist(dtolist);
 			return page;
 		}
+		//리뷰순 리스트
 		public Page listReview(int pageno, Integer foodNo) {
 			int countOfBoard = storeDao.count(foodNo);
 			Page page = PagingUtil.getPage(pageno, countOfBoard);

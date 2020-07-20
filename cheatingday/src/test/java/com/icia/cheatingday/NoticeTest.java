@@ -171,8 +171,9 @@ public class NoticeTest {
 	}
 	//@Test
 	public void vcbvcn() {
-		System.out.println(sdao.count(2));
+		System.out.println(sdao.count(2, null));
 	}
+	
 	//@Test
 	public void cvbnvcn()	{
 	}

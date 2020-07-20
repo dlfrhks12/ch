@@ -81,14 +81,14 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form style="900px;" name="" method="post" action="/cheatingday/search_list">
+                    <form style="900px;" name="" method="post" action="/cheatingday/store_list">
                         <div class="form-row">
                         <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input class="form-control form-control-lg" id="centerAddr" placeholder="우리동네 근처 맛집찾기">
+                                <input disabled="disabled" name="keyword" class="form-control form-control-lg" id="centerAddr" value="${map.keyword}" placeholder="우리동네로 검색하기">
                             </div>
                             <div class="col-12 col-md-3">
-                                <button type="submit" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
+                                <button type="button" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
                             </div>
                         </div>
                     </form>
@@ -179,7 +179,6 @@ $(function() {
 	            infowindow.open(map, marker);
 	            
 	            $("#centerAddr").val(result[0].address.address_name);
-	            
 	            }
 	        });
 	    });
@@ -455,8 +454,6 @@ for (var i = 0; i < positions.length; i ++) {
         image : markerImage // 마커 이미지 
     });
 }
- 
-
 ///////////////////////////////////////////////////////////////////////////////
 
 $(function() {
@@ -466,7 +463,24 @@ $(function() {
 	})
 	
 	$("#search").on("click", function() {
-		location.href="/cheatingday/search_list";
+		var address = $("#centerAddr").val();
+		var array = address.split(" ");
+		var key = array[1];
+		console.log(address);
+		console.log(array);
+		console.log(key);
+		
+		var params = {
+			keyword: key
+		}
+		
+		console.log(keyword);
+		 $.ajax({
+	         url: "/cheatingday/store_list",
+	         type: "post",
+	         data: params
+	      }).done(()=>{location.href="/cheatingday/store_list"})
+	      .fail(()=>{console.log(params)});
 	})
 })
 

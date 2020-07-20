@@ -18,7 +18,9 @@ function loadImage() {
 	reader.onload = function(e) {
 		$("#show_profile").attr("src", e.target.result);
 	}
+
 }
+
 $(function(){
    loadImage();
    var filter = "${filter}";
@@ -45,6 +47,8 @@ $(function(){
 			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
 	})
 })
+
+
 </script>
 </head>
 <body>

@@ -79,24 +79,19 @@ public class MainController {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findpwd.jsp");
    }
    
-   @GetMapping("/api")
-   public ModelAndView kakaoapi() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/kakaoAPI.jsp");
-   }
+
    
-   // 메인화면 카테고리 선택 후 가게 리스트
+   // 메인화면 카테고리 선택 & 주소 검색 후 가게 리스트
    @PreAuthorize("isAuthenticated()")
-   @GetMapping("/store_list")
+   @RequestMapping("/store_list")
    @ResponseBody
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo) {
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo)).addObject("filter", "review_list").addObject("foodno", foodNo);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo)).addObject("filter", "star_list").addObject("foodno", foodNo);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       return null;
    }
-   
-   
    
    
    ///////////////////////////////////////////    일반 회원         //////////////////////////////////////////////

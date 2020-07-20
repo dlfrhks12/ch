@@ -104,11 +104,11 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form style="900px;" name="" method="post" action="/cheatingday/search_list">
+                    <form style="900px;" name="" method="post" action="/cheatingday/store_list">
                         <div class="form-row">
                         <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input class="form-control form-control-lg" id="centerAddr" placeholder="우리동네 근처 맛집찾기">
+                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" value="${map.keyword}"  placeholder="우리동네로 검색하기">
                             </div>
                             <div class="col-12 col-md-3">
                                 <button type="submit" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
@@ -491,7 +491,7 @@ $(function() {
 	})
 	
 	$("#search").on("click", function() {
-		location.href="/cheatingday/search_list";
+		location.href="/cheatingday/store_list";
 	})
 })
 </script>

@@ -19,6 +19,9 @@
 	<select id="findById" resultType="detailorder">
 		select d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder where d_no=#{dNo} and rownum=1
 	</select>
+	<select id="findByONo" resultType="detailorder">
+		select d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
+	</select>
 </mapper>
 
 

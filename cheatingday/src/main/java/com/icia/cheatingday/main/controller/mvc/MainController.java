@@ -229,7 +229,7 @@ public class MainController {
    //사업자 페이지로 이동
    @GetMapping("/manager/main")
    public ModelAndView managermain() {
-      return new ModelAndView("main").addObject("viewHeader", "include/viewManagerHeader.jsp")
+      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")
             .addObject("viewName","manager/main.jsp");
    }
    

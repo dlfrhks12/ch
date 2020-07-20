@@ -10,9 +10,16 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>음식점 리스트</title>
+<style>
+
+/* #wrap {width: 620px margin-left: 500px margin-top: 0px} */
+section { margin-left: 450px; margin-right: 450px; margin-bottom: 100px; margin-top: 30px;}
+
+</style>
 
 </head>
 <body>
+<div id="wrap">
 <div>
 		<table class="table table-hover">
 			<colgroup>
@@ -47,4 +54,5 @@
 		</c:otherwise>
 	</c:choose>
 </body>
+</div>
 </html>

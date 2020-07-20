@@ -11,9 +11,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+.first {
+	text-align: center;
+}	
+</style>
 <body>
 <div>
-${page }
 	<div class="container">
 	<div style="padding: 40px 0;">
 		<h3>내가 쓴 리뷰내역</h3>
@@ -29,20 +33,20 @@ ${page }
 			</colgroup>
 			<thead>
 				<tr class="table-danger">
-					<th>상호명</th>
-					<th>카테고리</th>
-					<th>제목</th>
-					<th>주문내역</th>
-					<th>작성일자</th>
-					<th>별점</th>
+					<th class="first">상호명</th>
+					<th class="first">카테고리</th>
+					<th class="first">제목</th>
+					<th class="first">주문내역</th>
+					<th class="first">작성일자</th>
+					<th class="first">별점</th>
 				</tr>
 			</thead>
-			<tbody id="list">
+			<tbody id="list" class="first">
 			<c:forEach items="${page.rlist}" var="review">
 				<tr>
 					<td>${review.SName}</td>
 					<td>${review.category}</td>
-					<td data-toggle="modal" data-target="#exampleModalCenter">${review.RTitle}</td>
+					<td><a href="/cheatingday/user/read?reviewlist=${page.rlist}" onclick="openWin()">${review.RTitle}</a></td>
 					<td>${review.menuname}</td>
 					<td>${review.RWriteTimeStr}</td>
 					<td>${review.RStarPoint} /
@@ -80,29 +84,6 @@ ${page }
 				<li><a href="/cheatingday/user/reviewlist?pageno=${page.endPage+1}&uUsername=${username}">다음</a></li>
 			</c:if>
 		</ul>
-		</div>
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">구매내역 상세정보</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<h4>page</h4>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" style="background-color:red;">Close</button>
-				</div>
-			</div>
 		</div>
 	</div>
 </body>

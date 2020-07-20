@@ -38,7 +38,7 @@ function printCart(CartEntity, dest) {
 	var $tr = $("<tr>").appendTo($table);
 
 	// 상품마다 5개의 <td>를 가짐. 순서대로 first, second, third, fourth, fifth 클래스 선택자 지정
-	$("<td class='first'>").append($("<input>").attr("type","checkbox").attr("class","select").attr("data-mno", CartEntity.mno)).appendTo($tr);
+	$("<td class='first'>").append($("<input>").attr("type","checkbox").attr("class","select").attr("data-menuno", CartEntity.menuno)).appendTo($tr);
 	$("<td class='second'>").append($("<img>").attr("src", CartEntity.image).css("width", "135px")).appendTo($tr);
 	$("<td class='third'>").text(CartEntity.cartName).appendTo($tr);
 
@@ -46,14 +46,14 @@ function printCart(CartEntity, dest) {
 	var $td = $("<td class='fourth'>").appendTo($tr);
 	$("<div class='price'>").text(CartEntity.cartJumunMoney + "원").appendTo($td);
 	var $div = $("<div class='button_area'>").appendTo($td);
-	$("<a href='#'>+</a>").attr("class","inc").attr("data-mno", CartEntity.mno).appendTo($div);
+	$("<a href='#'>+</a>").attr("class","inc").attr("data-menuno", CartEntity.menuno).appendTo($div);
 	$("<span>").text(CartEntity.cartCount).appendTo($div);
 	console.log(CartEntity.cartCount);
-	$("<a href='#'>-</a>").attr("class","dec").attr("data-mno", CartEntity.mno).appendTo($div);
+	$("<a href='#'>-</a>").attr("class","dec").attr("data-menuno", CartEntity.menuno).appendTo($div);
 	// 5번째 td에는 <button> 2개를 붙일 것임. 따라서 var $td로 저장
 	var $td = $("<td class='fifth'>").appendTo($tr);
-	$("<button>").attr("class","buy").attr("data-mno", CartEntity.mno).text("구입").appendTo($td);
-	$("<button>").attr("class","delete").attr("data-mno", CartEntity.mno).text("삭제").appendTo($td);
+	$("<button>").attr("class","buy").attr("data-menuno", CartEntity.menuno).text("구입").appendTo($td);
+	$("<button>").attr("class","delete").attr("data-menuno", CartEntity.menuno).text("삭제").appendTo($td);
 } 
 
 //1-2. 장바구니 전체 출력함수 - printCart()를 호출해 각 장바구니를 출력
@@ -61,7 +61,7 @@ function printCartList() {
 	// 장바구니 출력 영역을 선택한 다음 내용을 제거
 	var $cartArea = $("#cart_area");
 	$cartArea.empty();
-
+	console.log(cartList);
 	// 장바구니 목록이 비어있다면 empty_cart.jpg 출력하고 선택삭제, 주문하기 버튼 영역을 안보이게
 	if(cartList.length==0) {
 		$("<img>").attr("src","/cheatingday/img/empty_cart.jpg").appendTo($cartArea);
@@ -73,7 +73,6 @@ function printCartList() {
 		printCart(CartEntity, $cartArea);
 	});
 }
-
 $(function() {
 	// 1-1. 전체선택 체크박스의 기본 상태는 비활성화
 	$("#check_all").prop("checked", false);
@@ -92,7 +91,7 @@ $(function() {
 			var params = {
 				_csrf: "${_csrf.token}",
 				_method: "patch",
-				mNo: $(this).attr("data-mno"),
+				menuno: $(this).attr("data-menuno"),
 				isIncrease: "1"
 			}
 			console.log(params);
@@ -108,9 +107,6 @@ $(function() {
 	         })
 	});
 	
-	
-	
-
 	// 5. <a href='#' class='dec'>+</a> 를 클릭하면 상품 개수 감소
 	$("#cart_area").on("click", ".dec", function(e) {
 		e.preventDefault();
@@ -123,7 +119,7 @@ $(function() {
 		var params = {
 			_csrf: "${_csrf.token}}",
 			_method: "patch",
-			mNo: $(this).attr("data-mno"),
+			menuno: $(this).attr("data-menuno"),
 			isIncrease: "0"
 		}
 		$.ajax({
@@ -143,7 +139,7 @@ $(function() {
 		var params = {
 			_csrf: "${_csrf.token}}",
 			_method: "delete",
-			mNo: $(this).attr("data-mno")	
+			menuno: $(this).attr("data-menuno")	
 		}
 		$.ajax({
 			url:"/cheatingday/cart/delete",
@@ -155,10 +151,12 @@ $(function() {
 		})
 	})
 	
+	
+	
 	// 주문 버튼을 클릭하면 해당 상품을 구입 후 이동
 	$("#cart_area").on("click", ".buy", function() {
 		var $form = $("<form>").attr("action","/cheatingday/order/buy").attr("method","post");
-		$("<input>").attr("type","hidden").attr("name","mno").val($(this).data("mno")).appendTo($form);
+		$("<input>").attr("type","hidden").attr("name","menuno").val($(this).data("menuno")).appendTo($form);
 		var countStr = $(this).parent().prev().children().find("span").text();
 		var count = parseInt(countStr);
 		$("<input>").attr("type","hidden").attr("name","cartCount").val(cartCount).appendTo($form);
@@ -177,7 +175,7 @@ $(function() {
 		var ar = [];
 		$(".select").each(function(idx) {
 			if($(this).prop("checked")) {
-				ar.push($(this).data("mno"));
+				ar.push($(this).data("menuno"));
 			}
 		});
 		var params = {
@@ -186,13 +184,13 @@ $(function() {
 			pnos: JSON.stringify(ar)
 		}
 		$.ajax({
-			url:"/cheatingday/cart/delete_all",
-			data: params,
-			method: "post",
-		}).done((result)=>{
-			cartList = result;
-			printCartList();
-		})
+			   url:"/cheatingday/cart/delete_all",
+			   data: params,
+			   method: "post",
+			  }).done((result)=>{
+			   cartList = result;
+			   printCartList();
+			  })
 	});
 
 	// 선택한 상품 구매. !!!!!!!!!!! 상품번호와 개수로 구성된 자바스크립트 객체를 만들어 배열에 담는다
@@ -206,18 +204,20 @@ $(function() {
 				var countStr = $(this).parent().next().next().next().children().find("span").text();
 				var count = parseInt(countStr);
 				var obj = {
-					mno : $(this).data("mno"),
+					menuno : $(this).data("menuno"),
 					cartCount : cartCount 
 				};
 				ar.push(obj);
 			}
 		});
 	
-		var $form = $("<form>").attr("action","/cheatingday/order/buy_all").attr("method","post");
+		var $form = $("<form>").attr("action","/cheatingday/order/kakaoPay").attr("method","post");
 		$("<input>").attr("type","hidden").attr("name","json").val(JSON.stringify(ar)).appendTo($form);
 		$("<input>").attr("type","hidden").attr("name","_csrf").val("${_csrf.token}").appendTo($form);
 		$form.appendTo($("body")).submit();
 	});
+	
+	
 	
 })
 </script>
@@ -227,13 +227,14 @@ $(function() {
 </style>
 </head>
 <body>
-${cartview }
+	
 	<div id="cart_area">
 	</div>
 	<div id="button_area">
 	</div>
 	<input type="checkbox" id="check_all">전체 선택 
 	<button id="delete_all">선택삭제</button>
+	<span id=" totalprice"></span>
 	<button type="button" id="buy_all">주문하기</button>
 </body>
 </html>

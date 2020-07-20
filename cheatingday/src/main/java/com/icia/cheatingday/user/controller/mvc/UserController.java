@@ -48,6 +48,7 @@ public class UserController {
 				.addObject("username",uUsername);
 	}
 	// 구매내역 리스트
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user/buylist")
 	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
 		return new ModelAndView("main")
@@ -105,14 +106,6 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	// 회원탈퇴
-	/*
-	 * @DeleteMapping("/user/resign") public String
-	 * resign(SecurityContextLogoutHandler handler, HttpServletRequest request,
-	 * HttpServletResponse response, Authentication authentication) {
-	 * service.resign(authentication.getName()); handler.logout(request, response,
-	 * authentication); return "redirect:/"; }
-	 */
 }
 
 

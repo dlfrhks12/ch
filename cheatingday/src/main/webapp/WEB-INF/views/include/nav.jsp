@@ -22,22 +22,21 @@
    
 </style>
 <script>
-
 $(function() {
-	$("#logout").on("click", function() {
-		var param = {
-			_csrf:"${_csrf.token}"
-		}
-		$.ajax({
-			url: "/cheatingday/logout",
-			method: "post",
-			data: param,
-			success: function() {
-				location.href = "/cheatingday/login";
-			}
-		})
+	   $("#logout").on("click", function() {
+	      var param = {
+	         _csrf:"${_csrf.token}"
+	      }
+	      $.ajax({
+	         url: "/cheatingday/logout",
+	         method: "post",
+	         data: param,
+	         success: function() {
+	            location.href = "/cheatingday/login";
+	         }
+	      })
+	   });
 	});
-});
 </script>
 </head>
 <body>

@@ -29,6 +29,9 @@ th, td {
 	border-bottom: 1px solid #444444;
 	padding: 10px;
 }
+.first {
+	text-align: center;
+}
 </style>
 <script>
 $(function() {
@@ -79,14 +82,14 @@ $(function() {
 			</colgroup>
 			<thead>
 				<tr class="table-danger">
-					<th>상호명</th>
-					<th>주문메뉴</th>
-					<th>주문금액</th>
-					<th>구매일시</th>
-					<th>즐겨찾기</th>
+					<th class="first">상호명</th>
+					<th class="first">주문메뉴</th>
+					<th class="first">주문금액</th>
+					<th class="first">구매일시</th>
+					<th class="first">즐겨찾기</th>
 				</tr>
 			</thead>
-			<tbody id="list">
+			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
 						<td>${buylist.SName}</td>

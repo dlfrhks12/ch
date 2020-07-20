@@ -45,7 +45,6 @@
 		color: red;
 		background-color: #4d4d4d;
 	}
-	.
 </style>
 </head>
 <body>

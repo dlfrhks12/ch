@@ -34,6 +34,7 @@ public class AdminService {
 	@Autowired
 	private ModelMapper mapper;
 	
+	//[관리자]신고글 페이징
 	public Page list (int pageno) {
 		int countOfBoard = rdao.countByRepoert();
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
@@ -53,7 +54,7 @@ public class AdminService {
 		return page;
 	}
 
-	
+	//[관리자]유저목록 출력
 	public List<AdminDto.DtoForuserList> ulist(){
 		List<User> userlist = adao.findAllUser();
 		List<AdminDto.DtoForuserList> dtolist = new ArrayList<>();
@@ -64,6 +65,7 @@ public class AdminService {
 		}
 		return  dtolist;
 	}
+	//[관리자]블락 유저출력
 	public List<AdminDto.DtoForblockList> blockList(){
 		List<User> userlist = adao.findAllBlock();
 		List<AdminDto.DtoForblockList> dtolist = new ArrayList<>();
@@ -74,13 +76,15 @@ public class AdminService {
 		}
 		return  dtolist;
 	}
+	//[관리자]유저 블럭하기
 	public void userBlock(List<String> uUsernames) {
 		adao.blockAll(uUsernames);
 	}
-	
+	//[관리자]유저 블럭 해제
 	public void unblock(List<String> uUsernames) {
 		adao.unblockAll(uUsernames);
 	}
+	//[관리자]승인대기 사업자 리스트
 	public List<AdminDto.DtoFormList> mlist(){
 		List<ManagerEntity> mlist = adao.findAllByEnabled();
 		List<AdminDto.DtoFormList> dtolist = new ArrayList<>();
@@ -92,6 +96,7 @@ public class AdminService {
 		}
 		return  dtolist;
 	}
+	//[관리자]사업자 정보 읽기
 	public ManagerEntity mread(String mUsername) {
 		ManagerEntity manager = mdao.findById(mUsername);
 		if(manager==null)

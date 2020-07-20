@@ -19,22 +19,24 @@ import org.springframework.web.servlet.mvc.support.*;
 
 import com.icia.cheatingday.main.service.mvc.*;
 import com.icia.cheatingday.manager.dto.*;
+import com.icia.cheatingday.manager.entity.Store;
 import com.icia.cheatingday.manager.service.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
 
 @Controller
 public class MainController {
-   @InitBinder
-   public void init(WebDataBinder wdb) {
-      wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
-   }
-   
-   @Autowired
-   private MainService service;
+	@Autowired
+	private MainService service;
+	
+	@InitBinder
+	public void init(WebDataBinder wdb) {
+		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
+		}
 
-   @Autowired
-   private StoreService stservice;
+   
+	
+   /////////////////////////////////////////    메인 공용        ///////////////////////////////////////////////////
    
    // 홈화면 - 메뉴 카테고리
    @GetMapping("/")
@@ -81,6 +83,39 @@ public class MainController {
    public ModelAndView kakaoapi() {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/kakaoAPI.jsp");
    }
+   
+   // 메인화면 카테고리 선택 후 가게 리스트
+   @PreAuthorize("isAuthenticated()")
+   @GetMapping("/store_list")
+   @ResponseBody
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo) {
+      if(job.equals("review_list"))
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo)).addObject("filter", "review_list").addObject("foodno", foodNo);
+      else if(job.equals("star_list"))         
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo)).addObject("filter", "star_list").addObject("foodno", foodNo);
+      return null;
+   }
+   
+   // 메인화면 주소 검색 후 가게 리스트
+   @GetMapping("/search_list")
+   public ModelAndView  searchlist(@RequestParam(defaultValue="title") String searchOption, @RequestParam(defaultValue="") String keyword) {
+	   List<Store> list = service.listAll(searchOption, keyword);
+	   int count = service.countArticle(searchOption, keyword);
+	   ModelAndView mav = new ModelAndView();
+	   
+	   Map<String, Object> map = new HashMap<String, Object>();
+	   map.put("list", list);
+	   map.put("count", count);
+	   map.put("searchOption", searchOption);
+	   map.put("keyword", keyword);
+	   mav.addObject("map", map);
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName", "main/searchlist.jsp");
+   }
+   
+   
+   
+   
+   ///////////////////////////////////////////    일반 회원         //////////////////////////////////////////////
    
    
    // [일반] 회원가입 Get
@@ -249,19 +284,6 @@ public class MainController {
       service.changeManagerPwd(mPassword, mNewPassword, principal.getName());
       return "redirect:/";
    }
-   
-   /*
-   // 메인화면 카테고리 선택 후 가게 리스트
-   @PreAuthorize("isAuthenticated()")
-   @GetMapping("/store_list")
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, Integer foodNo) {
-      if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(foodNo));
-      else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(foodNo));
-      return null;
-   }
-    */
    
 
 }

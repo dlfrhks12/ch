@@ -6405,7 +6405,7 @@ jQuery.each( {
 		return this.pushStack( ret );
 	};
 } );
-var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
+var rnumenunonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 
 var getStyles = function( elem ) {
 
@@ -6594,7 +6594,7 @@ function curCSS( elem, name, computed ) {
 		// but width seems to be reliably pixels.
 		// This is against the CSSOM draft spec:
 		// https://drafts.csswg.org/cssom/#resolved-values
-		if ( !support.pixelBoxStyles() && rnumnonpx.test( ret ) && rboxStyle.test( name ) ) {
+		if ( !support.pixelBoxStyles() && rnumenunonpx.test( ret ) && rboxStyle.test( name ) ) {
 
 			// Remember the original values
 			width = style.width;
@@ -6784,7 +6784,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 
 	// Support: Firefox <=54
 	// Return a confounding non-pixel value or feign ignorance, as appropriate.
-	if ( rnumnonpx.test( val ) ) {
+	if ( rnumenunonpx.test( val ) ) {
 		if ( !extra ) {
 			return val;
 		}
@@ -10629,7 +10629,7 @@ jQuery.each( [ "top", "left" ], function( _i, prop ) {
 				computed = curCSS( elem, prop );
 
 				// If curCSS returns percentage, fallback to offset
-				return rnumnonpx.test( computed ) ?
+				return rnumenunonpx.test( computed ) ?
 					jQuery( elem ).position()[ prop ] + "px" :
 					computed;
 			}

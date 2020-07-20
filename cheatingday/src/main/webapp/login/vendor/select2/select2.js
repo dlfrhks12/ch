@@ -5257,12 +5257,12 @@ S2.define('select2/core',[
         false
       );
       this.$element[0].addEventListener(
-        'DOMNodeInserted',
+        'DOmenunodeInserted',
         self._syncS,
         false
       );
       this.$element[0].addEventListener(
-        'DOMNodeRemoved',
+        'DOmenunodeRemoved',
         self._syncS,
         false
       );
@@ -5606,9 +5606,9 @@ S2.define('select2/core',[
       this.$element[0]
         .removeEventListener('DOMAttrModified', this._syncA, false);
       this.$element[0]
-        .removeEventListener('DOMNodeInserted', this._syncS, false);
+        .removeEventListener('DOmenunodeInserted', this._syncS, false);
       this.$element[0]
-        .removeEventListener('DOMNodeRemoved', this._syncS, false);
+        .removeEventListener('DOmenunodeRemoved', this._syncS, false);
     }
 
     this._syncA = null;

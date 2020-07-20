@@ -11,6 +11,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+.first {
+	text-align: center;
+}	
+</style>
 <body>
 <div>
 	<div class="container">
@@ -24,20 +29,20 @@
 				<col width="20%">
 			</colgroup>
 				<tr class="table-danger">
-					<th>지점</th>
-					<th>적립일자</th>
-					<th>적립금액</th>
+					<th class="first">지점</th>
+					<th class="first">적립일자</th>
+					<th class="first">적립금액</th>
 				</tr>
 			<c:forEach items="${page.plist}" var="point">
 				<tr>
-					<td><a href="/cheatingday/point/read?sName=${point.SName}" onclick="openWin()">${point.SName}</a></td>
-					<td>${point.OOrderTimeStr}</td>
-					<td>${point.accumulationSal}</td>
+					<td class="first">${point.SName}</td>
+					<td class="first">${point.OOrderTimeStr}</td>
+					<td class="first">${point.accumulationSal}</td>
 				</tr>
 			</c:forEach>
 				<tr>
 					<td colspan="2" class="table-info">포인트 총합</td>
-					<td><div style="width:80px; background-color: red; border-radius: 8px; color: white;">${count }</div></td>
+					<td><div class="first" style="width:80px; background-color: red; border-radius: 8px; color: white;">${count }</div></td>
 				</tr>
 		</table>
 		<hr>

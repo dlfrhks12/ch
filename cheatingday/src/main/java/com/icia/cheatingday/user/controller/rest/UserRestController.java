@@ -44,24 +44,19 @@ public class UserRestController {
 		service.update(dto);
 		return ResponseEntity.ok(null);
 	}
-	
+	// 회원탈퇴
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/user/resign")
 	public ResponseEntity<Void> resign(SecurityContextLogoutHandler handler, HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 		service.resign(authentication.getName());
 		handler.logout(request, response, authentication);
 		return ResponseEntity.ok(null);
 	}
-	
+	// 즐겨찾기
+	@PreAuthorize("isAuthenticated()")
 	@PutMapping("/user/favorite")
 	public ResponseEntity<Integer> fav(int SNum, Principal principal) {
 		return ResponseEntity.ok(service.fav(SNum,principal.getName()));
 	}
 
-/*
-	// 날짜 불러오기
-	@GetMapping(path = "/user/join_date", produces = "text/plain;charset=urf-8")
-	public ResponseEntity<String> findJoinDate(String uUsername) {
-		return ResponseEntity.ok(service.findJoinDate(uUsername));
-	}
-	*/
 }

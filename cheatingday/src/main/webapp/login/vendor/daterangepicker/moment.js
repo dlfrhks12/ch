@@ -2358,7 +2358,7 @@
         }
     }
 
-    function fromNow (withoutSuffix) {
+    function fromenunow (withoutSuffix) {
         return this.from(local__createLocal(), withoutSuffix);
     }
 
@@ -3302,7 +3302,7 @@
     momentPrototype__proto.endOf             = endOf;
     momentPrototype__proto.format            = format;
     momentPrototype__proto.from              = from;
-    momentPrototype__proto.fromNow           = fromNow;
+    momentPrototype__proto.fromenunow           = fromenunow;
     momentPrototype__proto.to                = to;
     momentPrototype__proto.toNow             = toNow;
     momentPrototype__proto.get               = getSet;
@@ -3840,7 +3840,7 @@
         M: 11   // months to year
     };
 
-    // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
+    // helper function for moment.fn.from, moment.fn.fromenunow, and moment.duration.fn.humanize
     function substituteTimeAgo(string, number, withoutSuffix, isFuture, locale) {
         return locale.relativeTime(number || 1, !!withoutSuffix, string, isFuture);
     }

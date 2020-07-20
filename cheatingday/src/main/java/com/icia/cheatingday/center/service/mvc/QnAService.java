@@ -14,6 +14,7 @@ import com.icia.cheatingday.center.dto.*;
 import com.icia.cheatingday.center.entity.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.util.*;
 
 import lombok.*;
@@ -31,17 +32,19 @@ public class QnAService {
 	@Getter
 	private List<QnACategory> Qcano;
 	
+	//카테고리 작성시 출력용
 	@PostConstruct
 	public void init() {
 		Qcano = qcdao.findAll();
 	}
-	
+	//QNA작성
 	public int write(QnADto.DtoForWrite dto, String musername) {
 		dto.setMNum(mdao.findById(musername).getMNum());
 		QnA qna = mapper.map(dto, QnA.class);
 		qdao.insert(qna);		
 		return qna.getQNo();
 	}
+	//QNA리스트 카테고리 유무 판단후 출력
 	public Page list(int pageno, Integer qCano) {
 		int countOfBoard = qdao.count(qCano);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class CartService {
    private MenuDao menuDao;
    @Inject
    private OrdersDao ordersDao;
+   @Autowired
+   private ModelMapper model;
    // 장바구니가 없으면 새로 만들고, 있으면 꺼내는 메소드
    private List<CartEntity> findList(HttpSession session) {
       System.out.println("서비스 findList 시작 ++++++++++++++++++++++++++");
@@ -83,6 +86,7 @@ public class CartService {
       
       List<CartEntity> cartList = findList(session);
       
+      
       System.out.println("서비스 add 카트리스트 : " + cartList);
       
       int idx = findCart(cartList, menuno);
@@ -94,13 +98,6 @@ public class CartService {
       } else {
          System.out.println("카트서비스 메뉴 번호 : " + menuno);
          MenuEntity product = menuDao.findBymenuno(menuno);
-         
-         for(CartEntity to : cartList) {
-  		   int oTotal = to.getCartJumunMoney();
-  		   oTotal+=oTotal;
-  		   cartList.get(oTotal);                         
-  	   	 }
-         
          CartEntity cart = new CartEntity(product.getMenuno(), 
                uUsername,
                product.getMenuname(), 
@@ -109,8 +106,7 @@ public class CartService {
                1, 
                product.getMenusajin(), 
                product.getSNum(),
-               product.getMenusal(),
-               0);
+               product.getMenusal());
          
          System.out.println("서비스  add 마지막 카트 : " + cart);
          cartList.add(cart);
@@ -178,16 +174,20 @@ public class CartService {
       session.setAttribute("cartList", cartList);
       return cartList;
    }
-   
    // 9. 상품 주문
    public int insert (HttpSession session, String uUsername) {
 	   List<CartEntity> cartList = findList(session);
-	   /*for(CartEntity to : cartList) {
+	  /* for(CartEntity cartentity:cartList) {
+		   Orders orders = model.map(cartentity, Orders.class);
+		   orders.setOTotal(oTotal);
+		   orders.set
+	   }
+	   for(CartEntity to : cartList) {
 		   int oTotal = to.getCartJumunMoney();
 		   oTotal+=oTotal;
 		   cartList.get(oTotal);
 	   }*/
 	   session.setAttribute("cartList", cartList);
 	   return ordersDao.insert(cartList);
-   }
+	   }
 }

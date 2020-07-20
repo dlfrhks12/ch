@@ -132,9 +132,15 @@ public class CartController {
 		return ResponseEntity.ok(cartList);
 	}
 	
+	// 장바구니 담기 insert
 	@PostMapping("/cart/orders")
-	public ResponseEntity<?> orders(HttpSession session, Principal prin) {
+	public ResponseEntity<?> orderinsert(HttpSession session, Principal prin) {
+
 		int cartList = service.insert(session, prin.getName());
+
+		session.setAttribute("cartList", cartList);
+
+
 		return ResponseEntity.ok(cartList);
 	}
 }

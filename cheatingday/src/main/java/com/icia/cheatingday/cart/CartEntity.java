@@ -27,7 +27,7 @@ public class CartEntity implements Serializable {
 	*/
 	private static final long serialVersionUID = 1L;
 	
-	
+		
 	private int menuno;
 	private String uUsername;
 	private String cartName;
@@ -37,7 +37,6 @@ public class CartEntity implements Serializable {
 	private String image;
 	private int sNum;
 	private int cartJumunMoney;
-	private int oTotal;
 	
 	public void increase() {
 		cartCount++;

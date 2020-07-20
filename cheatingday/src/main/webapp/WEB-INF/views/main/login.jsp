@@ -58,15 +58,19 @@
 
 // 메세지 출력
 $(function() {
-   var msg = "${msg}";
-   if(msg!="") {
-		alert(msg);
-   }
-
 // 로그인 버튼 누르면 로그인정보 submit & 로그인처리
    $("#login").on("click", function() {
 	  $("#login_form").submit();
 	 })
+   var msg = "${msg}";
+   if(msg!="") {
+		swal.fire({
+			icon: 'error',
+			title: '비밀번호가 틀렸습니다',
+			text: '다시 한번 확인해 주세요!',
+			footer: '<a href>비밀번호를 잊어버리셨나요?</a>'
+		})
+   }
 })
 
 </script>

@@ -20,7 +20,7 @@
 <div>
 	<div class="container">
 	<div style="padding: 40px 0;">
-		<h3>내가 쓴 리뷰내역</h3>
+		<h3><i class="fas fa-search">&nbsp;내가 쓴 리뷰내역</i></h3>
 	</div>
 		<table class="table table-hover">
 			<colgroup>

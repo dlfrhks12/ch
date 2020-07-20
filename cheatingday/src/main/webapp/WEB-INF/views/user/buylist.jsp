@@ -71,7 +71,7 @@ $(function() {
 	<div>
 	<div class="container">
 	<div style="padding: 40px 0;">
-		<h3>구매내역</h3>
+		<h3><i class="fas fa-shopping-bag">&nbsp;구매내역</i></h3>
 	</div>
 		<table class="table table-hover">
 			<colgroup>

@@ -17,21 +17,25 @@ public class QnAController {
 	@Autowired
 	private QnAService service;
 	
+	//QNA 읽기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/center/read")
 	public ModelAndView read(@NonNull Integer qNo) {
-		return new ModelAndView("main").addObject("viewName","center/read.jsp").addObject("viewHeader", "include/header.jsp");
+		return new ModelAndView("main").addObject("viewName","center/read.jsp").addObject("viewHeader", "include/noheader.jsp");
 	}
+	//QNA 리스트
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/center/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno, Integer qCano ) {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "center/list.jsp").addObject("page", service.list(pageno, qCano));
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "center/list.jsp").addObject("page", service.list(pageno, qCano));
 	}
+	//사업자만 QNA작성
 	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@GetMapping("/center/write")
 	public ModelAndView read() {
-		return new ModelAndView("main").addObject("viewHeader", "include/header.jsp").addObject("viewName", "center/write.jsp").addObject("category", service.getQcano());
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "center/write.jsp").addObject("category", service.getQcano());
 	}
+	//사업자만 QNA작성
 	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@PostMapping("/center/write")
 	public String write(QnADto.DtoForWrite dto, Principal principal) {

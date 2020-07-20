@@ -7,6 +7,7 @@ import com.icia.cheatingday.admin.dto.*;
 import com.icia.cheatingday.buylist.dto.*;
 import com.icia.cheatingday.center.dto.*;
 import com.icia.cheatingday.freeboard.dto.*;
+import com.icia.cheatingday.main.dto.*;
 import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.manager.dto.ManagerDto.DtoForList;
 import com.icia.cheatingday.notice.dto.*;
@@ -40,4 +41,6 @@ public class Page {
 	List<AdminDto.DtoForuserList> aulist;
 	List<AdminDto.DtoForblockList> ablist;
 	List<ManagerDto.DtoForOrderList> olist;
+	List<MainDto.DtoForList> mainlist;
+	List<ReviewDto.DtoForList>reviewlist;
 }

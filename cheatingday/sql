@@ -333,10 +333,10 @@ CREATE UNIQUE INDEX PK_review
 /* 주문 */
 CREATE TABLE orders (
 	o_no NUMBER(10) NOT NULL, /* 주문번호 */
+    u_username VARCHAR2(20), /* 아이디 */
+    m_name NVARCHAR2(30), /* 메뉴이름 */
 	o_total NUMBER(10) NOT NULL, /* 총금액 */
 	o_order_time DATE NOT NULL, /* 주문일 */
-	u_username VARCHAR2(20), /* 아이디 */
-	o_check NUMBER(1), /* 주문확인여부 */
 	s_num NVARCHAR2(50) /* 음식점 고유번호 */
 );
 

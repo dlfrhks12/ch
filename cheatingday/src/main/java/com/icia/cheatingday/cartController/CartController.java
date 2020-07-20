@@ -64,11 +64,13 @@ public class CartController {
 	
 	// 장바구니 리스트출력
 	@GetMapping("/cart/cartview")
-	public ModelAndView view() {
+	public ModelAndView view()throws JsonProcessingException{
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/noheader.jsp")
 				.addObject("viewName", "cart/cartview.jsp");
+			
 	}
+	
 	
 	// 장바구니 담기 했을 때 담기는거 출력
 	@GetMapping("/cart/read")
@@ -127,6 +129,12 @@ public class CartController {
 		List<Integer> list = objectMapper.readValue(pnos, new TypeReference<List<Integer>>() {
 		});
 		List<CartEntity> cartList = service.multipleDelete(session, list);
+		return ResponseEntity.ok(cartList);
+	}
+	
+	@PostMapping("/cart/orders")
+	public ResponseEntity<?> orders(HttpSession session, Principal prin) {
+		int cartList = service.insert(session, prin.getName());
 		return ResponseEntity.ok(cartList);
 	}
 }

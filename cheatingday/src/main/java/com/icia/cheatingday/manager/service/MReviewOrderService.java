@@ -40,7 +40,7 @@ public class MReviewOrderService {
 	///////////////////////////////////////////////////리뷰////////////////////////////////////////////////////////
 	//사업자 리뷰 신고--신고는 한번만 할수있게 막아.
 	public int reviewSingoUpdate(int rNo, String username) {
-		Review review = reviewDao.findById(rNo);
+		Review review = reviewDao.findByRno(rNo);
 		System.out.println(review);
 		
 		if(reviewCheckDao.alreadyExist(username,rNo)!=null) { //username이 존재한다면
@@ -104,7 +104,7 @@ public class MReviewOrderService {
 			ManagerDto.DtoForOrderList dto = modelMapper.map(order, ManagerDto.DtoForOrderList.class);	
 			dto.setOOrderTimeStr(order.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
 			
-			int ono = dto.getONo();
+			int ono = dto.getONo(); 
 			int count = orderDao.countByOno(ono);
 			if(count>1) {
 				dto.setOrderName(orderDao.ordercheck(ono).getDMenuName()+"외 총"+count+"개");

@@ -14,6 +14,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain=true)
 public class FoodCategory {
 
-	private int foodNo; //음식점 카테고리번호
+	private Integer foodNo; //음식점 카테고리번호
 	private String foodCategory;
 }

@@ -7,37 +7,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+table{
+	text-align: center;
+}
+#nosajin{
+	padding: 15px 0px 0px 0px;
+	height: 60px;
+	line-height: 30px;
+}
+</style>
 <script>
-function moveurl(url) { 
-   var cate = "${store}";
-	if(cate==[])
-		alert("해당카테고리의 매장이 존재하지 않습니다");
-	else
-		location.href = url;
-		console.log(cate);
-} 
+function loadImage() {	
+	// 이하 하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		$("#show_profile").attr("src", e.target.result);
+	}
+}
+$(function(){
+	loadImage();
+	var filter = "${filter}";
+		console.log(filter);
+	var food = "${foodno}"
+		console.log(food);
+	$("#filter").on("change", function(){
+		console.log(this.value);
+		if(this.value=="review")
+			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=review_list";
+		if(this.value=="star")
+			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
+	})
+})
 </script>
 </head>
 <body>
 <div>
-	<form name=move  method=post>
-		<select name=url onchange="moveurl(this.value);">
+		<select id="filter" name="filter">
 			<option selected="selected">정렬</option>
-			<option value="/cheatingday/store_list?job=review_list&&foodNo=${store[0].foodNo}">리뷰순 정렬</option>
-			<option value="/cheatingday/store_list?job=star_list&&foodNo=${store[0].foodNo}">별점순 정렬</option>
+			<option value="review">리뷰순 정렬</option>
+			<option value="star">별점순 정렬</option>
 		</select>
-	</form>
-		<br>	
 		<table class="table table-hover">
 			<colgroup>
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
+				<col width="19%">
+				<col width="19%">
+				<col width="19%">
+				<col width="19%">
+				<col width="19%">
 			</colgroup>
 			<thead>
 				<tr>
@@ -49,17 +66,40 @@ function moveurl(url) {
 				</tr>
 			</thead>
 			<tbody id="list">
-				<c:forEach items="${store}" var="store">
-					<tr>
-						<td>${store.SName}</td>
-						<td>${store.SSajin}</td>
-						<td>${store.foodCategory}</td>
-						<td>${store.SReviewCnt}</td>
-						<td>${store.SStarPoint}</td>
+				<c:forEach items="${store.mainlist}" var="store">
+					<tr style = "cursor:pointer;" onclick="location.href='/cheatingday/order/orderPage?sNum=${store.SNum}'">
+						<td id="nosajin">${store.SName}</td>
+						<td style="padding: 0px;"><img id="show_sajin" width="100px" height="60px;" src="${store.SSajin}"></td>
+						<td id="nosajin">${store.foodCategory}</td>
+						<td id="nosajin">${store.SReviewCnt}</td>
+						<td id="nosajin">${store.SStarPoint}</td>
+				
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	 <div style="text-align:center; display: inline-block; padding-left: 600px; ">
+      <ul class="pagination" class="pagination pagination-lg">
+         <c:if test="${store.prev==true}">
+            <li class="page-item"><a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${store.startPage-1}&&job=${filter}">이전</a></li>
+         </c:if>
+         <c:forEach begin="${store.startPage}" end="${store.endPage}" var="i">
+            <c:choose>
+               <c:when test="${store.pageno eq i }">
+                  <li  class="page-item">
+                     <a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${i}">${i}</a>
+                  </li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link"  href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${i}&&job=${filter}">${i}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${store.next==true}">
+			<li  class="page-item"><a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${store.endPage+1}&&job=${filter}">다음</a></li>
+		</c:if>
+      </ul>
+   </div>   
 </body>
 </html>

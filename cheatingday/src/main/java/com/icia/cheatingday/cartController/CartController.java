@@ -46,7 +46,7 @@ public class CartController {
 	@GetMapping("/order/orderPage")
 	public ModelAndView orderStoreRead(int sNum) {
 		return new ModelAndView("main").addObject("viewName", "order/orderPage.jsp")
-				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewHeader", "include/header.jsp")
 				.addObject("storeRead", storeService.orderStoreRead(sNum))
 				.addObject("cartlist", service.orderMenuRead(sNum));
 	}

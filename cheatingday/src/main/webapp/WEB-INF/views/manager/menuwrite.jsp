@@ -9,6 +9,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>메뉴등록</title>
+<style>
+	
+	section{margin-left: 500px; margin-right: 500px;}
+	#write {margin-left: 600px;}
+	#show_menusajin {margin-left: 130px;}
+</style>
 <script>
 //1. 이미지 출력입니다
 function loadImage(){
@@ -48,10 +54,10 @@ $(function(){
 
 <div id="wrap">
 		<form id="write_form" action="/cheatingday/manager/menu_write" method="post" enctype="multipart/form-data">
-			<img id="show_menusajin" height="240px">
+			<img id="show_menusajin" height="250px">
 			<input type="hidden" name="_csrf" value="${_csrf.token }">
 			<div class="form-group">
-				<label for="menusajin">메뉴 사진</label>
+				<label for="menusajin"></label>
 				<input id="sajin" type="file" name="sajin" class="form-control"  accept=".jpg,.jpeg,.png,.gif,.bmp">
 			</div>
 			<!-- <div>
@@ -79,7 +85,7 @@ $(function(){
 				</div>
 			</div>
 			<div class="form-group" style="text-align: center;">
-				<button type="button" id="write" class="btn btn-info">메뉴추가</button>&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" id="write" class="btn btn-danger">메뉴추가</button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 		</form>
 	</div>

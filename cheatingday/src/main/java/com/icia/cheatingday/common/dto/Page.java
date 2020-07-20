@@ -39,4 +39,5 @@ public class Page {
 	List<ManagerDto.DtoForList> mList;
 	List<AdminDto.DtoForuserList> aulist;
 	List<AdminDto.DtoForblockList> ablist;
+	List<ManagerDto.DtoForOrderList> olist;
 }

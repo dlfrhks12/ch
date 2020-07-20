@@ -11,6 +11,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>메뉴리스트</title>
+<style>
+
+section { margin-left: 450px; margin-right: 450px; }
+#write {margin-left: 600px;}
+
+
+</style>
 </head>
 <body>
 
@@ -18,7 +25,7 @@
 		<table class="table table-hover">
 			<colgroup>
 				<col width="60%">
-				<col width="45%">
+				<col width="40%">
 			</colgroup>
 			<thead>
 				<tr>

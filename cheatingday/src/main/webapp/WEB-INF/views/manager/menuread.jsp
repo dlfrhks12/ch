@@ -12,8 +12,9 @@
 <meta charset="UTF-8">
 <title>메뉴읽기</title>
 <style>
-	#wrap{position: absolute; left:35%}
-
+	section {margin-left: 650px;}
+	
+	#update {margin-left: 250px;}
 </style>
 
 <script>
@@ -97,14 +98,14 @@ $("#update").on("click",function(){
  	<div id="wrap">
  	
  	<div>
-		<img id="show_menusajin" height="200px;" src="${menuRead.menusajin}">
+		<img id="show_menusajin" height="250px;" src="${menuRead.menusajin}">
 	</div>
 	<div>
 		<input type="file" name="sajin" id="sajin">
 	</div>
 	
 	<div>
-	 메뉴번호 :<input type="text" name="menuno" id="menuno" value="${menuRead.menuno}">
+	 메뉴번호 : <span id="menuno">${menuRead.menuno}</span>
 	</div>
 	
 	<div>

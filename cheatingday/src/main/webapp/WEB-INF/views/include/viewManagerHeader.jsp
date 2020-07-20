@@ -84,7 +84,8 @@ $(function() {
     </li>
     
     <li class="nav-item active">
-      <div id="menuManage"><a class="nav-link" href="#">메뉴 관리</a></div>
+      <div id="menuManage">
+      <a class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">메뉴 관리</a></div>
     </li>
    
       <!-- Dropdown -->
@@ -94,7 +95,7 @@ $(function() {
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="#">공지 사항</a>
-        <a class="dropdown-item" href="#">문의 답변</a>
+        <a class="dropdown-item" href="#">Q & A</a>
       </div>
     </li>
   

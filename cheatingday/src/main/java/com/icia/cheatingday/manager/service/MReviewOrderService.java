@@ -1,18 +1,24 @@
 package com.icia.cheatingday.manager.service;
 
-import java.time.format.*;
-import java.util.*;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.modelmapper.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.icia.cheatingday.common.dto.*;
-import com.icia.cheatingday.manager.dao.*;
-import com.icia.cheatingday.manager.dto.*;
-import com.icia.cheatingday.review.dao.*;
-import com.icia.cheatingday.review.entity.*;
-import com.icia.cheatingday.util.*;
+import com.icia.cheatingday.common.dto.Page;
+import com.icia.cheatingday.manager.dao.MenuDao;
+import com.icia.cheatingday.manager.dao.ReviewCheckDao;
+import com.icia.cheatingday.manager.dao.StoreDao;
+import com.icia.cheatingday.manager.dto.ManagerDto;
+import com.icia.cheatingday.order.dao.OrderDao;
+import com.icia.cheatingday.order.entity.DetailorderEntity;
+import com.icia.cheatingday.order.entity.OrderEntity;
+import com.icia.cheatingday.review.dao.ReviewDao;
+import com.icia.cheatingday.review.entity.Review;
+import com.icia.cheatingday.util.PagingUtil;
 
 @Service
 public class MReviewOrderService {
@@ -20,13 +26,18 @@ public class MReviewOrderService {
 	@Autowired
 	private ReviewDao reviewDao;
 	@Autowired
+	private MenuDao menuDao;
+	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
 	private StoreDao storeDao;
 	@Autowired
 	private ReviewCheckDao reviewCheckDao;
 	
+	@Autowired
+	private OrderDao orderDao;
 	
+	///////////////////////////////////////////////////리뷰////////////////////////////////////////////////////////
 	//사업자 리뷰 신고--신고는 한번만 할수있게 막아.
 	public int reviewSingoUpdate(int rNo, String username) {
 		Review review = reviewDao.findById(rNo);
@@ -75,7 +86,49 @@ public class MReviewOrderService {
 		return dto;
 		
 	}
-
-
+//////////////////////////////////////////////////주문/////////////////////////////////////////////////////
 	
+	
+	 // 해당매장 주문 리스트 - 페이징 
+	public Page orderList (int pageno, int sNum) {
+		
+		int countOfBoard = orderDao.countBysNum(sNum);
+		Page page = PagingUtil.getPage(pageno, countOfBoard);
+		int srn = page.getStartRowNum();
+		int ern = page.getEndRowNum();
+		
+		List<OrderEntity> orderList = orderDao.orderListBySNum(srn, ern,sNum);
+			
+		List<ManagerDto.DtoForOrderList> dtoList = new ArrayList<>();
+		for(OrderEntity order: orderList) {
+			ManagerDto.DtoForOrderList dto = modelMapper.map(order, ManagerDto.DtoForOrderList.class);	
+			dto.setOOrderTimeStr(order.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
+			
+			int ono = dto.getONo();
+			int count = orderDao.countByOno(ono);
+			if(count>1) {
+				dto.setOrderName(orderDao.ordercheck(ono).getDMenuName()+"외 총"+count+"개");
+			}
+			
+			dtoList.add(dto);
+		}
+		page.setOlist(dtoList);
+		return page;
+	}
+	  
+	 
+	
+	// 해당 주문번호 내용 읽기 
+	public List<ManagerDto.DtoForOrderRead> orderRead(int oNo){
+		
+		List<DetailorderEntity> list = orderDao.orderReadByONo(oNo);
+		
+		List<ManagerDto.DtoForOrderRead> dtoList = new ArrayList<>();
+		for(DetailorderEntity detailOrder:list) {
+			ManagerDto.DtoForOrderRead dto = modelMapper.map(detailOrder,ManagerDto.DtoForOrderRead.class);
+			dto.setDMenuName(menuDao.findBymenuno(dto.getMenuno()).getMenuname());//메뉴번호로 메뉴이름을 불러온다.
+			dtoList.add(dto);
+		}
+		return dtoList;
+	}
 }

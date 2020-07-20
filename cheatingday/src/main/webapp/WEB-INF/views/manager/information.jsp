@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>사업자 정보관리</title>
+<style>
+	section {margin-left: 350px; margin-right: 350px; margin-top: 50px;}
+	#update {margin-left: 840px;}
+	#delete {position: absolute; left: 1300px;}
+
+</style>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script>
@@ -139,16 +145,50 @@ $(function(){
 				_method: "delete",
 				MUsername : "${managerInfo.MUsername}"
 				}
-		var choice = confirm('사업자 회원을 탈퇴하시겠습니까?');
-		 
-		 
-		$.ajax({
-				url:"/cheatingday/manager/out",
-				method:"post",
-		}).then(()=>Swal.fire("이용해 주셔서 감사합니다", "치팅데이 사랑해주셔서 감사합니다", "success"))
-	      .then(()=>location.reload()).fail(()=>Swal.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"))
 		
-	}); 
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+				confirmButton: 'btn btn-info',
+				cancelButton: 'btn btn-danger'
+			},
+			buttonsStyling: false
+		})
+		 swalWithBootstrapButtons.fire({
+  		title: '정말 탈퇴하시겠습니까?',
+  		text: "한 번 탈퇴하시면 계정복구는 불가능합니다",
+		icon: 'warning',
+ 		showCancelButton: true,
+  		confirmButtonText: '회원 탈퇴',
+  		cancelButtonText: '탈퇴 취소',
+  		reverseButtons: true
+	  }).then((result)=> {
+		  if(result.value){
+			  $.ajax({
+				  url: "/cheatingday/manager/out",
+				  type: "post",
+				  success: function(){
+					  swalWithBootstrapButtons.fire({
+						  title:"이용해 주셔서 감사합니다",
+						  text:"치팅데이 사랑해주셔서 감사합니다",
+						  icon:"success"
+					  }).then(()=>location.href="/cheatingday/")
+				  },error: function(){
+					  swalWithBootstrapButtons.fire("회원 탈퇴에 실패했습니다", "치팅데이 사랑해주셔서 감사합니다", "error"); 
+				  }
+			  })
+		  			}else if(
+		  					result.dismiss === Swal.DismissReason.cancel
+		  	  		) {
+		  	   		swalWithBootstrapButtons.fire(
+		  	        	'취소',
+		  	        	'당신의 계정은 안전합니다 :)',
+		  	        	'error'
+		  	    	)
+		  			}
+	  })
+	  });
+		
+		
 	
 });
 

@@ -8,11 +8,46 @@ import org.mybatis.spring.*;
 import org.springframework.stereotype.*;
 
 import com.icia.cheatingday.order.entity.*;
+import com.icia.cheatingday.review.entity.Review;
 
 @Repository
 public class OrderDao {
 	@Inject
 	private SqlSessionTemplate tpl;
+	
+	
+	//사업자> 주문 리스트 
+		public List<OrderEntity> orderListBySNum(int startRowNum, int endRowNum, int sNum){ 
+			Map<String, Integer> map = new HashMap<>();
+			map.put("startRowNum",startRowNum);
+			map.put("endRowNum", endRowNum);
+			map.put("sNum", sNum);
+			return tpl.selectList("orderMapper.orderListBySNum", map); 
+		}
+		
+	//사업자> 주문리스트 sNum
+		public int countBysNum(int sNum){
+			return tpl.selectOne("orderMapper.countBysNum",sNum);
+		}
+	 
+	//사업자> 주문리스트에 제목보이기 
+		public DetailorderEntity ordercheck(int oNo) {
+			return tpl.selectOne("orderMapper.ordercheck",oNo);
+		}
+
+	//사업자> 주문리스트에 제목보이기 
+		public int countByOno(int oNo) {
+			return tpl.selectOne("orderMapper.countByOno",oNo);
+		}
+		
+////////////////////////////////////////////////////////////////////////////////	
+		
+	//사업자> 주문 읽기
+	public List<DetailorderEntity> orderReadByONo(int oNo) {
+		return tpl.selectList("orderMapper.orderReadByONo",oNo);
+	}
+	
+	
 	
 	// 1. 장바구니 추가
 	public int orderInsert(DetailorderEntity order) {

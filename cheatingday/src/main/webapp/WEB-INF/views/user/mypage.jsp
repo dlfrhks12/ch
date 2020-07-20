@@ -277,8 +277,7 @@ $(function() {
 		<tr>
 			<td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호
-					수정</button>
+				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
 				<div id="passwordArea">
 					<span class="key">현재 비밀번호 : </span> <input type="password"
 						id="password"><br> <span class="key">새 비밀번호 :

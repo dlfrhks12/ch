@@ -16,12 +16,28 @@ public class ReviewDao {
 	public int count(String uUsername) {
 		return tpl.selectOne("reviewMapper.count", uUsername);
 	}
+	// 전체 리스트
 	public List<Review> findAll(int startRowNum, int endRowNum) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("reviewMapper.findAll", map);
 	}
+	// 별점 순 리스트
+	public List<Review> findAllByStar(int startRowNum, int endRowNum){
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		return tpl.selectList("reviewMapper.findAllByStar",map);
+	}
+	// 최신순 리스트( 최신 리뷰 번호로 정렬)
+	public List<Review> findAllByRno(int startRowNum, int endRowNum){
+		Map<String,Integer> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum",endRowNum);
+		return tpl.selectList("reviewMapper.findAllByRno",map);
+	}
+	
 	//사업자&일반회원 리뷰신고
 	public int reviewSingoUpdate(int rNo) {
 		return tpl.update("reviewMapper.reviewSingo",rNo);
@@ -39,7 +55,7 @@ public class ReviewDao {
 		return tpl.selectList("reviewMapper.findAllBysNum",map);
 	}
 	//사업자> 음식점 리뷰 읽기
-	public Review findByRno(int rNo) {
+	public Review findByRno(Integer rNo) {
 		return tpl.selectOne("reviewMapper.findByRno",rNo);
 	}
 	public int countByRepoert() {	
@@ -51,10 +67,14 @@ public class ReviewDao {
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("reviewMapper.findAllByReport", map);
 	}
-	public Review findById(Integer rNo) {
-		return tpl.selectOne("reviewMapper.findById", rNo);
+	public int update(Review review) {
+		return tpl.update("reviewMapper.update",review);
 	}
+	
 	public int delete(Integer rNo) {
 		return tpl.delete("reviewMapper.delete", rNo);
+	}
+	public int insert(Review review) {
+		return tpl.insert("reviewMapper.insert",review);
 	}
 }

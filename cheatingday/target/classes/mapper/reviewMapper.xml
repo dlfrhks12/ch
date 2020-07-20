@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewMapper">
-	
+
 	
 	<!-- 리뷰 신고 (일반회원, 사업자회원) -->
 	<update id="reviewSingo">
@@ -23,7 +23,7 @@
 	where rnum>=#{startRowNum}
 	]]>
 	</select>
-
+	
 	<!-- 리뷰 읽기  해야해-->
 	<select id="findByRno" resultType="review">
 		select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, o_no oNo, r_title rTitle, r_report rReport, u_username uUsername, s_num sNum 
@@ -63,63 +63,57 @@
 		delete from review where r_no=#{rNo} and rownum=1
 	</delete>
 	
-	<!-- z -->
 	
 	<!-- 리뷰 전체 리스트 -->
 	<select id="findAll" resultType="review">
 	<![CDATA[
 	select * from
 		(select rownum as rnum, b.* from
-			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo s_num sNum, cateno, r_commnet rCommnet from reivew) b
+			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo, s_num sNum from review) b
 		where rownum<=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>
 	</select>
 
 	
-	<select id="findAllByUsername" resultType="review">
-	<![CDATA[
-	select * from
+	<select id="findAllByStar" resultType="review">
+		<![CDATA[
+		select * from
 		(select rownum as rnum, b.* from
-			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_write_time rWriteTime from reivew) b
-		where rownum<=#{endRowNum})
-	where rnum>=#{startRowNum}
+			(select  r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo, s_num sNum from review order by r_star_point  desc) b
+			where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum}
 	]]>
 	</select>
 	
-	<select id="findAllByCategory" resultType="review">
+	<select id="findAllByRno" resultType="review">
 	<![CDATA[
-	select * from
+		select * from
 		(select rownum as rnum, b.* from
-			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo s_num sNum, cateno from reivew) b
-		where rownum<=#{endRowNum})
-	where rnum>=#{startRowNum}
+			(select r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo ,s_num sNum from review order by r_no desc) b
+			where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum}
 	]]>
 	</select>
-	
 	<insert id="insert">
 		<selectKey keyProperty="rNo" resultType="int" order="BEFORE">
 			select review_seq.nextval from dual
 		</selectKey>
-		insert into review(r_no, r_title, u_username, cateno, r_star_point, r_content, r_write_time, o_no, s_num)
-	    values(#{rNo}, #{rTitle}, #{uUsername}, #{cateno}, #{rStarPoint}, #{rContent}, #{rWriteTime}, #{oNo}, #{sNum})
+		insert into review(r_no, r_title, u_username,  r_star_point, r_content, r_write_time, o_no, s_num)
+	    values(#{rNo}, #{rTitle}, #{uUsername},  #{rStarPoint}, #{rContent}, #{rWriteTime}, #{oNo}, #{sNum})
 	</insert>
 	
 	<update id="update">
 		update review
 		<trim suffixOverrides="," prefix="set">
-			<if test="rTitle!=rTitle">r_title=#{rTitle},</if>
-			<if test="rStarPoint!=rStarPoint">r_star_point=#{rStarPoint},</if>
-			<if test="rContent!=rContent">=r_content#{rContent},</if>
-			<if test="rCommnet!=rCommnet">=r_commnet#{rCommnet},</if>
+			<if test="rTitle!=null">r_title=#{rTitle},</if>
+			<if test="rStarPoint!=null">r_star_point=#{rStarPoint},</if>
+			<if test="rContent!=null">r_content=#{rContent},</if>
 		</trim>
 		where r_no=#{rNo} and rownum=1
 	</update>
-	<select id="findAllCate" resultType="map">
-		select cateno, cartegory from reviewcarta
-	</select>
+	
 </mapper>
-<!-- findAllByHit -->
 
 
 

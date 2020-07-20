@@ -37,6 +37,7 @@ public class CartEntity implements Serializable {
 	private String image;
 	private int sNum;
 	private int cartJumunMoney;
+	private int oTotal;
 	
 	public void increase() {
 		cartCount++;
@@ -46,5 +47,4 @@ public class CartEntity implements Serializable {
 		cartCount--;
 		cartJumunMoney = cartCount * cartPrice;
 	}
-	
 }

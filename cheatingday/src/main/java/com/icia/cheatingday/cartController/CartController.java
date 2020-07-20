@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,8 +25,6 @@ import com.icia.cheatingday.cart.CartService;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 import com.icia.cheatingday.manager.service.StoreService;
-
-import net.sf.json.JSONArray;
 
 @Controller
 public class CartController {
@@ -134,12 +131,10 @@ public class CartController {
 		List<CartEntity> cartList = service.multipleDelete(session, list);
 		return ResponseEntity.ok(cartList);
 	}
-	/*
-	@PostMapping("/cart/adon")
-	public ResponseEntity<?> adon(HttpSession session, Integer mNo) {
-		CartEntity cartList = service.don(session, mNo);
+	
+	@PostMapping("/cart/orders")
+	public ResponseEntity<?> orders(HttpSession session, Principal prin) {
+		int cartList = service.insert(session, prin.getName());
 		return ResponseEntity.ok(cartList);
 	}
-	
-	*/
 }

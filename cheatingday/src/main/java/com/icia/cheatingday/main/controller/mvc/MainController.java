@@ -98,15 +98,15 @@ public class MainController {
    
    // 메인화면 주소 검색 후 가게 리스트
    @GetMapping("/search_list")
-   public ModelAndView  searchlist(@RequestParam(defaultValue="title") String searchOption, @RequestParam(defaultValue="") String keyword) {
-	   List<Store> list = service.listAll(searchOption, keyword);
-	   int count = service.countArticle(searchOption, keyword);
+   public ModelAndView  searchlist(String sAddress, @RequestParam(defaultValue="") String keyword) {
+	   List<Store> list = service.listAll(sAddress, keyword);
+	   int count = service.countArticle(sAddress, keyword);
 	   ModelAndView mav = new ModelAndView();
 	   
 	   Map<String, Object> map = new HashMap<String, Object>();
 	   map.put("list", list);
 	   map.put("count", count);
-	   map.put("searchOption", searchOption);
+	   map.put("searchOption", sAddress);
 	   map.put("keyword", keyword);
 	   mav.addObject("map", map);
 	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName", "main/searchlist.jsp");

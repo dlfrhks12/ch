@@ -114,7 +114,7 @@ update store
 
 
 <select id="listAll" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_num desc
+	select * from store order by s_num desc
 </select>
 
 <select id="countArticle" resultType="int">

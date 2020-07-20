@@ -37,11 +37,11 @@ $(function() {
 		// 자바스크립트 배열을 json으로 변환한 다음 보낸다
 		// 11, 22, 33을 선택하면 [11,22,33]이 되고 json으로 변환한다
 		
-		
 		var $form = $("<form>").attr("action","/cheatingday/admin/user_unblock").attr("method","post");
 		$("<input>").attr("type","hidden").attr("name","uUsernames").val(JSON.stringify(ar)).appendTo($form);
 		$("<input>").attr("type","hidden").attr("name","_csrf").val("${_csrf.token}").appendTo($form);
-		$form.appendTo($("body")).submit();
+		console.log()  
+		//$form.appendTo($("body")).submit();
 	})
 })
 </script>

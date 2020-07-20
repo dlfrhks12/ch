@@ -90,17 +90,5 @@ public class StoreDao {
 		return tpl.selectList("storeMapper.findAllByStar", map);
 	}
 	
-	public List<Store> listAll(String searchOption, String keyword) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		return tpl.selectList("storeMapper.listAll", map);
-	}
-	
-	public int countArticle(String searchOption, String keyword) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		return tpl.selectOne("storeMapper.countArticle", map);
-	}
+
 }

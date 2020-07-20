@@ -113,21 +113,7 @@ update store
 </select>
 
 
-<select id="listAll" resultType="store">
-	select * from store order by s_num desc
-</select>
 
-<select id="countArticle" resultType="int">
-	select count(*) from store <include refid="search"></include>
-</select>
-
-<sql id="search">
-	<choose>
-		<when test="searchOPtion=='all'">
-			where s_address like '%'||#{keyword}||'%'
-		</when>
-	</choose>
-</sql>
 </mapper>
 
 

@@ -1,28 +1,34 @@
 package com.icia.cheatingday.user.service.mvc;
 
-import java.time.*;
-import java.time.format.*;
-import java.time.temporal.*;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.modelmapper.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.security.crypto.password.*;
-import org.springframework.stereotype.*;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import com.icia.cheatingday.buylist.dao.*;
-import com.icia.cheatingday.buylist.dto.*;
-import com.icia.cheatingday.buylist.entity.*;
-import com.icia.cheatingday.common.dto.*;
-import com.icia.cheatingday.exception.*;
-import com.icia.cheatingday.manager.dao.*;
-import com.icia.cheatingday.review.dao.*;
-import com.icia.cheatingday.review.dto.*;
-import com.icia.cheatingday.review.entity.*;
-import com.icia.cheatingday.user.dao.*;
-import com.icia.cheatingday.user.dto.*;
-import com.icia.cheatingday.user.entity.*;
-import com.icia.cheatingday.util.*;
+import com.icia.cheatingday.buylist.dao.BuylistDao;
+import com.icia.cheatingday.buylist.dto.BuylistDto;
+import com.icia.cheatingday.buylist.entity.Buylist;
+import com.icia.cheatingday.common.dto.Page;
+import com.icia.cheatingday.exception.JobFailException;
+import com.icia.cheatingday.exception.UserNotFoundException;
+import com.icia.cheatingday.manager.dao.StoreDao;
+import com.icia.cheatingday.review.dao.ReviewDao;
+import com.icia.cheatingday.review.dto.ReviewDto;
+import com.icia.cheatingday.review.entity.Review;
+import com.icia.cheatingday.user.dao.FavoriteDao;
+import com.icia.cheatingday.user.dao.PointDao;
+import com.icia.cheatingday.user.dao.UserDao;
+import com.icia.cheatingday.user.dto.PointDto;
+import com.icia.cheatingday.user.dto.UserDto;
+import com.icia.cheatingday.user.entity.Point;
+import com.icia.cheatingday.user.entity.User;
+import com.icia.cheatingday.util.PagingUtil;
 
 @Service
 public class UserService {
@@ -103,7 +109,7 @@ public class UserService {
 	}
 	// 리뷰 리스트 페이징
 	public Page reviewList(int pageno, String uUsername) {
-		int countOfBoard = reviewDao.count(null, uUsername);
+		int countOfBoard = reviewDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();

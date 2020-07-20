@@ -8,14 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+table{text-align: center;}
+#nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
 </style>
 <script>
-function loadImage() {   
-   // 이하 하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
-   var reader = new FileReader();
-   reader.onload = function(e) {
-      $("#show_profile").attr("src", e.target.result);
-   }
+function loadImage() {	
+	// 이하 하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		$("#show_profile").attr("src", e.target.result);
+	}
 }
 $(function(){
    loadImage();
@@ -30,6 +32,18 @@ $(function(){
       if(this.value=="star")
          location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
    })
+	loadImage();
+	var filter = "${filter}";
+		console.log(filter);
+	var food = "${foodno}"
+		console.log(food);
+	$("#filter").on("change", function(){
+		console.log(this.value);
+		if(this.value=="review")
+			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=review_list";
+		if(this.value=="star")
+			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
+	})
 })
 </script>
 </head>

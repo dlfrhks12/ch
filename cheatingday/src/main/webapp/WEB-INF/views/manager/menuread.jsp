@@ -37,8 +37,8 @@ function loadImage(){
 	reader.onload = function(e){
 		$("#show_menusajin").attr("src", e.target.result);
 	}
-	reader.readAsDataURL(file);
-	return true;
+	readetrue;r.readAsDataURL(file);
+	return 
 }
 
 	//2. 메뉴 수정하기

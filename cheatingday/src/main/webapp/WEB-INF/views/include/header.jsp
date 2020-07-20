@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
@@ -84,7 +85,7 @@
                         <div class="form-row">
                         <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input name="keyword" class="form-control form-control-lg" placeholder="매장으로 검색하기" id="centerAddr" value="${map.keyword}">
+                                <input class="form-control form-control-lg" id="centerAddr" placeholder="우리동네 근처 맛집찾기">
                             </div>
                             <div class="col-12 col-md-3">
                                 <button type="submit" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
@@ -176,6 +177,8 @@ $(function() {
 	            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
 	            infowindow.setContent(content);
 	            infowindow.open(map, marker);
+	            
+	            $("#centerAddr").val(result[0].address.address_name);
 	            
 	            }
 	        });

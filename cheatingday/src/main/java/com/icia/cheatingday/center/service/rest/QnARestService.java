@@ -40,6 +40,7 @@ public class QnARestService {
 	
 	Pattern ckImagePattern = Pattern.compile("src=\".+\"\\s");
 	
+	//QNA읽기
 	public QnADto.DtoForRead read(Integer qNo, String username){
 		QnA qna = qdao.findById(qNo);
 		if(qna==null)
@@ -53,7 +54,7 @@ public class QnARestService {
 		dto.setComments(qndao.findAllByQno(dto.getQNo()));
 		return dto;
 	}
-	
+	//댓글리스트
 	public List<QnAComment> writeQComment(QnAComment qnAComment, String ausername){
 		qnAComment.setQcWriteTime(LocalDateTime.now());
 		String comment = qnAComment.getQcContent().replaceAll("\n", " ");
@@ -62,6 +63,7 @@ public class QnARestService {
 		qdao.update(QnA.builder().qNo(qnAComment.getQNo()).qIscomment(true).build());
 		return qndao.findAllByQno(qnAComment.getQNo());
 	}
+	//댓글삭제
 	public List<QnAComment> deleteComment(Integer qNo, Integer qcNo, String username) {
 		QnAComment qnAComment = qndao.findById(qcNo);
 		if(qnAComment.getAUsername().equals(username)==false)
@@ -70,7 +72,7 @@ public class QnARestService {
 		qdao.update(QnA.builder().qNo(qnAComment.getQNo()).qIscomment(false).build());
 		return qndao.findAllByQno(qNo);
 	}
-	
+	//QNA삭제
 	public void deletQna(Integer qNo, String username) {
 		QnA qnA = qdao.findById(qNo);
 		if(qnA==null)
@@ -90,6 +92,7 @@ public class QnARestService {
 		}
 		qdao.delete(qNo);
 	}
+	//QNA변경
 	public void updateQnA(QnADto.DtoForUpdate dto) {
 		QnA qna = qdao.findById(dto.getQNo());
 		if(qna==null)
@@ -100,10 +103,11 @@ public class QnARestService {
 		qna = mapper.map(dto, QnA.class);
 		qdao.update(qna);
 	}
-	
+	//댓글변경
 	public void updateQnAcomment(QnAComment qnAComment){
 		 qndao.update(qnAComment);
 	}
+	//CK이미지저장
 	public String saveCkImage(MultipartFile upload) throws IOException {
 		Map<String,String> map = new HashMap<String, String>();
 		if(upload!=null) {

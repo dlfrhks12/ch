@@ -90,26 +90,10 @@ public class MainController {
    @ResponseBody
    public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo)).addObject("filter", "review_list").addObject("foodno", foodNo);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo)).addObject("filter", "review_list").addObject("foodno", foodNo);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/header.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo)).addObject("filter", "star_list").addObject("foodno", foodNo);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo)).addObject("filter", "star_list").addObject("foodno", foodNo);
       return null;
-   }
-   
-   // 메인화면 주소 검색 후 가게 리스트
-   @GetMapping("/search_list")
-   public ModelAndView  searchlist(String sAddress, @RequestParam(defaultValue="") String keyword) {
-	   List<Store> list = service.listAll(sAddress, keyword);
-	   int count = service.countArticle(sAddress, keyword);
-	   ModelAndView mav = new ModelAndView();
-	   
-	   Map<String, Object> map = new HashMap<String, Object>();
-	   map.put("list", list);
-	   map.put("count", count);
-	   map.put("searchOption", sAddress);
-	   map.put("keyword", keyword);
-	   mav.addObject("map", map);
-	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName", "main/searchlist.jsp");
    }
    
    
@@ -285,8 +269,6 @@ public class MainController {
       return "redirect:/";
    }
    
-   
 
-  
 }
 

@@ -20,4 +20,5 @@ public class Review {
 	private int rReport;
 	private String uUsername;
 	private int sNum;
+	private int rCommnet;
 }

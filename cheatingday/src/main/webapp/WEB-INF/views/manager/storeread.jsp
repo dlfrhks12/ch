@@ -12,6 +12,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>음식점 정보</title>
+<style>
+
+section { margin-left: 600px;}
+#update {margin-left: 300px;}
+
+
+</style>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script>
@@ -128,7 +135,7 @@ $("#SSajin").on("change",loadImage);
 </head>
 <body>
   <div>
-	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
+	 <img id="show_storesajin" height="250px;" src="${storeRead.SSajin}">
 	</div>
 	<div>
 		<input type="file" name="sajin" id="sajin">

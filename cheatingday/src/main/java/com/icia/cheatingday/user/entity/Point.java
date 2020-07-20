@@ -12,5 +12,5 @@ public class Point {
 	private String uUsername;
 	private int oNo;
 	private int accumulationSal;
-	private int favCheck;
+	private int totalPoint;
 }

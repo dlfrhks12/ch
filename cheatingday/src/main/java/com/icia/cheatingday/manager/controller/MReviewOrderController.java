@@ -18,7 +18,28 @@ public class MReviewOrderController {
 	@Autowired
 	private MReviewOrderService service;
 	
+	///////////////////////////////////////주문//////////////////////////////////////
 	
+	  // 해당매장 주문 리스트 - 페이징
+	  @GetMapping("manager/order_list") 
+	  public ModelAndView orderList(@RequestParam(defaultValue = "1") int pageno, int sNum) { 
+		  return new ModelAndView("main").addObject("viewName","manager/checkorderList.jsp")
+				  .addObject("viewHeader", "include/viewManagerHeader.jsp")
+				  .addObject("page",service.orderList(pageno, sNum)); 
+	}
+	 
+	
+	
+	// 해당 주문번호 내용 읽기 
+	@GetMapping("manager/order_read")
+	public ModelAndView orderRead(int oNo) {
+		return new ModelAndView("main").addObject("viewName","manager/checkorderRead.jsp")
+				  .addObject("viewHeader", "include/viewManagerHeader.jsp")
+				  .addObject("orderRead",service.orderRead(oNo));
+				
+	}
+	
+	/////////////////////////////////////////////////리뷰//////////////////////////////////////////////////////////
 	  //리뷰신고
 	 @PatchMapping("manager/reviewRepoart")
 	 public ResponseEntity<?> managerReviewReport(int rNo, Principal principal){

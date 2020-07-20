@@ -26,7 +26,9 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 #user td {
 	height: 60px;
@@ -256,6 +258,10 @@ $(function() {
 
 </script>
 <body>
+<div class="container">
+	<div style="padding: 40px 0;">
+		<h3>내 정보</h3>
+	</div>
 	<table class="table table-hover" id="user">
 		<colgroup>
 			<col width="10%">
@@ -277,8 +283,7 @@ $(function() {
 		<tr>
 			<td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호
-					수정</button>
+				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
 				<div id="passwordArea">
 					<span class="key">현재 비밀번호 : </span> <input type="password"
 						id="password"><br> <span class="key">새 비밀번호 :
@@ -317,6 +322,7 @@ $(function() {
 				style="width: 200px;" name="uAddress" placeholder="상세주소입력 " /></td>
 		</tr>
 	</table>
+	</div>
 	<div id="btn_update">
 		<button type="button" class="btn btn-success" id="update">변경하기</button>
 	</div>

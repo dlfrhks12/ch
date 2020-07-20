@@ -21,8 +21,8 @@ public class BuylistDao {
 		return tpl.selectOne("buylistMapper.findONoById", oNo);
 	}
 
-	public int count() {
-		return tpl.selectOne("buylistMapper.count");
+	public int count(String uUsername) {
+		return tpl.selectOne("buylistMapper.count", uUsername);
 	}
 	public List<Buylist> findAll(int startRowNum, int endRowNum, String uUsername) {
 		Map<String,Object> map = new HashMap<>();

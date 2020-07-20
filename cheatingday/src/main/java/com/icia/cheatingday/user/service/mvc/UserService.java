@@ -1,34 +1,29 @@
 package com.icia.cheatingday.user.service.mvc;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.*;
+import java.time.format.*;
+import java.time.temporal.*;
+import java.util.*;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.modelmapper.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.security.crypto.password.*;
+import org.springframework.stereotype.*;
 
-import com.icia.cheatingday.buylist.dao.BuylistDao;
-import com.icia.cheatingday.buylist.dto.BuylistDto;
-import com.icia.cheatingday.buylist.entity.Buylist;
-import com.icia.cheatingday.common.dto.Page;
-import com.icia.cheatingday.exception.JobFailException;
-import com.icia.cheatingday.exception.UserNotFoundException;
-import com.icia.cheatingday.manager.dao.StoreDao;
-import com.icia.cheatingday.review.dao.ReviewDao;
-import com.icia.cheatingday.review.dto.ReviewDto;
-import com.icia.cheatingday.review.entity.Review;
-import com.icia.cheatingday.user.dao.FavoriteDao;
-import com.icia.cheatingday.user.dao.PointDao;
-import com.icia.cheatingday.user.dao.UserDao;
-import com.icia.cheatingday.user.dto.PointDto;
-import com.icia.cheatingday.user.dto.UserDto;
-import com.icia.cheatingday.user.entity.Point;
-import com.icia.cheatingday.user.entity.User;
-import com.icia.cheatingday.util.PagingUtil;
+import com.icia.cheatingday.buylist.dao.*;
+import com.icia.cheatingday.buylist.dto.*;
+import com.icia.cheatingday.buylist.entity.*;
+import com.icia.cheatingday.common.dto.*;
+import com.icia.cheatingday.exception.*;
+import com.icia.cheatingday.manager.dao.*;
+import com.icia.cheatingday.order.dao.*;
+import com.icia.cheatingday.review.dao.*;
+import com.icia.cheatingday.review.dto.*;
+import com.icia.cheatingday.review.entity.*;
+import com.icia.cheatingday.user.dao.*;
+import com.icia.cheatingday.user.dto.*;
+import com.icia.cheatingday.user.entity.*;
+import com.icia.cheatingday.util.*;
 
 @Service
 public class UserService {
@@ -43,7 +38,13 @@ public class UserService {
 	@Autowired
 	private StoreDao storeDao;
 	@Autowired
+	private DetailorderDao detailorderDao;
+	@Autowired
+	private MenuDao menuDao;
+	@Autowired
 	private FavoriteDao favDao;
+	@Autowired
+	private FoodCategoryDao foodCategoryDao;
 	@Autowired
 	private PasswordEncoder pwdEncoder;
 	@Autowired
@@ -51,6 +52,11 @@ public class UserService {
 	
 
 
+	
+	public int count(String uUsername) {
+		int count = userDao.findById(uUsername).getUPoint();
+		return count;
+	}
 	// 내정보 읽기
 	public UserDto.DtoForRead myPage(String uUsername) {
 		User user = userDao.findById(uUsername);
@@ -91,11 +97,11 @@ public class UserService {
 	}
 	// 포인트 리스트 페이징
 	public Page pointList(int pageno, String uUsername) {
-		int countOfBoard = pointDao.count();
+		int countOfBoard = pointDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Point> pointList = pointDao.findAll(srn, ern);
+		List<Point> pointList = pointDao.findAll(srn, ern, uUsername);
 		List<PointDto.DtoForList> dtoList = new ArrayList<>();
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
@@ -113,12 +119,18 @@ public class UserService {
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Review> reviewList = reviewDao.findAll(srn, ern);
+		List<Review> reviewList = reviewDao.findAllByUsername(srn, ern, uUsername);
 		List<ReviewDto.DtoForList> dtoList = new ArrayList<>();
 		for(Review review:reviewList) {
 			ReviewDto.DtoForList dto = modelMapper.map(review, ReviewDto.DtoForList.class);
 			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+			dto.setSName(storeDao.findBysNum(review.getSNum()).getSName());
+			int foodNo = storeDao.findBysNum(review.getSNum()).getFoodNo();
+			String categoryName = foodCategoryDao.findByFoodNo(foodNo);
+			dto.setCategory(categoryName);
+			dto.setMenuname(detailorderDao.findByONo(review.getONo()).getDMenuName());
+			int menuno = detailorderDao.findByONo(review.getONo()).getMenuno();
+			dto.setSajin(menuDao.findById(menuno).getMenusajin());
 			dtoList.add(dto);
 		}
 		page.setRlist(dtoList);
@@ -126,7 +138,7 @@ public class UserService {
 	}
 	// 구매내역 리스트 페이징
 	public Page buyList(int pageno, String uUsername) {
-		int countOfBoard = buylistDao.count();
+		int countOfBoard = buylistDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();

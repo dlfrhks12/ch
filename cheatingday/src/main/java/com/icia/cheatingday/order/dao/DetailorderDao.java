@@ -25,4 +25,7 @@ public class DetailorderDao {
 	public DetailorderEntity findById(Integer dNo) {
 		return tpl.selectOne("detailorderMapper.findById", dNo);
 	}
+	public DetailorderEntity findByONo(int oNo) {
+		return tpl.selectOne("detailorderMapper.findByONo", oNo);
+	}
 }

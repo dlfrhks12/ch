@@ -17,18 +17,21 @@ public class NoticeRestContoller {
 	@Autowired
 	private NoticeRestService service;
 	
+	//공지변경
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PatchMapping("/notice/update")
 	public ResponseEntity<?> NoticeUpdate(Notice notice, Principal principal){
 		service.updateNotice(notice, principal.getName());
 		return ResponseEntity.ok("/cheatingday/notice/read?nNo="+notice.getNNo());
 	}
+	//공지삭제
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/notice/delete")
 	public ResponseEntity<?> Noticedelete(Integer nNo, Principal principal){
 		service.deleteNotice(nNo, principal.getName());
 		return ResponseEntity.ok("/cheatingday/notice/list");
 	}
+	//CK에디터
 	@PostMapping("/notice/ckupload")
 	public ResponseEntity<?> ckUpload(MultipartFile upload) throws IOException{
 		return ResponseEntity.ok(service.saveCkImage(upload));	

@@ -13,14 +13,14 @@ public class AdminRestController {
 	@Autowired
 	private AdminRestService service;
 	
-	//신고받은 리뷰삭제
+	//[관리자]신고받은 리뷰삭제
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/admin/report_delete")
 	public ResponseEntity<?> deleteReport(Integer rNo){
 		service.deleteReport(rNo);
 		return ResponseEntity.ok("/cheatingday/admin/report_list");
 	}
-	//가입신청 승인
+	//[관리자]가입신청 승인
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/admin/manager_unblock")
 	public ResponseEntity<?> enabledM(int mNum){

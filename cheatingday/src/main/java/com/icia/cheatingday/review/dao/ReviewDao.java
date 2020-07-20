@@ -27,12 +27,10 @@ public class ReviewDao {
 		return tpl.update("reviewMapper.reviewSingo",rNo);
 	}
 	
-	//사업자> 음식점 고유번호로 리뷰 리스트 페이징
 	public int countBySnum(Integer sNum) {
 		return tpl.selectOne("reviewMapper.countBySnum",sNum);
 	}
 	
-	//사업자> 리뷰 페이징
 	public List<Review> findAllBysNum(int startRowNum, int endRowNum, Integer sNum){
 		Map<String, Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);

@@ -22,11 +22,13 @@ public class NoticeController {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+	//공지목록
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/notice/list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
 		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "notice/list.jsp").addObject("page", service.list(pageno));
 	}
+	//공지읽기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/notice/read")
 	public ModelAndView read(@NotNull Integer nNo, Principal principal ) throws JsonProcessingException {
@@ -37,11 +39,13 @@ public class NoticeController {
 		mav.addObject("notice", json);
 		return mav;
 	}
+	//공지쓰기
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/notice/write")
 	public ModelAndView write() {
 		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","notice/write.jsp");
 	}
+	//공지쓰기
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/notice/write")
 	public String write(NoticeDto.DtoForWrite dto, Principal principal) {

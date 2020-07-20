@@ -200,6 +200,7 @@ public class MainService {
 			}
 		}
 
+		//별점순 리스트
 		public Page list(int pageno, Integer foodNo) {
 			int countOfBoard = storeDao.count(foodNo);
 			Page page = PagingUtil.getPage(pageno, countOfBoard);
@@ -220,7 +221,6 @@ public class MainService {
 			page.setMainlist(dtolist);
 			return page;
 		}
-		
 		public Page listReview(int pageno, Integer foodNo) {
 			int countOfBoard = storeDao.count(foodNo);
 			Page page = PagingUtil.getPage(pageno, countOfBoard);

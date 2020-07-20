@@ -23,21 +23,21 @@ public class AdminController {
 	@Autowired
 	private ObjectMapper objectmapper;
 	
-	//관리자 메인페이지
+	//[관리자] 메인페이지
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/main")
 	public ModelAndView adminmain() {
-		return new ModelAndView("main").addObject("viewHeader", "include/viewAdminHeader.jsp")
+		return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")
 				.addObject("viewName","admin/main.jsp");
 	}
 	
-	//신고된 리뷰리스트
+	//[관리자]신고된 리뷰리스트
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/report_list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
 		return new ModelAndView("main").addObject("viewHeader", "include/viewAdminHeader.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno));
 	}
-	//일반회원 리스트/블록여부에 따라서 리스트 변경
+	//[관리자]일반회원 리스트/블록여부에 따라서 리스트 변경
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/user_list")
 	public ModelAndView ulist(@RequestParam(defaultValue = "user_list") String job) {
@@ -46,7 +46,7 @@ public class AdminController {
 		else
 			return new ModelAndView("main").addObject("viewHeader", "include/viewAdminHeader.jsp").addObject("list", service.ulist()).addObject("viewName", "admin/userlist.jsp").addObject("title","유저 목록");
 	}
-	//유저블록기능
+	//[관리자]유저블록기능
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/admin/user_block")
 	public String userBlock(@RequestParam @NotNull String uUsernames) {	
@@ -59,7 +59,7 @@ public class AdminController {
 		service.userBlock(list);
 		return "redirect:/admin/user_list?job=user_list";
 	}
-	//유저 블록헤제 기능
+	//[관리자]유저 블록헤제 기능
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/admin/user_unblock")
 	public String unblockList(@RequestParam @NotNull String uUsernames) throws JsonParseException, JsonMappingException, IOException {
@@ -69,13 +69,13 @@ public class AdminController {
 		service.unblock(list);
 		return "redirect:/admin/user_list?job=block_list";
 	}
-	//사업자 가입신청 목록
+	//[관리자]사업자 가입신청 목록
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/manager_list")
 	public ModelAndView mlist() {
 		return new ModelAndView("main").addObject("viewHeader", "include/viewAdminHeader.jsp").addObject("list", service.mlist()).addObject("viewName", "admin/managerlist.jsp");
 	}
-	//가입신청한 사업자 읽기
+	//[관리자]가입신청한 사업자 읽기
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/manager_read")
 	public ModelAndView mread(String mUsername) {

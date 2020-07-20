@@ -28,6 +28,13 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 </head>
 <body>
- 관리자 페이지 입니다adadsa
+<table >
+        <tr>
+        	<td><a href="/cheatingday/admin/user_list"><img style="width: 400px; height: 400px;" class="product__image" src="/cheatingday/mainhome/images/user.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/admin/report_list"><img style="width: 400px; height: 400px;" class="product__image" src="/cheatingday/mainhome/images/review.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/notice/list"><img style="width: 400px; height: 400px;" class="product__image" src="/cheatingday/mainhome/images/notice.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/center/list"><img style="width: 400px; height: 400px;" class="product__image" src="/cheatingday/mainhome/images/qna.png" alt="Product 1" /></a></td>
+        </tr>
+        </table>
 </body>
 </html>

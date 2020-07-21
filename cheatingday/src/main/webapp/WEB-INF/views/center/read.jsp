@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="/cheatingday/mainhome/css/read.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
@@ -26,6 +25,72 @@
 		var loginId = undefined;
 	</script>
 </sec:authorize>
+<style>
+#title {
+		float: left;
+	}
+	#writer {
+		float: right;
+		color: #25a;
+		font-weight: bold;
+	}
+	#lower_left li{
+		display: inline-block;
+		padding : 0 5px;
+	}
+	#lower_left li:nth-of-type(2n){  /* #lower_left 하위의 li 중 짝수번째인 것에 적용 */
+		border-left: 1px solid gray;
+		border-right: 1px solid gray;
+	}
+	#lower_right li {
+		display: inline-block;
+		padding : 0 5px;
+		font-size: 0.9em;
+	}
+	#lower_left {
+		float: left;
+	}
+	#lower_right {
+		float: right;
+	}
+	#lower {
+		overflow: hidden;
+	}
+	#title_div div {
+		margin: 5px 0 5px;
+	}
+	#content {
+		min-height: 600px;
+		border: none;
+	}
+	#wrap {
+		margin-top : 10px;
+	}
+	#wrap>div:first-of-type {	
+	/* #wrap의 자식 중 첫번째 div. 즉 #title_div, #content_div를 둘러싸고 있는 id없는 div */
+		border : 1px solid #ccc;
+	}
+	#content_div {
+		background-color: #f8f8f8;
+		border-top: 1px solid #ccc;
+	}
+	#comment .media {
+		position : relative;
+	}
+	.media div.cnt {
+		position : absolute;
+		top : 10px;
+		right: 10px;
+	}
+	.delete_comment {
+		width : 50px;
+		height : 30px;
+		line-height: 30px;
+		text-align: center;
+		border : 1px solid skyblue;
+		
+	}
+</style>
 <script>
 //공백상태
 var qna = undefined;
@@ -74,7 +139,7 @@ function printComment(qnacomment) {
 		if(comment.ausername===loginId)
 			$("<textarea>").attr("id","qccontent").attr("style","min-width:800px;").val(comment.qcContent).appendTo($center_div); 
 		else
-			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:800px;").val(comment.qcContent).appendTo($center_div); 
+			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:1000px;").val(comment.qcContent).appendTo($center_div); 
 		$("<span>").text(comment.qcWriteTime).appendTo($lower_div);
 		if(comment.ausername===loginId) {
 			var btn = $("<button>").attr("class","delete_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
@@ -199,7 +264,7 @@ $(function() {
 </head>
 <body>
 	<hr> 
-	<div id="wrap" style="width: 1000px; min-height: 800px;">
+	<div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;" >
 		<div>
 			<div id="title_div">
 				<div id="upper">

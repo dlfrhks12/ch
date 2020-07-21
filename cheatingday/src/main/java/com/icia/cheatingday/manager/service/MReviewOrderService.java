@@ -29,7 +29,7 @@ public class MReviewOrderService {
 	
 	//사업자 리뷰 신고--신고는 한번만 할수있게 막아.
 	public int reviewSingoUpdate(int rNo, String username) {
-		Review review = reviewDao.findById(rNo);
+		Review review = reviewDao.findByRno(rNo);
 		System.out.println(review);
 		
 		if(reviewCheckDao.alreadyExist(username,rNo)!=null) { //username이 존재한다면

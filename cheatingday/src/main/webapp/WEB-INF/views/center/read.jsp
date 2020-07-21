@@ -8,6 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/cheatingday/mainhome/css/read.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
 <!-- 로그인여부 확인 및 아이디꺼내오기 -->
 <sec:authorize access="isAuthenticated()">
@@ -68,15 +72,15 @@ function printComment(qnacomment) {
 		var $lower_div = $("<div>").appendTo($comment);
 		$("<span></span>").text("관리자").appendTo($upper_div);
 		if(comment.ausername===loginId)
-			$("<textarea>").attr("id","qccontent").attr("style","min-width:800px; min-height:200px;").val(comment.qcContent).appendTo($center_div); 
+			$("<textarea>").attr("id","qccontent").attr("style","min-width:800px;").val(comment.qcContent).appendTo($center_div); 
 		else
-			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:800px; min-height:200px;").val(comment.qcContent).appendTo($center_div); 
+			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:800px;").val(comment.qcContent).appendTo($center_div); 
 		$("<span>").text(comment.qcWriteTime).appendTo($lower_div);
 		if(comment.ausername===loginId) {
 			var btn = $("<button>").attr("class","delete_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
 				.text("삭제").appendTo($center_div).css("float","right");
 			var btn2 = $("<button>").attr("class","update_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
-			.text("수정").appendTo($center_div).css("float","right");
+			.text("수정").appendTo($center_div).css("float","right").css("width","50px").css("height","30px");
 		}
 		$("<hr>").appendTo($comment);
 	});
@@ -194,8 +198,8 @@ $(function() {
 </script>
 </head>
 <body>
-	<hr>
-	<div id="wrap" style="width: 1000px; min-height: 800px; position:relative;  left : 20%;">
+	<hr> 
+	<div id="wrap" style="width: 1000px; min-height: 800px;">
 		<div>
 			<div id="title_div">
 				<div id="upper">
@@ -236,6 +240,7 @@ $(function() {
 			<hr>
 			<div id="comments"></div>
 		</div>
+		<button class="btn btn-info" onclick="location.href='/cheatingday/center/list';">목록이동</button>
 	</div>
 </body>
 </html>

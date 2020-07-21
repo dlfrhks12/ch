@@ -24,7 +24,20 @@ public class QnADao {
 	//[관리자,사업자]QNA 전체리스트
 	public List<QnA> findAll(int startRowNum, int endRowNum) {
 		Map<String,Integer> map = new HashMap<>();
-		map.put("startRowNum", startRowNum);
+		map.put("startRowNum",
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				startRowNum);
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("qnaMapper.findAll", map);
 	}

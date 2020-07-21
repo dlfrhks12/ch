@@ -20,7 +20,7 @@
 
 <div style="padding: 40px 0;">
       <h3><i class="fas fa-pencil-alt">&nbsp;매장 리뷰</i></h3>
-
+	<br>
 
 		<table class="table table-hover">
 			<colgroup>

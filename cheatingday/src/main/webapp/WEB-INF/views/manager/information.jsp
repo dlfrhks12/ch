@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>사업자 정보관리</title>
 <style>
-	section {margin-left: 350px; margin-right: 350px; margin-top: 50px;}
-	#update {margin-left: 840px;}
-	#delete {position: absolute; left: 1300px;}
+	section {margin-left: 350px; margin-right: 350px; margin-top: 50px; margin-bottom: 80px;}
+	#update {margin-left: 700px;}
+	#delete {position: absolute; left: 1150px;}
 
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -198,16 +198,15 @@ $(function(){
 </script>
 </head>
 <body>
-	<div style="padding: 40px 0;">
+	<div style="padding: 20px 0;">
       <h3><i class="fas fa-user">&nbsp; 나의 정보 보기</i></h3>
+      <br>
 	
 <table class="table table-hover" id="user">
 		<colgroup>
 			<col width="10%">
 			<col width="40%">
-			<col width="10%">
-			<col width="30%">
-			<col width="10%">
+			
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>

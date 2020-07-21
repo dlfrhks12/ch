@@ -1,7 +1,5 @@
 package com.icia.cheatingday.user.service.rest;
 
-import java.util.*;
-
 import org.modelmapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.authority.dao.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.user.dao.*;
-import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.user.dto.UserDto.*;
 import com.icia.cheatingday.user.entity.*;
 
@@ -74,5 +71,4 @@ public class UserRestService {
 			userDao.delete(uUsername);
 			authDao.delete(uUsername);
 		}	
-	// 포인트
 }

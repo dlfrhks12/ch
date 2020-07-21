@@ -21,6 +21,7 @@
 		<typeAlias type="com.icia.cheatingday.cart.CartEntity" alias="cart"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.Store" alias="store"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.FoodCategory" alias="foodCategory"/>
+		<typeAlias type="com.icia.cheatingday.review.entity.ReviewComment" alias="reviewComment"/>
 	</typeAliases>
 	<typeHandlers>
 		<typeHandler handler="com.icia.cheatingday.util.typehandler.LocalDateTimeTypeHandler"/>

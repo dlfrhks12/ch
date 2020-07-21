@@ -3,6 +3,52 @@
 <mapper namespace="orderMapper">
 <!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum --> 
 
+	<!-- 예지   -->
+	<!-- 승인거절시 삭제 -->
+	<delete id="orderDeleteByoNo">
+		delete from orders where o_no=#{oNo}
+	</delete>
+	
+	<delete id="orderDetailDelete">
+		delete from detailorder where o_no=#{oNo}
+	</delete>
+	
+	
+	<!-- 주문승인시 체크가1로 변경되는 -->
+	<update id="checkUpdate"> 
+		update orders set o_check=1 where o_no=#{oNo}
+	</update>
+	
+	<!-- sNum으로 페이징 하려고 조건 만들어줌 -->
+	<select id="countBysNum" resultType="int">
+		select count(*) from orders where s_num=#{sNum}
+	</select>
+	
+	  <!-- 해당매장 주문 리스트   -->
+  	 <select id="orderListBySNum" resultType="order">
+		select o_no oNo, o_total oTotal, o_order_time oOrderTime, u_username uUSername,
+		o_check oCheck, s_num sNum from orders where s_num=#{sNum} and o_check=0 
+  	 </select>  
+	
+	<!-- 주문리스트 출력시 주문제목보이기  -->
+	<select id="ordercheck" resultType="detailorder">
+		select d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName,
+		o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
+	</select>
+	
+	
+	<!-- 해당 주문번호 내용 읽기  -->
+	<select id="orderReadByONo" resultType="detailorder">
+		select d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName,
+		o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} 
+	</select>
+	
+	<!-- 주문읽을때 제목 만들기 -->
+	<select id="countByOno" resultType="int">
+		select count(*) from detailorder where o_no=#{oNo} 
+	</select>
+
+
 	<!-- 1. 장바구니 추가 -->
 	<insert id="orderInsert">
 		<selectKey keyProperty="dNo" resultType="int" order="BEFORE">
@@ -45,11 +91,7 @@
 			  d_no = #{dno}
 	</update>
 	
-	<!-- 5. 장바구니 삭제 -->
-	<delete id="orderDelete">
-		delete from detailorder
-		where d_no = #{dNo}
-	</delete>
+	
 </mapper>
 
 

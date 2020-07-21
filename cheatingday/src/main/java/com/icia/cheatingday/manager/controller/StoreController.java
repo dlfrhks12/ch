@@ -29,7 +29,7 @@ public class StoreController {
 	 @GetMapping("/manager/store_list") 
 	 public ModelAndView storeList(Principal principal) throws JsonProcessingException{ 
 		 return new ModelAndView("main").addObject("viewName","manager/storelist.jsp")
-				 .addObject("viewHeader", "include/viewManagerHeader.jsp") 
+				 .addObject("viewHeader", "include/viewHeader.jsp") 
 				 .addObject("storeList", service.storeList(principal.getName())); }
 	 
    	 
@@ -39,7 +39,7 @@ public class StoreController {
 	  public ModelAndView storeRead(int sNum, Principal principal) {
 		  String username = principal!=null? principal.getName():null;
 		  return new ModelAndView("main").addObject("viewName","manager/storeread.jsp")
-				  	.addObject("viewHeader", "include/viewManagerHeader.jsp") 
+				  	.addObject("viewHeader", "include/viewHeader.jsp") 
 				  	.addObject("storeRead", service.storeRead(sNum, username));}
 	  
 	  
@@ -47,7 +47,7 @@ public class StoreController {
 	  @PreAuthorize("isAuthenticated()")
 	  @GetMapping("/manager/store_insert") public ModelAndView storeInsert() {
 	  return new  ModelAndView("main").addObject("viewName","manager/storeinsert.jsp")
-	  .addObject("viewHeader", "include/viewManagerHeader.jsp"); }
+	  .addObject("viewHeader", "include/viewHeader.jsp"); }
 	  
 	  
 	  //가게등록

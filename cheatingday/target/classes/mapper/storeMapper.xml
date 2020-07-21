@@ -77,7 +77,7 @@ update store
 	<![CDATA[
 		select * from
 		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_star_point desc) b
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where food_no=#{foodNo} and s_address like '%'||#{keyword}||'%' order by s_star_point desc) b
 			where rownum<=#{endRowNum})
 		where rnum>=#{startRowNum}
 	]]>
@@ -87,7 +87,7 @@ update store
 		<![CDATA[
 		select * from
 		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store where food_no=#{foodNo} order by s_review_cnt desc) b
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where food_no=#{foodNo} and s_address like '%'||#{keyword}||'%' order by s_review_cnt desc) b
 			where rownum<=#{endRowNum})
 		where rnum>=#{startRowNum}
 	]]>
@@ -98,8 +98,8 @@ update store
 	<![CDATA[
 		select * from
 		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_review_cnt desc) b
-			where rownum<=#{endRowNum})
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_review_cnt desc) b
+			where rownum<=#{endRowNum} )
 		where rnum>=#{startRowNum}
 	]]>
 </select>
@@ -108,28 +108,13 @@ update store
 	<![CDATA[
 		select * from
 		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_star_point desc) b
+			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_star_point desc) b
 			where rownum<=#{endRowNum})
 		where rnum>=#{startRowNum}
 	]]>
+	
 </select>
 
-
-<select id="listAll" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_num desc
-</select>
-
-<select id="countArticle" resultType="int">
-	select count(*) from store <include refid="search"></include>
-</select>
-
-<sql id="search">
-	<choose>
-		<when test="searchOPtion=='all'">
-			where s_address like '%'||#{keyword}||'%'
-		</when>
-	</choose>
-</sql>
 </mapper>
 
 

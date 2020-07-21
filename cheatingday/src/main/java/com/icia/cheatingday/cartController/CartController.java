@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,8 +25,6 @@ import com.icia.cheatingday.cart.CartService;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 import com.icia.cheatingday.manager.service.StoreService;
-
-import net.sf.json.JSONArray;
 
 @Controller
 public class CartController {
@@ -49,7 +46,7 @@ public class CartController {
 	@GetMapping("/order/orderPage")
 	public ModelAndView orderStoreRead(int sNum) {
 		return new ModelAndView("main").addObject("viewName", "order/orderPage.jsp")
-				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewHeader", "include/header.jsp")
 				.addObject("storeRead", storeService.orderStoreRead(sNum))
 				.addObject("cartlist", service.orderMenuRead(sNum));
 	}
@@ -134,12 +131,16 @@ public class CartController {
 		List<CartEntity> cartList = service.multipleDelete(session, list);
 		return ResponseEntity.ok(cartList);
 	}
-	/*
-	@PostMapping("/cart/adon")
-	public ResponseEntity<?> adon(HttpSession session, Integer mNo) {
-		CartEntity cartList = service.don(session, mNo);
+	
+	// 장바구니 담기 insert
+	@PostMapping("/cart/orders")
+	public ResponseEntity<?> orderinsert(HttpSession session, Principal prin) {
+
+		int cartList = service.insert(session, prin.getName());
+
+		session.setAttribute("cartList", cartList);
+
+
 		return ResponseEntity.ok(cartList);
 	}
-	
-	*/
 }

@@ -17,5 +17,6 @@ public class PointDto {
 		private String oOrderTimeStr;
 		private int SNum;
 		private String SName;
+		private int totalPoint;
 	}
 }

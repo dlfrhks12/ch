@@ -135,7 +135,6 @@
 	    return unescape(cookieValue);
 	}
 	
-	
 </script>
 </head>
 <body>
@@ -148,8 +147,8 @@
 				</div>
 				<form class="login100-form validate-form flex-sb flex-w"
 					id="login_form" action="/cheatingday/login" method="post">
-					<span class="login100-form-title p-b-32">로그인</span> <span
-						class="txt1 p-b-11">아이디</span>
+					<span class="login100-form-title p-b-32">로그인</span> 
+					<span class="txt1 p-b-11">아이디</span>
 					<div class="wrap-input100 validate-input m-b-36"
 						data-validate="Username is required">
 						<input class="input100" type="text" id="username"

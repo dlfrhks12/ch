@@ -17,8 +17,8 @@
 .map_wrap {position: absolute; left: -420px; top: -100px;}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+.bg_white {background:#fff; width: 80px; height: 40px;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-.bg_white {background:#fff; width: 80px; height: 100px;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
 #menu_wrap .option p {margin:10px 0;}  
@@ -72,20 +72,18 @@
 									</form>
 								</div>
 							</div>
-							<hr>
-        					<ul id="placesList"></ul>
-        					<div id="pagination"></div>
+        					<ul id="placesList" style="display:hide;"></ul>
     					</div>
 					</div>          
                     <h1 class="mb-5" >&nbsp;&nbsp;오늘 하루는 치팅데이
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form style="900px;" name="" method="post" action="/cheatingday/store_list">
+                    <form id="search_frm" style="900px;" name="" method="get" action="/cheatingday/store_list">
                         <div class="form-row">
                         <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input disabled="disabled" name="keyword" class="form-control form-control-lg" id="centerAddr" value="${map.keyword}" placeholder="우리동네로 검색하기">
+                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="우리동네로 검색하기">
                             </div>
                             <div class="col-12 col-md-3">
                                 <button type="button" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
@@ -296,10 +294,6 @@ function displayPlaces(places) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
-        // 마커와 검색결과 항목에 mouseover 했을때
-        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-        // mouseout 했을 때는 인포윈도우를 닫습니다
         
     }
 
@@ -338,7 +332,7 @@ function getListItem(index, places) {
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
     var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+        imageSize = new kakao.maps.Size(0, 0),  // 마커 이미지의 크기
         imgOptions =  {
             spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
             spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
@@ -469,18 +463,20 @@ $(function() {
 		console.log(address);
 		console.log(array);
 		console.log(key);
+		$("#centerAddr").val(key);
+		$("#search_frm").submit();
 		
-		var params = {
-			keyword: key
-		}
 		
-		console.log(keyword);
-		 $.ajax({
-	         url: "/cheatingday/store_list",
-	         type: "post",
-	         data: params
-	      }).done(()=>{location.href="/cheatingday/store_list"})
-	      .fail(()=>{console.log(params)});
+// 		var params = {
+// 			keyword: key
+// 		}
+		
+// 		 $.ajax({
+// 	         url: "/cheatingday/store_list",
+// 	         type: "post",
+// 	         data: params
+// 	      }).done(()=>{location.href="/cheatingday/store_list"})
+// 	      .fail(()=>{console.log(params)});
 	})
 })
 

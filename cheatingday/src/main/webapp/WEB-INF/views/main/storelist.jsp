@@ -42,6 +42,7 @@ $(function(){
          location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
    })
 	loadImage();
+	//분류 요소들을 꺼내와서 자바스크립스식으로 변환
 	var filter = "${filter}";
 		console.log(filter);
 	var food = "${foodno}"

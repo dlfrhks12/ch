@@ -42,7 +42,7 @@ public class MReviewOrderController {
 	  @GetMapping("manager/order_list") 
 	  public ModelAndView orderList(@RequestParam(defaultValue = "1") int pageno, Principal principal) { 
 		  return new ModelAndView("main").addObject("viewName","manager/checkorderList.jsp")
-				  .addObject("viewHeader", "include/viewManagerHeader.jsp")
+				  .addObject("viewHeader", "include/viewHeader.jsp")
 				  .addObject("page",service.orderList(pageno, principal.getName())); 
 	}
 	 
@@ -52,7 +52,7 @@ public class MReviewOrderController {
 	@GetMapping("manager/order_read")
 	public ModelAndView orderRead(int oNo) {
 		return new ModelAndView("main").addObject("viewName","manager/checkorderRead.jsp")
-				  .addObject("viewHeader", "include/viewManagerHeader.jsp")
+				  .addObject("viewHeader", "include/viewHeader.jsp")
 				  .addObject("orderRead",service.orderRead(oNo)).addObject("oNo", oNo);
 				
 	}
@@ -69,7 +69,7 @@ public class MReviewOrderController {
 	  @GetMapping("/manager/review_list") 
 	  public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String mUsername) { 
 		  return new ModelAndView("main").addObject("viewName","manager/reviewlist.jsp")
-				  .addObject("viewHeader", "include/viewManagerHeader.jsp")
+				  .addObject("viewHeader", "include/viewHeader.jsp")
 				  .addObject("page", service.list(pageno, mUsername));
 	}
 	  
@@ -77,7 +77,7 @@ public class MReviewOrderController {
 	 @GetMapping("/manager/review_read")
 	 public ModelAndView reviewRead(int rNo) {
 		 return new ModelAndView("main").addObject("viewName","manager/reviewread.jsp")
-				 .addObject("viewHeader","include/viewManagerHeader.jsp")
+				 .addObject("viewHeader","include/viewHeader.jsp")
 				 .addObject("reviewRead", service.read(rNo));
 	 }
 	 

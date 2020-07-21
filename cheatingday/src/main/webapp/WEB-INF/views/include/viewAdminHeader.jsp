@@ -12,21 +12,21 @@
 		margin-left: -40px;
 		height: 40px;
 		width: 105%;
+		background-color: red;
 	}
 	#a, #b, #c, #d{
 		list-style: none;
 		color: white;
-		background-color: red;
 		float: left;
-		width:25%;
+		width:10%;
 		line-height: 40px;
 		vertical-align: middle;
-		text-align: center;
+		text-align: left;
 	}
 	#e{
 		list-style: none;
 		color: white;
-		background-color: #2d2d2d;
+		background-color: red;
 		float: left;
 		width:100%;
 		line-height: 20px;
@@ -42,8 +42,7 @@
 		font-weight: bold;
 	}
 	#topmenu li a:hover{
-		color: red;
-		background-color: #4d4d4d;
+		color: blue;
 	}
 </style>
 </head>

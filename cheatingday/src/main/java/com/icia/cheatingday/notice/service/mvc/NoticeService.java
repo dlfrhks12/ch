@@ -25,7 +25,7 @@ public class NoticeService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-
+	//[전체] 공지목록
 	public Page list(int pageno) {
 		int countOfBoard = dao.count();
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
@@ -42,6 +42,7 @@ public class NoticeService {
 		page.setNlist(dtolist);
 		return page;
 	}
+	//[전체] 공지읽기
 	public NoticeDto.DtoForRead read(Integer nNo, String aUsername) {
 		Notice notice = dao.findById(nNo);
 		if(notice==null)
@@ -55,6 +56,7 @@ public class NoticeService {
 		dto.setNWriteTimeStr(str);
 		return dto;
 	}
+	//[관리자] 공지작성
 	public int write(NoticeDto.DtoForWrite dto) {
 		Notice notice = modelMapper.map(dto, Notice.class);
 		dao.insert(notice);

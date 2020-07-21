@@ -10,6 +10,7 @@
 <style>
 table{text-align: center;}
 #nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
+#filter{float:right; margin-right: 30px;}
 </style>
 <script>
 function loadImage() {	
@@ -53,14 +54,18 @@ $(function(){
 </head>
 <body>
 <div>
-      <select id="filter" name="filter">
-         <option selected="selected">정렬</option>
-         <option value="review">리뷰순 정렬</option>
-         <option value="star">별점순 정렬</option>
-      </select>
-      <table class="table table-hover">
-         <colgroup>
-            <col width="10%">
+	<br>
+	<div>
+		<select id="filter" name="filter">
+			<option selected="selected">정렬</option>
+        	<option value="review">리뷰순 정렬</option>
+     	   <option value="star">별점순 정렬</option>
+		</select>
+	</div>
+	<br>
+    <table class="table table-hover">
+    	<colgroup>
+    		<col width="10%">
             <col width="10%">
             <col width="10%">
             <col width="10%">

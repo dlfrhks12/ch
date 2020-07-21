@@ -1,81 +1,59 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>header</title>
+<title>카테고리</title>
 </head>
 <style>
-	#bg {width: 100%; height: 300px; }
-	#row {position: absolute; top: 100px; left: 450px;}
-	#search {position: absolute; top: -48px; left: 425px; width: 80px;}
-	.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-	#centerAddr {display:block;margin-top:2px;font-weight: normal;}
-	.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; color:black;}
-	.map_wrap {position: absolute; left: -420px; top: -100px;}
-	.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-	.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-	#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-	.bg_white {background:#fff; width: 80px; height: 100px;}
-	#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-	#menu_wrap .option{text-align: center;}
-	#menu_wrap .option p {margin:10px 0;}  
-	#menu_wrap .option button {margin-left:5px;}
-	#placesList li {list-style: none; color: black;}
-	#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-	#placesList .item span {display: block;margin-top:4px;}
-	#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-	#placesList .item .info{padding:10px 0 10px 55px;}
-	#placesList .info .gray {color:#8a8a8a;}
-	#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-	#placesList .info .tel {color:#009900;}
-	#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-	#placesList .item .marker_1 {background-position: 0 -10px;}
-	#placesList .item .marker_2 {background-position: 0 -56px;}
-	#placesList .item .marker_3 {background-position: 0 -102px}
-	#placesList .item .marker_4 {background-position: 0 -148px;}
-	#placesList .item .marker_5 {background-position: 0 -194px;}
-	#placesList .item .marker_6 {background-position: 0 -240px;}
-	#placesList .item .marker_7 {background-position: 0 -286px;}
-	#placesList .item .marker_8 {background-position: 0 -332px;}
-	#placesList .item .marker_9 {background-position: 0 -378px;}
-	#placesList .item .marker_10 {background-position: 0 -423px;}
-	#placesList .item .marker_11 {background-position: 0 -470px;}
-	#placesList .item .marker_12 {background-position: 0 -516px;}
-	#placesList .item .marker_13 {background-position: 0 -562px;}
-	#placesList .item .marker_14 {background-position: 0 -608px;}
-	#placesList .item .marker_15 {background-position: 0 -654px;}
-	#pagination {margin:10px auto;text-align: center;}
-	#pagination a {display:inline-block;margin-right:10px;}
-	#pagination .on {font-weight: bold; cursor: default;color:#777;}
-   	#topmenu{
-		margin-left: -40px;
-		margin-top: -16px;
-		height: 40px;
-		width: 105%;
-	}
-	#a{
-		list-style: none;
-		color: white;
-		background-color: red;
-		float: left;
-		width: 9.8%;
-		line-height: 40px;
-		vertical-align: middle;
-		text-align: center;
-	}	
-	#topmenu li a{
-		text-decoration: none;
-		color: white;
-		display: block;
-		font-size: 12px;
-		font-weight: bold;
-	}
-	#topmenu li a:hover{
-		color: red;
-		background-color: #4d4d4d;
-	}
+#bg {width: 100%; height: 300px; }
+#row {text-align: center; margin:0 auto; margin-top: -80px;}
+#but {width:48px; height:48px; color: red;}
+#centerAddr {display:block;margin-top:2px;font-weight: normal;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; color:black;}
+.map_wrap {position: absolute; left: -420px; top: -112px;}
+.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+.bg_white {background:#fff; width: 80px; height: 40px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+#menu_wrap .option{text-align: center;}
+#menu_wrap .option p {margin:10px 0;}  
+#menu_wrap .option button {margin-left:5px;}
+#placesList li {list-style: none; color: black;}
+#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
+#placesList .item span {display: block;margin-top:4px;}
+#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+#placesList .item .info{padding:10px 0 10px 55px;}
+#placesList .info .gray {color:#8a8a8a;}
+#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
+#placesList .info .tel {color:#009900;}
+#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
+#placesList .item .marker_1 {background-position: 0 -10px;}
+#placesList .item .marker_2 {background-position: 0 -56px;}
+#placesList .item .marker_3 {background-position: 0 -102px}
+#placesList .item .marker_4 {background-position: 0 -148px;}
+#placesList .item .marker_5 {background-position: 0 -194px;}
+#placesList .item .marker_6 {background-position: 0 -240px;}
+#placesList .item .marker_7 {background-position: 0 -286px;}
+#placesList .item .marker_8 {background-position: 0 -332px;}
+#placesList .item .marker_9 {background-position: 0 -378px;}
+#placesList .item .marker_10 {background-position: 0 -423px;}
+#placesList .item .marker_11 {background-position: 0 -470px;}
+#placesList .item .marker_12 {background-position: 0 -516px;}
+#placesList .item .marker_13 {background-position: 0 -562px;}
+#placesList .item .marker_14 {background-position: 0 -608px;}
+#placesList .item .marker_15 {background-position: 0 -654px;}
+#pagination {margin:10px auto;text-align: center;}
+#pagination a {display:inline-block;margin-right:10px;}
+#pagination .on {font-weight: bold; cursor: default;color:#777;}
+#topmenu {margin-left: -40px; margin-top: -16px; height: 40px; width: 105%;}
+#a {list-style: none;color: white;background-color: red;float: left;width: 9.8%; line-height: 45px; vertical-align: middle; text-align: center;}
+#topmenu li a {background-color: #FF2424; text-decoration: none;color: white;display: block; font-size: 17px;}
+#topmenu li a:hover {color: white; background-color: #FF3636;}
 </style>
 <body>
     <!-- Masthead -->
@@ -83,7 +61,7 @@
         <div class="overlay"></div>
         <div class="container">
             <div class="row" id="row">
-                <div class="col-xl-9 mx-auto">
+                <div class="col-xl-9 mx-auto" id="col">
 					<div class="map_wrap" >
 						<div id="map" style="width:490px; height:385px; position:relative; overflow:hidden;"></div>
 						<div id="menu_wrap" class="bg_white" >
@@ -95,24 +73,22 @@
 									</form>
 								</div>
 							</div>
-							<hr>
-        					<ul id="placesList"></ul>
-        					<div id="pagination"></div>
+        					<ul id="placesList" style="display:hide;"></ul>
     					</div>
 					</div>          
                     <h1 class="mb-5" >&nbsp;&nbsp;오늘 하루는 치팅데이
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form style="900px;" name="" method="post" action="/cheatingday/store_list">
+                    <form id="search_frm" style="900px;" name="" method="get" action="/cheatingday/store_list">
                         <div class="form-row">
-                        <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
+	                        <svg type="button" width="1em" id="but" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  							<path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" value="${map.keyword}"  placeholder="우리동네로 검색하기">
+                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="구/동으로 검색하세요">
                             </div>
-                            <div class="col-12 col-md-3">
-                                <button type="submit" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
-                            </div>
+                            <button type="button" class="btn btn-danger" id="search" style="margin-left: 10px; width: 60px;">검색</button>
                         </div>
                     </form>
                 </div>
@@ -124,9 +100,6 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74c86650f7cb8f6b997cf396f534dcc3&libraries=LIBRARY"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74c86650f7cb8f6b997cf396f534dcc3"></script>
 <script>
-
-
-
 //////////////////////////카카오 맵 API    //////////////////////////////////
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -204,7 +177,6 @@ $(function() {
 	            infowindow.open(map, marker);
 	            
 	            $("#centerAddr").val(result[0].address.address_name);
-	            
 	            }
 	        });
 	    });
@@ -322,10 +294,6 @@ function displayPlaces(places) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
-        // 마커와 검색결과 항목에 mouseover 했을때
-        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-        // mouseout 했을 때는 인포윈도우를 닫습니다
         
     }
 
@@ -364,7 +332,7 @@ function getListItem(index, places) {
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
     var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+        imageSize = new kakao.maps.Size(0, 0),  // 마커 이미지의 크기
         imgOptions =  {
             spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
             spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
@@ -480,22 +448,32 @@ for (var i = 0; i < positions.length; i ++) {
         image : markerImage // 마커 이미지 
     });
 }
- 
-
 ///////////////////////////////////////////////////////////////////////////////
 
 $(function() {
+	// 버튼 누르면 지도 생기고 사라지기
 	$(".map_wrap").hide();
 	$("#but").on("click", function() {
 		$(".map_wrap").toggle();
 	})
 	
+	
+	// 지도에서 좌표 선택 -> 주소 입력됨
+	// 구만 뽑아내서 동일한 구의 가게 리스트창으로 이동
 	$("#search").on("click", function() {
-		location.href="/cheatingday/store_list";
+		var address = $("#centerAddr").val();
+		var array = address.split("구");
+		var key = array[0];
+		console.log(address);
+		console.log(array);
+		console.log(key);
+		$("#centerAddr").val(key);
+		$("#search_frm").submit();
+		
 	})
 })
 </script>
-<div id="topmenu">
+	<div id="topmenu">
 		<ul>
 			<li id="a"><a href="/cheatingday/store_list">전체목록</a></li>
 			<li id="a"><a href="/cheatingday/store_list?foodNo=1">분식</a></li>

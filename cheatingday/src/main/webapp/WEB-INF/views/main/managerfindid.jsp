@@ -49,7 +49,7 @@ $(function() {
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
             <form class="login100-form validate-form flex-sb flex-w" id="m_find_id_form" action="/cheatingday/m_find_id" method="post">
-               <span class="login100-form-title p-b-32">일반회원 아이디 찾기</span>
+               <span class="login100-form-title p-b-32">사업자회원 아이디 찾기</span>
                
                <div>
 					<label class="txt p-b-11" for="m_irum">이름</label>

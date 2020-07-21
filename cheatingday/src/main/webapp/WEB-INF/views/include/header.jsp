@@ -9,12 +9,12 @@
 </head>
 <style>
 #bg {width: 100%; height: 300px; }
-#row {position: absolute; top: 100px; left: 450px;}
-#search {position: absolute; top: -48px; left: 425px; width: 80px;}
-.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#row {text-align: center; margin:0 auto; margin-top: -80px;}
+#but {width:48px; height:48px; color: red;}
 #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; color:black;}
-.map_wrap {position: absolute; left: -420px; top: -100px;}
+.map_wrap {position: absolute; left: -420px; top: -112px;}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .bg_white {background:#fff; width: 80px; height: 40px;}
@@ -50,9 +50,6 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-
-
-
 </style>
 <body>
     <!-- Masthead -->
@@ -60,7 +57,7 @@
         <div class="overlay"></div>
         <div class="container">
             <div class="row" id="row">
-                <div class="col-xl-9 mx-auto">
+                <div class="col-xl-9 mx-auto" id="col">
 					<div class="map_wrap" >
 						<div id="map" style="width:490px; height:385px; position:relative; overflow:hidden;"></div>
 						<div id="menu_wrap" class="bg_white" >
@@ -81,13 +78,13 @@
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                     <form id="search_frm" style="900px;" name="" method="get" action="/cheatingday/store_list">
                         <div class="form-row">
-                        <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
+	                        <svg type="button" width="1em" id="but" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  							<path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="우리동네로 검색하기">
+                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="구/동으로 검색하세요">
                             </div>
-                            <div class="col-12 col-md-3">
-                                <button type="button" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
-                            </div>
+                            <button type="button" class="btn btn-danger" id="search" style="margin-left: 10px; width: 60px;">검색</button>
                         </div>
                     </form>
                 </div>
@@ -451,32 +448,25 @@ for (var i = 0; i < positions.length; i ++) {
 ///////////////////////////////////////////////////////////////////////////////
 
 $(function() {
+	// 버튼 누르면 지도 생기고 사라지기
 	$(".map_wrap").hide();
 	$("#but").on("click", function() {
 		$(".map_wrap").toggle();
 	})
 	
+	
+	// 지도에서 좌표 선택 -> 주소 입력됨
+	// 구만 뽑아내서 동일한 구의 가게 리스트창으로 이동
 	$("#search").on("click", function() {
 		var address = $("#centerAddr").val();
-		var array = address.split(" ");
-		var key = array[1];
+		var array = address.split("구");
+		var key = array[0];
 		console.log(address);
 		console.log(array);
 		console.log(key);
 		$("#centerAddr").val(key);
 		$("#search_frm").submit();
 		
-		
-// 		var params = {
-// 			keyword: key
-// 		}
-		
-// 		 $.ajax({
-// 	         url: "/cheatingday/store_list",
-// 	         type: "post",
-// 	         data: params
-// 	      }).done(()=>{location.href="/cheatingday/store_list"})
-// 	      .fail(()=>{console.log(params)});
 	})
 })
 

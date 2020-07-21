@@ -11,6 +11,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<style>
+ section { margin-left: 320px; margin-top: 100px; margin-bottom: 100px;}
+</style>
 </head>
 
 <script>
@@ -57,25 +60,26 @@ $(function() {
 
 
 <table>
+
 <tr>
 	<td>
 	 <a href="/cheatingday/manager/information?mUsername=${username}">
-	<img height="270px;" src="/cheatingday/manager/내정보 관리.png"></a></td>
+	<img height="250px;" src="/cheatingday/manager/내정보 관리.png"></a></td>
 	
 	
 	<td><a href="/cheatingday/manager/store_list?mUsername=${username}">
-	<img height="270px;" src="/cheatingday/manager/매장관리.png"></a></td>
+	<img height="250px;" src="/cheatingday/manager/매장관리.png"></a></td>
 	
-	<td><a style="cursor: pointer;" id="menuManage"><img height="270px;" src="/cheatingday/manager/메뉴관리.png"></a></td>
+	<td><a style="cursor: pointer;" id="menuManage"><img height="250px;" src="/cheatingday/manager/메뉴관리.png"></a></td>
 </tr>
 
 
 <tr>
 	<td><a href="/cheatingday/manager/order_list?mUsername=${username}">
-	<img height="270px;" src="/cheatingday/manager/주문확인.png"></a></td>
-  	<td><a style="cursor: pointer; " id="reviewManage" ><img height="270px;" src="/cheatingday/manager/리뷰관리.png"></a></td>
-	<td><a href="/cheatingday/notice/list"><img height="270px;" src="/cheatingday/manager/공지사항.png"></a></td>
-	<td><a href="/cheatingday/center/list"><img height="270px;" src="/cheatingday/manager/Q&A.png"></a></td>
+	<img height="250px;" src="/cheatingday/manager/주문확인.png"></a></td>
+  	<td><a style="cursor: pointer; " id="reviewManage" ><img height="250px;" src="/cheatingday/manager/리뷰관리.png"></a></td>
+	<td><a href="/cheatingday/notice/list"><img height="250px;" src="/cheatingday/manager/공지사항.png"></a></td>
+	<td><a href="/cheatingday/center/list"><img height="250px;" src="/cheatingday/manager/Q&A.png"></a></td>
 </tr>
 </table>
 

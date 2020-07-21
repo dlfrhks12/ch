@@ -13,7 +13,7 @@
 	}
 	
 	section{
-		margin-left: 300px; margin-right: 300px;
+		margin-left: 350px; margin-right: 350px; margin-top: 50px;
 	}
 	
 	#storeInfo {
@@ -27,6 +27,8 @@
 	#buy {
 		margin-left: 900px; margin-top: 30px;
 	}
+	
+	#SName {margin: 40px; }
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -101,9 +103,9 @@ $(function(){
 
 <div id="wrap">
 <div id="storeInfo">
-
+	<br>
 	<div>
-	 <span id="SName" style="font-size: 30px; font-weight: bold">${storeRead.SName}</span> <hr>
+	 <span id="SName" style="font-size: 26px; font-weight: bold">${storeRead.SName}</span> <hr>
 	</div>
 	<br>
 	
@@ -124,10 +126,8 @@ $(function(){
          
 	</div>
 	
-	
-	
 	<div>
-	매장 전화번호: <span id="STel">${storeRead.STel}</span>
+	전화번호 : <span id="STel">${storeRead.STel}</span>
 	</div>
 	
 	<div>
@@ -155,12 +155,12 @@ $(function(){
 <div id="menuInfo">
 	
 	<c:forEach items="${cartlist}" var="product" varStatus="status">
-		<div class="card"   style="width: 176px; margin-right: 25px;">
+		<div class="card"   style="width: 200px; margin-right: 25px;  text-align: center;">
 			<img src="${product.menusajin}" width="176px" height="150px">
 			<div>
 				<span style="font-size: 1.5em;">${product.menuname}</span>
 				<hr>
-				<span>${product.menusal}원</span>
+				<span style="font-size: 1.3em;">${product.menusal}원</span>
 				
 			</div>
 			<span>

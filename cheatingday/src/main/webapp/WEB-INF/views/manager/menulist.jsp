@@ -13,7 +13,7 @@
 <title>메뉴리스트</title>
 <style>
 
-section { margin-left: 450px; margin-right: 450px; }
+section { margin-left: 450px; margin-right: 450px;}
 #write {margin-left: 600px;}
 
 
@@ -22,6 +22,7 @@ section { margin-left: 450px; margin-right: 450px; }
 <body>
 <div style="padding: 40px 0;">
       <h3><i class="fas fa-utensils">&nbsp;메뉴 관리</i></h3>
+      <br>
 <div>
 		<table class="table table-hover">
 			<colgroup>

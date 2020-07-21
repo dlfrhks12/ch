@@ -74,6 +74,7 @@ $(function(){
 	<div>
 	 <div style="padding: 40px 0;">
       <h3><i class="fas fa-shopping-cart">&nbsp;주문내역</i></h3>
+      <br>
       
 		<table class="table table-hover">
 			<thead>

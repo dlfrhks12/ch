@@ -31,10 +31,7 @@
 	</select>
 	
 	<select id="count" resultType="int">
-		select count(*) from review
-		<where>
-			<if test="value!=null">u_username=#{value}</if>
-		</where>
+		select count(*) from review where u_username=#{uUsername}
 	</select>
 	
 	
@@ -45,6 +42,24 @@
 		</where>
 	</select>
 	
+	<select id="findAll" resultType="review">
+		<![CDATA[
+		select * from
+			(select rownum as rnum, b.* from
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review) b
+			where rownum <=#{endRowNum})
+		 where rnum>=#{startRowNum}
+		 ]]>
+	</select>
+	<select id="findAllByUsername" resultType="review">
+		<![CDATA[
+		select * from
+			(select rownum as rnum, b.* from
+				(select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where u_username=#{uUsername}) b
+			where rownum <=#{endRowNum})
+		 where rnum>=#{startRowNum}
+		 ]]>
+	</select>
 	<select id="findAllByReport" resultType="review">
 		<![CDATA[
 		select * from
@@ -59,18 +74,7 @@
 		delete from review where r_no=#{rNo} and rownum=1
 	</delete>
 	
-	
 	<!-- 리뷰 전체 리스트 -->
-	<select id="findAll" resultType="review">
-	<![CDATA[
-	select * from
-		(select rownum as rnum, b.* from
-			(select /*+ index_desc(review review_pk_r_no) */ r_no rNo, r_title rTitle, u_username uUsername, r_star_point rStarPoint, r_content rContent, r_write_time rWriteTime, o_no oNo, s_num sNum from review) b
-		where rownum<=#{endRowNum})
-	where rnum>=#{startRowNum}
-	]]>
-	</select>
-
 	
 	<select id="findAllByStar" resultType="review">
 		<![CDATA[

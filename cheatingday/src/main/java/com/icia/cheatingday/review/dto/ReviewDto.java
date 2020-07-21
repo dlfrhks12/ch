@@ -11,16 +11,15 @@ public class ReviewDto {
 	@Builder
 	@Accessors(chain=true)
 	public static class DtoForList {
-		private int rNo; 
+		private int rNo;
+		private String category;
 		private String rContent; 
 		private int rStarPoint;
 		private String rWriteTimeStr;
-		private int oNo;
 		private String rTitle;
-		private int rReport;
-		private String uUsername;
-		private int sNum;
 		private String sName;
+		private String menuname;
+		private String sajin;
 	}
 	@Data
 	@AllArgsConstructor

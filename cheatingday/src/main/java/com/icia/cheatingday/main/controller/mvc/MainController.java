@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import javax.validation.constraints.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.lang.*;
 import org.springframework.security.access.prepost.*;
 import org.springframework.stereotype.*;
 import org.springframework.validation.*;
@@ -79,40 +80,19 @@ public class MainController {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findpwd.jsp");
    }
    
-   @GetMapping("/api")
-   public ModelAndView kakaoapi() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/kakaoAPI.jsp");
-   }
+
    
-   // 메인화면 카테고리 선택 후 가게 리스트
+   // 메인화면 카테고리 선택 & 주소 검색 후 가게 리스트
    @PreAuthorize("isAuthenticated()")
-   @GetMapping("/store_list")
+   @RequestMapping("/store_list")
    @ResponseBody
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, Integer foodNo) {
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo)).addObject("filter", "review_list").addObject("foodno", foodNo);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo)).addObject("filter", "star_list").addObject("foodno", foodNo);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       return null;
    }
-   
-   // 메인화면 주소 검색 후 가게 리스트
-   @GetMapping("/search_list")
-   public ModelAndView  searchlist(@RequestParam(defaultValue="title") String searchOption, @RequestParam(defaultValue="") String keyword) {
-	   List<Store> list = service.listAll(searchOption, keyword);
-	   int count = service.countArticle(searchOption, keyword);
-	   ModelAndView mav = new ModelAndView();
-	   
-	   Map<String, Object> map = new HashMap<String, Object>();
-	   map.put("list", list);
-	   map.put("count", count);
-	   map.put("searchOption", searchOption);
-	   map.put("keyword", keyword);
-	   mav.addObject("map", map);
-	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName", "main/searchlist.jsp");
-   }
-   
-   
    
    
    ///////////////////////////////////////////    일반 회원         //////////////////////////////////////////////

@@ -26,7 +26,9 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 #user td {
 	height: 60px;
@@ -42,17 +44,11 @@
 }
 
 #btn_update button {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
 	padding: 5px;
 	float: right;
 }
 
 #btn_delete button {
-	border: 1px solid red;
-	background-color: red;
-	color: white;
 	padding: 5px;
 	float: right;
 }
@@ -60,7 +56,6 @@
 	margin-right:10px;
 }
 .first {
-	background-color: #f3f3f3;
 	text-align: center;
 }
 
@@ -256,6 +251,10 @@ $(function() {
 
 </script>
 <body>
+<div class="container">
+	<div style="padding: 40px 0;">
+		<h3><i class="fas fa-user">&nbsp;내 정보</i></h3>
+	</div>
 	<table class="table table-hover" id="user">
 		<colgroup>
 			<col width="10%">
@@ -267,7 +266,7 @@ $(function() {
 		<tr>
 			<td class="first">이름</td>
 			<td><input type="text" id="irum" value="${user.UIrum}">&nbsp;
-				<button type="button" class="btn btn-info" id="changeIrum">이름변경</button>
+				<button type="button" class="btn btn-danger" id="changeIrum">이름변경</button>
 			</td>
 		</tr>
 		<tr>
@@ -277,14 +276,14 @@ $(function() {
 		<tr>
 			<td class="first">비밀번호</td>
 			<td colspan="2">
-				<button type="button" class="btn btn-info" id="activateChangePwd">비밀번호 수정</button>
+				<button type="button" class="btn btn-danger" id="activateChangePwd">비밀번호 수정</button>
 				<div id="passwordArea">
 					<span class="key">현재 비밀번호 : </span> <input type="password"
 						id="password"><br> <span class="key">새 비밀번호 :
 					</span> <input type="password" id="newPassword"><br> <span
 						class="key">새 비밀번호 확인 : </span><input type="password"
 						id="newPassword2">
-					<button type="button" class="btn btn-info" id="changePwd">변경</button>
+					<button type="button" class="btn btn-danger" id="changePwd">변경</button>
 				</div>
 			</td>
 		</tr>
@@ -310,17 +309,18 @@ $(function() {
 			<td class="first" id="addr">주소</td>
 			<td colspan="2"><input id="zonecode" type="text"
 				style="width: 50px;" name="uAddress" readonly />&nbsp;
-				<button class="btn btn-info" onClick="openDaumZipAddress();">주소찾기</button>
+				<button class="btn btn-danger" onClick="openDaumZipAddress();">주소찾기</button>
 				<br> <input type="text" id="address" style="width: 240px;"
 				name="uAddress" readonly /> <input type="text" id="address_etc"
 				style="width: 200px;" name="uAddress" placeholder="상세주소입력 " /></td>
 		</tr>
 	</table>
+	</div>
 	<div id="btn_update">
-		<button type="button" class="btn btn-success" id="update">변경하기</button>
+		<button type="button" class="btn btn-danger" id="update">변경하기</button>
 	</div>
 	<div id="btn_delete">
-		<button type="button" class="btn btn-success" id="resign">회원탈퇴</button>
+		<button type="button" class="btn btn-danger" id="resign">회원탈퇴</button>
 	</div>
 </body>
 </html>

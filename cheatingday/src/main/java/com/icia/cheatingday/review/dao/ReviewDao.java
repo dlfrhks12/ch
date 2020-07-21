@@ -67,6 +67,14 @@ public class ReviewDao {
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("reviewMapper.findAllByReport", map);
 	}
+	public List<Review> findAllByUsername(int startRowNum, int endRowNum, String uUsername){
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNum", startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("uUsername", uUsername);
+		return tpl.selectList("reviewMapper.findAllByUsername", map);
+	}
+
 	public int update(Review review) {
 		return tpl.update("reviewMapper.update",review);
 	}

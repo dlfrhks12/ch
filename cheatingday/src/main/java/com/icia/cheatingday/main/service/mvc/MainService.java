@@ -201,16 +201,16 @@ public class MainService {
 		}
 
 		//별점순 리스트
-		public Page list(int pageno, Integer foodNo) {
-			int countOfBoard = storeDao.count(foodNo);
+		public Page list(int pageno, Integer foodNo, String keyword) {
+			int countOfBoard = storeDao.count(foodNo, keyword);
 			Page page = PagingUtil.getPage(pageno, countOfBoard);
 			int srn = page.getStartRowNum();
 			int ern = page.getEndRowNum();
 			List<Store> storelist = null;
 			if(foodNo!=null) 
-				storelist = storeDao.findAllByfoodNoAndStar(srn, ern, foodNo);
+				storelist = storeDao.findAllByfoodNoAndStar(srn, ern, foodNo, keyword);
 			else
-				storelist = storeDao.findAllByStar(srn, ern);
+				storelist = storeDao.findAllByStar(srn, ern, keyword);
 			List<MainDto.DtoForList> dtolist= new ArrayList<>();
 			for(Store store:storelist) {
 				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
@@ -221,16 +221,18 @@ public class MainService {
 			page.setMainlist(dtolist);
 			return page;
 		}
-		public Page listReview(int pageno, Integer foodNo) {
-			int countOfBoard = storeDao.count(foodNo);
+		
+		// 리뷰순 리스트
+		public Page listReview(int pageno, Integer foodNo, String keyword) {
+			int countOfBoard = storeDao.count(foodNo,keyword);
 			Page page = PagingUtil.getPage(pageno, countOfBoard);
 			int srn = page.getStartRowNum();
 			int ern = page.getEndRowNum();
 			List<Store> storelist = null;
 			if(foodNo!=null) 
-				storelist = storeDao.findAllByfoodNoAndReview(srn, ern, foodNo);
+				storelist = storeDao.findAllByfoodNoAndReview(srn, ern, foodNo, keyword);
 			else
-				storelist = storeDao.findAllByReview(srn, ern);
+				storelist = storeDao.findAllByReview(srn, ern, keyword);
 			List<MainDto.DtoForList> dtolist= new ArrayList<>();
 			for(Store store:storelist) {
 				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
@@ -240,16 +242,6 @@ public class MainService {
 			}
 			page.setMainlist(dtolist);
 			return page;
-		}
-
-		// 주소 검색 후 가게 리스트
-		public List<Store> listAll(String searchOption, String keyword) {
-			return storeDao.listAll(searchOption, keyword);
-		}
-
-		// count
-		public int countArticle(String searchOption, String keyword) {
-			return storeDao.countArticle(searchOption, keyword);
 		}
 
   }

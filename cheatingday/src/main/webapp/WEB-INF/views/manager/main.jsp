@@ -55,7 +55,7 @@ $(function() {
 <body>
 <sec:authentication property="principal.username" var="username"/>
 
-<id="wrap">
+
 <table>
 <tr>
 	<td>
@@ -74,11 +74,10 @@ $(function() {
 	<td><a href="/cheatingday/manager/order_list?mUsername=${username}">
 	<img height="270px;" src="/cheatingday/manager/주문확인.png"></a></td>
   	<td><a style="cursor: pointer; " id="reviewManage" ><img height="270px;" src="/cheatingday/manager/리뷰관리.png"></a></td>
-	<td><img height="270px;" src="/cheatingday/manager/공지사항.png"></td>
-	<td><img height="270px;" src="/cheatingday/manager/Q&A.png"></td>
+	<td><a href="/cheatingday/notice/list"><img height="270px;" src="/cheatingday/manager/공지사항.png"></a></td>
+	<td><a href="/cheatingday/center/list"><img height="270px;" src="/cheatingday/manager/Q&A.png"></a></td>
 </tr>
 </table>
-
 
 </id>
 </body>

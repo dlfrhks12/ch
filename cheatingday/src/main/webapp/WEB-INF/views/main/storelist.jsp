@@ -5,17 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-table{
-	text-align: center;
-}
-#nosajin{
-	padding: 15px 0px 0px 0px;
-	height: 60px;
-	line-height: 30px;
-}
+
 </style>
 <script>
 function loadImage() {	
@@ -43,6 +39,10 @@ $(function(){
 </head>
 <body>
 <div>
+<div style="padding: 40px 0;">
+      <h3><i class="fas fa-store">&nbsp;나의 매장</i></h3>
+
+
 		<select id="filter" name="filter">
 			<option selected="selected">정렬</option>
 			<option value="review">리뷰순 정렬</option>
@@ -57,7 +57,7 @@ $(function(){
 				<col width="19%">
 			</colgroup>
 			<thead>
-				<tr>
+				<tr class="table-danger">
 					<th>매장명</th>
 					<th>매장사진</th>
 					<th>카테고리</th>
@@ -101,5 +101,6 @@ $(function(){
 		</c:if>
       </ul>
    </div>   
+   </div>
 </body>
 </html>

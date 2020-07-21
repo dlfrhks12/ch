@@ -12,12 +12,20 @@
 		display: inline-block;
 	}
 	
-	#storeInfo {
-		
+	section{
+		margin-left: 300px; margin-right: 300px;
 	}
 	
-	#menuInfo {
+	#storeInfo {
+		border: 1px solid #e3e1da;
+	}
 	
+	#menuInfo{
+		margin-top: 50px;
+	 }
+	
+	#buy {
+		margin-left: 900px; margin-top: 30px;
 	}
 	
 </style>
@@ -38,7 +46,6 @@ function loadImage(){
 	return true;
 	
 }
-
 
 //다음 지도API
 function openDaumZipAddress() {
@@ -91,22 +98,33 @@ $(function(){
 </head>
 <body>
 
-<div style="width:1150; min-height: 500px;">
+
 <div id="wrap">
 <div id="storeInfo">
 
-	 <div>
+	<div>
+	 <span id="SName" style="font-size: 30px; font-weight: bold">${storeRead.SName}</span> <hr>
+	</div>
+	<br>
+	
+	<div>
 	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
 	</div>
 	
 	
-	<%-- <div>
-	매장정보: <span id="SInfo">${storeRead.SInfo}</span>
-	</div> --%>
-	
 	<div>
-	상호명: <span id="SName">${storeRead.SName}</span>
+	<c:forEach begin="1" end="${storeRead.SStarPoint}">
+       <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
+         </c:forEach>
+          <c:forEach begin="${storeRead.SStarPoint}" end="5">
+        <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-empty.svg">
+         </c:forEach>
+         
+         <span id="SStarPoint"> / ${storeRead.SStarPoint}</span>
+         
 	</div>
+	
+	
 	
 	<div>
 	매장 전화번호: <span id="STel">${storeRead.STel}</span>
@@ -126,32 +144,37 @@ $(function(){
 	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt}</span>
 	</div>
 	
-	<div>
-	별점평균:<span id="SStarPoint">${storeRead.SStarPoint}</span>
-	</div>
+	
+	
+<div>
+	매장정보: <span id="SInfo">${storeRead.SInfo}</span>
+</div>	
 </div>
+
 
 <div id="menuInfo">
-
-	<a href="/cheatingday/cart/cartview">장바구니로</a><br>
+	
 	<c:forEach items="${cartlist}" var="product" varStatus="status">
-		<div style="width: 176px; margin-right: 25px;">
-			<img src="${product.menusajin}" width="175px">
+		<div class="card"   style="width: 176px; margin-right: 25px;">
+			<img src="${product.menusajin}" width="176px" height="150px">
 			<div>
+				<span style="font-size: 1.5em;">${product.menuname}</span>
+				<hr>
 				<span>${product.menusal}원</span>
-				<span style="font-size: 0.75em;">${product.menuname}</span>
+				
 			</div>
-			<div>
-				<button class="cart" data-menuno="${product.menuno}">장바구니 담기</button>
-			</div>
+			<span>
+				<button class="cart btn btn-danger" data-menuno="${product.menuno}"><i class="fas fa-shopping-cart">&nbsp;장바구니 담기</i></button>
+			</span>
 		</div>
 	</c:forEach>
-	
-</div>
-
-
 	</div>
 </div>
+
+
+	<form action="/cheatingday/cart/cartview" method="get">
+	<button id="buy" class="cart btn btn-danger">장바구니로 이동!<br></button><br>
+	</form>
 
 
 

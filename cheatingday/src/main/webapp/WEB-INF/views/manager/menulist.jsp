@@ -20,7 +20,8 @@ section { margin-left: 450px; margin-right: 450px; }
 </style>
 </head>
 <body>
-
+<div style="padding: 40px 0;">
+      <h3><i class="fas fa-utensils">&nbsp;메뉴 관리</i></h3>
 <div>
 		<table class="table table-hover">
 			<colgroup>
@@ -28,7 +29,7 @@ section { margin-left: 450px; margin-right: 450px; }
 				<col width="40%">
 			</colgroup>
 			<thead>
-				<tr>
+				<tr class="table-danger">
 					<th>메뉴이름</th>
 					<th>메뉴가격</th>
 				</tr>
@@ -47,6 +48,6 @@ section { margin-left: 450px; margin-right: 450px; }
 	<a href="/cheatingday/manager/menu_write">
 		<button type="button" id="write"  class="btn btn-danger">메뉴추가</button></a>
 	</div>
-	 
+	 </div>
 </body>
 </html>

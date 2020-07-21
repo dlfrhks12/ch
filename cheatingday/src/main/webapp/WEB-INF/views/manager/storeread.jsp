@@ -177,7 +177,13 @@ $("#SSajin").on("change",loadImage);
 	</div>
 	
 	<div>
-	별점평균:<span id="SStarPoint">${storeRead.SStarPoint}</span>
+	별점평균:
+	<c:forEach begin="1" end="${storeRead.SStarPoint}">
+                           <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
+                        </c:forEach>
+                        <c:forEach begin="${storeRead.SStarPoint+1}" end="5">
+                           <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-empty.svg">
+                        </c:forEach>
 	</div>
 	
 	<button type="button"  class="btn btn-danger" id="update">변경하기</button>

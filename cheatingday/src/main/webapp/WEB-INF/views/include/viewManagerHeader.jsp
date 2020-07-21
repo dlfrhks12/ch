@@ -66,13 +66,13 @@ $(function() {
  
      
     <li class="nav-item active">
-  	 <a class="nav-link" href="#">주문 확인</a>
+  	 <a class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">주문 확인</a>
     </li>
     
 	<li class="nav-item active">
-  	<div id="reviewManage">
-  	 <a class="nav-link" href="#" >
-  		 매장 리뷰 관리</a></div> 
+  	
+  	 <a id="reviewManage" class="nav-link" href="#" >
+  		 매장 리뷰 관리</a>
     </li>
  
     <li class="nav-item active">
@@ -84,8 +84,7 @@ $(function() {
     </li>
     
     <li class="nav-item active">
-      <div id="menuManage">
-      <a class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">메뉴 관리</a></div>
+      <a id="menuManage" class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">메뉴 관리</a>
     </li>
    
       <!-- Dropdown -->
@@ -94,8 +93,8 @@ $(function() {
       	고객센터
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">공지 사항</a>
-        <a class="dropdown-item" href="#">Q & A</a>
+        <a class="dropdown-item" href="/cheatingday/notice/list">공지 사항</a>
+        <a class="dropdown-item" href="/cheatingday/center/list">Q & A</a>
       </div>
     </li>
   

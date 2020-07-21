@@ -8,7 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
+<!-- 로그인여부 확인 및 아이디꺼내오기 -->
 <sec:authorize access="isAuthenticated()">
 	<script>
 		var isLogin = true;
@@ -21,8 +25,76 @@
 		var loginId = undefined;
 	</script>
 </sec:authorize>
+<style>
+#title {
+		float: left;
+	}
+	#writer {
+		float: right;
+		color: #25a;
+		font-weight: bold;
+	}
+	#lower_left li{
+		display: inline-block;
+		padding : 0 5px;
+	}
+	#lower_left li:nth-of-type(2n){  /* #lower_left 하위의 li 중 짝수번째인 것에 적용 */
+		border-left: 1px solid gray;
+		border-right: 1px solid gray;
+	}
+	#lower_right li {
+		display: inline-block;
+		padding : 0 5px;
+		font-size: 0.9em;
+	}
+	#lower_left {
+		float: left;
+	}
+	#lower_right {
+		float: right;
+	}
+	#lower {
+		overflow: hidden;
+	}
+	#title_div div {
+		margin: 5px 0 5px;
+	}
+	#content {
+		min-height: 600px;
+		border: none;
+	}
+	#wrap {
+		margin-top : 10px;
+	}
+	#wrap>div:first-of-type {	
+	/* #wrap의 자식 중 첫번째 div. 즉 #title_div, #content_div를 둘러싸고 있는 id없는 div */
+		border : 1px solid #ccc;
+	}
+	#content_div {
+		background-color: #f8f8f8;
+		border-top: 1px solid #ccc;
+	}
+	#comment .media {
+		position : relative;
+	}
+	.media div.cnt {
+		position : absolute;
+		top : 10px;
+		right: 10px;
+	}
+	.delete_comment {
+		width : 50px;
+		height : 30px;
+		line-height: 30px;
+		text-align: center;
+		border : 1px solid skyblue;
+		
+	}
+</style>
 <script>
+//공백상태
 var qna = undefined;
+//읽어올 요소출력
 function printQna() {
 	$("#qTitle").val(qna.qtitle);
 	$("#mUsername").text(qna.musername);
@@ -53,6 +125,7 @@ function printQna() {
 		$("#comment_write").prop("disabled", false);
 	}
 }
+//댓글출력
 function printComment(qnacomment) {
 	var $comments = $("#comments");
 	$comments.empty();
@@ -64,21 +137,22 @@ function printComment(qnacomment) {
 		var $lower_div = $("<div>").appendTo($comment);
 		$("<span></span>").text("관리자").appendTo($upper_div);
 		if(comment.ausername===loginId)
-			$("<textarea>").attr("id","qccontent").attr("style","min-width:800px; min-height:200px;").val(comment.qcContent).appendTo($center_div); 
+			$("<textarea>").attr("id","qccontent").attr("style","min-width:800px;").val(comment.qcContent).appendTo($center_div); 
 		else
-			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:800px; min-height:200px;").val(comment.qcContent).appendTo($center_div); 
+			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:1000px;").val(comment.qcContent).appendTo($center_div); 
 		$("<span>").text(comment.qcWriteTime).appendTo($lower_div);
 		if(comment.ausername===loginId) {
 			var btn = $("<button>").attr("class","delete_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
 				.text("삭제").appendTo($center_div).css("float","right");
 			var btn2 = $("<button>").attr("class","update_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
-			.text("수정").appendTo($center_div).css("float","right");
+			.text("수정").appendTo($center_div).css("float","right").css("width","50px").css("height","30px");
 		}
 		$("<hr>").appendTo($comment);
 	});
 
 }
 $(function() { 
+	//위 요소 출력
 	var qNo = location.search.substr(5);
 	console.log(qNo);
 	$.ajax({
@@ -152,7 +226,7 @@ $(function() {
 		.done((result)=>{alert("변경되었습니다"); console.log(result); })
 		.fail((result)=>{console.log(params);});
 	});
-	
+	//글 업데이트
 	$("#update").on("click", function() {
 		var params = {
 			qNo: qna.qno,
@@ -170,7 +244,7 @@ $(function() {
 		.done((result)=>{ location.reload(); })
 		.fail((result)=>{console.log(result)});
 	});
-	
+	// 글 삭제
 	$("#delete").on("click", function() {
 		var params = {
 			qNo: qna.qno,
@@ -189,18 +263,19 @@ $(function() {
 </script>
 </head>
 <body>
-	<hr>
-	<div id="wrap">
+	<hr> 
+	<div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;" >
 		<div>
 			<div id="title_div">
 				<div id="upper">
 					<input type="text" id="qTitle" disabled="disabled"
 						style="min-width: 600px;"> <input type="hidden"
-						id="mUsername"> <span id="mIrum"></span>
+						id="mUsername">
 				</div>
 				<div id="lower">
 					<input type="hidden" id="qCano">
 					<ul id="lower_left">
+						<li><span id="mIrum"></span></li>
 						<li><span id="qWriteTime"></span></li>
 					</ul>
 					<span id="qCategory"></span>
@@ -230,6 +305,7 @@ $(function() {
 			<hr>
 			<div id="comments"></div>
 		</div>
+		<button class="btn btn-info" onclick="location.href='/cheatingday/center/list';">목록이동</button>
 	</div>
 </body>
 </html>

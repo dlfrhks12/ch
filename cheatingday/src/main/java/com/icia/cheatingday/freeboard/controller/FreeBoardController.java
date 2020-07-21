@@ -41,7 +41,7 @@ public class FreeBoardController {
 	private MessagingHandler handler;
 	@GetMapping("/board/read")
 	public ModelAndView read(@NonNull Integer bno) {
-		return new ModelAndView("main").addObject("viewName", "board/read.jsp").addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
+		return new ModelAndView("main").addObject("viewName", "board/read.jsp").addObject("category", service.getBoardcate()).addObject("viewHeader", "include/viewHeader.jsp");
 	}
 
 	@GetMapping("/board/list")
@@ -49,7 +49,7 @@ public class FreeBoardController {
 		
 		return new ModelAndView("main").addObject("viewName", "board/list.jsp")
 				.addObject("page", service.list(pageno, username, cateno))
-				.addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
+				.addObject("category", service.getBoardcate()).addObject("viewHeader", "include/viewHeader.jsp");
 	}
 	@PostMapping("/board/list")
 	public String index(Principal principal, Model model) {
@@ -60,7 +60,7 @@ public class FreeBoardController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/board/write")
 	public ModelAndView write() {
-		return new ModelAndView("main").addObject("viewName", "board/write.jsp").addObject("category", service.getBoardcate()).addObject("viewHeader", "include/noheader.jsp");
+		return new ModelAndView("main").addObject("viewName", "board/write.jsp").addObject("category", service.getBoardcate()).addObject("viewHeader", "include/viewHeader.jsp");
 		
 	}
 	@PreAuthorize("isAuthenticated()")

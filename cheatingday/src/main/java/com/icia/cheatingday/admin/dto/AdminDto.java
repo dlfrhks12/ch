@@ -57,7 +57,7 @@ public class AdminDto {
 		private String mIrum;
 		private String mTel;
 		private String mEmail;
-		private int mNum;
+		private long mNum;
 		private String mEnabledStr;
 	}
 	@Data

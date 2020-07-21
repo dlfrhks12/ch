@@ -25,7 +25,7 @@ public class AdminRestService {
 		
 	}
 	//[관리자]사업자 가입승인
-	public int enabledM(int mNum) {
+	public int enabledM(long mNum) {
 		return adao.enabledM(mNum);
 	}
 	

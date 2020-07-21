@@ -55,7 +55,7 @@ public class NoticeTest {
 	public void init() {
 		assertThat(ndao, is(notNullValue()));
 	}
-	//@Test
+	@Test
 	public void insett() {
 		Notice notice = Notice.builder().nNo(1).nTitle("예제").nWriteTime(LocalDateTime.now()).content("예시").aUsername("usy1473").build();
 		assertThat(ndao.insert(notice), is(1));
@@ -171,8 +171,9 @@ public class NoticeTest {
 	}
 	//@Test
 	public void vcbvcn() {
-		System.out.println(sdao.count(2));
+		System.out.println(sdao.count(2, null));
 	}
+	
 	//@Test
 	public void cvbnvcn()	{
 	}

@@ -15,7 +15,9 @@
 <style>
 
 section { margin-left: 600px;}
-#update {margin-left: 300px;}
+#update {margin-left: 300px; margin-top: 30px;}
+#delete { margin-top: 30px;}
+textarea {width:370px; height: 200px;   overflow:scroll;}
 
 
 </style>
@@ -146,9 +148,7 @@ $("#SSajin").on("change",loadImage);
 	 매장 고유번호: <span id="SNum">${storeRead.SNum}</span>
 	</div>
 	
-	<div>
-	매장정보: <input type="text" name="SInfo" id="SInfo" value="${storeRead.SInfo}">
-	</div>
+	
 	
 	<div>
 	상호명: <input type="text" name="SName" id="SName" value="${storeRead.SName}">
@@ -173,11 +173,22 @@ $("#SSajin").on("change",loadImage);
 	</div> 
 	
 	<div>
-	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt}</span>
+	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt} 개</span>
 	</div>
 	
 	<div>
-	별점평균:<span id="SStarPoint">${storeRead.SStarPoint}</span>
+	별점평균:
+	<c:forEach begin="1" end="${storeRead.SStarPoint}">
+         <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
+        </c:forEach>
+         <c:forEach begin="${storeRead.SStarPoint+1}" end="5">
+          <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-empty.svg">
+    </c:forEach>
+	</div>
+	
+	
+	<div><span id="info">매장정보:</span>
+	<textarea name="SInfo" id="SInfo" >${storeRead.SInfo}</textarea>
 	</div>
 	
 	<button type="button"  class="btn btn-danger" id="update">변경하기</button>

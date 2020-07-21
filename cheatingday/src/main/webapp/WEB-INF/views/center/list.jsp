@@ -7,22 +7,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div>
+<div style="width: 1200px; position:relative;  left : 15%;">
+
+		<div style="padding: 40px 0;">
+      <h3>Q & A 문의 게시판</h3>
+ 		</div>
+
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
-				<col width="20%">
+				<col width="10%">
+				<col width="10%">
 				<col width="10%">
 				<col width="30%">
 				<col width="10%">
 			</colgroup>
 			<thead>
-				<tr>
+				<tr class="table-danger">
 					<th>번호</th>
 					<th class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Q&A <span class="caret"></span></a>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Q&A</a>
 					<ul class="dropdown-menu">				
 						<li><a href="/cheatingday/center/list">전체목록</a></li>		
 		      		 	<li><a href="/cheatingday/center/list?qCano=1">문의목록</a></li>
@@ -83,7 +92,7 @@
 		</ul>
 	</div>
 	<sec:authorize access="hasRole('ROLE_MANAGER')">
-		<div class="form-group">
+		<div class="form-group" style="position:relative;  left : 15%;">
 			<a class="btn btn-info" href="/cheatingday/center/write">글쓰기</a>
 		</div>
 	</sec:authorize>

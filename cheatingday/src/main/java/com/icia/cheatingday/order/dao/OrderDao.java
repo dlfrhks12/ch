@@ -99,6 +99,10 @@ public class OrderDao {
 	public List<OrderEntity> resList() {
 		return tpl.selectList("orderMapper.resList");
 	}
-	
+
+	public List<OrderEntity> findAll(String uUsername) {
+		return tpl.selectList("orderMapper.findAll", uUsername);
+	}
+		
 	
 }

@@ -3,12 +3,12 @@
 <mapper namespace="reviewCommentMapper">
 	<!-- findById, findAllByRno,insert,update,delete -->
 <select id="findAllByRno" resultType="reviewComment">
-	select rc_no rcNo, r_no rNo, m_num mNum, rc_content rcContent,rc_date_time rcDateTime
+	select rc_no rcNo, rc_writer rcWriter, r_no rNo, m_num mNum, rc_content rcContent,rc_date_time rcDateTime
 	from reviewcomment
 	where r_no = #{rNo} order by rc_no desc
 </select>
 <select id="findById" resultType ="reviewComment">
-	select rc_no rcNo, r_no rNo, m_num mNum, rc_content rcContent,rc_date_time rcDateTime
+	select rc_no rcNo, rc_writer rcWriter, r_no rNo, m_num mNum, rc_content rcContent,rc_date_time rcDateTime
 	from reviewcomment
 	where rc_no = #{rcNo} and rownum = 1
 </select>
@@ -16,8 +16,8 @@
 	<selectKey keyProperty = "rcNo" resultType="int" order="BEFORE">
 		select reviewcomment_seq.nextval from dual
 	</selectKey>
-	insert into reviewcomment(rc_no, r_no, m_num, rc_content, rc_date_time)
-	values(#{rcNo},#{rNo},#{mNum},#{rcContent},sysdate)
+	insert into reviewcomment(rc_no,rc_writer, r_no, m_num, rc_content, rc_date_time)
+	values(#{rcNo},#{rcWriter},#{rNo},#{mNum},#{rcContent},sysdate)
 </insert>
 <update id="update">
 	update reviewcomment

@@ -17,6 +17,6 @@ public class QnA {
 	private String qContent;
 	private LocalDateTime qWriteTime;
 	private Boolean qIscomment;
-	private int mNum;
+	private long mNum;
 	private Integer qCano;
 }

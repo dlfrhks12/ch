@@ -88,13 +88,16 @@ public class MainController {
    @ResponseBody
    public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       return null;
    }
    
-   
+   @GetMapping("/test")
+   public ModelAndView test() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/test.jsp");
+   }
    ///////////////////////////////////////////    일반 회원         //////////////////////////////////////////////
    
    
@@ -133,23 +136,6 @@ public class MainController {
       String uUsername = service.findUserUsername(uIrum, uEmail);
       ra.addFlashAttribute("msg", "아이디는 " + uUsername + " 입니다");
       return "redirect:/system/msg";
-   }
-   
-   
-   // [일반] '마이페이지' 클릭 시 비밀번호 확인 Get
-   @PreAuthorize("isAuthenticated()")
-   @GetMapping("/main/u_check_pwd")
-   public ModelAndView checkUserPwd() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/checkpwd.jsp");
-   }
-   
-   // [일반] '마이페이지' 클릭 시 비밀번호 확인 Post
-   @PreAuthorize("isAuthenticated()")
-   @PostMapping("/main/u_check_pwd")
-   public String checkUserPwd(String uPassword, Principal principal, HttpSession session) {
-      service.checkUserPwd(uPassword, principal.getName());
-      session.setAttribute("isCheck", "true");
-      return "redirect:/user";
    }
    
    

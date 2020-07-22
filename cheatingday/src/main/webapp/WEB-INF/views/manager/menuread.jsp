@@ -12,9 +12,9 @@
 <meta charset="UTF-8">
 <title>메뉴읽기</title>
 <style>
-	section {margin-left: 650px;}
+	section {margin-left: 580px; }
 	
-	#update {margin-left: 250px;}
+	#update {margin-left: 350px;}
 </style>
 
 <script>

@@ -5,10 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>header</title>
+<link href="mainhome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="mainhome/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="mainhome/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="mainhome/css/landing-page.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="mainhome/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <style>
-#bg {width: 100%; height: 300px; }
+#bg {height:300px;}
 #row {text-align: center; margin:0 auto; margin-top: -80px;}
 #but {width:48px; height:48px; color: red;}
 #centerAddr {display:block;margin-top:2px;font-weight: normal;}
@@ -49,7 +59,7 @@
 #placesList .item .marker_15 {background-position: 0 -654px;}
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
+#pagination .on {font-weight: bold; cursor: default; color:#777;}
 </style>
 <body>
     <!-- Masthead -->
@@ -64,7 +74,7 @@
 							<div class="option">
 								<div id="place">
 									<form onsubmit="searchPlaces(); return false;">
-										<input type="text" placeholder="건물명, 도로명, 지번으로 검색하세요." value="인천  ICIA 교육원"  id="keyword" size="32" style="overflow:hidden;"> 
+										<input type="text" placeholder="건물명, 도로명, 지번으로 검색하세요." value="인천  ICIA 교육원"  id="keyword" size="32" style="width: 200px;"> 
 										<button type="submit">검색</button> 
 									</form>
 								</div>
@@ -355,36 +365,7 @@ function removeMarker() {
     markers = [];
 }
 
-// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-function displayPagination(pagination) {
-    var paginationEl = document.getElementById('pagination'),
-        fragment = document.createDocumentFragment(),
-        i; 
 
-    // 기존에 추가된 페이지번호를 삭제합니다
-    while (paginationEl.hasChildNodes()) {
-        paginationEl.removeChild (paginationEl.lastChild);
-    }
-
-    for (i=1; i<=pagination.last; i++) {
-        var el = document.createElement('a');
-        el.href = "#";
-        el.innerHTML = i;
-
-        if (i===pagination.current) {
-            el.className = 'on';
-        } else {
-            el.onclick = (function(i) {
-                return function() {
-                    pagination.gotoPage(i);
-                }
-            })(i);
-        }
-
-        fragment.appendChild(el);
-    }
-    paginationEl.appendChild(fragment);
-}
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다

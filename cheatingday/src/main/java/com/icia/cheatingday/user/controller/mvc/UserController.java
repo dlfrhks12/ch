@@ -32,7 +32,7 @@ public class UserController {
 	@GetMapping("/user/point")
 	public ModelAndView pointList(@RequestParam(defaultValue = "1") int pageno, String uUsername) {
 		return new ModelAndView("main")
-				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/point.jsp")
 				.addObject("page", service.pointList(pageno, uUsername))
 				.addObject("count", service.count(uUsername))
@@ -42,7 +42,7 @@ public class UserController {
 	@GetMapping("/user/reviewlist")
 	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String uUsername) {
 		return new ModelAndView("main")
-				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/reviewlist.jsp")
 				.addObject("page", service.reviewList(pageno,uUsername))
 				.addObject("username",uUsername);
@@ -52,7 +52,7 @@ public class UserController {
 	@GetMapping("/user/buylist")
 	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
 		return new ModelAndView("main")
-				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/buylist.jsp")
 				.addObject("page", service.buyList(pageno, uUsername))
 				.addObject("username", uUsername);
@@ -66,7 +66,7 @@ public class UserController {
 			return new ModelAndView("redirect:/user/check_pwd");
 		else 
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/user_header.jsp")
+			.addObject("viewHeader", "include/viewHeader.jsp")
 			.addObject("viewName", "user/mypage.jsp")
 			.addObject("user",service.myPage(principal.getName()));
 	}
@@ -75,9 +75,9 @@ public class UserController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user/check_pwd")
 	public ModelAndView checkPwd() {
-		return new ModelAndView("main").addObject("viewHeader", "include/user_header.jsp").addObject("viewName","user/check_pwd.jsp");
-			
+		return new ModelAndView("main").addObject("viewHeader", "include/viewHeader.jsp").addObject("viewName","user/check_pwd.jsp");
 	}
+	
 	// 비밀번호 확인 post
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/user/check_pwd")
@@ -92,7 +92,7 @@ public class UserController {
 	@GetMapping("/user/change_pwd")
 	public ModelAndView changePwd() {
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/user_header.jsp")
+			.addObject("viewHeader", "include/viewHeader.jsp")
 			.addObject("viewName","user/change_pwd.jsp");
 	}
 	// 비밀번호 변경 post

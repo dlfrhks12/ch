@@ -5,13 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>카테고리</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>header</title>
+<link href="mainhome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="mainhome/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="mainhome/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="mainhome/css/landing-page.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="mainhome/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <style>
-#bg {width: 100%; height: 300px; }
 #row {text-align: center; margin:0 auto; margin-top: -80px;}
 #but {width:48px; height:48px; color: red;}
-#centerAddr {display:block;margin-top:2px;font-weight: normal;}
+#centerAddr {display:inline-block; margin-top:2px; font-weight: normal;}
 .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; color:black;}
 .map_wrap {position: absolute; left: -420px; top: -112px;}
@@ -19,41 +28,17 @@
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .bg_white {background:#fff; width: 80px; height: 40px;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F; margin:3px;}
 #menu_wrap .option{text-align: center;}
 #menu_wrap .option p {margin:10px 0;}  
 #menu_wrap .option button {margin-left:5px;}
-#placesList li {list-style: none; color: black;}
-#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-#placesList .item span {display: block;margin-top:4px;}
-#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-#placesList .item .info{padding:10px 0 10px 55px;}
-#placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
-#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-#placesList .item .marker_1 {background-position: 0 -10px;}
-#placesList .item .marker_2 {background-position: 0 -56px;}
-#placesList .item .marker_3 {background-position: 0 -102px}
-#placesList .item .marker_4 {background-position: 0 -148px;}
-#placesList .item .marker_5 {background-position: 0 -194px;}
-#placesList .item .marker_6 {background-position: 0 -240px;}
-#placesList .item .marker_7 {background-position: 0 -286px;}
-#placesList .item .marker_8 {background-position: 0 -332px;}
-#placesList .item .marker_9 {background-position: 0 -378px;}
-#placesList .item .marker_10 {background-position: 0 -423px;}
-#placesList .item .marker_11 {background-position: 0 -470px;}
-#placesList .item .marker_12 {background-position: 0 -516px;}
-#placesList .item .marker_13 {background-position: 0 -562px;}
-#placesList .item .marker_14 {background-position: 0 -608px;}
-#placesList .item .marker_15 {background-position: 0 -654px;}
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
-#topmenu {margin-left: -40px; margin-top: -16px; height: 40px; width: 105%;}
-#a {list-style: none;color: white;background-color: red;float: left;width: 9.8%; line-height: 45px; vertical-align: middle; text-align: center;}
-#topmenu li a {background-color: #FF2424; text-decoration: none;color: white;display: block; font-size: 17px;}
-#topmenu li a:hover {color: white; background-color: #FF3636;}
+#pagination .on {font-weight: bold; cursor: default; color:#777;}
+#topmenu {display: flex; justify-content:center; padding: 0; height: 40px; width:51%; position: absolute; left:448px;}
+#topmenu ul li {padding: 0px; cursor: pointer; list-style: none; color: white; float: left; width:10%; line-height: 40px; vertical-align: middle; text-align: center;}
+#topmenu ul a {text-decoration:none; background-color: #FF2424; color:white; display: block; font-size:15px;}
+#topmenu ul a:hover {color: white; background-color: #FF3636;}
 </style>
 <body>
     <!-- Masthead -->
@@ -68,7 +53,7 @@
 							<div class="option">
 								<div id="place">
 									<form onsubmit="searchPlaces(); return false;">
-										<input type="text" placeholder="건물명, 도로명, 지번으로 검색하세요." value="인천  ICIA 교육원"  id="keyword" size="32" style="overflow:hidden;"> 
+										<input type="text" placeholder="건물명, 도로명, 지번으로 검색하세요." value="인천  ICIA 교육원"  id="keyword" size="32" style="width: 200px;"> 
 										<button type="submit">검색</button> 
 									</form>
 								</div>
@@ -95,6 +80,20 @@
             </div>
         </div>
     </header>
+    <div id="topmenu">
+		<ul style="width: 100%">
+			<li><a href="/cheatingday/store_list">전체보기</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=1">분식</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=2">중식</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=3">치킨</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=4">한식</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=5">족발/보쌈</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=6">피자/양식</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=7">일식/돈까스</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=8">카페/디저트</a></li>
+			<li><a href="/cheatingday/store_list?foodNo=9">프랜차이즈</a></li>
+		</ul>
+	</div>
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74c86650f7cb8f6b997cf396f534dcc3&libraries=services"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=74c86650f7cb8f6b997cf396f534dcc3&libraries=LIBRARY"></script>
@@ -358,36 +357,7 @@ function removeMarker() {
     markers = [];
 }
 
-// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-function displayPagination(pagination) {
-    var paginationEl = document.getElementById('pagination'),
-        fragment = document.createDocumentFragment(),
-        i; 
 
-    // 기존에 추가된 페이지번호를 삭제합니다
-    while (paginationEl.hasChildNodes()) {
-        paginationEl.removeChild (paginationEl.lastChild);
-    }
-
-    for (i=1; i<=pagination.last; i++) {
-        var el = document.createElement('a');
-        el.href = "#";
-        el.innerHTML = i;
-
-        if (i===pagination.current) {
-            el.className = 'on';
-        } else {
-            el.onclick = (function(i) {
-                return function() {
-                    pagination.gotoPage(i);
-                }
-            })(i);
-        }
-
-        fragment.appendChild(el);
-    }
-    paginationEl.appendChild(fragment);
-}
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
@@ -473,19 +443,5 @@ $(function() {
 	})
 })
 </script>
-	<div id="topmenu">
-		<ul>
-			<li id="a"><a href="/cheatingday/store_list">전체목록</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=1">분식</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=2">중식</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=3">치킨</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=4">한식</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=5">족발/보쌈</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=6">피자/양식</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=7">일식/돈까스</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=8">카페/디저트</a></li>
-			<li id="a"><a href="/cheatingday/store_list?foodNo=9">프렌차이즈</a></li>
-		</ul>
-	</div>
 </body>
 </html>

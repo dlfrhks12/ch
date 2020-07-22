@@ -20,6 +20,7 @@
 </style>
 <script>
 $(function(){
+	//해당 댓글 삭제
 	$("#delete").on("click", function() {
 		var params = {
 			rNo: $("#rNo").val(),

@@ -5,14 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style >
+
+
+</style>
 </head>
 <body>
 <%-- ${page.olist} --%>
 <%-- ${orderList} --%>
 <sec:authentication property="principal.username" var="username"/>
 <div>
+<div class="container">
+   <div style="padding: 40px 0;">
+      <h3><i class="fas fa-shopping-cart">&nbsp;주문내역</i></h3>
+   </div>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
@@ -24,9 +35,9 @@
 				
 			</colgroup>
 			<thead>
-				<tr>
+				<tr class="table-danger">
 					<th>주문번호</th>
-					<th>주문내역</th>
+					<th>주문메뉴</th>
 					<th>총금액</th>
 					<th>주문시간</th>
 					<th>사용자아이디</th>
@@ -38,14 +49,21 @@
 				<tr>
 					<td>${manager.ONo}</td>
 					<td><a href="/cheatingday/manager/order_read?oNo=${manager.ONo}">${manager.orderName}</a></td>
-					<td>${manager.OTotal}</td>
+					<td>${manager.OTotal} 원</td>
 					<td>${manager.OOrderTimeStr}</td>
 					<td>${manager.UUsername}</td>
-					<td>${manager.OCheck}</td>
+					<td>
+					<c:choose>
+						<c:when test="${manager.OCheck==false}">
+							<p>접수 대기중</p>					
+						</c:when>
+					</c:choose>
+					</td>
 				</tr>
 			</c:forEach> 
 			</tbody>
 		</table>
+	</div>
 	</div>
 	<div style="text-align:center;">
 		<ul class="pagination">
@@ -55,8 +73,8 @@
 			<c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
-						<li class="active">
-							<a href="/cheatingday/manager/order_list?pageno=${i}&mUsername=${username}">${i}</a>
+						<li class="active" >
+							<a style= "background-color:#E74D44; border: 1px solid;" href="/cheatingday/manager/order_list?pageno=${i}&mUsername=${username}">${i}</a>
 						</li>
 					</c:when>     
 					<c:otherwise>

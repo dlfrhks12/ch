@@ -52,7 +52,7 @@ public class UserService {
 	
 
 
-	
+	// userDao에서 UPoint가져오기
 	public int count(String uUsername) {
 		int count = userDao.findById(uUsername).getUPoint();
 		return count;

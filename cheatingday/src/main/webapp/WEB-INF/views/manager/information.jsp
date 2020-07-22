@@ -206,7 +206,6 @@ $(function(){
 		<colgroup>
 			<col width="10%">
 			<col width="40%">
-			
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>

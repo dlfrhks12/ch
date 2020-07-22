@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div style="width: 1200px; position:relative;  left : 15%;">
+<div style="width: 1200px; margin-left: 250px; margin-right: 450px;">
 
 		<div style="padding: 40px 0;">
       <h3>Q & A 문의 게시판</h3>
@@ -20,11 +20,11 @@
 
 		<table class="table table-hover">
 			<colgroup>
-				<col width="10%">
-				<col width="10%">
-				<col width="10%">
+				<col width="5%">
 				<col width="10%">
 				<col width="30%">
+				<col width="10%">
+				<col width="20%">
 				<col width="10%">
 			</colgroup>
 			<thead>
@@ -92,8 +92,8 @@
 		</ul>
 	</div>
 	<sec:authorize access="hasRole('ROLE_MANAGER')">
-		<div class="form-group" style="position:relative;  left : 15%;">
-			<a class="btn btn-info" href="/cheatingday/center/write">글쓰기</a>
+		<div class="form-group" style="margin-left: 250px; margin-right: 450px;">
+			<a class="btn btn-danger" href="/cheatingday/center/write">글쓰기</a>
 		</div>
 	</sec:authorize>
 </body>

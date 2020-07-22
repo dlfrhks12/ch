@@ -34,6 +34,8 @@ public class QnaTest {
 		private QnACategoryDao qcdao;
 		@Inject
 		private QnARestService qrs;
+		@Inject
+		private QnAService qs;
 
 		//@Test
 		public void cout() {
@@ -104,19 +106,20 @@ public class QnaTest {
 		public void dhrn() {
 			qrs.deleteComment(5, 27, null);
 		}
-		//@Test
+		@Test
 		public void aegte() {
 			QnADto.DtoForUpdate dto = new DtoForUpdate();
-			dto.setQNo(14);
-			dto.setMUsername("dkdkdk");
-			dto.setQCano(2);
-			dto.setQContent("아야아야아야");
+			dto.setQNo(1);
 			dto.setQTitle("gegege");
 			qrs.updateQnA(dto);
 		}
 		//@Test
 		public void dqw() {
 			qrs.deletQna(15, null);
+		}
+		//@Test
+		public void ssf() {
+			System.out.println(qs.getQcano());
 		}
 		
 }

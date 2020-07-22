@@ -13,8 +13,8 @@ public class ReviewDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public int count(String uUsername) {
-		return tpl.selectOne("reviewMapper.count", uUsername);
+	public int count(Integer rNo) {
+		return tpl.selectOne("reviewMapper.count", rNo);
 	}
 	// 전체 리스트
 	public List<Review> findAll(int startRowNum, int endRowNum) {
@@ -24,22 +24,24 @@ public class ReviewDao {
 		return tpl.selectList("reviewMapper.findAll", map);
 	}
 	// 별점 순 리스트
-	public List<Review> findAllByStar(int startRowNum, int endRowNum){
+	public List<Review> findAllByStar(int startRowNum, int endRowNum, Integer rStarPoint){
 		Map<String, Object> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum", endRowNum);
+		map.put("rStarPoint",rStarPoint);
 		return tpl.selectList("reviewMapper.findAllByStar",map);
 	}
 	// 최신순 리스트( 최신 리뷰 번호로 정렬)
-	public List<Review> findAllByRno(int startRowNum, int endRowNum){
+	public List<Review> findAllByRno(int startRowNum, int endRowNum, Integer rNo){
 		Map<String,Integer> map = new HashMap<>();
 		map.put("startRowNum", startRowNum);
 		map.put("endRowNum",endRowNum);
+		map.put("rNo",rNo);
 		return tpl.selectList("reviewMapper.findAllByRno",map);
 	}
 	
 	//사업자&일반회원 리뷰신고
-	public int reviewSingoUpdate(int rNo) {
+	public int reviewSingoUpdate(Integer rNo) {
 		return tpl.update("reviewMapper.reviewSingo",rNo);
 	}
 	

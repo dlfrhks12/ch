@@ -11,13 +11,14 @@ import lombok.experimental.*;
 @Builder
 @Accessors(chain=true) 
 public class Review {
-	private int rNo; 
+	private Integer rNo; 
 	private String rContent; 
-	private int rStarPoint;
+	private Integer rStarPoint;
 	private LocalDateTime rWriteTime;
-	private int oNo;
+	private Integer oNo;
 	private String rTitle;
-	private int rReport;
+	private Integer rReport;
 	private String uUsername;
-	private int sNum;
+	private Integer sNum;
+	
 }

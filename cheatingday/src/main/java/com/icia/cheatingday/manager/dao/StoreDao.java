@@ -103,4 +103,9 @@ public class StoreDao {
 		map.put("keyword", keyword);
 		return tpl.selectOne("storeMapper.countArticle", map);
 	}
+
+
+	public List<Store> findAll() {
+		return tpl.selectList("storeMapper.findAll");
+	}
 }

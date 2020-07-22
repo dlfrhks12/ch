@@ -48,7 +48,7 @@ $(function(){
 			<option value="review">리뷰순 정렬</option>
 			<option value="star">별점순 정렬</option>
 		</select>
-		<table class="table table-hover">
+		<table class="table table-hover">                                                                                                                    
 			<colgroup>
 				<col width="19%">
 				<col width="19%">

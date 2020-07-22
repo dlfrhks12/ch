@@ -50,6 +50,10 @@
 		delete from detailorder
 		where d_no = #{dNo}
 	</delete>
+	<select id="findAll" resultType="order">
+		select s_num sNum from orders where u_username = #{uUsername} 
+	</select>
+	
 </mapper>
 
 

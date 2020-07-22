@@ -16,8 +16,8 @@ public class ReviewCommentDao {
 	public ReviewComment findById(Integer rcNo) {
 		return tpl.selectOne("reviewCommentMapper.findById",rcNo);
 	}
-	public List<ReviewComment> findAllByRno(Integer rno){
-		return tpl.selectList("reviewCommentMapper.findAllByRno",rno);
+	public List<ReviewComment> findAllByRno(Integer rNo){
+		return tpl.selectList("reviewCommentMapper.findAllByRno",rNo);
 	}
 	public int insert(ReviewComment reviewComment) {
 		return tpl.insert("reviewCommentMapper.insert",reviewComment);

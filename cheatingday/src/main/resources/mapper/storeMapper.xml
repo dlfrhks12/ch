@@ -128,6 +128,9 @@ update store
 		</when>
 	</choose>
 </sql>
+<select id="findAll" resultType = "store">
+	select s_num sNum, s_name sName from store where uUsername = #{uUsername} and rownum = 1
+</select>
 </mapper>
 
 

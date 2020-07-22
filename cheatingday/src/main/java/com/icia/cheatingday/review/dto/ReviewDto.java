@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.icia.cheatingday.review.entity.Review;
-import com.icia.cheatingday.review.entity.ReviewComment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,7 +48,6 @@ public class ReviewDto {
 		private String sName;
 		private Integer rReport;
 		private Integer rStarPoint;
-		private List<ReviewComment> comments;
 	}
 	@Data
 	@AllArgsConstructor

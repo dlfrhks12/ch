@@ -113,8 +113,8 @@ public class UserService {
 		return page;
 	}
 	// 리뷰 리스트 페이징
-	public Page reviewList(int pageno, Integer rNo,String uUsername) {
-		int countOfBoard = reviewDao.count(rNo);
+	public Page reviewList(int pageno, String uUsername) {
+		int countOfBoard = reviewDao.count(uUsername);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();

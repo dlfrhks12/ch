@@ -91,10 +91,9 @@ $(function() {
     </li>
  
   
-
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객센터</a>
-      <div class="dropdown-menu" id="c">
+    <li class="nav-item dropdown nav-item active">
+      <a class=" nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객센터</a>
+      <div class="dropdown-menu" >
         <a class="dropdown-item" href="/cheatingday/notice/list">공지 사항</a>
         <a class="dropdown-item" href="/cheatingday/center/list">Q & A</a>
       </div>
@@ -104,16 +103,16 @@ $(function() {
   
   
   <sec:authorize access="hasRole('ROLE_ADMIN')">
-  		<li><a class="nav-link" href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
-		<li class="dropdown">
+  		<li class="nav-item active"><a class="nav-link" href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
+		<li class="dropdown nav-item active">
 			<a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="#"> 회원정보 관리 <span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				<li><a href="/cheatingday/admin/user_list?job=user_list">일반 회원 목록</a></li>
 				<li><a href="/cheatingday/admin/manager_list">사업자 목록</a></li>
 			</ul>
 		</li>
-		<li><a class="nav-link" href="/cheatingday/notice/list">공지사항</a></li>
-		<li><a class="nav-link" href="/cheatingday/center/list">Q&A</a></li>
+		<li class="nav-item active"><a class="nav-link" href="/cheatingday/notice/list">공지사항</a></li>
+		<li class="nav-item active"><a class="nav-link" href="/cheatingday/center/list">Q&A</a></li>
   	</sec:authorize>
   </ul>
  </div>  

@@ -16,7 +16,6 @@ public class Review {
 	private int rStarPoint;
 	private LocalDateTime rWriteTime;
 	private int oNo;
-	private String rTitle;
 	private int rReport;
 	private String uUsername;
 	private int sNum;

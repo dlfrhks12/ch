@@ -99,24 +99,24 @@ $("#update").on("click",function(){
  	
  	<div>
 		<img id="show_menusajin" height="250px;" src="${menuRead.menusajin}">
-	</div>
+	</div><br>
 	<div>
 		<input type="file" name="sajin" id="sajin">
-	</div>
+	</div><br>
 	
 	<div>
-	 메뉴번호 : <span id="menuno">${menuRead.menuno}</span>
-	</div>
+	 메뉴번호 : <span id="menuno">${menuRead.menuno} 번</span>
+	</div><br>
 	
 	<div>
 	메뉴이름: <input type="text" name="menuname" id="menuname" value="${menuRead.menuname}">
-	</div>
+	</div><br>
 	
 	<div>
 	메뉴가격: <input type="text" name="menusal" id="menusal" value="${menuRead.menusal}">
-	</div>
+	</div><br>
 	
-	<button type="button"  class="btn btn-danger"" id="update">변경하기</button>
+	<button type="button"  class="btn btn-danger" id="update">변경하기</button>
 	<button type="button"  class="btn btn-danger" id="delete">삭제하기</button> 
 	
 	</div>

@@ -68,22 +68,30 @@ $(function() {
    			<a class="nav-link" href="/cheatingday/user/reviewlist?uUsername=${username}">내가 쓴 리뷰</a>
     	</li>
  	</sec:authorize>
+ 	
+ 	
+ 	
  <sec:authorize access="hasRole('ROLE_MANAGER')">
+ 
+   <li class="nav-item active">
+  	 <a class="nav-link" href="/cheatingday/manager/information?mUsername=${username}">내 정보 관리</a>
+    </li>  
+    <li class="nav-item active">
+  	 <a class="nav-link" href="/cheatingday/manager/store_list?mUsername=${username}">내 매장 관리</a>
+    </li> 
+    <li class="nav-item active">
+      <a id="menuManage" class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">메뉴 관리</a>
+    </li>
+    
     <li class="nav-item active">
   	 <a class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">주문 확인</a>
     </li>
 	<li class="nav-item active">
   	 <a id="reviewManage" class="nav-link" href="#" >매장 리뷰 관리</a>
     </li>
-    <li class="nav-item active">
-  	 <a class="nav-link" href="/cheatingday/manager/store_list?mUsername=${username}">내 매장 관리</a>
-    </li>
-    <li class="nav-item active">
-  	 <a class="nav-link" href="/cheatingday/manager/information?mUsername=${username}">내 정보 관리</a>
-    </li>  
-    <li class="nav-item active">
-      <a id="menuManage" class="nav-link" href="/cheatingday/manager/order_list?mUsername=${username}">메뉴 관리</a>
-    </li>
+ 
+  
+
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">고객센터</a>
       <div class="dropdown-menu" id="c">
@@ -92,6 +100,9 @@ $(function() {
       </div>
     </li>
   </sec:authorize>
+  
+  
+  
   <sec:authorize access="hasRole('ROLE_ADMIN')">
   		<li><a class="nav-link" href="/cheatingday/admin/report_list">신고리뷰목록</a></li>
 		<li class="dropdown">

@@ -100,7 +100,7 @@ $(function() {
 				</ul>
 				<ul id="lower_right">
   						<li>
-						<button type="button" class="btn btn-success" disabled="disabled">
+						<button type="button" class="btn btn-info" disabled="disabled">
 							조회수 <span class="badge" id="read_cnt"></span>
 						</button></li>        	
 				</ul>
@@ -111,13 +111,13 @@ $(function() {
 				<div class="form-control" id="content"></div>
 			</div>
 			<div id="btn_area">
-				<button id="update" class="btn btn-info">변경</button>
-				<button id="delete" class="btn btn-success">삭제</button>
+				<button id="update" class="btn btn-danger">변경</button>
+				<button id="delete" class="btn btn-danger">삭제</button>
 			</div>
 		</div>
 		</div>
 		<hr>
-		<button class="btn btn-info" onclick="location.href='/cheatingday/notice/list';">공지목록</button>
+		<button class="btn btn-danger" onclick="location.href='/cheatingday/notice/list';">공지목록</button>
 </div>
 </body>
 </html>

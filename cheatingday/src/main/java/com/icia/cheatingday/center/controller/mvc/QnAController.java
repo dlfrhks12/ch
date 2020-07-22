@@ -33,7 +33,7 @@ public class QnAController {
 	@PreAuthorize("hasRole('ROLE_MANAGER')")
 	@GetMapping("/center/write")
 	public ModelAndView read() {
-		return new ModelAndView("main").addObject("viewHeader", "include/viewHeader.jsp").addObject("viewName", "center/write.jsp").addObject("category", service.getQcano());
+		return new ModelAndView("main").addObject("viewHeader", "include/viewHeader.jsp").addObject("viewName", "center/write.jsp").addObject("category", service.getQcano()	);
 	}
 	//[사업자] QNA작성
 	@PreAuthorize("hasRole('ROLE_MANAGER')")

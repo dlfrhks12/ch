@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script>
 $(function() {
-	// 신고가 많은 글 중 선택한 글을 블록	
+	// 유저목록 중 선택한 글을 블록	
 	$("#block").on("click", function() {
 		var ar = "";
 		$(".username").each(function(idx) {
@@ -26,7 +26,7 @@ $(function() {
 		$form.appendTo($("body")).submit();
 	})
 
-	// 블록한 글 중 선택한 글을 블록 해제
+	// 블록한 유저 중 선택한 글을 블록 해제
 	$("#unblock").on("click", function() {
 		var ar = [];
 		$(".username").each(function(idx) {
@@ -41,7 +41,7 @@ $(function() {
 		$("<input>").attr("type","hidden").attr("name","uUsernames").val(JSON.stringify(ar)).appendTo($form);
 		$("<input>").attr("type","hidden").attr("name","_csrf").val("${_csrf.token}").appendTo($form);
 		console.log()  
-		//$form.appendTo($("body")).submit();
+		$form.appendTo($("body")).submit();
 	})
 })
 </script>

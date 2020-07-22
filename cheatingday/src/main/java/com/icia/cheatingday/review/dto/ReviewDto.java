@@ -21,6 +21,7 @@ public class ReviewDto {
 	@Accessors(chain=true)
 	public static class DtoForList {
 		private Integer rNo; 
+		private String category;
 		private String rContent; 
 		private Integer rStarPoint;
 		private String rWriteTimeStr;
@@ -30,7 +31,8 @@ public class ReviewDto {
 		private String uUsername;
 		private Integer sNum;
 		private String sName;
-		
+		private String menuname;
+		private String sajin;
 	}
 	@Data
 	@AllArgsConstructor

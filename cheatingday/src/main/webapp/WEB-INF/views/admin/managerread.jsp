@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script>
 $(function(){
+	//관리자 승인해주기
 	$("#enabled").on("click", function() {
 		var params = {
 			mNum : $("#mNum").val(),
@@ -20,7 +21,7 @@ $(function(){
 			method: "post",
 			data: params
 		})
-		.done((result)=>{ alert("승인하였습니다"); location.href("/cheatingday/admin/manager_list"); })
+		.done((result)=>{ alert("승인하였습니다"); location.href="/cheatingday/admin/manager_list"; })
 		.fail((result)=>{console.log(result)});
 	});
 })

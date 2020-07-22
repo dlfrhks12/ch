@@ -44,7 +44,7 @@ public class AdminDao {
 		return tpl.selectList("adminMapper.findAllByEnabled");
 	}
 	//[관리자]가입승인
-	public int enabledM(int mNum) {
+	public int enabledM(long mNum) {
 		return tpl.update("adminMapper.enabledM", mNum);
 	}
 	//[관리자]비상용 관리자가입

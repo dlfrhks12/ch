@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.mvc.support.*;
 
-import com.icia.cheatingday.user.entity.*;
 import com.icia.cheatingday.user.service.mvc.*;
 import com.icia.cheatingday.util.editor.*;
 
@@ -31,27 +30,32 @@ public class UserController {
 	
 	// 포인트 리스트
 	@GetMapping("/user/point")
-	public ModelAndView pointList(@RequestParam(defaultValue = "1") int pageno, Principal principal) {
+	public ModelAndView pointList(@RequestParam(defaultValue = "1") int pageno, String uUsername) {
 		return new ModelAndView("main")
-				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/point.jsp")
-				.addObject("page", service.pointList(pageno, principal.getName()));
+				.addObject("page", service.pointList(pageno, uUsername))
+				.addObject("count", service.count(uUsername))
+				.addObject("username",uUsername);
 	}
 	// 리뷰 리스트
 	@GetMapping("/user/reviewlist")
-	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, Principal principal ) {
+	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String uUsername) {
 		return new ModelAndView("main")
-				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/reviewlist.jsp")
-				.addObject("page", service.reviewList(pageno, principal.getName()));
+				.addObject("page", service.reviewList(pageno,uUsername))
+				.addObject("username",uUsername);
 	}
 	// 구매내역 리스트
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user/buylist")
-	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, Principal principal) {
+	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
 		return new ModelAndView("main")
-				.addObject("viewHeader", "include/user_header.jsp")
+				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/buylist.jsp")
-				.addObject("page", service.buyList(pageno, principal.getName()));
+				.addObject("page", service.buyList(pageno, uUsername))
+				.addObject("username", uUsername);
 	}
 	
 	// 내 정보 읽기
@@ -62,7 +66,7 @@ public class UserController {
 			return new ModelAndView("redirect:/user/check_pwd");
 		else 
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/user_header.jsp")
+			.addObject("viewHeader", "include/viewHeader.jsp")
 			.addObject("viewName", "user/mypage.jsp")
 			.addObject("user",service.myPage(principal.getName()));
 	}
@@ -72,7 +76,7 @@ public class UserController {
 	@GetMapping("/user/check_pwd")
 	public ModelAndView checkPwd() {
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/user_header.jsp")
+			.addObject("viewHeader", "include/viewHeader.jsp")
 			.addObject("viewName","user/check_pwd.jsp");
 			
 	}
@@ -90,7 +94,7 @@ public class UserController {
 	@GetMapping("/user/change_pwd")
 	public ModelAndView changePwd() {
 		return new ModelAndView("main")
-			.addObject("viewHeader", "include/user_header.jsp")
+			.addObject("viewHeader", "include/viewHeader.jsp")
 			.addObject("viewName","user/change_pwd.jsp");
 	}
 	// 비밀번호 변경 post
@@ -102,14 +106,6 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	// 회원탈퇴
-	/*
-	 * @DeleteMapping("/user/resign") public String
-	 * resign(SecurityContextLogoutHandler handler, HttpServletRequest request,
-	 * HttpServletResponse response, Authentication authentication) {
-	 * service.resign(authentication.getName()); handler.logout(request, response,
-	 * authentication); return "redirect:/"; }
-	 */
 }
 
 

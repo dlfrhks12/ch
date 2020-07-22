@@ -11,17 +11,26 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>메뉴리스트</title>
+<style>
+
+section { margin-left: 450px; margin-right: 450px;}
+#write {margin-left: 600px;}
+
+
+</style>
 </head>
 <body>
-
+<div style="padding: 40px 0;">
+      <h3><i class="fas fa-utensils">&nbsp;메뉴 관리</i></h3>
+      <br>
 <div>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="60%">
-				<col width="45%">
+				<col width="40%">
 			</colgroup>
 			<thead>
-				<tr>
+				<tr class="table-danger">
 					<th>메뉴이름</th>
 					<th>메뉴가격</th>
 				</tr>
@@ -40,6 +49,6 @@
 	<a href="/cheatingday/manager/menu_write">
 		<button type="button" id="write"  class="btn btn-danger">메뉴추가</button></a>
 	</div>
-	 
+	 </div>
 </body>
 </html>

@@ -12,10 +12,10 @@ public class OrdersDao {
 	private SqlSessionTemplate tpl;
 	
 	public int insert(List<CartEntity> cartList) {
-		return tpl.insert("cartMapper.insert", cartList);
+		return tpl.insert("cartMapper.insert",cartList);
 	}
 	
-	public List<Orders> findAll() {
-		return tpl.selectList("cartMapper.findAll");
+	public List<Orders> findAll(String uUsername) {
+		return tpl.selectList("cartMapper.findAll", uUsername);
 	}
 }

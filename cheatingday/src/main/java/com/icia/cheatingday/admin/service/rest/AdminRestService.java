@@ -17,7 +17,7 @@ public class AdminRestService {
 	private AdminDao adao;
 
 	//[관리자]신고된 댓글 삭제
-	public void deleteReport(Integer rNo) {
+	public void deleteReport(int rNo) {
 		Review review = rdao.findByRno(rNo);
 		if(review==null)
 			throw new JobFailException("해당 리뷰를 찾을 수 없습니다");
@@ -25,7 +25,7 @@ public class AdminRestService {
 		
 	}
 	//[관리자]사업자 가입승인
-	public int enabledM(int mNum) {
+	public int enabledM(long mNum) {
 		return adao.enabledM(mNum);
 	}
 	

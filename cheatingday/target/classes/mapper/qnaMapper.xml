@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qnaMapper">
+	<!-- 페이징 카운트 -->
 	<select id="count" resultType="int">
 		select count(*) from qna
 		<where>
 			<if test="value!=null">q_cano=#{value}</if>
 		</where>
 	</select>
+	<!-- 카테고리별 글목록-->
 	<select id="findAllByqCano" resultType="qna">
 		<![CDATA[
 		select * from
@@ -16,6 +18,7 @@
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
+	<!-- 글 목록 -->
 	<select id="findAll" resultType="qna">
 		<![CDATA[
 		select * from
@@ -25,10 +28,12 @@
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
+	<!-- 글 읽기 -->
 	<select id="findById" resultType="qna">
 		select
 		q_no qNo,q_title qTitle,q_write_time qWriteTime,q_content qContent,q_iscomment qIscomment, m_num mNum, q_cano qCano from qna where q_no=#{qNo} and rownum=1
 	</select>
+	<!-- 글 작성 -->
 	<insert id="insert">
 		<selectKey keyProperty="qNo" resultType="int" order="BEFORE">
 			select
@@ -39,6 +44,7 @@
 		values(#{qNo},#{qTitle},#{qContent},sysdate,0,#{mNum},#{qCano})
 	</insert>
 
+	<!-- 글 변경 -->
 	<update id="update">
 		update qna
 		<trim suffixOverrides="," prefix="set">
@@ -50,6 +56,7 @@
 		where q_no=#{qNo} and rownum=1
 	</update>
  
+ 	<!-- 글 삭제 -->
 	<delete id="delete">
 		delete from qna where q_no=#{qNo} and rownum=1
 	</delete>

@@ -12,6 +12,15 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <title>음식점 정보</title>
+<style>
+
+section { margin-left: 600px;}
+#update {margin-left: 300px; margin-top: 30px;}
+#delete { margin-top: 30px;}
+textarea {width:370px; height: 200px;   overflow:scroll;}
+
+
+</style>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script>
@@ -127,29 +136,28 @@ $("#SSajin").on("change",loadImage);
 </script>
 </head>
 <body>
+<div class='card'>
   <div>
-	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
+	 <img id="show_storesajin" height="300px;" width="320px;" src="${storeRead.SSajin}">
 	</div>
 	<div>
 		<input type="file" name="sajin" id="sajin">
-	</div>
+	</div><br>
 	
 	<div>
 	<!--음식점 고유번호 :<input type="text" name="SNum" id="SNum" value="${storeRead.SNum}">-->
-	 매장 고유번호: <span id="SNum">${storeRead.SNum}</span>
-	</div>
+	 매장 고유번호: <span id="SNum">${storeRead.SNum} 번</span>
+	</div><br>
 	
-	<div>
-	매장정보: <input type="text" name="SInfo" id="SInfo" value="${storeRead.SInfo}">
-	</div>
+	
 	
 	<div>
 	상호명: <input type="text" name="SName" id="SName" value="${storeRead.SName}">
-	</div>
+	</div><br>
 	
 	<div>
 	매장 전화번호: <input type="text" name="STel" id="STel" value="${storeRead.STel}">
-	</div>
+	</div><br>
 	
 	<div>
 	주소: <!--  <input type="text" name="SAddress" id="SAddress" value="${storeRead.SAddress}">-->
@@ -157,24 +165,36 @@ $("#SSajin").on("change",loadImage);
 		 <button type="button"  class="btn btn-danger" onClick="openDaumZipAddress();" >주소찾기</button> <br /> 
          <input name="sAddress" type="text" id="address"  style="width: 240px;" readonly /> 
          <input name="sAddress" type="text" id="address_etc"  style="width: 200px;" />
-	</div>
+	</div><br>
 	
 	<!-- 음식점 카테고리번호에 해당하는 내용을 읽어와야해  -->
 	<div>
 	<!-- 카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">  -->
-	카테고리:<span id="foodcategory">${storeRead.foodCategory}</span>
+	카테고리:&nbsp;<span id="foodcategory">${storeRead.foodCategory}</span>
+	</div> <br>
+	
+	<div>
+	리뷰수:&nbsp;<span id="SReviewCnt">${storeRead.SReviewCnt} 개</span>
+	</div><br>
+	
+	<div>
+	별점평균:
+	<c:forEach begin="1" end="${storeRead.SStarPoint}">
+         <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
+        </c:forEach>
+         <c:forEach begin="${storeRead.SStarPoint+1}" end="5">
+          <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-empty.svg">
+    </c:forEach> / ${storeRead.SStarPoint}
+	</div><br>
+	
+	
+	<div><span id="info">매장정보:</span>
+	<textarea name="SInfo" id="SInfo" >${storeRead.SInfo}</textarea>
+	</div>
 	</div> 
-	
-	<div>
-	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt}</span>
-	</div>
-	
-	<div>
-	별점평균:<span id="SStarPoint">${storeRead.SStarPoint}</span>
-	</div>
-	
 	<button type="button"  class="btn btn-danger" id="update">변경하기</button>
-	<button type="button"  class="btn btn-danger" id="delete">매장 삭제하기</button>  
+	<button type="button"  class="btn btn-danger" id="delete">매장 삭제하기</button> 
+	
 </body>
 </body>
 </html>

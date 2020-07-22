@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminMapper">
+	<!-- 관리자 찾기 -->
 	<select id="findById" resultType="String">
 		select a_irum aIrum from admin
 		where a_username=#{aUsername} and rownum=1
 	</select>
+	<!-- 유저목록 -->
 	<select id="findAllUser" resultType="user">
 	<![CDATA[
 				select u_username uUsername, u_irum uIrum, u_tel uTel, u_email UEmail, u_address uAddress, u_password uPassword, u_enabled uEnabled,
 				u_joinDate uJoinDate, u_point uPoint, u_login_fail_cnt uLoginFailCnt from users where u_enabled=1
 		 ]]>
 	</select>
-
+	<!-- 블록하기  -->
 	<update id="blockAll">
 		update users set u_enabled=0 where u_username in
 		<foreach collection="list" item="item" index="index"
@@ -19,7 +21,7 @@
 			#{item}
 		</foreach>
 	</update>
-
+	<!-- 블록 리스트 출력 -->
 	<select id="findAllBlock" resultType="user">
 	<![CDATA[
 		select u_username uUsername, u_irum uIrum, u_tel uTel, u_email UEmail, u_address uAddress, u_password uPassword, u_enabled uEnabled,
@@ -27,6 +29,7 @@
 		where u_enabled=0
 	]]>
 	</select>
+	<!-- 블록해제 -->
 	<update id="unblockAll">
 		update users set u_enabled=1 where u_username in
 		<foreach collection="list" item="item" index="index"
@@ -34,6 +37,7 @@
 			#{item}
 		</foreach>
 	</update>
+	<!-- 가입신청목록 -->
 	<select id="findAllByEnabled" resultType="manager">
 	<![CDATA[
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
@@ -41,9 +45,11 @@
 		where m_enabled=0
 	]]>
 	</select>
+	<!-- 가입신청 -->
 	<update id="enabledM">
 		update manager set m_enabled=1 where m_num=#{mNum} and rownum=1
 	</update>
+	<!-- 비상용 관리자 가입 -->
 	<insert id="insert">
 		insert into admin(a_username, a_password, a_enabled,
 		a_irum)

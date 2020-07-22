@@ -6,7 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
+<!-- 로그인여부 확인 및 아이디꺼내오기 -->
 <sec:authorize access="isAuthenticated()">
 	<script>
 		var isLogin = true;
@@ -19,11 +23,39 @@
 		var loginId = undefined;
 	</script>
 </sec:authorize>
+<style>
+	#lower_left li{
+		display: inline-block;
+		padding : 0 10px;
+	}
+	#lower_left li:nth-of-type(2n){  /* #lower_left 하위의 li 중 짝수번째인 것에 적용 */
+		border-left: 1px solid gray;
+		border-right: 1px solid gray;
+	}
+	#lower_right li {
+		display: inline-block;
+		padding : 0 5px;
+		font-size: 0.9em;
+	}
+	#lower_left {
+		float: left;
+	}
+	#lower_right {
+		float: right;
+	}
+	#lower {
+		overflow: hidden;
+	}
+	#title_div div {
+		margin: 5px 0 5px;
+	}
+
+</style>
 <script>
 $(function() {
+	//공지 불러오기
 	var notice = ${notice};
 	console.log(notice);
-	// 자바객체 -> json -> 자바스크립트 객체
 	$("#nTitle").val(notice.ntitle);
 	$("#aUsername").val(notice.ausername);
 	$("#aIrum").text(notice.airum);
@@ -43,6 +75,7 @@ $(function() {
 		$("#btn_area").show();
 		$("#content").prop("readonly", false);
 	} 
+	//공지 삭제
 	$("#delete").on("click", function(){
 		var params = {
 			nNo : notice.nno,
@@ -58,6 +91,7 @@ $(function() {
 		.fail((result)=>{console.log(result)});
 
 	})
+	//공지 변경
 	$("#update").on("click", function(){
 		var params = {
 			nNo : notice.nno,
@@ -79,21 +113,21 @@ $(function() {
 </script>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;">
 	<div>
 		<div id="title_div">
 			<div id="upper">
-				<input type="text" id="nTitle" disabled="disabled" style="min-width: 600px;">
+				<input type="text" id="nTitle" disabled="disabled" style="min-width: 600px; ">
 				<input type="hidden" id="aUsername">
-				<span style="text-align: " id="aIrum"></span>
 			</div>
 			<div id="lower">
 				<ul id="lower_left">
+					<li><span style="text-align: " id="aIrum"></span></li>
 					<li><span id="write_time"></span></li>
 				</ul>
 				<ul id="lower_right">
   						<li>
-						<button type="button" class="btn btn-success" disabled="disabled">
+						<button type="button" class="btn btn-info" disabled="disabled">
 							조회수 <span class="badge" id="read_cnt"></span>
 						</button></li>        	
 				</ul>
@@ -104,12 +138,13 @@ $(function() {
 				<div class="form-control" id="content"></div>
 			</div>
 			<div id="btn_area">
-				<button id="update" class="btn btn-info">변경</button>
-				<button id="delete" class="btn btn-success">삭제</button>
+				<button id="update" class="btn btn-danger">변경</button>
+				<button id="delete" class="btn btn-danger">삭제</button>
 			</div>
 		</div>
 		</div>
 		<hr>
+		<button class="btn btn-danger" onclick="location.href='/cheatingday/notice/list';">공지목록</button>
 </div>
 </body>
 </html>

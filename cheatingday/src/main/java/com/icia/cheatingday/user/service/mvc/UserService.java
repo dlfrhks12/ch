@@ -147,6 +147,7 @@ public class UserService {
 			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
 			dto.setOOrderTimeStr(buylist.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+			dto.setMenuname(detailorderDao.findByONo(dto.getONo()).getDMenuName());
 			dto.setFavCheck(favDao.findFavoriteById(dto.getUUSername(),dto.getSNum()));
 			dtoList.add(dto);
 		}

@@ -15,6 +15,12 @@
 .first {
 	text-align: center;
 }
+.modal-dialog {
+	position: absolute;
+	width: 200px;
+	top: 35%;
+	left: 40%;
+}
 </style>
 <script>
 $(function() {
@@ -47,10 +53,14 @@ $(function() {
 			}
 		})
 	})
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 });
 </script>
 </head>
 <body>
+${page.blist}
 	<div>
 	<div class="container">
 	<div style="padding: 40px 0;">
@@ -75,10 +85,8 @@ $(function() {
 			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
-						<td>${buylist.SName}</td>
-						<td><a class='writer' data-toggle="modal"
-							data-target="#myModal" data-writer="${buylist.SName}"
-							onclick="openWin()">${buylist.SName}</a></td>
+						<td><a href = "/cheatingday/review/write?sNum=${buylist.SNum}">${buylist.SName}</a></td>
+						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.menuname}</a></td>
 						<td>${buylist.OTotal}</td>
 						<td>${buylist.OOrderTimeStr}</td>
 						<c:if test="${buylist.favCheck eq false }">
@@ -124,6 +132,28 @@ $(function() {
 	</div>
 	</div>
 	</div>
-	
+<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">구매내역 상세정보</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h4>page</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal" style="background-color:red;">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

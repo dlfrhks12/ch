@@ -19,5 +19,6 @@ public class BuylistDto {
 	private int sNum;
 	private String sName;
 	private Boolean favCheck;
+	private String menuname;
 	}
 }

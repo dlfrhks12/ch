@@ -21,7 +21,7 @@ public class MReviewOrderController {
 	
 	///////////////////////////////////////주문//////////////////////////////////////
 	
-	
+	/*
 	//주문거절시 삭제
 	@DeleteMapping("manager/order_delete")
 	public ResponseEntity<?> delete(int oNo){
@@ -56,7 +56,7 @@ public class MReviewOrderController {
 				  .addObject("orderRead",service.orderRead(oNo)).addObject("oNo", oNo);
 				
 	}
-	
+	*/
 	/////////////////////////////////////////////////리뷰//////////////////////////////////////////////////////////
 	  //리뷰신고
 	 @PatchMapping("manager/reviewRepoart")

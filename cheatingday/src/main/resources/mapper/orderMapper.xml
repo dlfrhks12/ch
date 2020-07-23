@@ -1,107 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderMapper">
-<!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum --> 
 
-	<!-- 예지   -->
-	<!-- 승인거절시 삭제 -->
-	<delete id="orderDeleteByoNo">
-		delete from orders where o_no=#{oNo}
-	</delete>
-	
-	<delete id="orderDetailDelete">
-		delete from detailorder where o_no=#{oNo}
-	</delete>
-	
-	
-	<!-- 주문승인시 체크가1로 변경되는 -->
-	<update id="checkUpdate"> 
-		update orders set o_check=1 where o_no=#{oNo}
-	</update>
-	
-	<!-- sNum으로 페이징 하려고 조건 만들어줌 -->
-	<select id="countBysNum" resultType="int">
-		select count(*) from orders where s_num=#{sNum}
+   <!-- 일관 -->
+   <update id="insertOrderAll" parameterType="order">
+      <foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+         into orders (order_no, menuno, u_username, cart_name, cart_price, cart_day, 
+                        cart_count, image, cart_jumunMoney, s_num) 
+          values(#{item.orderNo}, #{item.menuno},#{item.uUsername}, #{item.cartName}, #{item.cartPrice}, sysdate, 
+                #{item.cartCount}, #{item.image}, #{item.cartJumunMoney}, #{item.sNum})
+      </foreach>
+   </update>
+   
+   
+   <select id="findAlls" resultType="order">
+      select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
+             cart_count cartCount, image, cart_jumunMoney cartJumunMoney
+      from orders
+   </select>
+	<select id="findByONo" resultType="order">
+		select d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
 	</select>
-	
-	  <!-- 해당매장 주문 리스트   -->
-  	 <select id="orderListBySNum" resultType="order">
-		select o_no oNo, o_total oTotal, o_order_time oOrderTime, u_username uUSername,
-		o_check oCheck, s_num sNum from orders where s_num=#{sNum} and o_check=0 
-  	 </select>  
-	
-	<!-- 주문리스트 출력시 주문제목보이기  -->
-	<select id="ordercheck" resultType="detailorder">
-		select d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName,
-		o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
-	</select>
-	
-	
-	<!-- 해당 주문번호 내용 읽기  -->
-	<select id="orderReadByONo" resultType="detailorder">
-		select d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName,
-		o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} 
-	</select>
-	
-	<!-- 주문읽을때 제목 만들기 -->
-	<select id="countByOno" resultType="int">
-		select count(*) from detailorder where o_no=#{oNo} 
-	</select>
-
-
-	<!-- 1. 장바구니 추가 -->
-	<insert id="orderInsert">
-		<selectKey keyProperty="dNo" resultType="int" order="BEFORE">
-			select detailorder_seq.nextval from dual
-		</selectKey>
-		insert into detailorder(d_no, d_sal, d_menu_cnt, d_menu_name,
-								o_no, menuno, u_username)
-		values(#{dNo}, #{dSal},#{dMenuCnt}, #{dMenuName},
-			   #{oNo}, #{menuno}, #{uUserName})	
-	</insert>
-	
-	<!-- 2. 장바구니 목록 -->
-	<select id="order" resultType="order">
-		select d_no dNo, 
-			   u_username uUsername,
-			   menuno menuno,
-			   m.menuname menuname,
-			   d_menu_cnt dMenuCnt,
-			   menusal menusal,
-			   d_sal
-		from detailorder
-		where u_username = #{uUsername} and
-			  menuno = #{menuno}
-		order by d_no
-	</select>
-	
-	<!-- 3. 장바구니 전체 금액 orderAllSum -->
-	<select id="orderAllSum" resultType="int">
-		select nvl(sum(menusal * d_menu_cnt), 0) money
-		from detailorder
-		where menuno = #{menuno} and
-			  u_username  = #{uUsername}
-	</select>
-	
-	<!-- 4. 장바구니 수정 -->
-	<update id="orderUpdate">
-		update detailorder
-		set d_menu_cnt = #{dMenuCnt}
-		where u_username = #{uUsername} adn
-			  d_no = #{dno}
-	</update>
-	
-	<!-- 5. 장바구니 삭제 -->
-	<delete id="orderDelete">
-		delete from detailorder
-		where d_no = #{dNo}
-	</delete>
-	<select id="findAll" resultType="order">
-		select s_num sNum from orders where u_username = #{uUsername} 
-	</select>
-	
+   <!-- 5. 장바구니 삭제 -->
+   <delete id="orderDelete">
+      delete from detailorder
+      where d_no = #{dNo}
+   </delete>
+   <select id="findAll" resultType="order">
+      select s_num sNum from orders where u_username = #{uUsername} 
+   </select>
+   
 </mapper>
-
 
 
 

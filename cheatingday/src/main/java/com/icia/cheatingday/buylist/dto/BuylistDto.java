@@ -20,4 +20,5 @@ public class BuylistDto {
 	private String sName;
 	private Boolean favCheck;
 	}
+	
 }

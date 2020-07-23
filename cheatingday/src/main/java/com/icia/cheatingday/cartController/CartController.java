@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.icia.cheatingday.cart.CartEntity;
 import com.icia.cheatingday.cart.CartService;
+import com.icia.cheatingday.cart.OrderDetails;
+import com.icia.cheatingday.cart.Orders;
+import com.icia.cheatingday.cart.ProductEntity;
+import com.icia.cheatingday.cart.ProductService;
+import com.icia.cheatingday.exception.CartFailException;
 import com.icia.cheatingday.manager.entity.MenuEntity;
 import com.icia.cheatingday.manager.service.ManagerService;
 import com.icia.cheatingday.manager.service.StoreService;
@@ -30,6 +36,8 @@ import com.icia.cheatingday.manager.service.StoreService;
 public class CartController {
 	@Autowired
 	private CartService service;
+	@Autowired
+	private ProductService pro;
 	private ObjectMapper objectMapper = new ObjectMapper();
 	@Autowired
 	private StoreService storeService;
@@ -52,22 +60,22 @@ public class CartController {
 	}
 	
 	
-	/*// 메뉴 리스트 출력
-	@GetMapping("/cart/cartlist")
+	// 메뉴 리스트 출력
+	@GetMapping("/cart/cartlist2")
 	public ModelAndView list() throws JsonProcessingException {
 		return new ModelAndView("main")
-				.addObject("viewName", "order/orderPage.jsp")
+				.addObject("viewName", "cart/cartlist2.jsp")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("cartlist", service.list());
-	}*/
+				.addObject("cartlist", pro.list());
+	}
 	
 	
 	// 장바구니 리스트출력
-	@GetMapping("/cart/cartview")
+	@GetMapping("/cart/cartview2")
 	public ModelAndView view()throws JsonProcessingException{
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/noheader.jsp")
-				.addObject("viewName", "cart/cartview.jsp");
+				.addObject("viewName", "cart/cartview2.jsp");
 			
 	}
 	
@@ -86,21 +94,21 @@ public class CartController {
 	// 장바구니 담기 insert
 	@PostMapping("/cart/add")
 	public ResponseEntity<?> insert(Integer menuno, HttpSession session, Principal prin) {
-		System.out.println("컨트롤러 insert 시작 +++++++++++++++++++++++++");
-		System.out.println("컨트롤러 insert 메뉴 번호 : " + menuno);
-		System.out.println("컨트롤러 insert 세션 : " + session);
+		//System.out.println("컨트롤러 insert 시작 +++++++++++++++++++++++++");
+		//System.out.println("컨트롤러 insert 메뉴 번호 : " + menuno);
+		//System.out.println("컨트롤러 insert 세션 : " + session);
 		
 		List<CartEntity> cartList = service.add(session, menuno, prin.getName());
-		System.out.println("컨트롤러 insert 카트리스트 : " + cartList);
+		//System.out.println("컨트롤러 insert 카트리스트 : " + cartList);
 		
 		session.setAttribute("cartList", cartList);
-		System.out.println("컨트롤러 insert 마지막 세션 : " + session);
-		System.out.println("컨트롤러 insert 마지막 카트리스트 : " + cartList);
-		System.out.println("컨트롤러 insert 끝 -----------------------------");
+		//System.out.println("컨트롤러 insert 마지막 세션 : " + session);
+		//System.out.println("컨트롤러 insert 마지막 카트리스트 : " + cartList);
+		//System.out.println("컨트롤러 insert 끝 -----------------------------");
 		
 		return ResponseEntity.ok(cartList);
 	}
-	
+
 	// 개수 증가 감소
 	@PatchMapping("/cart/change")
 	public ResponseEntity<?> change(HttpSession session, boolean isIncrease, Integer menuno) {
@@ -131,16 +139,36 @@ public class CartController {
 		List<CartEntity> cartList = service.multipleDelete(session, list);
 		return ResponseEntity.ok(cartList);
 	}
-	
-	// 장바구니 담기 insert
-	@PostMapping("/cart/orders")
-	public ResponseEntity<?> orderinsert(HttpSession session, Principal prin) {
-
-		int cartList = service.insert(session, prin.getName());
-
-		session.setAttribute("cartList", cartList);
-
-
-		return ResponseEntity.ok(cartList);
+	//////////////////////////////////////////////////////////
+	// 임시 장바구니 주문 상세
+	@GetMapping("/cart/orders")
+	public ModelAndView oDetails()throws JsonProcessingException{
+		return new ModelAndView("main")
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewName", "cart/orders.jsp")
+				.addObject("orders", service.findAll());
+			
 	}
+	
+	@PostMapping("/cart/order")
+	public ResponseEntity<?> insert(HttpSession session) {
+		return ResponseEntity.ok(service.insertAll(session));
+	}
+	
+	///////////////////////////////////////////////////////////////////
+	// 최종 주문 내용
+	@GetMapping("/cart/finalorders")
+	public ModelAndView orders()throws JsonProcessingException{
+		return new ModelAndView("main")
+				.addObject("viewHeader", "include/noheader.jsp")
+				.addObject("viewName", "cart/finalorder.jsp")
+				.addObject("oorders", service.findAlls());
+			
+	}
+	
+	@PostMapping("/cart/finalorder")
+	public ResponseEntity<?> inserts(HttpServletRequest req) {
+		return ResponseEntity.ok(service.insertOrderAll(req));
+	}
+
 }

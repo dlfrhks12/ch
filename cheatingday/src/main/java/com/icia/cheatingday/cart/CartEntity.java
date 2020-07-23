@@ -2,6 +2,9 @@ package com.icia.cheatingday.cart;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,15 +38,17 @@ public class CartEntity implements Serializable {
 	private LocalDateTime cartDay;
 	private int cartCount;
 	private String image;
-	private int sNum;
+	//private int sNum;
 	private int cartJumunMoney;
-	
+	//private int total;
 	public void increase() {
 		cartCount++;
 		cartJumunMoney = cartCount * cartPrice;
+		//total += cartPrice;
 	}
 	public void decrease() {
 		cartCount--;
 		cartJumunMoney = cartCount * cartPrice;
+		//total -= cartPrice;
 	}
 }

@@ -11,11 +11,12 @@ public class OrdersDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 	
-	public int insert(List<CartEntity> cartList) {
-		return tpl.insert("cartMapper.insert",cartList);
+	public int insertOrderAll(List<Orders> orders) {
+		return tpl.insert("orderMapper.insertOrderAll",orders);
 	}
 	
-	public List<Orders> findAll(String uUsername) {
-		return tpl.selectList("cartMapper.findAll", uUsername);
+	// 주문상세 출력
+	public List<Orders> findAlls() {
+		return tpl.selectList("orderMapper.findAlls");
 	}
 }

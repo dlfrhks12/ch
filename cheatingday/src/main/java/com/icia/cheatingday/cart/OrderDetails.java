@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Builder
 @Accessors(chain=true)
-public class Orders implements Serializable {
+public class OrderDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int orderNo;
@@ -25,6 +25,7 @@ public class Orders implements Serializable {
 	private LocalDateTime cartDay;
 	private int cartCount;
 	private String image;
-	private int cartJumunMoney;
 	private int sNum;
+	private int cartJumunMoney;
+	//private int total;
 }

@@ -15,7 +15,7 @@
     table {
         height: 100px;
         width: 100px;
-        margin: auto;
+        margin: 0 auto;
         text-align: center;
     }
     table td {

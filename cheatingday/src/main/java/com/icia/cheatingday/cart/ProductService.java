@@ -7,13 +7,12 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderService {
+public class ProductService {
 	@Inject
-	private OrdersDao dao;
+	private ProductDao dao;
 	
-	public List<Orders> read(String uUsername) {
-		return dao.findAll(uUsername);
+	public List<ProductEntity> list() {
+		return dao.findAll();
 	}
-	
 	
 }

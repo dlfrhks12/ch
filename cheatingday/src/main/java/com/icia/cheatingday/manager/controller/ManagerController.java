@@ -61,23 +61,8 @@ public class ManagerController {
 		return "redirect:/manager/menu_list";
 	}
 	 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	//입점신청 페이지로 이동
-	@GetMapping("/manager/store_apply")
-	public ModelAndView storeApplyInsert() {
-		return new ModelAndView("main").addObject("viewName", "manager/storeapply.jsp")
-				.addObject("viewHeader", "include/viewHeader.jsp");
-	}
+
 	
-	//입점신청
-	@PostMapping("/manager/store_apply")
-	public String storeApplyInsert(ManagerDto.DtoForWrite dto, RedirectAttributes ra) {
-		service.write(dto);
-		ra.addFlashAttribute("msg", "입점신청이 성공적으로 완료되었습니다. ??그 후엔 어떻게되지?");
-		return "redirect:/system/msg";
-	}
-	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//내 정보 읽기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/manager/information")

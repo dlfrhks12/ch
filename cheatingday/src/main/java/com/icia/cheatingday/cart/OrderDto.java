@@ -1,6 +1,5 @@
 package com.icia.cheatingday.cart;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -9,14 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Accessors(chain=true)
-public class Orders implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+
+public class OrderDto {
+	private OrderDto() {}
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Builder
+	@Accessors(chain=true)
+	public static class DtoForList {
 	private int orderNo;
 	private int menuno;
 	private String uUsername;
@@ -27,4 +27,6 @@ public class Orders implements Serializable {
 	private String image;
 	private int cartJumunMoney;
 	private int sNum;
+	private Boolean OCheck;
+	}
 }

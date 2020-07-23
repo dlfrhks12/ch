@@ -14,9 +14,7 @@ import com.icia.cheatingday.manager.dao.ReviewCheckDao;
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.ManagerDto;
 import com.icia.cheatingday.manager.entity.Store;
-import com.icia.cheatingday.order.dao.OrderDao;
-import com.icia.cheatingday.order.entity.DetailorderEntity;
-import com.icia.cheatingday.order.entity.OrderEntity;
+
 import com.icia.cheatingday.review.dao.ReviewDao;
 import com.icia.cheatingday.review.entity.Review;
 import com.icia.cheatingday.util.PagingUtil;
@@ -35,8 +33,6 @@ public class MReviewOrderService {
 	@Autowired
 	private ReviewCheckDao reviewCheckDao;
 	
-	@Autowired
-	private OrderDao orderDao;
 	
 	///////////////////////////////////////////////////리뷰////////////////////////////////////////////////////////
 	//사업자 리뷰 신고--신고는 한번만 할수있게 막아.
@@ -89,7 +85,7 @@ public class MReviewOrderService {
 	}
 //////////////////////////////////////////////////주문/////////////////////////////////////////////////////
 	
-	
+	/*
 	 // 해당매장 주문 리스트 - 페이징 
 	public Page orderList (int pageno, String username) {
 		int sNum = storeDao.findBymUsername(username).getSNum();
@@ -156,5 +152,5 @@ public class MReviewOrderService {
 		orderDao.orderDetailDelete(oNo);
 		
 	}
-	
+	*/
 }

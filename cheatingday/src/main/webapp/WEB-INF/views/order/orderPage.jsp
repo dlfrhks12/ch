@@ -79,24 +79,28 @@ $(function(){
 
 ///////////////////////////////////////////////////일관///////////////////////////////
 
-	// 3. 장바구니에 추가
-	$(".cart").on("click", function() {
-		var params = {
-			menuno: $(this).attr("data-menuno"),
-			_csrf: "${_csrf.token}"
-		}
-		$.ajax({ 
-			url: "/cheatingday/cart/add",
-			method: "post",
-			data: params,
-		}).done(()=>{
-			var choice = confirm("상품을 장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
-			if(choice==true)
-				location.href = "/cheatingday/cart/cartview"
-		}).fail((xhr)=>{
-			alert(xhr.responseText);
-		})
-	});
+	
+ 	$(function() {
+
+ 		// 3. 장바구니에 추가
+ 		$(".cart").on("click", function() {
+ 			var params = {
+ 				menuno: $(this).attr("data-menuno"),
+ 				_csrf: "${_csrf.token}"
+ 			}
+ 			$.ajax({ 
+ 				url: "/cheatingday/cart/add",
+ 				method: "post",
+ 				data: params,
+ 			}).done(()=>{
+ 				var choice = confirm("상품을 장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
+ 				if(choice==true)
+ 					location.href = "/cheatingday/cart/cartview2"
+ 			}).fail((xhr)=>{
+ 				alert(xhr.responseText); 
+ 			})
+ 		});
+ 	});
  	
 })
 

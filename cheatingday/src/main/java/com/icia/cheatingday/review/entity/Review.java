@@ -13,6 +13,7 @@ import lombok.experimental.*;
 public class Review {
 	private Integer rNo; 
 	private String rContent; 
+	private String rTitle;
 	private Integer rStarPoint;
 	private LocalDateTime rWriteTime;
 	private int rReport;

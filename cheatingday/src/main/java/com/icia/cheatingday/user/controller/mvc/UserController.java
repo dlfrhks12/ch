@@ -39,7 +39,7 @@ public class UserController {
 				.addObject("username",uUsername);
 	}
 	// 리뷰 리스트
-	@GetMapping("/user/reviewlist")
+	/*@GetMapping("/user/reviewlist")
 	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String uUsername, Integer rNo) {
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/viewHeader.jsp")
@@ -48,7 +48,7 @@ public class UserController {
 				
 				.addObject("username",uUsername);
 		
-	}
+	}*/
 	
 	// 구매내역 리스트
 	

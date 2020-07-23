@@ -9,16 +9,30 @@
 <style>
 	
 	#wrap div { 
-		display: inline-block;
+		display: inline-block; font-size: 17px;
+	}
+	
+	section{
+		margin-left: 400px; margin-right: 350px; margin-top: 50px;
 	}
 	
 	#storeInfo {
-		
+		border: 1px solid #e3e1da; width: 1000px;
 	}
 	
-	#menuInfo {
+	#menuInfo{
+		margin-top: 50px;
+	 }
 	
+	#buy {
+		 margin-top: 30px; margin-left: 400px;
 	}
+	
+	#SName {margin: 40px; }
+	
+	#menuInfo{ margin-left: 50px;
+	}
+	
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -38,7 +52,6 @@ function loadImage(){
 	return true;
 	
 }
-
 
 //다음 지도API
 function openDaumZipAddress() {
@@ -91,67 +104,92 @@ $(function(){
 </head>
 <body>
 
-<div style="width:1150; min-height: 500px;">
+
 <div id="wrap">
 <div id="storeInfo">
-
-	 <div>
-	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
+	<br>
+	<div>
+	 &ensp;<span id="SName" style="font-size: 26px;  font-weight: bold">${storeRead.SName}</span> 
 	</div>
+	<br>
+	<hr>
+	<br>
 	
-	
-	<%-- <div>
-	매장정보: <span id="SInfo">${storeRead.SInfo}</span>
-	</div> --%>
+	<table>
+	<tr>
+	<td>
+	<div>
+	 <img id="show_storesajin" height="300px;" width="320px;"  style="margin-left: 60px; margin-right: 20px;" src="${storeRead.SSajin}">
+	</div>
+	</td>
+	<td>
+	<div>
+	<c:forEach begin="1" end="${storeRead.SStarPoint}">
+       <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
+         </c:forEach>
+          <c:forEach begin="${storeRead.SStarPoint}" end="5">
+        <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-empty.svg">
+         </c:forEach>
+         
+         <span id="SStarPoint"> / ${storeRead.SStarPoint}</span>
+         
+	</div><br><br>
 	
 	<div>
-	상호명: <span id="SName">${storeRead.SName}</span>
-	</div>
-	
-	<div>
-	매장 전화번호: <span id="STel">${storeRead.STel}</span>
-	</div>
+	전화번호 : <span id="STel">${storeRead.STel}</span>
+	</div><br><br>
 	
 	<div>
          주소: <span>${storeRead.SAddress}</span>
-	</div>
+	</div><br><br>
 	
 	<!-- 음식점 카테고리번호에 해당하는 내용을 읽어와야해  -->
 	<div>
 	<!-- 카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">  -->
 	카테고리:<span id="foodcategory">${storeRead.foodCategory}</span>
-	</div> 
+	</div> <br><br>
 	
 	<div>
 	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt}</span>
 	</div>
 	
-	<div>
-	별점평균:<span id="SStarPoint">${storeRead.SStarPoint}</span>
-	</div>
-</div>
+	</td>
+	</tr>
+	</table>
+	
+	<div >
+	<textarea rows="5" cols="107" style="overflow: hidden; background-color: white; margin-left: 60px; margin-top: 20px; font-size: 17px;" disabled="disabled" id="SInfo">${storeRead.SInfo}</textarea>
+</div>	
+	
+	
 
 <div id="menuInfo">
-
-	<a href="/cheatingday/cart/cartview">장바구니로</a><br>
+	<div style="margin-bottom: 30px;">
 	<c:forEach items="${cartlist}" var="product" varStatus="status">
-		<div style="width: 176px; margin-right: 25px;">
-			<img src="${product.menusajin}" width="175px">
+		<div class="card"   style="width: 200px; margin: 10px;  text-align: center;">
+			<img src="${product.menusajin}" width="200px" height="150px">
 			<div>
-				<span>${product.menusal}원</span>
-				<span style="font-size: 0.75em;">${product.menuname}</span>
+				<span style="font-size: 1.2em;">${product.menuname}</span>
+				<br>
+				<span style="font-size: 1.3em;">${product.menusal}원</span>
+				
 			</div>
-			<div>
-				<button class="cart" data-menuno="${product.menuno}">장바구니 담기</button>
-			</div>
+			<span>
+				<button style="margin-bottom: 15px; margin-top: 10px;" class="cart btn btn-danger" data-menuno="${product.menuno}"><i class="fas fa-shopping-cart">&nbsp;장바구니 담기</i></button>
+			</span>
 		</div>
 	</c:forEach>
-	
-</div>
-
-
+	</div>
 	</div>
 </div>
+
+
+</div>
+	<div style="margin-bottom: 50px;">
+	<form action="/cheatingday/cart/cartview" method="get">
+	<button style="font-size: 17px; font-weight: bold;  width: 200px;"  id="buy" class="cart btn btn-danger">장바구니로 이동<br></button><br>
+	</form>
+	</div>
 
 
 

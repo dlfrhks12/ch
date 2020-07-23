@@ -26,6 +26,7 @@ public class NoticeRestService {
 	private ObjectMapper objectmapper;
 	Pattern ckImagePattern = Pattern.compile("src=\".+\"\\s");
 	
+	//[관리자]  공지삭제
 	public void deleteNotice(Integer nNo, String aUsername) {
 		Notice notice = dao.findById(nNo);
 		if(notice==null)
@@ -45,7 +46,7 @@ public class NoticeRestService {
 		}
 		dao.delete(nNo);
 	}
-
+	//[관리자] 공지변경
 	public void updateNotice(Notice notice, String aUsername) {
 		if(notice.getNNo()==null)
 			throw new JobFailException("공지를 찾을 수 없습니다");
@@ -53,6 +54,7 @@ public class NoticeRestService {
 			throw new UserNotFoundException();
 		dao.update(notice);
 	}
+	//ck업로더
 	public String saveCkImage(MultipartFile upload) throws IOException {
 		Map<String,String> map = new HashMap<String, String>();
 		if(upload!=null) {

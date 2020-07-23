@@ -55,7 +55,7 @@ $(function() {
                  
                  <!-- 일반회원(ROLE_USER)이 로그인 했을 때 보여줄 메뉴 -->
                  <sec:authorize access="hasRole('ROLE_USER')">
-                    <a class="fas fa-user-circle fa-3x" id="mypage" style="color:red" href="/cheatingday/user/mypage"></a>
+                    <a class="btn btn-danger" href="/cheatingday/user/mypage">내 정보</a>
                  </sec:authorize>
                  
                  <!-- 로그인 했을 때 모든 사용자에게 보여줄 메뉴 -->

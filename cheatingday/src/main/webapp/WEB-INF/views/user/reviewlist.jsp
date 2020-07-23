@@ -20,7 +20,7 @@
 <div>
 	<div class="container">
 	<div style="padding: 40px 0;">
-		<h3>내가 쓴 리뷰내역</h3>
+		<h3><i class="fas fa-search">&nbsp;내가 쓴 리뷰내역</i></h3>
 	</div>
 		<table class="table table-hover">
 			<colgroup>
@@ -71,11 +71,11 @@
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a>
+							<a style="background-color: #E74D44; border: 1px solid;" href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a></li>
+						<li><a style="color: #E74D44" href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 				

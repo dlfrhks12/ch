@@ -13,6 +13,7 @@ import com.icia.cheatingday.manager.dao.MenuDao;
 import com.icia.cheatingday.manager.dao.ReviewCheckDao;
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.ManagerDto;
+import com.icia.cheatingday.manager.entity.Store;
 import com.icia.cheatingday.order.dao.OrderDao;
 import com.icia.cheatingday.order.entity.DetailorderEntity;
 import com.icia.cheatingday.order.entity.OrderEntity;
@@ -90,27 +91,36 @@ public class MReviewOrderService {
 	
 	
 	 // 해당매장 주문 리스트 - 페이징 
-	public Page orderList (int pageno, int sNum) {
-		
+	public Page orderList (int pageno, String username) {
+		int sNum = storeDao.findBymUsername(username).getSNum();
+		System.out.println(sNum);
 		int countOfBoard = orderDao.countBysNum(sNum);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
 		
-		List<OrderEntity> orderList = orderDao.orderListBySNum(srn, ern,sNum);
+		List<OrderEntity> orderList = orderDao.orderListBySNum(srn, ern, sNum);
 			
 		List<ManagerDto.DtoForOrderList> dtoList = new ArrayList<>();
 		for(OrderEntity order: orderList) {
 			ManagerDto.DtoForOrderList dto = modelMapper.map(order, ManagerDto.DtoForOrderList.class);	
-			dto.setOOrderTimeStr(order.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년MM월dd일")));
+			dto.setOOrderTimeStr(order.getOOrderTime().format(DateTimeFormatter.ofPattern("MM월dd일 hh시mm분")));
 			
 			int ono = dto.getONo(); 
+			System.out.println("주문번호:"+ono);
+			System.out.println("주문번호:"+ono);
+			System.out.println("주문번호:"+ono);
 			int count = orderDao.countByOno(ono);
+			System.out.println("개수:"+count);
+			System.out.println("개수:"+count);
+			System.out.println("개수:"+count);
 			if(count>1) {
-				dto.setOrderName(orderDao.ordercheck(ono).getDMenuName()+"외 총"+count+"개");
+				dto.setOrderName(orderDao.ordercheck(ono).getDMenuName()+" 등 총 "+count+"개");
 			}
-			
-			dtoList.add(dto);
+			else {
+				dto.setOrderName(orderDao.ordercheck(ono).getDMenuName());
+			}
+				dtoList.add(dto);
 		}
 		page.setOlist(dtoList);
 		return page;
@@ -131,4 +141,20 @@ public class MReviewOrderService {
 		}
 		return dtoList;
 	}
+	
+	
+	// 주문승인시 1로 업데이트
+	public int checkUpdate(int oNo) {
+		return orderDao.checkUpdate(oNo);
+		
+	}
+	
+	//주문거절시 삭제
+	public void delete(int oNo) {
+		
+		orderDao.orderDeleteByoNo(oNo);
+		orderDao.orderDetailDelete(oNo);
+		
+	}
+	
 }

@@ -15,6 +15,21 @@ public class OrderDao {
 	@Inject
 	private SqlSessionTemplate tpl;
 	
+	//사업자> 주문거절시 삭제
+	public int orderDeleteByoNo(int oNo) {
+		return tpl.delete("orderMapper.orderDeleteByoNo",oNo);
+	}
+	
+	//사업자> 주문거절시 삭제
+	public int orderDetailDelete(int oNo) {
+		return tpl.delete("orderMapper.orderDetailDelete",oNo);
+	}
+	
+	
+	//사업자> 주문승인시 1로 변경
+	public int checkUpdate(int oNo) {
+		return tpl.update("orderMapper.checkUpdate",oNo);
+	}
 	
 	//사업자> 주문 리스트 
 		public List<OrderEntity> orderListBySNum(int startRowNum, int endRowNum, int sNum){ 
@@ -59,10 +74,7 @@ public class OrderDao {
 		return tpl.selectList("orderMapper.order", uUsername);
 	}
 	
-	// 3. 장바구니 삭제
-	public int orderDelete(int dNo) {
-		return tpl.delete("orderMapper.orderDelete", dNo); 
-	}
+	
 	
 	// 4. 장바구니 수정?
 	public int orderUpdate(DetailorderEntity order) {
@@ -87,6 +99,10 @@ public class OrderDao {
 	public List<OrderEntity> resList() {
 		return tpl.selectList("orderMapper.resList");
 	}
-	
+
+	public List<OrderEntity> findAll(String uUsername) {
+		return tpl.selectList("orderMapper.findAll", uUsername);
+	}
+		
 	
 }

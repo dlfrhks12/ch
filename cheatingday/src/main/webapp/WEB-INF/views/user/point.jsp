@@ -20,7 +20,7 @@
 <div>
 	<div class="container">
 	<div style="padding: 40px 0;">
-		<h3>포인트 적립내역</h3>
+		<h3 ><i class="fas fa-coins">&nbsp;포인트 적립내역</i></h3>
 	</div>
 		<table class="table table-hover">
 			<colgroup>
@@ -41,8 +41,8 @@
 				</tr>
 			</c:forEach>
 				<tr>
-					<td colspan="2" class="table-info">포인트 총합</td>
-					<td><div class="first" style="width:80px; background-color: red; border-radius: 8px; color: white;">${count }</div></td>
+					<td  colspan="2" ><i class="fas fa-plus-circle">포인트 총합</i></td>
+					<td><div class="first" style="width:80px; background-color: #E74D44; border-radius: 8px; color: white;">${count }</div></td>
 				</tr>
 		</table>
 		<hr>
@@ -55,11 +55,11 @@
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/cheatingday/user/point?pageno=${i}&uUsername=${username}">${i}</a>
+							<a style="background-color: #E74D44; border: 1px solid;" href="/cheatingday/user/point?pageno=${i}&uUsername=${username}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/cheatingday/user/point?pageno=${i}&uUsername=${username}">${i}</a></li>
+						<li><a style="color: #E74D44" href="/cheatingday/user/point?pageno=${i}&uUsername=${username}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 				

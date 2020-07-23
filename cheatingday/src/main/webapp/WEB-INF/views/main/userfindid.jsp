@@ -45,7 +45,7 @@ $(function() {
       <div class="container-login100">
          <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
             <div class="alert alert-success alert-dismissible" id="msg" style="display:none;">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
             <form class="login100-form validate-form flex-sb flex-w" id="u_find_id_form" action="/cheatingday/u_find_id" method="post">
                <span class="login100-form-title p-b-32">일반회원 아이디 찾기</span>

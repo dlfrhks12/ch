@@ -7,20 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div>
-	<a href="/cheatingday/notice/list" style="font-size: large; background-color: skyblue; ">공지사항</a>
+<div style="width: 1000px; margin-left: 350px; margin-right: 450px;">
+	<div style="padding: 40px 0;">
+      <h3 onclick="location.href='/cheatingday/notice/list';">공지사항</h3>
+ 		</div>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
+				<col width="30%">
 				<col width="20%">
 				<col width="10%">
-				<col width="30%">
 				<col width="10%">
 			</colgroup>
 			<thead>
-				<tr>
+				<tr class="table-danger">
 					<th>번호</th>
 					<th>제목</th>
 					<th>글쓴이</th>
@@ -64,8 +69,8 @@
 			</c:if>
 		</ul>
 	</div>
-	<div class="form-group">
-		<a class="btn btn-info" href="/cheatingday/notice/write">글쓰기</a>
+	<div class="form-group" style="margin-left: 350px; margin-right: 450px;">
+		<a class="btn btn-danger" href="/cheatingday/notice/write">글쓰기</a>
 	</div>
 </body>
 </html>

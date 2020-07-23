@@ -6,11 +6,14 @@
 <meta charset="UTF-8">
 <title>사업자 정보관리</title>
 <style>
-	section {margin-left: 350px; margin-right: 350px; margin-top: 50px;}
-	#update {margin-left: 840px;}
-	#delete {position: absolute; left: 1300px;}
+	section {margin-left: 350px; margin-right: 350px; margin-top: 50px; margin-bottom: 80px; font-size: 17px;}
+	#update {margin-left: 800px; margin-top: 30px;}
+	#delete {position: absolute; left: 1250px; margin-top: 30px;}
 
 </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <script>
@@ -195,14 +198,14 @@ $(function(){
 </script>
 </head>
 <body>
+	<div style="padding: 20px 0;">
+      <h3><i class="fas fa-user">&nbsp; 나의 정보 보기</i></h3>
+      <br>
 	
 <table class="table table-hover" id="user">
 		<colgroup>
 			<col width="10%">
 			<col width="40%">
-			<col width="10%">
-			<col width="30%">
-			<col width="10%">
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>
@@ -227,7 +230,7 @@ $(function(){
 				<input type="text" name="email1" id="email1">&nbsp;@&nbsp;
 				<input type="text" name="email2" id="email2">&nbsp;&nbsp;
 				<select id="selectEmail">
-					<option selected="selected">직접 입력</option>
+					<option selected="selected">직접입력</option>
 					<option>naver.com</option>
 					<option>daum.net</option>
 					<option>gmail.com</option>
@@ -241,8 +244,9 @@ $(function(){
 			</td></tr>
 	</table>
 	<div id="btn_update">
-	<button type="button"  class="btn btn-danger" id="update" >변경하기</button>
-	<button type="button"  class="btn btn-danger" id="delete">탈퇴하기</button>
+	<button type="button"  class="btn btn-danger" id="update" style="font-size: 17px;" >변경하기</button>
+	<button type="button"  class="btn btn-danger" id="delete" style="font-size: 17px;" >탈퇴하기</button>
 	</div> 
+	</div>
 </body>
 </html>

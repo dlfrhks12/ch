@@ -94,10 +94,36 @@ public class MainController {
       return null;
    }
    
-   @GetMapping("/test")
-   public ModelAndView test() {
-	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","main/test.jsp");
+   // 이용약관
+   @GetMapping("/footer_use")
+   public ModelAndView footer1() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer1.jsp");
    }
+   
+   // 개인정보 처리방침
+   @GetMapping("/footer_imp")
+   public ModelAndView footer2() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer2.jsp");
+   }
+   
+   // 개인정보 제3자 제공동의
+   @GetMapping("/footer_agr")
+   public ModelAndView footer3() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer3.jsp");
+   }
+   
+   // 위치기반 서비스 이용약관
+   @GetMapping("/footer_loc")
+   public ModelAndView footer4() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer4.jsp");
+   }
+   
+   // 전자금융거래 이용약관
+   @GetMapping("/footer_tra")
+   public ModelAndView footer5() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer5.jsp");
+   }
+   
    ///////////////////////////////////////////    일반 회원         //////////////////////////////////////////////
    
    
@@ -213,7 +239,7 @@ public class MainController {
       return "redirect:/system/msg";
    }
    
-   //사업자 페이지로 이동
+   //사업자 메인페이지로 이동
    @GetMapping("/manager/main")
    public ModelAndView managermain() {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")

@@ -24,14 +24,6 @@
 	</script>
 </sec:authorize>
 <style>
-#title {
-		float: left;
-	}
-	#writer {
-		float: right;
-		color: #25a;
-		font-weight: bold;
-	}
 	#lower_left li{
 		display: inline-block;
 		padding : 0 10px;
@@ -57,37 +49,7 @@
 	#title_div div {
 		margin: 5px 0 5px;
 	}
-	#content {
-		min-height: 600px;
-		border: none;
-	}
-	#wrap {
-		margin-top : 10px;
-	}
-	#wrap>div:first-of-type {	
-	/* #wrap의 자식 중 첫번째 div. 즉 #title_div, #content_div를 둘러싸고 있는 id없는 div */
-		border : 1px solid #ccc;
-	}
-	#content_div {
-		background-color: #f8f8f8;
-		border-top: 1px solid #ccc;
-	}
-	#comment .media {
-		position : relative;
-	}
-	.media div.cnt {
-		position : absolute;
-		top : 10px;
-		right: 10px;
-	}
-	.delete_comment {
-		width : 50px;
-		height : 30px;
-		line-height: 30px;
-		text-align: center;
-		border : 1px solid skyblue;
-		
-	}
+
 </style>
 <script>
 $(function() {
@@ -165,7 +127,7 @@ $(function() {
 				</ul>
 				<ul id="lower_right">
   						<li>
-						<button type="button" class="btn btn-success" disabled="disabled">
+						<button type="button" class="btn btn-info" disabled="disabled">
 							조회수 <span class="badge" id="read_cnt"></span>
 						</button></li>        	
 				</ul>
@@ -176,13 +138,13 @@ $(function() {
 				<div class="form-control" id="content"></div>
 			</div>
 			<div id="btn_area">
-				<button id="update" class="btn btn-info">변경</button>
-				<button id="delete" class="btn btn-success">삭제</button>
+				<button id="update" class="btn btn-danger">변경</button>
+				<button id="delete" class="btn btn-danger">삭제</button>
 			</div>
 		</div>
 		</div>
 		<hr>
-		<button class="btn btn-info" onclick="location.href='/cheatingday/notice/list';">공지목록</button>
+		<button class="btn btn-danger" onclick="location.href='/cheatingday/notice/list';">공지목록</button>
 </div>
 </body>
 </html>

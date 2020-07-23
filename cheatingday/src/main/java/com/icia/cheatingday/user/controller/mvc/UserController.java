@@ -40,34 +40,58 @@ public class UserController {
 	}
 	// 리뷰 리스트
 	@GetMapping("/user/reviewlist")
-	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String uUsername) {
+	public ModelAndView reviewList(@RequestParam(defaultValue = "1") int pageno, String uUsername, Integer rNo) {
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/reviewlist.jsp")
-				.addObject("page", service.reviewList(pageno,uUsername))
+				.addObject("page", service.reviewList(pageno, uUsername))
+				
 				.addObject("username",uUsername);
-	}
-	// 구매내역 리스트
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/user/buylist")
-	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
-		return new ModelAndView("main")
-				.addObject("viewHeader", "include/viewHeader.jsp")
-				.addObject("viewName", "user/buylist.jsp")
-				.addObject("page", service.buyList(pageno, uUsername))
-				.addObject("username", uUsername);
+		
 	}
 	
-	// 내 정보 읽기
+	// 구매내역 리스트
+	
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/user/mypage")
-	public ModelAndView myPage(HttpSession session, Principal principal) {
-		if(session.getAttribute("isCheck")==null)
-			return new ModelAndView("redirect:/user/check_pwd");
-		else 
+	
+	@GetMapping("/user/buylist")
+	
+	public ModelAndView buyList(@RequestParam(defaultValue = "1")int pageno, String uUsername) {
+		
 		return new ModelAndView("main")
+				
+				.addObject("viewHeader", "include/viewHeader.jsp")
+				
+				.addObject("viewName", "user/buylist.jsp")
+				
+				.addObject("page", service.buyList(pageno, uUsername))
+				
+				.addObject("username", uUsername);
+		
+	}
+	
+	
+	
+	// 내 정보 읽기
+	
+	@PreAuthorize("isAuthenticated()")
+	
+	@GetMapping("/user/mypage")
+	
+	public ModelAndView myPage(HttpSession session, Principal principal) {
+		
+		if(session.getAttribute("isCheck")==null)
+			
+			return new ModelAndView("redirect:/user/check_pwd");
+		
+		else 
+			
+		return new ModelAndView("main")
+				
 			.addObject("viewHeader", "include/viewHeader.jsp")
+			
 			.addObject("viewName", "user/mypage.jsp")
+			
 			.addObject("user",service.myPage(principal.getName()));
 	}
 

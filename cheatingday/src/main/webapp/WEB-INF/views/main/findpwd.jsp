@@ -49,7 +49,7 @@ button {
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 				<div class="login100-form validate-form flex-sb flex-w">
-					<span class="login100-form-title p-b-32">비밀번호 찾기</span>
+					<span class="login100-form-title p-b-32" style="text-align: center;">비밀번호 찾기</span><br>
 					<div class="wrap-input100 validate-input m-b-36">
 						<input class="input100" type="button" value="일반회원" onclick="location.href='/cheatingday/u_find_pwd'"> 
 					</div>

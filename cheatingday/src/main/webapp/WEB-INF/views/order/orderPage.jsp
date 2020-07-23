@@ -9,15 +9,15 @@
 <style>
 	
 	#wrap div { 
-		display: inline-block;
+		display: inline-block; font-size: 17px;
 	}
 	
 	section{
-		margin-left: 350px; margin-right: 350px; margin-top: 50px;
+		margin-left: 400px; margin-right: 350px; margin-top: 50px;
 	}
 	
 	#storeInfo {
-		border: 1px solid #e3e1da;
+		border: 1px solid #e3e1da; width: 1000px;
 	}
 	
 	#menuInfo{
@@ -25,10 +25,14 @@
 	 }
 	
 	#buy {
-		margin-left: 900px; margin-top: 30px;
+		 margin-top: 30px; margin-left: 400px;
 	}
 	
 	#SName {margin: 40px; }
+	
+	#menuInfo{ margin-left: 50px;
+	}
+	
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -105,15 +109,20 @@ $(function(){
 <div id="storeInfo">
 	<br>
 	<div>
-	 <span id="SName" style="font-size: 26px; font-weight: bold">${storeRead.SName}</span> <hr>
+	 &ensp;<span id="SName" style="font-size: 26px;  font-weight: bold">${storeRead.SName}</span> 
 	</div>
 	<br>
+	<hr>
+	<br>
 	
+	<table>
+	<tr>
+	<td>
 	<div>
-	 <img id="show_storesajin" height="200px;" src="${storeRead.SSajin}">
+	 <img id="show_storesajin" height="300px;" width="320px;"  style="margin-left: 60px; margin-right: 20px;" src="${storeRead.SSajin}">
 	</div>
-	
-	
+	</td>
+	<td>
 	<div>
 	<c:forEach begin="1" end="${storeRead.SStarPoint}">
        <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
@@ -124,57 +133,63 @@ $(function(){
          
          <span id="SStarPoint"> / ${storeRead.SStarPoint}</span>
          
-	</div>
+	</div><br><br>
 	
 	<div>
 	전화번호 : <span id="STel">${storeRead.STel}</span>
-	</div>
+	</div><br><br>
 	
 	<div>
          주소: <span>${storeRead.SAddress}</span>
-	</div>
+	</div><br><br>
 	
 	<!-- 음식점 카테고리번호에 해당하는 내용을 읽어와야해  -->
 	<div>
 	<!-- 카테고리 : <input type="text" name="foodcategory" id="foodcategory" value="${storeRead.foodCategory}">  -->
 	카테고리:<span id="foodcategory">${storeRead.foodCategory}</span>
-	</div> 
+	</div> <br><br>
 	
 	<div>
 	리뷰수:<span id="SReviewCnt">${storeRead.SReviewCnt}</span>
 	</div>
 	
+	</td>
+	</tr>
+	</table>
 	
-	
-<div>
-	매장정보: <span id="SInfo">${storeRead.SInfo}</span>
+	<div >
+	<textarea rows="5" cols="107" style="overflow: hidden; background-color: white; margin-left: 60px; margin-top: 20px; font-size: 17px;" disabled="disabled" id="SInfo">${storeRead.SInfo}</textarea>
 </div>	
-</div>
-
+	
+	
 
 <div id="menuInfo">
-	
+	<div style="margin-bottom: 30px;">
 	<c:forEach items="${cartlist}" var="product" varStatus="status">
-		<div class="card"   style="width: 200px; margin-right: 25px;  text-align: center;">
-			<img src="${product.menusajin}" width="176px" height="150px">
+		<div class="card"   style="width: 200px; margin: 10px;  text-align: center;">
+			<img src="${product.menusajin}" width="200px" height="150px">
 			<div>
-				<span style="font-size: 1.5em;">${product.menuname}</span>
-				<hr>
+				<span style="font-size: 1.2em;">${product.menuname}</span>
+				<br>
 				<span style="font-size: 1.3em;">${product.menusal}원</span>
 				
 			</div>
 			<span>
-				<button class="cart btn btn-danger" data-menuno="${product.menuno}"><i class="fas fa-shopping-cart">&nbsp;장바구니 담기</i></button>
+				<button style="margin-bottom: 15px; margin-top: 10px;" class="cart btn btn-danger" data-menuno="${product.menuno}"><i class="fas fa-shopping-cart">&nbsp;장바구니 담기</i></button>
 			</span>
 		</div>
 	</c:forEach>
 	</div>
+	</div>
 </div>
 
 
+</div>
+	<div style="margin-bottom: 50px;">
 	<form action="/cheatingday/cart/cartview" method="get">
-	<button id="buy" class="cart btn btn-danger">장바구니로 이동!<br></button><br>
+	<button style="font-size: 17px; font-weight: bold;  width: 200px;"  id="buy" class="cart btn btn-danger">장바구니로 이동<br></button><br>
 	</form>
+	</div>
 
 
 

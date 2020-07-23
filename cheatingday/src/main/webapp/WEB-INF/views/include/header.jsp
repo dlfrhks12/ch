@@ -79,7 +79,7 @@
 									</form>
 								</div>
 							</div>
-        					<ul id="placesList" style="display:hide;"></ul>
+        					<ul id="placesList" style="display:none;"></ul>
     					</div>
 					</div>          
                     <h1 class="mb-5" >&nbsp;&nbsp;오늘 하루는 치팅데이

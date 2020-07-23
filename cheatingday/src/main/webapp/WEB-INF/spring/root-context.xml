@@ -87,6 +87,7 @@
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
+	<mybatis-spring:scan base-package="com.icia.cheatingday.review.dao"/>
 	 
 	 
 	<context:component-scan base-package="com.icia.cheatingday">

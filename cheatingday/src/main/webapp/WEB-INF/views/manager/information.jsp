@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>사업자 정보관리</title>
 <style>
-	section {margin-left: 350px; margin-right: 350px; margin-top: 50px; margin-bottom: 80px;}
-	#update {margin-left: 700px;}
-	#delete {position: absolute; left: 1150px;}
+	section {margin-left: 350px; margin-right: 350px; margin-top: 50px; margin-bottom: 80px; font-size: 17px;}
+	#update {margin-left: 800px; margin-top: 30px;}
+	#delete {position: absolute; left: 1250px; margin-top: 30px;}
 
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -206,7 +206,6 @@ $(function(){
 		<colgroup>
 			<col width="10%">
 			<col width="40%">
-			
 		</colgroup>
 		<tr>
 			<td class="first">이름</td>
@@ -245,8 +244,8 @@ $(function(){
 			</td></tr>
 	</table>
 	<div id="btn_update">
-	<button type="button"  class="btn btn-danger" id="update" >변경하기</button>
-	<button type="button"  class="btn btn-danger" id="delete">탈퇴하기</button>
+	<button type="button"  class="btn btn-danger" id="update" style="font-size: 17px;" >변경하기</button>
+	<button type="button"  class="btn btn-danger" id="delete" style="font-size: 17px;" >탈퇴하기</button>
 	</div> 
 	</div>
 </body>

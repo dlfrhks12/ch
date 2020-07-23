@@ -35,7 +35,7 @@ $(function() {
 			<textarea class="form-control" id="content" name="content" style="height: 800px;"></textarea>
 		</div>
 		<input type="hidden" name="_csrf" value="${_csrf.token}">
-		<button type="button" class="btn btn-success" id="write">작성</button>
+		<button type="button" class="btn btn-danger" id="write">작성</button>
 	</form>
 </body>
 </html>

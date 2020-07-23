@@ -45,8 +45,8 @@
         <tr>
             <td><a href="/cheatingday/store_list?foodNo=8"><img src="mainhome/images/cafe.JPG" alt="카페/디저트" /></a></td>
             <td><a href="/cheatingday/store_list?foodNo=9"><img src="mainhome/images/franchise.JPG" alt="프랜차이즈" /></a></td>
-            <td><a href="/cheatingday/board/list"><img src="mainhome/images/6.png" alt="자유게시판" /></a></td>
-            <td><a href="/cheatingday/"><img src="mainhome/images/6.png" alt="Product 1" /></a></td>
+            <td><a href="/cheatingday/board/list"><img src="mainhome/images/freeboard.JPG" alt="자유게시판" /></a></td>
+            <td><a href="/cheatingday/"><img src="mainhome/images/reviewboard.JPG" alt="리뷰게시판" /></a></td>
         </tr>
 
     </table>

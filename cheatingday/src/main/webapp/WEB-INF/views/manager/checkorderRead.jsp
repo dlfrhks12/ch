@@ -91,7 +91,7 @@ $(function(){
 			<c:forEach items="${orderRead}" var="order">
 				<tr>
 					<td id="order">${order.ONo}</td>
-					<td>${order.menuno}</td>
+					<td>${order.menuno} 번</td>
 					<td>${order.DMenuName}</td>
 					<td>${order.DSal} 원</td>
 					<td>${order.DMenuCnt} 개</td>

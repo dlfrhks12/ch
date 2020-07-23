@@ -7,18 +7,57 @@
 <title>Insert title here</title>
 <style>
 #footer {
-	text-align: center;
+	margin-left: 600px;
+}
+#footer img {
+	width: 100px;
+	height: 100px;
+	position:absolute;
+	left:500px;
+	top: 1193px;
 }
 #ch > p {
-font-size: 13px;
-color: #999999;
+	font-size: 13px;
+	color: #999999;
 }
-
+#nav {
+	margin-left: 500px;
+	height:30px;
+	width: 850px;
+}
+#nav ul li {
+	list-style:none;
+	float: left;
+	ling-height:30px;
+	vertical-align: middle;
+	text-align: center;
+}
+#nav li a {
+	color: #8C8C8C;
+	text-decoration: none;
+	display:block;
+	width: 150px;
+	font-size: small;
+}
+#nav li a:hover {
+	text-decoration: none;
+}
 </style>
 </head>
 <body>
 	<hr>
+	<div id="nav">
+		<ul>
+			<li><a href="/cheatingday/footer_use">이용약관</a></li>
+			<li><a href="/cheatingday/footer_imp">개인정보 처리방침</a></li>
+			<li><a href="/cheatingday/footer_agr">개인정보 제3자 제공동의</a></li>
+			<li><a href="/cheatingday/footer_loc">위치기반 서비스 이용약관</a></li>
+			<li><a href="/cheatingday/footer_tra">전자금융거래 이용약관</a></li>
+		</ul>
+	</div>
+	<hr>
 	<div id="footer" class="container-fluid">
+		<img src="/cheatingday/mainhome/images/logo.png">
 		<p>Cheating Day</p>
 		<div id="ch">
 			<p>인천시 남구 매소홀로 488번길 6-32 태승빌딩 5층(학익동,영남아파트 앞) 대표자:최일관, 박민수, 윤예지, 윤용주, 신혜진, 양수민</p>

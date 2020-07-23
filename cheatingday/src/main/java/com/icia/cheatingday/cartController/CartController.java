@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.icia.cheatingday.cart.CartDto;
 import com.icia.cheatingday.cart.CartEntity;
 import com.icia.cheatingday.cart.CartService;
 import com.icia.cheatingday.manager.entity.MenuEntity;
@@ -33,11 +34,6 @@ public class CartController {
 	private ObjectMapper objectMapper = new ObjectMapper();
 	@Autowired
 	private StoreService storeService;
-	@Autowired
-	private ManagerService managerService;
-	
-
-	
 	
 	
 	//예
@@ -50,6 +46,7 @@ public class CartController {
 				.addObject("storeRead", storeService.orderStoreRead(sNum))
 				.addObject("cartlist", service.orderMenuRead(sNum));
 	}
+	
 	
 	
 	/*// 메뉴 리스트 출력

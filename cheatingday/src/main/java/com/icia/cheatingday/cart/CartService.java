@@ -62,7 +62,6 @@ public class CartService {
       return list;
    }
    
-   
    // 1. 장바구니 출력
    public List<CartEntity> read(HttpSession session) {
       return findList(session);

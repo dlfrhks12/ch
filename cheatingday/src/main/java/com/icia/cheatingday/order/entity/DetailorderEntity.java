@@ -25,5 +25,6 @@ public class DetailorderEntity {
 	private int oNo;			// 주문번호
 	private int menuno; 		// 메뉴번호
 	private String uUserName;	// 유저아이디
+	
 
 }

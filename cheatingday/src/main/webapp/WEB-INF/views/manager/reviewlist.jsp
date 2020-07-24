@@ -44,7 +44,7 @@
 				<tr>
 					<td>${manager.RNo}</td>
 					<td>${manager.UUsername}</td>
-					<td><a href="/cheatingday/manager/review_read?rNo=${manager.RNo}">${manager.RTitle}</a></td>
+					<td><a href="/cheatingday/review/read?rNo=${manager.RNo}">${manager.RTitle}</a></td>
 					<td>${manager.RWriteTimeStr}</td>
 					<td>${manager.RStarPoint} /
 						<c:forEach begin="1" end="${manager.RStarPoint }">

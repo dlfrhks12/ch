@@ -35,7 +35,7 @@
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default; color:#777;}
-#topmenu {display: flex; justify-content:center; padding: 0; height: 40px; width:51%; position: absolute; left:448px;}
+#topmenu {display: flex; justify-content:center; padding: 0; height: 40px; width:51%; margin: 0 auto;}
 #topmenu ul li {padding: 0px; cursor: pointer; list-style: none; color: white; float: left; width:10%; line-height: 40px; vertical-align: middle; text-align: center;}
 #topmenu ul a {text-decoration:none; background-color: #FF2424; color:white; display: block; font-size:15px;}
 #topmenu ul a:hover {color: white; background-color: #FF3636;}

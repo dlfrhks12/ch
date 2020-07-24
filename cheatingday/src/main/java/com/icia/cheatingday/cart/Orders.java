@@ -28,6 +28,7 @@ public class Orders implements Serializable {
 	private String image; // 메뉴사진
 	private int cartJumunMoney; // 해당메뉴 총 가격
 	private int sNum; // 사업자 번호
+
 }
 
 

@@ -15,8 +15,14 @@
 .first {
 	text-align: center;
 }
+.modal-dialog {
+	position: absolute;
+	width: 200px;
+	top: 35%;
+	left: 40%;
+}
 </style>
-<script>
+ <script>
 $(function() {
 	$(".fav").click(function() {
 		var snum = $(this).data("num");
@@ -47,10 +53,16 @@ $(function() {
 			}
 		})
 	})
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 });
-</script>
+</script> 
 </head>
 <body>
+
+	 <div>
+${page.blist}
 	<div>
 	<div class="container">
 	<div style="padding: 40px 0;">
@@ -75,12 +87,10 @@ $(function() {
 			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
-						<td>${buylist.SName}</td>
-						<td><a class='writer' data-toggle="modal"
-							data-target="#myModal" data-writer="${buylist.SName}"
-							onclick="openWin()">${buylist.SName}</a></td>
-						<td>${buylist.OTotal}</td>
-						<td>${buylist.OOrderTimeStr}</td>
+						<td><a href = "/cheatingday/review/write?orderNo=${buylist.orderNo}">${buylist.SName}</a></td>
+						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.menuname}</a></td>
+						<td>${buylist.cartPrice}</td>
+						<td>${buylist.cartDayStr}</td>
 						<c:if test="${buylist.favCheck eq false }">
 							<td><button type="button" data-num="${buylist.SNum }"
 									data-check="1" class="btn btn-info fav">
@@ -123,7 +133,8 @@ $(function() {
 		</ul>
 	</div>
 	</div>
-	</div>
+	</div> 
 	
+	</div>
 </body>
 </html>

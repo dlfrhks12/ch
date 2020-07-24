@@ -20,8 +20,6 @@ import org.springframework.web.servlet.mvc.support.*;
 
 import com.icia.cheatingday.main.service.mvc.*;
 import com.icia.cheatingday.manager.dto.*;
-import com.icia.cheatingday.manager.entity.Store;
-import com.icia.cheatingday.manager.service.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
 

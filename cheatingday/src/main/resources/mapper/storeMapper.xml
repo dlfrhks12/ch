@@ -27,7 +27,7 @@ s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUserna
 <!-- <select id="findAll" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
 s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
-s_star_point sStarPoint, s_review_cnt sReviewCnt, m_username mUsername from store
+s_star_point sStarPoint, s_review_cnt sReviewC nt, m_username mUsername from store
 </select> -->
 	
 <select id="findAllBymUsername" resultType="store">

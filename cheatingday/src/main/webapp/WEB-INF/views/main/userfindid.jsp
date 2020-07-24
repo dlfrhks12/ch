@@ -49,7 +49,6 @@ $(function() {
             </div>
             <form class="login100-form validate-form flex-sb flex-w" id="u_find_id_form" action="/cheatingday/u_find_id" method="post">
                <span class="login100-form-title p-b-32">일반회원 아이디 찾기</span>
-               
                <div>
 					<label class="txt p-b-11" for="u_irum">이름</label>
 					<div class="wrap-input100 validate-input m-b-36">

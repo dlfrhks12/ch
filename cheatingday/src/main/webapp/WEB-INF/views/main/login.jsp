@@ -155,7 +155,6 @@
 							name="a_username"> <span class="focus-input100"></span>
 						<span class="helper_text" id="username_msg"></span>
 					</div>
-
 					<span class="txt1 p-b-11">비밀번호</span>
 					<div class="wrap-input100 validate-input m-b-12" id="password"
 						data-validate="Password is required">

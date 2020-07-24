@@ -81,9 +81,7 @@ public class UserController {
 		return new ModelAndView("main")
 				.addObject("viewHeader", "include/viewHeader.jsp")
 				.addObject("viewName", "user/check_pwd.jsp");
-
 	}
-
 	// 비밀번호 확인 post
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/user/check_pwd")

@@ -29,7 +29,7 @@ $(function(){
 	var msg = "${msg}";
 	if(msg!="") {
 		Swal.fire({
-			  title: '다시 한번 비밀번호를 생각해주세요!',
+			  title: '또 틀리면 냥이가 문다?!',
 			  width: 500,
 			  padding: '4em',
 			  background: '#fff url(https://sweetalert2.github.io/images/trees.png)',

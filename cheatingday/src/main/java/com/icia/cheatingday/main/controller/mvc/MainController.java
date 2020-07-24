@@ -225,7 +225,7 @@ public class MainController {
       return "redirect:/system/msg";
    }
    
-   //사업자 페이지로 이동
+   //사업자 메인페이지로 이동
    @GetMapping("/manager/main")
    public ModelAndView managermain() {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")

@@ -16,7 +16,6 @@ import com.icia.cheatingday.buylist.entity.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.manager.dao.*;
-import com.icia.cheatingday.order.dao.*;
 import com.icia.cheatingday.review.dao.*;
 import com.icia.cheatingday.review.dto.*;
 import com.icia.cheatingday.review.entity.*;
@@ -37,8 +36,6 @@ public class UserService {
 	private BuylistDao buylistDao;
 	@Autowired
 	private StoreDao storeDao;
-	@Autowired
-	private DetailorderDao detailorderDao;
 	@Autowired
 	private MenuDao menuDao;
 	@Autowired
@@ -104,8 +101,8 @@ public class UserService {
 		List<PointDto.DtoForList> dtoList = new ArrayList<>();
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
-			dto.setOOrderTimeStr(buylistDao.findById(uUsername).getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setSNum(buylistDao.findONoById(point.getONo()).getSNum());
+			dto.setOOrderTimeStr(buylistDao.findById(uUsername).getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setSNum(buylistDao.findByOrderNo(point.getONo()).getSNum());
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}
@@ -127,8 +124,15 @@ public class UserService {
 			int foodNo = storeDao.findBysNum(review.getSNum()).getFoodNo();
 			String categoryName = foodCategoryDao.findByFoodNo(foodNo);
 			dto.setCategory(categoryName);
-			dto.setMenuname(detailorderDao.findByONo(review.getONo()).getDMenuName());
-			int menuno = detailorderDao.findByONo(review.getONo()).getMenuno();
+			dto.setMenuname(buylistDao.findByOrderNo(review.getONo()).getCartName());
+			int menuno = buylistDao.findByOrderNo(review.getONo()).getMenuno();
+			System.out.println(menuno);
+			System.out.println(menuno);
+			System.out.println(menuno);
+			System.out.println(menuno);
+			System.out.println(menuno);
+			System.out.println(menuno);
+			System.out.println(menuno);
 			dto.setSajin(menuDao.findById(menuno).getMenusajin());
 			dtoList.add(dto);
 		}
@@ -145,10 +149,10 @@ public class UserService {
 		List<BuylistDto.DtoForList> dtoList = new ArrayList<>();
 		for(Buylist buylist:buyList) {
 			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
-			dto.setOOrderTimeStr(buylist.getOOrderTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setCartDayStr(buylist.getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
-			dto.setMenuname(detailorderDao.findByONo(dto.getONo()).getDMenuName());
-			dto.setFavCheck(favDao.findFavoriteById(dto.getUUSername(),dto.getSNum()));
+			dto.setMenuname(buylistDao.findByOrderNo(dto.getOrderNo()).getCartName());
+			dto.setFavCheck(favDao.findFavoriteById(dto.getUUsername(),dto.getSNum()));
 			dtoList.add(dto);
 		}
 		page.setBlist(dtoList);

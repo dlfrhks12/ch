@@ -16,12 +16,10 @@
 		<typeAlias type="com.icia.cheatingday.freeboard.entity.Comment" alias="Comment"/>
 		<typeAlias type="com.icia.cheatingday.center.entity.QnA" alias="qna"/>
 		<typeAlias type="com.icia.cheatingday.center.entity.QnAComment" alias="qnacomment"/>
-		<typeAlias type="com.icia.cheatingday.order.entity.DetailorderEntity" alias="detailorder"/>
-		<typeAlias type="com.icia.cheatingday.order.entity.OrderEntity" alias="order"/>
-		<typeAlias type="com.icia.cheatingday.cart.CartEntity" alias="cart"/>
+		<typeAlias type="com.icia.cheatingday.cart.Orders" alias="order"/>
+		<typeAlias type="com.icia.cheatingday.cart.OrderDetails" alias="cart"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.Store" alias="store"/>
 		<typeAlias type="com.icia.cheatingday.manager.entity.FoodCategory" alias="foodCategory"/>
-		<typeAlias type="com.icia.cheatingday.review.entity.ReviewComment" alias="reviewComment"/>
 	</typeAliases>
 	<typeHandlers>
 		<typeHandler handler="com.icia.cheatingday.util.typehandler.LocalDateTimeTypeHandler"/>

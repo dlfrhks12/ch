@@ -1,5 +1,7 @@
 package com.icia.cheatingday.buylist.dto;
 
+import java.time.*;
+
 import lombok.*;
 import lombok.experimental.*;
 
@@ -11,14 +13,19 @@ public class BuylistDto {
 	@Builder
 	@Accessors(chain = true)
 	public static class DtoForList {
-	private int oNo;
-	private Integer oTotal;
-	private String oOrderTimeStr;
-	private String uUSername;
-	private Integer oCheck;
-	private int sNum;
-	private String sName;
-	private Boolean favCheck;
-	private String menuname;
+		private int orderNo;
+		private int menuno;
+		private String uUsername;
+		private String cartName;
+		private int cartPrice;
+		private String cartDayStr;
+		private int cartCount;
+		private String image;
+		private int cartJumunMoney;
+		private int sNum;
+		private String sName;
+		private String menuname;
+		private Boolean favCheck;
 	}
+	
 }

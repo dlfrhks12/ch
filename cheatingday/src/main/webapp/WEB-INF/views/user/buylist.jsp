@@ -87,8 +87,8 @@ ${page.blist}
 					<tr>
 						<td><a href = "/cheatingday/review/write?sNum=${buylist.SNum}">${buylist.SName}</a></td>
 						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.menuname}</a></td>
-						<td>${buylist.OTotal}</td>
-						<td>${buylist.OOrderTimeStr}</td>
+						<td>${buylist.cartJumunMoney}</td>
+						<td>${buylist.cartDayStr}</td>
 						<c:if test="${buylist.favCheck eq false }">
 							<td><button type="button" data-num="${buylist.SNum }"
 									data-check="1" class="btn btn-info fav">

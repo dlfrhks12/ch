@@ -20,8 +20,6 @@ import org.springframework.web.servlet.mvc.support.*;
 
 import com.icia.cheatingday.main.service.mvc.*;
 import com.icia.cheatingday.manager.dto.*;
-import com.icia.cheatingday.manager.entity.Store;
-import com.icia.cheatingday.manager.service.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
 
@@ -77,7 +75,6 @@ public class MainController {
    public ModelAndView findpwd() {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findpwd.jsp");
    }
-   
 
    
    // 메인화면 카테고리 선택 & 주소 검색 후 가게 리스트

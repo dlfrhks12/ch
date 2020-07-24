@@ -23,11 +23,9 @@ public class OrdersDao {
 		return tpl.selectList("orderMapper.findAlls");
 	}
 
-	public int findByONo(int orderNo) {
-		return tpl.selectOne("orderMapper.findByONo", orderNo);
+	public Orders findByOrderNo(int oNo) {
+		return tpl.selectOne("orderMapper.findByOrderNo",oNo);
 	}
-	
-/////////////////////////////////////////////////////////////////////////////////////////////	
 	//사업자
 	//주문 리스트 출력 페이징
 	public List<Orders> orderListBySNum(int startRowNum,int endRowNum, int sNum){ 
@@ -62,6 +60,9 @@ public class OrdersDao {
 	
 	public int total() {
 		return tpl.selectOne("orderMapper.total");
+	}
+	public int findByONo(int orderNo) {
+		return tpl.selectOne("orderMapper.findByONo", orderNo);
 	}
 	
 }

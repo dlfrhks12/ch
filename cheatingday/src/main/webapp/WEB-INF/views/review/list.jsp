@@ -7,37 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-	$(function(){
-		var filter = "${filter}";
-		console.log(filter);
-		var rNo = "${RNo}";
-		$("#filter").on("change",function(){
-			console.log(this.value);
-			if(this.value=="review")
-				location.href = "/cheatingday/review/list?rNo="+rNo+"&&pageno=1&&rno_list";
-			if(this.value=="star")
-				location.href = "/cheatingday/review/list?rNo="+rNo+"&&pageno=1&&star_list";
-		})
-	})
-</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+  #all{
+   		width: 1200px;
+   		display: inline-block;
+   		margin-left: 450px;
+   		margin-top: 120px;
+   }
+</style>
 </head>
 <body>
 
- <div>
-	<select id = "filter" name = "filter">
-		<option selected="selected">정렬</option>
-		<option value = "roo_list">최신순</option>
-		<option value = "star_list">별점순</option>
-	</select>
+ <div id = "all">
 	<table class = "table table-hover">
 		<colgroup>
+			<col width="13%">
 			<col width="19%">
 			<col width="19%">
 			<col width="19%">
 			<col width="19%">
-			<col width="19%">
-			<col width="19%">
+			<col width="30%">
 		</colgroup>
 		<thead>
 			<tr>
@@ -45,23 +37,27 @@
 				<th>제목</th>
 				<th>글쓴이</th>
 				<th>별점</th>
-				<th>주문번호</th>
 				<th>매장 이름</th>
 				<th>작성시간</th>
 			</tr>
-      <a class="btn btn-outline-danger" href="/cheatingday/review/write">리뷰쓰기</a>
-   </div>  
+
 		</thead>
 		<tbody id = "list">
-			<c:forEach items = "${review.reviewlist }" var = "review">
+			<c:forEach items = "${page.reviewlist}" var = "review">
 				<tr>
 					<td id = "rNo">${review.RNo}</td>
 					<td id = "rTitle"><a href = "/cheatingday/review/read?rNo=${review.RNo}">${review.RTitle}</a></td>
 					<td id = "uUsername">${review.UUsername}</td>
-					<td id = "rStarPoint">${review.RStarPoint}</td>
-					<td id = "oNo">${review.ONo }</td>
+					<td>
+                  <c:forEach begin="1" end="${review.RStarPoint }">
+                           <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-full.svg">
+                        </c:forEach>
+                        <c:forEach begin="${review.RStarPoint+1 }" end="5">
+                           <img src="https://assets.cdn.soomgo.com/icons/icon-common-review-star-small-empty.svg">
+                        </c:forEach>
+               </td>
 					<td id = "sName">${review.SName }</td>
-					<td id = "sName">${review.RWriteTimeStr }</td>
+					<td id = "rWriteTimeStr">${review.RWriteTimeStr }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

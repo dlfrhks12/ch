@@ -1,94 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderMapper">
-
-	<!-- 사업자  -->
-	<!-- 리스트  -->
-	<!-- 주문 리스트  페이징-->
-	 <select id="orderListBySNum" resultType="order">
-		select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice,
-		cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
-		from orders where s_num=#{sNum}
-  	 </select>  
-
-	<select id="menuName" resultType="order">
-		select order_no orderNo, cart_day cartDay, u_username uUSername,
-		 s_num sNum, cart_jumunMoney cartJumunMoney, cart_name cartName from orders where s_num=#{sNum} and rownum=1 
+	<!-- 예비주문내역에 List형식 을 담기 위해 선언 -->
+	<update id="insertOrderAll" parameterType="order">
+		<foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+			into orders (order_no, menuno, u_username, cart_name, cart_price, cart_day, 
+		                  cart_count, image, cart_jumunMoney) 
+		    values(#{item.orderNo}, #{item.menuno},#{item.uUsername}, #{item.cartName}, #{item.cartPrice}, sysdate, 
+		       	#{item.cartCount}, #{item.image}, #{item.cartJumunMoney})
+		</foreach>
+	</update>
+	
+	<select id="findAlls" resultType="order">
+		select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
+		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney
+		from orders
 	</select>
 
-	<!-- sNum으로 페이징 하려고 조건 만들어줌 -->
-	<select id="countBysNum" resultType="int">
-		select count(*) from orders where s_num=#{sNum}
-	</select>
-
-	<!-- 주문총금액  -->
-	<select id="total" resultType="int">
-		select sum(cart_jumunMoney) total from orders
-	</select>
-
-	<!-- 주문리스트에서 주문읽을때 제목 만들기 -->
-	<select id="countByOno" resultType="int">
-		select count(*) from orders where order_no=#{orderNo}
-	</select>
-
-
-
-	<!-- 읽기  -->
-	<!-- 해당 주문번호 내용 읽기  -->
-	<select id="orderReadByONo" resultType="order">
-		select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice,
-		cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
-		from order where order_no=#{orderNo}
+	<select id="findAll" resultType="order">
+		select s_num sNum from orders where u_username = #{uUsername} 
 	</select>
 	
-	
 
+   <!-- 사업자  -->
+   <!-- 리스트  -->
+   <!-- 주문 리스트  페이징-->
+    <select id="orderListBySNum" resultType="order">
+    <![CDATA[
+       select * from
+          (select rownum as rnum, b.* from
+            (select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice,
+      cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
+      from orders where s_num=#{sNum} and order_no like '%'||#{keyword}||'%') b
+      where rownum<=#{endRowNum})
+      where rnum>=#{startRowNum}
+      ]]>
+      </select> 
 
-
-
-
-
-
-
-
-
-   <!-- 일관 -->
-   <update id="insertOrderAll" parameterType="order">
-      <foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
-         into orders (order_no, menuno, u_username, cart_name, cart_price, cart_day, 
-                        cart_count, image, cart_jumunMoney, s_num) 
-          values(#{item.orderNo}, #{item.menuno},#{item.uUsername}, #{item.cartName}, #{item.cartPrice}, sysdate, 
-                #{item.cartCount}, #{item.image}, #{item.cartJumunMoney}, #{item.sNum})
-      </foreach>
-   </update>
-   
-   
-   <select id="findAlls" resultType="order">
-      select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
-             cart_count cartCount, image, cart_jumunMoney cartJumunMoney
-      from orders
+   <select id="menuName" resultType="order">
+      select order_no orderNo, cart_day cartDay, u_username uUSername,
+       s_num sNum, cart_jumunMoney cartJumunMoney, cart_name cartName from orders where s_num=#{sNum} and rownum=1 
    </select>
-	<select id="findByONo" resultType="order">
-		select d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
-	</select>
-   <!-- 5. 장바구니 삭제 -->
-   <delete id="orderDelete">
-      delete from detailorder
-      where d_no = #{dNo}
-   </delete>
-   <select id="findAll" resultType="order">
-      select s_num sNum from orders where u_username = #{uUsername} 
+
+   <!-- sNum으로 페이징 하려고 조건 만들어줌 -->
+   <select id="countBysNum" resultType="int">
+      select count(*) from orders where s_num=#{sNum}
    </select>
+
+   <!-- 주문총금액  -->
+   <select id="total" resultType="int">
+      select sum(cart_jumunMoney) total from orders
+   </select>
+
+   <!-- 주문리스트에서 주문읽을때 제목 만들기 -->
+   <select id="countByOno" resultType="int">
+      select count(*) from orders where order_no=#{orderNo}
+   </select>
+
+
+
+   <!-- 읽기  -->
+   <!-- 해당 주문번호 내용 읽기  -->
+   <select id="orderReadByONo" resultType="order">
+      select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice,
+      cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
+      from order where order_no=#{orderNo}
+   </select>
+
+   
+   <select id="findByONo" resultType="int">
+      select s_num sNum from orders where order_no=#{orderNo} and rownum=1
+   </select>
+  
    
 </mapper>
-
-
-
-
-
-
-
-
-
-
-

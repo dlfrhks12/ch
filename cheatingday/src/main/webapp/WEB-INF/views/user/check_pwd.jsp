@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<link rel="icon" type="image/png" href="login/images/icons/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="/cheatingday/login/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/cheatingday/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/cheatingday/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
@@ -48,6 +48,26 @@ $(function(){
 			})
 		}
 	});
+   $("#check_pwd").on("click", function(){
+         $("#check_pwd_frm").submit();
+   })
+   
+   var msg = "${msg}";
+   if(msg!="") {
+      Swal.fire({
+           title: '다시 한번 비밀번호를 생각해주세요!',
+           width: 500,
+           padding: '4em',
+           background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+           backdrop: `
+             rgba(0,0,123,0.4)
+             url("https://sweetalert2.github.io/images/nyan-cat.gif")
+             left top
+             no-repeat
+           `
+         })
+   }
+});
 </script>
 </head>
 <body>
@@ -61,7 +81,7 @@ $(function(){
 						<input class="input100" type="password" id="uPassword" name="uPassword" style="400px;"> 
 						<span class="focus-input100"></span>
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"><br>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<button type="button" class="btn btn-danger" id="check_pwd" style="float: right; width: 60px; height: 56px;">확인</button>
 				</form>
 			</div>
@@ -69,5 +89,4 @@ $(function(){
 	</div>
 </body>
 </html>
-
 

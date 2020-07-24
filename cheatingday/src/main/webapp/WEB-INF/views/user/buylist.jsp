@@ -62,7 +62,6 @@ $(function() {
 <body>
 
 	 <div>
-${page.blist}
 	<div>
 	<div class="container">
 	<div style="padding: 40px 0;">

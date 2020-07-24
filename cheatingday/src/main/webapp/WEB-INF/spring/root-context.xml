@@ -83,10 +83,8 @@
 	<mybatis-spring:scan base-package="com.icia.cheatingday.center.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.freeboard.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.cart"/> 
-	<mybatis-spring:scan base-package="com.icia.cheatingday.order.dao"/> 
 	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.authority.dao"/> 
-	<mybatis-spring:scan base-package="com.icia.cheatingday.manager.dao"/>
 	<mybatis-spring:scan base-package="com.icia.cheatingday.review.dao"/>
 	 
 	 

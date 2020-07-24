@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderMapper">
-
-	<!-- 일관 -->
+	<!-- 예비주문내역에 List형식 을 담기 위해 선언 -->
 	<update id="insertOrderAll" parameterType="order">
 		<foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
 			into orders (order_no, menuno, u_username, cart_name, cart_price, cart_day, 
@@ -12,18 +11,12 @@
 		</foreach>
 	</update>
 	
-	
 	<select id="findAlls" resultType="order">
 		select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
 		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney
 		from orders
 	</select>
 
-	<!-- 5. 장바구니 삭제 -->
-	<delete id="orderDelete">
-		delete from detailorder
-		where d_no = #{dNo}
-	</delete>
 	<select id="findAll" resultType="order">
 		select s_num sNum from orders where u_username = #{uUsername} 
 	</select>

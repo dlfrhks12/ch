@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +21,6 @@ public class CartService {
    private MenuDao menuDao;
    @Inject
    private OrderDetailsDao cartDao;
-   @Inject
-   private ProductDao proDao;
    @Inject
    private OrdersDao orDao;
    
@@ -58,7 +55,7 @@ public class CartService {
       return findList(session);
    }
    
-   // 2. 재고 확인
+   // 2. 장바구니 추가 하는데 장바구니가 있는지 없는지 확인 후
    public boolean checkStock(Integer menuno, HttpSession session) {
       List<CartEntity> cartList = findList(session);
       int idx = findCart(cartList, menuno);
@@ -78,16 +75,18 @@ public class CartService {
       if (idx >= 0) {
          cartList.get(idx).increase();
       } else {
-         ProductEntity product = proDao.findByMNo(menuno);
+    	  MenuEntity product = menuDao.findBymenuno(menuno);
          cart = new CartEntity(
         	   product.getMenuno(), 
                uUsername,
-               product.getMName(),
-               product.getMPrice(),
+               product.getMenuname(),
+               product.getMenusal(),
                LocalDateTime.now(), 
                1, 
-               product.getImage(),
-               product.getMPrice());
+               product.getMenusajin(),
+               product.getMenusal(),
+               product.getSNum()
+               );
 	   
          cartList.add(cart);
       }
@@ -140,34 +139,31 @@ public class CartService {
       return cartList;
    }
 
-	// 9. 상품 주문
+	// 9. 상품 주문(예비주문상세내역)
 	public int insertAll(HttpSession session) {
-		List<CartEntity> cartList = findList(session);
-		session.setAttribute("cartList", cartList);
-		List<OrderDetails> list = (List<OrderDetails>) session.getAttribute("cartList");
-		cartDao.deletes();
-		return cartDao.insertAll(list);
+		List<CartEntity> cartList = findList(session); 
+		session.setAttribute("cartList", cartList); // 세션에 담긴 장바구니 정보를 쓴다
+		List<OrderDetails> list = (List<OrderDetails>) session.getAttribute("cartList"); // 세션에 담긴 장바구니 정보를 불러옴
+		cartDao.deletes(); // 이전 예비주문상세내역 테이블에서 내용 지우고
+		return cartDao.insertAll(list); // 새로 담은 메뉴를 새로 seq를 증가 후 담는다.
 	}
 	
-	// 주문상세 내역 리스트
+	// 주문상세(예비주문상세내역) 내역 리스트
 	public List<OrderDetails> findAll() {
 		return cartDao.findAll();
 	}
 	
 	// 결제 눌렀을때
 	public int insertOrderAll(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		List<OrderDetails> order = findAll();
-		session.setAttribute("order", order);
+		HttpSession session = req.getSession(); // 세션을 새로 만든다.
+		List<OrderDetails> order = findAll(); // 예비주문상세내역을 선언한다.
+		session.setAttribute("order", order); // 예비주문상세내역 정보를 새로 만든 세션에 저장한다 
 		
-		List<Orders> orders = (List<Orders>) session.getAttribute("order");
-		return orDao.insertOrderAll(orders);
-	}
-	
-	public List<Orders> findAlls() {
-		return orDao.findAlls();
+		List<Orders> orders = (List<Orders>) session.getAttribute("order"); // 저장한 세션을 가져와서
+		return orDao.insertOrderAll(orders); // 완전한 주문상세내역에 인서트
 	}
 }
+
 /*
  * for(int i = 0; i<order.size(); i++) { orders = (List<Orders>) order.get(i);
  * orDao.insertOrderAll(orders); }

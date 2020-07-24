@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.icia.cheatingday.authority.dao.AuthorityDao;
 import com.icia.cheatingday.exception.JobFailException;
 import com.icia.cheatingday.manager.dao.ManagerDao;
-import com.icia.cheatingday.manager.dao.ManagerStoreApplyInsertDao;
 import com.icia.cheatingday.manager.dao.MenuDao;
 import com.icia.cheatingday.manager.dao.StoreDao;
 import com.icia.cheatingday.manager.dto.ManagerDto;
@@ -34,9 +33,7 @@ public class ManagerService {
 	private String menuPath;
 	@Autowired
 	private PasswordEncoder pwdEncoder;
-	// 입점신청
-	@Autowired
-	private ManagerStoreApplyInsertDao storeApplyInsertDao;
+	
 	@Autowired
 	private ModelMapper modelMapper;
 	// 내정보 수정
@@ -133,17 +130,7 @@ public class ManagerService {
 	}
 
 
-	/////////////////////////////////////////입점신청//////////////////////////////////////////////////////////////
-	// 입점신청추가
-	public int write(ManagerDto.DtoForWrite dto) {
-		ManagerDto.DtoForWrite storeapplyInsert = modelMapper.map(dto, ManagerDto.DtoForWrite.class);
-		storeapplyInsert.setMIrum(storeApplyInsertDao.findByIrum(storeapplyInsert.getMNum()));
-		storeapplyInsert.setMTel(storeApplyInsertDao.findByTel(storeapplyInsert.getMNum()));
-		storeapplyInsert.setMEmail(storeApplyInsertDao.findByEmail(storeapplyInsert.getMNum()));
-		storeApplyInsertDao.insert(storeapplyInsert);
-		return storeapplyInsert.getINo();////////////입점신청번호를 리턴
-		
-	}
+	
 	//////////////////////////////////////사업자 내정보 ///////////////////////////////////////////////////
 	//내 정보 수정
 	public void update(DtoForUpdate dto) {

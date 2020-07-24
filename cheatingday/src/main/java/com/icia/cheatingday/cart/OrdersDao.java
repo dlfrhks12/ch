@@ -19,4 +19,8 @@ public class OrdersDao {
 	public List<Orders> findAlls() {
 		return tpl.selectList("orderMapper.findAlls");
 	}
+
+	public int findByONo(int oNo) {
+		return tpl.selectOne("orderMapper.findByONo", oNo);
+	}
 }

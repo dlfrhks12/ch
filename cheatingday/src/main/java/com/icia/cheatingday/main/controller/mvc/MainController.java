@@ -35,7 +35,6 @@ public class MainController {
 		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 		}
 
-   
 	
    /////////////////////////////////////////    메인 공용        ///////////////////////////////////////////////////
    
@@ -49,8 +48,7 @@ public class MainController {
    // [공용] 로그인
    @GetMapping("/login")
    public ModelAndView login() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")
-            .addObject("viewName", "main/login.jsp");
+      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/login.jsp");
    }
 
 

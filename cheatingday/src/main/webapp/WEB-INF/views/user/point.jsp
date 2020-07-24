@@ -15,6 +15,14 @@
 .first {
 	text-align: center;
 }	
+#point {
+	width:80px; 
+	background-color: #E74D44; 
+	border-radius: 8px; 
+	color: white;
+	margin: 0 auto;
+	text-align: center;
+}
 </style>
 <body>
 <div>
@@ -41,8 +49,9 @@
 				</tr>
 			</c:forEach>
 				<tr>
-					<td  colspan="2" ><i class="fas fa-plus-circle">포인트 총합</i></td>
-					<td><div class="first" style="width:80px; background-color: #E74D44; border-radius: 8px; color: white;">${count }</div></td>
+					<td style="text-align: center;"><i class="fas fa-plus-circle">포인트 총합</i></td>
+					<td> </td>
+					<td><div id="point" style="">${count}</div></td>
 				</tr>
 		</table>
 		<hr>

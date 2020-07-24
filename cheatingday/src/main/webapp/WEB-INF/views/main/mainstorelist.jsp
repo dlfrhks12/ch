@@ -6,24 +6,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>store list</title>
 <style>
 section {margin-left:470px; margin-right:450px; margin-top:50px;}
 #list {width:990px; margin: 0 auto;}
 table th{text-align: center;}
-#show_sajin {float: left; width: auto; height: auto; max-height: 150px; max-width: 150px; margin-top: 30px;}
+#show_sajin {float: left; width: auto; height: auto; max-height: 130px; max-width: 130px; margin-bottom: 5px;}
 #nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
 #filter{float:right; margin-right: 30px;}
-#menulist ul li {font-size: 15px; list-style:none; margin-left: 30px; padding: 5px;}
-#menulist {margin-left: 80px; }
+#menulist ul li {font-size: 15px; list-style:none; margin-left: 100px; padding: 5px;}
+#menulist {margin-left: 70px; }
 </style>
+<script>
+function loadImage() {	
+	// 이하 하드디스크에 있는 이미지 파일을 로딩해 화면에 출력하는 코드
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		$("#show_sajin").attr("src", e.target.result);
+	}
+}
+</script>
 </head>
 <body>
 	<div>
-      <h3 style="padding:3px;">치팅데이 등록 음식점</h3>
+      <h4 style="padding:3px;">치팅데이 등록 음식점</h4>
    </div>
 	<div id="ta">
 		<div>

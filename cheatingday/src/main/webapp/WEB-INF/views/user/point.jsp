@@ -17,6 +17,7 @@
 }	
 </style>
 <body>
+${page.plist}
 <div>
 	<div class="container">
 	<div style="padding: 40px 0;">

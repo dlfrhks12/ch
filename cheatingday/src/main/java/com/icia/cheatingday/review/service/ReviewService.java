@@ -8,9 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.icia.cheatingday.cart.OrdersDao;
 import com.icia.cheatingday.common.dto.Page;
 import com.icia.cheatingday.manager.dao.StoreDao;
-import com.icia.cheatingday.order.dao.OrderDao;
 import com.icia.cheatingday.review.dao.ReviewCommentDao;
 import com.icia.cheatingday.review.dao.ReviewDao;
 import com.icia.cheatingday.review.dto.ReviewDto;
@@ -22,7 +22,7 @@ public class ReviewService {
 	@Autowired 
 	private ReviewDao reviewDao;
 	@Autowired 
-	private OrderDao orderDao;
+	private OrdersDao orderDao;
 	@Autowired 
 	private StoreDao storeDao;
 	@Autowired
@@ -41,7 +41,7 @@ public class ReviewService {
 		for(Review review: list) {
 			ReviewDto.DtoForReviewList dto = modelMapper.map(review, ReviewDto.DtoForReviewList.class);
 			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setSNum(orderDao.findByOno(review.getONo()));
+			dto.setSNum(orderDao.findByONo(review.getOrderNo()));
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}
@@ -50,7 +50,15 @@ public class ReviewService {
 	}
 	public int write(ReviewDto.DtoForWrite dto) {
 		Review review = modelMapper.map(dto, Review.class);
-		review.setSNum(orderDao.findByOno(dto.getONo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		System.out.println(orderDao.findByONo(dto.getOrderNo()));
+		review.setSNum(orderDao.findByONo(dto.getOrderNo()));
 		return reviewDao.insert(review);
 	}
 	public ReviewDto.DtoForRead read(Integer rNo,String uUsername){
@@ -58,7 +66,7 @@ public class ReviewService {
 		ReviewDto.DtoForRead dto = modelMapper.map(review, ReviewDto.DtoForRead.class);
 		String str = review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 		dto.setRWriteTimeStr(str);
-		dto.setSNum(orderDao.findByOno(review.getONo()));
+		dto.setSNum(orderDao.findByONo(review.getOrderNo()));
 		dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 		dto.setComments(reviewcommentdao.findByRno(dto.getRNo()));
 		System.out.println("ddddddddddddddddddddddddddddd");

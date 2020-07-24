@@ -22,21 +22,6 @@ public class MReviewOrderController {
 	///////////////////////////////////////주문//////////////////////////////////////
 	
 	
-	//주문거절시 삭제
-	@DeleteMapping("manager/order_delete")
-	public ResponseEntity<?> delete(int oNo){
-		service.delete(oNo);
-		return ResponseEntity.ok("/cheatingday/manager/order_list");
-	}
-	
-	
-	
-	//주문승인시 1로 업데이트
-	@PatchMapping("manager/order_update")
-	public ResponseEntity<?> checkUpdate(int oNo){
-		return ResponseEntity.ok(service.checkUpdate(oNo));
-	}
-	
 	
 	  // 해당매장 주문 리스트 - 페이징
 	  @GetMapping("manager/order_list") 
@@ -50,10 +35,10 @@ public class MReviewOrderController {
 	
 	// 해당 주문번호 내용 읽기 
 	@GetMapping("manager/order_read")
-	public ModelAndView orderRead(int oNo) {
+	public ModelAndView orderRead(int orderNo) {
 		return new ModelAndView("main").addObject("viewName","manager/checkorderRead.jsp")
 				  .addObject("viewHeader", "include/viewHeader.jsp")
-				  .addObject("orderRead",service.orderRead(oNo)).addObject("oNo", oNo);
+				  .addObject("orderRead",service.orderRead(orderNo)).addObject("oNo", orderNo);
 				
 	}
 	

@@ -26,7 +26,7 @@ public class ReviewDto {
 		private String rContent; 
 		private Integer rStarPoint;
 		private String rWriteTimeStr;
-		private Integer oNo;
+		private Integer orderNo;
 		private String rTitle;
 		private Integer rReport;
 		private String uUsername;
@@ -76,7 +76,7 @@ public class ReviewDto {
 		private LocalDateTime rWriteTime;
 		private String rContent;
 		private String uUsername;
-		private Integer oNo;
+		private Integer orderNo;
 		private Integer rStarPoint;
 	}
 	

@@ -28,62 +28,61 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <style>
 #check_pwd {
-	position: absolute;
-	left: 400px;
-	top: 395px;
+   position: absolute;
+   left: 400px;
+   top: 395px;
 }
 
 #wrap_id { 
-	margin-right: auto; 
-	margin-left: auto; 
-	width: 600px;
-	height: 300px;
+   margin-right: auto; 
+   margin-left: auto; 
+   width: 600px;
+   height: 300px;
 }
 
 .solid {
-	border:2px solid black;;
+   border:2px solid black;;
 }
 </style>
 <script>
 $(function(){
-	$("#check_pwd").on("click", function(){
-			$("#check_pwd_frm").submit();
-	})
-	
-	var msg = "${msg}";
-	if(msg!="") {
-		Swal.fire({
-			  title: '다시 한번 비밀번호를 생각해주세요!',
-			  width: 500,
-			  padding: '4em',
-			  background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
-			  backdrop: `
-			    rgba(0,0,123,0.4)
-			    url("https://sweetalert2.github.io/images/nyan-cat.gif")
-			    left top
-			    no-repeat
-			  `
-			})
-	}
+   $("#check_pwd").on("click", function(){
+         $("#check_pwd_frm").submit();
+   })
+   
+   var msg = "${msg}";
+   if(msg!="") {
+      Swal.fire({
+           title: '다시 한번 비밀번호를 생각해주세요!',
+           width: 500,
+           padding: '4em',
+           background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+           backdrop: `
+             rgba(0,0,123,0.4)
+             url("https://sweetalert2.github.io/images/nyan-cat.gif")
+             left top
+             no-repeat
+           `
+         })
+   }
 });
 </script>
 </head>
 <body>
 <div class="container card" id="wrap_id">
-	<div style="text-align: center; padding: 30px 0;">
-		<h3>비밀번호 재확인</h3>
-	</div>
-	<div style="text-align: center;">
-	<form id="check_pwd_frm" action="/cheatingday/user/check_pwd" method="post">
-		비밀번호: <input type="password" id="uPassword" name="uPassword"><br>
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}"><br>
-		<button type="button" class="btn btn-danger" id="check_pwd">로그인</button>
-	</form>
-	</div>
+   <div style="text-align: center; padding: 30px 0;">
+      <h3>비밀번호 재확인</h3>
+   </div>
+   <div style="text-align: center;">
+   <form id="check_pwd_frm" action="/cheatingday/user/check_pwd" method="post">
+      비밀번호: <input type="password" id="uPassword" name="uPassword"><br>
+      <input type="hidden" name="${_csrf.parameterName}"
+         value="${_csrf.token}"><br>
+      <button type="button" class="btn btn-danger" id="check_pwd">로그인</button>
+   </form>
+   </div>
 </div>
-	
+   
 </body>
 </html>
-
 

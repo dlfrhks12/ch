@@ -13,7 +13,7 @@
 <style>
 
 /* #wrap {width: 620px margin-left: 500px margin-top: 0px} */
-section { margin-left: 400px; margin-right: 400px; margin-bottom: 100px; margin-top: 30px;}
+section { margin-left: 400px; margin-right: 400px; margin-bottom: 130px; margin-top: 30px; font-size: 17px;}
 
 </style>
 

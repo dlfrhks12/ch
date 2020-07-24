@@ -13,11 +13,11 @@ import lombok.experimental.*;
 public class Review {
 	private Integer rNo; 
 	private String rContent; 
+	private String rTitle;
 	private Integer rStarPoint;
 	private LocalDateTime rWriteTime;
-	private Integer oNo;
-	private String rTitle;
-	private Integer rReport;
+	private int rReport;
+	private Integer orderNo;
 	private String uUsername;
 	private Integer sNum;
 	

@@ -26,7 +26,7 @@
    
    <!-- 리뷰 읽기  해야해-->
    <select id="findByRno" resultType="review">
-      select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, o_no oNo, r_title rTitle, r_report rReport, u_username uUsername from review where r_no=#{rNo} and rownum=1
+      select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, order_no orderNo, r_title rTitle, r_report rReport, u_username uUsername from review where r_no=#{rNo} and rownum=1
    </select>
 
    <!-- 리뷰 페이징 -->
@@ -45,7 +45,7 @@
       <![CDATA[
       select * from
          (select rownum as rnum, b.* from
-            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime, u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review) b
+            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime, u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review) b
          where rownum <=#{endRowNum})
        where rnum>=#{startRowNum}
        ]]>
@@ -54,7 +54,7 @@
       <![CDATA[
       select * from
          (select rownum as rnum, b.* from
-            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where u_username=#{uUsername}) b
+            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review where u_username=#{uUsername}) b
          where rownum <=#{endRowNum})
        where rnum>=#{startRowNum}
        ]]>
@@ -63,7 +63,7 @@
       <![CDATA[
       select * from
          (select rownum as rnum, b.* from
-            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,o_no oNo,r_star_point rStarPoint from review where r_report>=1 order by r_report desc) b
+            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review where r_report>=1 order by r_report desc) b
          where rownum <=#{endRowNum})
        where rnum>=#{startRowNum}
        ]]>
@@ -76,8 +76,8 @@
       <selectKey keyProperty="rNo" resultType="int" order="BEFORE">
          select review_seq.nextval from dual
       </selectKey>
-      insert into review(r_no, r_title, u_username,  r_star_point, r_content, r_write_time, o_no, r_report, s_num)
-       values(#{rNo}, #{rTitle}, #{uUsername}, #{rStarPoint}, #{rContent},sysdate,#{oNo},0, #{sNum})
+      insert into review(r_no, r_title, u_username,  r_star_point, r_content, r_write_time, order_no, r_report, s_num)
+       values(#{rNo}, #{rTitle}, #{uUsername}, #{rStarPoint}, #{rContent},sysdate,#{orderNo},0, #{sNum})
    </insert>
    
    <update id="update">

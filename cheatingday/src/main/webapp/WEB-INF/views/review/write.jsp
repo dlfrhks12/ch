@@ -55,12 +55,12 @@ $(function() {
 		var ck = CKEDITOR.replace("rContent",{
 			filebrowserUploadUrl:"http://localhost:8081/cheatingday/review/ckupload"
 		});
-		var storecode = "${oNo}"
+		var storecode = "${orderNo}"
 		console.log(storecode);
 		$("#write").on("click",function(){
 			var params = {
 				rTitle : $("#rTitle").val(),
-				oNo : storecode,
+				orderNo : storecode,
 				rContent : CKEDITOR.instances['rContent'].getData(),
 				rStarPoint: $("#rScore2").val(),
 				_csrf:"${_csrf.token}" 

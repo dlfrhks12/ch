@@ -44,8 +44,8 @@ System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
 		return new ModelAndView("main").addObject("viewName", "review/list.jsp").addObject("viewHeader", "include/viewHeader.jsp").addObject("page", service.list(pageno));
 	}
 	@GetMapping("/review/write")
-	public ModelAndView write(int oNo) {
-		return new ModelAndView("main").addObject("viewName", "review/write.jsp").addObject("viewHeader", "include/viewHeader.jsp").addObject("oNo", oNo);
+	public ModelAndView write(int orderNo) {
+		return new ModelAndView("main").addObject("viewName", "review/write.jsp").addObject("viewHeader", "include/viewHeader.jsp").addObject("orderNo", orderNo);
 	}
 	@PostMapping("/review/write")
 	public String write(@Valid ReviewDto.DtoForWrite dto, BindingResult bindingResult, Principal principal,HttpServletRequest request) throws BindException {

@@ -15,6 +15,12 @@
 .first {
 	text-align: center;
 }
+.modal-dialog {
+	position: absolute;
+	width: 200px;
+	top: 35%;
+	left: 40%;
+}
 </style>
  <script>
 $(function() {
@@ -47,12 +53,17 @@ $(function() {
 			}
 		})
 	})
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 });
 </script> 
 </head>
 <body>
 
 	 <div>
+${page.blist}
+	<div>
 	<div class="container">
 	<div style="padding: 40px 0;">
 		<h3><i class="fas fa-shopping-bag">&nbsp;구매내역</i></h3>
@@ -76,12 +87,10 @@ $(function() {
 			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
-						<td><a href = "/cheatingday/review/write?oNo=${buylist.ONo}">${buylist.SName}</a></td>
-						<td><a class='writer' data-toggle="modal"
-							data-target="#myModal" data-writer="${buylist.SName}"
-							onclick="openWin()">${buylist.SName}</a></td>
-						<td>${buylist.OTotal}</td>
-						<td>${buylist.OOrderTimeStr}</td>
+						<td><a href = "/cheatingday/review/write?orderNo=${buylist.orderNo}">${buylist.SName}</a></td>
+						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.menuname}</a></td>
+						<td>${buylist.cartPrice}</td>
+						<td>${buylist.cartDayStr}</td>
 						<c:if test="${buylist.favCheck eq false }">
 							<td><button type="button" data-num="${buylist.SNum }"
 									data-check="1" class="btn btn-info fav">
@@ -126,5 +135,6 @@ $(function() {
 	</div>
 	</div> 
 	
+	</div>
 </body>
 </html>

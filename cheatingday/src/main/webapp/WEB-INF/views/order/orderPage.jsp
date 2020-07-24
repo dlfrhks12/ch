@@ -9,7 +9,7 @@
 <style>
 	
 	#wrap div { 
-		display: inline-block; 
+		display: inline-block; font-size: 17px;
 	}
 	
 	section{
@@ -25,7 +25,7 @@
 	 }
 	
 	#buy {
-		margin-left: 820px; margin-top: 30px;
+		 margin-top: 30px; margin-left: 400px;
 	}
 	
 	#SName {margin: 40px; }
@@ -79,24 +79,28 @@ $(function(){
 
 ///////////////////////////////////////////////////일관///////////////////////////////
 
-	// 3. 장바구니에 추가
-	$(".cart").on("click", function() {
-		var params = {
-			menuno: $(this).attr("data-menuno"),
-			_csrf: "${_csrf.token}"
-		}
-		$.ajax({ 
-			url: "/cheatingday/cart/add",
-			method: "post",
-			data: params,
-		}).done(()=>{
-			var choice = confirm("상품을 장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
-			if(choice==true)
-				location.href = "/cheatingday/cart/cartview"
-		}).fail((xhr)=>{
-			alert(xhr.responseText);
-		})
-	});
+	
+ 	$(function() {
+
+ 		// 3. 장바구니에 추가
+ 		$(".cart").on("click", function() {
+ 			var params = {
+ 				menuno: $(this).attr("data-menuno"),
+ 				_csrf: "${_csrf.token}"
+ 			}
+ 			$.ajax({ 
+ 				url: "/cheatingday/cart/add",
+ 				method: "post",
+ 				data: params,
+ 			}).done(()=>{
+ 				var choice = confirm("상품을 장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
+ 				if(choice==true)
+ 					location.href = "/cheatingday/cart/cartview2"
+ 			}).fail((xhr)=>{
+ 				alert(xhr.responseText); 
+ 			})
+ 		});
+ 	});
  	
 })
 
@@ -109,8 +113,9 @@ $(function(){
 <div id="storeInfo">
 	<br>
 	<div>
-	 <span id="SName" style="font-size: 26px; font-weight: bold">${storeRead.SName}</span> 
+	 &ensp;<span id="SName" style="font-size: 26px;  font-weight: bold">${storeRead.SName}</span> 
 	</div>
+	<br>
 	<hr>
 	<br>
 	
@@ -118,7 +123,7 @@ $(function(){
 	<tr>
 	<td>
 	<div>
-	 <img id="show_storesajin" height="300px;" width="320px;"  style="margin-left: 30px;" src="${storeRead.SSajin}">
+	 <img id="show_storesajin" height="300px;" width="320px;"  style="margin-left: 60px; margin-right: 20px;" src="${storeRead.SSajin}">
 	</div>
 	</td>
 	<td>
@@ -156,8 +161,8 @@ $(function(){
 	</tr>
 	</table>
 	
-	<div style="margin-left: 350px; margin-right: 55px">
-	매장정보: <span id="SInfo">${storeRead.SInfo}</span>
+	<div >
+	<textarea rows="5" cols="107" style="overflow: hidden; background-color: white; margin-left: 60px; margin-top: 20px; font-size: 17px;" disabled="disabled" id="SInfo">${storeRead.SInfo}</textarea>
 </div>	
 	
 	
@@ -169,12 +174,12 @@ $(function(){
 			<img src="${product.menusajin}" width="200px" height="150px">
 			<div>
 				<span style="font-size: 1.2em;">${product.menuname}</span>
-				<hr>
+				<br>
 				<span style="font-size: 1.3em;">${product.menusal}원</span>
 				
 			</div>
 			<span>
-				<button class="cart btn btn-danger" data-menuno="${product.menuno}"><i class="fas fa-shopping-cart">&nbsp;장바구니 담기</i></button>
+				<button style="margin-bottom: 15px; margin-top: 10px;" class="cart btn btn-danger" data-menuno="${product.menuno}"><i class="fas fa-shopping-cart">&nbsp;장바구니 담기</i></button>
 			</span>
 		</div>
 	</c:forEach>
@@ -186,7 +191,7 @@ $(function(){
 </div>
 	<div style="margin-bottom: 50px;">
 	<form action="/cheatingday/cart/cartview" method="get">
-	<button id="buy" class="cart btn btn-danger">장바구니로 이동!<br></button><br>
+	<button style="font-size: 17px; font-weight: bold;  width: 200px;"  id="buy" class="cart btn btn-danger">장바구니로 이동<br></button><br>
 	</form>
 	</div>
 

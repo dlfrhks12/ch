@@ -41,7 +41,6 @@
 //메뉴사진 읽기
 function loadImage(){
 	
-	var file = $("#sajin")[0].files[0];
 	
 	//이미지파일 화면에 출력
 	var reader = new FileReader();
@@ -190,7 +189,7 @@ $(function(){
 
 </div>
 	<div style="margin-bottom: 50px;">
-	<form action="/cheatingday/cart/cartview" method="get">
+	<form action="/cheatingday/cart/cartview2" method="get">
 	<button style="font-size: 17px; font-weight: bold;  width: 200px;"  id="buy" class="cart btn btn-danger">장바구니로 이동<br></button><br>
 	</form>
 	</div>

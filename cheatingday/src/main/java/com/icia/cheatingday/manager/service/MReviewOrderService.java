@@ -88,7 +88,27 @@ public class MReviewOrderService {
 //////////////////////////////////////////////////주문/////////////////////////////////////////////////////
 	
 	
-	 // 해당매장 주문 리스트 - 페이징 
+	 // 해당매장 주문 리스트 - 페이징 (검색용)
+	public Page orderListKeyword (int pageno, String username, String keyword) {
+		int sNum = storeDao.findBymUsername(username).getSNum();
+		System.out.println(sNum);
+		int countOfBoard = orderDao.countBysNumKeyword(sNum,keyword);
+		Page page = PagingUtil.getPage(pageno, countOfBoard);
+		int srn = page.getStartRowNum();
+		int ern = page.getEndRowNum();
+		List<Orders> orderList = orderDao.orderListBySNumKeyword(srn, ern, sNum,keyword);
+			
+		List<ManagerDto.DtoForOrderList> dtoList = new ArrayList<>();
+		for(Orders order: orderList) {
+			ManagerDto.DtoForOrderList dto = modelMapper.map(order, ManagerDto.DtoForOrderList.class);	
+			dto.setCartDayStr(order.getCartDay().format(DateTimeFormatter.ofPattern("MM월dd일 hh시mm분")));
+			dtoList.add(dto);
+		}
+		page.setOlist(dtoList);
+		return page;
+	}
+	
+	//원래주문내역 페이징
 	public Page orderList (int pageno, String username) {
 		int sNum = storeDao.findBymUsername(username).getSNum();
 		System.out.println(sNum);
@@ -97,13 +117,7 @@ public class MReviewOrderService {
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
 		List<Orders> orderList = orderDao.orderListBySNum(srn, ern, sNum);
-			System.out.println(orderList);
-			System.out.println(orderList);
-			System.out.println(orderList);
-			System.out.println(orderList);
-			System.out.println(orderList);
-			System.out.println(orderList);
-			System.out.println(orderList);
+			
 		List<ManagerDto.DtoForOrderList> dtoList = new ArrayList<>();
 		for(Orders order: orderList) {
 			ManagerDto.DtoForOrderList dto = modelMapper.map(order, ManagerDto.DtoForOrderList.class);	
@@ -115,6 +129,14 @@ public class MReviewOrderService {
 	}
 	  
 	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 해당 주문번호 내용 읽기 
 	public List<ManagerDto.DtoForOrderRead> orderRead(int oNo){

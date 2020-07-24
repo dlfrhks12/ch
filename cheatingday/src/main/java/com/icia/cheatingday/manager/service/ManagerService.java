@@ -84,9 +84,9 @@ public class ManagerService {
 	}
 	
 	// 메뉴쓰기 - 메뉴사진 올리는 기능
-	public void write(MenuDto.DtoForRead dto, MultipartFile sajin) throws IllegalStateException, IOException {
+	public void write(MenuDto.DtoForRead dto, MultipartFile sajin, String mUsername) throws IllegalStateException, IOException {
 		MenuEntity menu = modelMapper.map(dto, MenuEntity.class);
-		
+		menu.setSNum(storeDao.findBymUsername(mUsername).getSNum());
 		if (sajin != null && sajin.isEmpty() == false) {// 사진이 존재하면서 사진형식이면
 			if (sajin.getContentType().toLowerCase().startsWith("image/") == true) {
 				// 사진이 맞으면

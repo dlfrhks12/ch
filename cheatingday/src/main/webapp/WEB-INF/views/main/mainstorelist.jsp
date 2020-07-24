@@ -14,7 +14,7 @@
 section {margin-left:485px; margin-right:500px; margin-top:70px;}
 #list {width:990px; margin: 0 auto;}
 table th{text-align: center;}
-#ta img {float:right;}
+#show_sajin {float: right; width: auto; height: auto; max-height: 130px; max-width: 130px;}
 #nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
 #filter{float:right; margin-right: 30px;}
 li {font-size: 15px;}
@@ -29,7 +29,7 @@ li {font-size: 15px;}
 			<c:forEach items="${store.mainlist}" var="store">
 				<div>
 					<hr>
-	                <img id="show_sajin" height="200px;" src="${store.SSajin}">
+	                <img id="show_sajin"  src="${store.SSajin}">
 					<ul onclick="location.href='/cheatingday/store_read?sNum=${store.SNum}'">
 						<li style="font-size: 21px;">${store.SName}</li>
 	                  	<li>별점 : ${store.SStarPoint} 점</li>	

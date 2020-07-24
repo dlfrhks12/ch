@@ -34,31 +34,16 @@
 	<select id="menuName" resultType="order">
 		select order_no orderNo, cart_day cartDay, u_username uUSername,
 		 s_num sNum, cart_jumunMoney cartJumunMoney, cart_name cartName from orders where s_num=#{sNum} and rownum=1 
+	
+	
+	<select id="findAlls" resultType="order">
+		select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
+		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney
+		from orders
 	</select>
 
-	<!-- sNum으로 페이징 하려고 조건 만들어줌 -->
-	<select id="countBysNum" resultType="int">
-		select count(*) from orders where s_num=#{sNum}
-	</select>
-
-	<!-- 주문총금액  -->
-	<select id="total" resultType="int">
-		select sum(cart_jumunMoney) total from orders
-	</select>
-
-	<!-- 주문리스트에서 주문읽을때 제목 만들기 -->
-	<select id="countByOno" resultType="int">
-		select count(*) from orders where order_no=#{orderNo}
-	</select>
-
-
-
-	<!-- 읽기  -->
-	<!-- 해당 주문번호 내용 읽기  -->
-	<select id="orderReadByONo" resultType="order">
-		select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice,
-		cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
-		from order where order_no=#{orderNo}
+	<select id="findAll" resultType="order">
+		select s_num sNum from orders where u_username = #{uUsername} 
 	</select>
 
    <!-- 일관 -->
@@ -71,33 +56,35 @@
       </foreach>
    </update>
    
+   <!-- sNum으로 페이징 하려고 조건 만들어줌 -->
+   <select id="countBysNum" resultType="int">
+      select count(*) from orders where s_num=#{sNum}
+   </select>
+
+   <!-- 주문총금액  -->
+   <select id="total" resultType="int">
+      select sum(cart_jumunMoney) total from orders
+   </select>
+
+   <!-- 주문리스트에서 주문읽을때 제목 만들기 -->
+   <select id="countByOno" resultType="int">
+      select count(*) from orders where order_no=#{orderNo}
+   </select>
+
+
+
+   <!-- 읽기  -->
+   <!-- 해당 주문번호 내용 읽기  -->
+   <select id="orderReadByONo" resultType="order">
+      select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice,
+      cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
+      from order where order_no=#{orderNo}
+   </select>
+
    
-   <select id="findAlls" resultType="order">
-      select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
-             cart_count cartCount, image, cart_jumunMoney cartJumunMoney
-      from orders
+   <select id="findByONo" resultType="int">
+      select s_num sNum from orders where order_no=#{orderNo} and rownum=1
    </select>
-	<select id="findByONo" resultType="order">
-		select d_no dNo, d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName, o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
-	</select>
-   <!-- 5. 장바구니 삭제 -->
-   <delete id="orderDelete">
-      delete from detailorder
-      where d_no = #{dNo}
-   </delete>
-   <select id="findAll" resultType="order">
-      select s_num sNum from orders where u_username = #{uUsername} 
-   </select>
+  
    
 </mapper>
-
-
-
-
-
-
-
-
-
-
-

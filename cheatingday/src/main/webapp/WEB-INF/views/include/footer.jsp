@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <style>
 #footer {
-	margin-left: 400px;
-	margin-right: 600px;
+	margin-left: 460px;
+	margin-right: 500px;
 }
 #footer img {
 	width: 100px;

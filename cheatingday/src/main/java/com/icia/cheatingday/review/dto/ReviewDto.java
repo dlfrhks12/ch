@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.icia.cheatingday.review.entity.Review;
+import com.icia.cheatingday.review.entity.ReviewComment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,18 +21,34 @@ public class ReviewDto {
 	@Accessors(chain=true)
 	public static class DtoForList {
 		private Integer rNo; 
+		private Integer sNum;
 		private String category;
 		private String rContent; 
 		private Integer rStarPoint;
 		private String rWriteTimeStr;
-		private Integer oNo;
+		private Integer orderNo;
 		private String rTitle;
 		private Integer rReport;
 		private String uUsername;
-		private Integer sNum;
 		private String sName;
 		private String menuname;
 		private String sajin;
+	}
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Builder
+	@Accessors(chain=true)
+	public static class DtoForReviewList{
+		private Integer rNo;
+		private Integer sNum;
+		private String sName;
+		private Integer rStarPoint;
+		private String rContent;
+		private String rTitle;
+		private String rWriteTimeStr;
+		private String uUsername;
+		
 	}
 	@Data
 	@AllArgsConstructor
@@ -48,6 +65,7 @@ public class ReviewDto {
 		private String sName;
 		private Integer rReport;
 		private Integer rStarPoint;
+		private List<ReviewComment> comments;
 	}
 	@Data
 	@AllArgsConstructor
@@ -58,8 +76,7 @@ public class ReviewDto {
 		private LocalDateTime rWriteTime;
 		private String rContent;
 		private String uUsername;
-		private Integer sNum;
-		private String sName;
+		private Integer orderNo;
 		private Integer rStarPoint;
 	}
 	

@@ -20,7 +20,7 @@
 	<!-- 회원가입 -->
 	<insert id="insert">
 		insert into manager(m_num, m_password, m_username, m_email, m_tel, m_account, m_irum, s_name, m_enabled, status) 
-		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 1, 1)
+		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 0, 1)
 	</insert>
 	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">

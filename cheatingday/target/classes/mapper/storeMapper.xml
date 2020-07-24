@@ -27,7 +27,7 @@ s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUserna
 <!-- <select id="findAll" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
 s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
-s_star_point sStarPoint, s_review_cnt sReviewCnt, m_username mUsername from store
+s_star_point sStarPoint, s_review_cnt sReviewC nt, m_username mUsername from store
 </select> -->
 	
 <select id="findAllBymUsername" resultType="store">
@@ -115,25 +115,6 @@ update store
 	
 </select>
 
-
-<select id="listAll" resultType="store">
-	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt from store order by s_num desc
-</select>
-
-<select id="countArticle" resultType="int">
-	select count(*) from store <include refid="search"></include>
-</select>
-
-<sql id="search">
-	<choose>
-		<when test="searchOPtion=='all'">
-			where s_address like '%'||#{keyword}||'%'
-		</when>
-	</choose>
-</sql>
-<select id="findAll" resultType = "store">
-	select s_num sNum, s_name sName from store where uUsername = #{uUsername} and rownum = 1
-</select>
 </mapper>
 
 

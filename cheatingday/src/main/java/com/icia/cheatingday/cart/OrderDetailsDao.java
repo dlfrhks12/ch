@@ -22,9 +22,10 @@ public class OrderDetailsDao {
 		return tpl.selectList("cartMapper.findAll");
 	}
 	
-	// 카트 뒤로가기 할 떄 삭제
+	// 카트 삭제
 	public int deletes() {
 		return tpl.delete("cartMapper.delete");
 	}
 
 }
+

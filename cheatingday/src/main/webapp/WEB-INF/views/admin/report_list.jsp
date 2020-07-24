@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 .pagination{margin-top:20px;white-space: nowrap; text-align: center; height: 37px; line-height:37px;}
 .pagination a{display:inline-block; border:1px solid #f7f7f7; height:35px; width:35px;  vertical-align:middle; text-align:center; text-decoration:none; font-size:15px; color:#898989;background:#f7f7f7;}

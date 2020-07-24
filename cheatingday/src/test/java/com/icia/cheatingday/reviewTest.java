@@ -39,11 +39,11 @@ public class reviewTest {
 	}
 	//@Test
 	public void findAllByStarTest() {
-		assertThat(dao.findAllByStar(1, 2), is(2));
+		//assertThat(dao.findAllByStar(1, 2), is(2));
 	}
 	//@Test
-	public void findAllBtRno() {
-		assertThat(dao.findAllByRno(1, 2), is(2));
+	public void findAllBy0Rno() {
+		//assertThat(dao.findAllByRno(1, 2), is(2));
 	}
 	//@Test
 	public void reviewSingoUpdate() {

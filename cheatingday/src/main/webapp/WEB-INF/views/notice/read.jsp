@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="/cheatingday/mainhome/css/read.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
@@ -86,7 +85,7 @@ $(function() {
 </script>
 </head>
 <body>
-<div id="wrap" style="width: 1000px; min-height: 800px;">
+<div id="wrap" style="width: 1000px; min-height: 800px; margin-left: 400px; margin-right: 400px;">
 	<div>
 		<div id="title_div">
 			<div id="upper">

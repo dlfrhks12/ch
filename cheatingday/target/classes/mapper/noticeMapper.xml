@@ -10,11 +10,13 @@
 		<![CDATA[
 		select * from
 			(select rownum as rnum, b.* from
-				(select /*+ index_desc(notice notice_pk_n_no)*/n_no nNo,n_title nTitle,n_write_time nWriteTime,n_readcnt nReadCnt, a_username aUsername from notice order by n_no desc) b
+				(select /*+ index_desc(notice notice_pk_n_no)*/n_no nNo,n_title nTitle,n_write_time nWriteTime,
+				n_readcnt nReadCnt, a_username aUsername from notice order by n_no desc) b
 			where rownum <=#{endRowNum})
 		 where rnum>=#{startRowNum}
 		 ]]>
 	</select>
+	
 	<!-- 공지읽기 -->
 	<select id="findById" resultType="notice">
 		select

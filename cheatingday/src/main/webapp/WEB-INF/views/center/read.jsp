@@ -83,9 +83,12 @@ function printQna() {
       $("#comment_textarea").prop("disabled", false);
       $("#comment_write").prop("disabled", false);
    }
+   else if(qna.comments!="")
+	  $("#comment_area").hide();
 }
 //댓글출력
 function printComment(qnacomment) {
+	console.log(qnacomment);
    var $comments = $("#comments");
    $comments.empty();
    $.each(qnacomment, function(i, comment) {
@@ -101,7 +104,7 @@ function printComment(qnacomment) {
          $("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:1000px; min-height:200px;").val(comment.qcContent).appendTo($center_div); 
       $("<span>").text(comment.qcWriteTime).appendTo($upper_div);
       if(comment.ausername===loginId) {
-         var btn = $("<button>").attr("class","delete_commen btn btn-danger").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
+         var btn = $("<button>").attr("class","delete_comment btn btn-danger").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
             .text("삭제").appendTo($center_div).css("float","right");
          var btn2 = $("<button>").attr("class","update_comment btn btn-danger").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
          .text("수정").appendTo($center_div).css("float","right");
@@ -120,10 +123,10 @@ $(function() {
       method:"post"
    }).done((result)=>{ 
       qna = result;
-      console.log(qna);
+      //console.log(qna);
       printQna();
       printComment(qna.comments);
-      console.log(qna.comments.length);
+      //console.log(qna.comments.length);
    });
    // 1. 댓글 달기
    $("#comment_write").on("click", function() {
@@ -143,7 +146,7 @@ $(function() {
          method: "post",
          data: params
       }) 
-      .done((result)=>{ printComment(result); $("#comment_textarea").val(""); $("#comment_textarea").prop("disabled", true); $("#comment_write").prop("disabled", true);})
+      .done((result)=>{ printComment(result); $("#comment_textarea").val(""); $("#comment_area").hide(); })
       .fail((result)=>{console.log(result)});
    })
    
@@ -159,12 +162,13 @@ $(function() {
          _method: "delete",
          _csrf: "${_csrf.token}"
       }
+      console.log(params);
       $.ajax({
          url: "/cheatingday/center/comment_delete",
          method: "post",
          data: params
       })
-      .done((result)=>{ printComment(result); })
+      .done((result)=>{ printComment(result); $("#comment_area").show(); })
       .fail(()=>{console.log(params)});
    });
    //댓글 업데이트
@@ -182,7 +186,7 @@ $(function() {
          method: "post",
          data: params
       }) 
-      .done((result)=>{alert("변경되었습니다"); console.log(result); })
+      .done((result)=>{alert("변경되었습니다"); })
       .fail((result)=>{console.log(params);});
    });
    //글 업데이트
@@ -223,7 +227,7 @@ $(function() {
 </head>
 <body>
    <hr> 
-   <div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;" >
+   <div id="wrap" style="width: 1000px; min-height: 800px; margin-left: 400px; margin-right: 400px;" >
       <div>
          <div id="title_div">
             <div id="upper">
@@ -251,7 +255,7 @@ $(function() {
             </div>
          </div>
          <sec:authorize access="hasRole('ROLE_ADMIN')">
-         <div>
+         <div id="comment_area">
             <div class="form-group">
                <label for="comment_textarea">댓글을 입력하세요</label>
                <textarea class="form-control" rows="5" id="comment_textarea"

@@ -35,7 +35,9 @@ public class AdminController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin/report_list")
 	public ModelAndView list(@RequestParam(defaultValue = "1") int pageno) {
-		return new ModelAndView("main").addObject("viewHeader", "include/viewHeader.jsp").addObject("viewName", "admin/report_list.jsp").addObject("page", service.list(pageno));
+		return new ModelAndView("main").addObject("viewHeader", "include/viewHeader.jsp")
+				.addObject("viewName", "admin/report_list.jsp")
+				.addObject("page", service.list(pageno));
 	}
 	//[관리자]일반회원 리스트/블록여부에 따라서 리스트 변경
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

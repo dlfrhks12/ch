@@ -17,6 +17,6 @@ public class QnAComment {
 	private Integer qNo;
 	private String aUsername;
 	private String qcContent;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy년 MM월 dd일")
 	private LocalDateTime qcWriteTime;
 }

@@ -19,17 +19,19 @@ public class ManagerDto {
 	
 	@Data
 	@Accessors(chain=true)	//주문리스트
-	public static class DtoForOrderList{
+public static class DtoForOrderList{
+	
 		
-		private String orderName; //주문이름
 		//기존 orders 테이블
-		private int oNo; //주문번호
-		private int oTotal; //총금액
-		private String oOrderTimeStr; //주문시간
+		private int orderNo; //주문번호
+		private String cartDayStr; //주문시간
 		private String uUsername; //사용자아이디
-		private Boolean oCheck; //주문확인여부
 		private int sNum; //상호번호
-		
+		private int cartPrice;//메뉴금액
+		private int cartCount;//메뉴수량
+		private String cartName; //메뉴이름
+		private int menuno; //메뉴번호
+	
 	}
 	
 	@Data

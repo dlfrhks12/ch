@@ -17,14 +17,14 @@ import lombok.experimental.Accessors;
 public class Orders implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private int orderNo;
-	private int menuno;
-	private String uUsername;
-	private String cartName;
-	private int cartPrice;
-	private LocalDateTime cartDay;
-	private int cartCount;
-	private String image;
-	private int cartJumunMoney;
-	private int sNum;
+	private int orderNo; //주문번호
+	private int menuno; //메뉴번호
+	private String uUsername; //유저아이디
+	private String cartName; //메뉴이름
+	private int cartPrice; //메뉴가격
+	private LocalDateTime cartDay; //주문일
+	private int cartCount; //메뉴수량
+	private String image; //메뉴사진
+	private int cartJumunMoney; //메뉴금액
+	private int sNum; //음식점고유번호
 }

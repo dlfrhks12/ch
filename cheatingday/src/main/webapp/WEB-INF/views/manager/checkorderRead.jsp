@@ -16,59 +16,6 @@ section {margin-left: 400px; margin-right: 400px;}
 #no{ margin-top: 30px;}
 </style>
 
-<script>
-	var oNo = "${oNo}"
-$(function(){
-	$("#ok").on("click",function(){
-		
-		var params={
-				_method:"patch",
-				oNo:oNo
-		}
-		
-		console.log(params)
-		
-		$.ajax({
-			data: params,
-			url: "/cheatingday/manager/order_update",
-			method: "post",
-			success: function() {
-				Swal.fire({
-					icon: 'success',
-					title: 'success',
-					text: '주문이 승인되었습니다',
-					})
-				}
-		})
-	})
-
-	$("#no").on("click",function(){
-		
-		var params={
-				_method:"delete",
-				oNo: oNo
-		}
-		console.log(params);
-		
-		$.ajax({
-			data: params,
-			url:"/cheatingday/manager/order_delete",
-			method:"post",
-			success: function(){
-				Swal.fire({
-					icon: 'error',
-					title: 'delete',
-					text: '주문을 거절하여 삭제되었습니다',
-					})
-			}
-		})
-		
-	})
-	
-	
-})
-
-</script>
 </head>
 <body>
 	<div>
@@ -90,17 +37,16 @@ $(function(){
 			<tbody id="list">
 			<c:forEach items="${orderRead}" var="order">
 				<tr>
-					<td id="order">${order.ONo}</td>
+					<td id="order">${order.orderNo}</td>
 					<td>${order.menuno} 번</td>
-					<td>${order.DMenuName}</td>
-					<td>${order.DSal} 원</td>
-					<td>${order.DMenuCnt} 개</td>
+					<td>${order.CartName}</td>
+					<td>${order.CartPrice} 원</td>
+					<td>${order.CartCount} 개</td>
 				</tr>
 			</c:forEach> 
 			</tbody>
 		</table>
-		<button type="button"  class="btn btn-danger" id="ok">주문승인</button>
-		<button type="button"  class="btn btn-danger" id="no">주문거절</button>
+		
 	</div>
 	</div>
 </body>

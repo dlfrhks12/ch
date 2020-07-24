@@ -1,53 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderMapper">
-<!-- orderInsert, order(목록), orderDelete, orderUpdate, orderAllSum --> 
-
-	<!-- 예지   -->
-	<!-- 승인거절시 삭제 -->
-	<delete id="orderDeleteByoNo">
-		delete from orders where o_no=#{oNo}
-	</delete>
-	
-	<delete id="orderDetailDelete">
-		delete from detailorder where o_no=#{oNo}
-	</delete>
-	
-	
-	<!-- 주문승인시 체크가1로 변경되는 -->
-	<update id="checkUpdate"> 
-		update orders set o_check=1 where o_no=#{oNo}
-	</update>
-	
-	<!-- sNum으로 페이징 하려고 조건 만들어줌 -->
-	<select id="countBysNum" resultType="int">
-		select count(*) from orders where s_num=#{sNum}
-	</select>
-	
-	  <!-- 해당매장 주문 리스트   -->
-  	 <select id="orderListBySNum" resultType="order">
-		select o_no oNo, o_total oTotal, o_order_time oOrderTime, u_username uUSername,
-		o_check oCheck, s_num sNum from orders where s_num=#{sNum} and o_check=0 
-  	 </select>  
-	
-	<!-- 주문리스트 출력시 주문제목보이기  -->
-	<select id="ordercheck" resultType="detailorder">
-		select d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName,
-		o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} and rownum=1
-	</select>
-	
-	
-	<!-- 해당 주문번호 내용 읽기  -->
-	<select id="orderReadByONo" resultType="detailorder">
-		select d_sal dSal, d_menu_cnt dMenuCnt, d_menu_name dMenuName,
-		o_no oNo, menuno, u_username uUsername from detailorder where o_no=#{oNo} 
-	</select>
-	
-	<!-- 주문읽을때 제목 만들기 -->
-	<select id="countByOno" resultType="int">
-		select count(*) from detailorder where o_no=#{oNo} 
-	</select>
-
 
 	<!-- 일관 -->
 	<update id="insertOrderAll" parameterType="order">
@@ -59,11 +12,6 @@
 		</foreach>
 	</update>
 	
-<!-- 	<insert id="inserts">
-		insert into cart(order_no, menuno, u_username, cart_name, cart_price, cart_day, 
-		       cart_count, image, cart_jumunMoney)
-		select * from orders where u_username=#{uUsername}
-	</insert> -->
 	
 	<select id="findAlls" resultType="order">
 		select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
@@ -71,7 +19,6 @@
 		from orders
 	</select>
 
-=======
 	<!-- 5. 장바구니 삭제 -->
 	<delete id="orderDelete">
 		delete from detailorder
@@ -81,17 +28,4 @@
 		select s_num sNum from orders where u_username = #{uUsername} 
 	</select>
 	
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/cheatingday.git
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-

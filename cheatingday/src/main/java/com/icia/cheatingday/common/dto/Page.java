@@ -42,5 +42,5 @@ public class Page {
 	List<AdminDto.DtoForblockList> ablist;
 	List<ManagerDto.DtoForOrderList> olist;
 	List<MainDto.DtoForList> mainlist;
-	List<ReviewDto.DtoForList>reviewlist;
+	List<ReviewDto.DtoForReviewList>reviewlist;
 }

@@ -11,10 +11,14 @@ import lombok.experimental.*;
 @Builder
 @Accessors(chain = true)
 public class Buylist {
-	private int oNo;
-	private Integer oTotal;
-	private LocalDateTime oOrderTime;
-	private String uUSername;
-	private Integer oCheck;
+	private int orderNo;
+	private int menuno;
+	private String uUsername;
+	private String cartName;
+	private int cartPrice;
+	private LocalDateTime cartDay;
+	private int cartCount;
+	private String image;
+	private int cartJumunMoney;
 	private int sNum;
 }

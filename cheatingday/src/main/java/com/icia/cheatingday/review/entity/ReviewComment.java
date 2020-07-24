@@ -1,20 +1,26 @@
 package com.icia.cheatingday.review.entity;
 
-import java.time.*;
+import java.time.LocalDateTime;
 
-import lombok.*;
-import lombok.experimental.*;
+import com.fasterxml.jackson.annotation.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Accessors(chain=true)
+@Accessors(chain=true) 
 public class ReviewComment {
-	private Integer rcNo;	// 리부답글번호
-	private Integer	rNo;	// 리뷰 번호
-	private String mNum;	// 사업자 등록번호
-	private String rcContent;	// 답글 내용
-	private LocalDateTime rcDateTime; // 답글시간
+	private Integer rcNo;
+	private Integer rNo;
+	private Long mNum;
+	private String rcContent;
+	@JsonFormat(pattern = "yyyy년 MM월 dd일")
+	private LocalDateTime rcDateTime;
+	private String mUsername;
 }

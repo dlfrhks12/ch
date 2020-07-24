@@ -10,55 +10,56 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style >
+<script>
 
+$(function(){
+	$("#search").on("click",function(){
+	$("#search_frm").submit();
+	});
+})
 
-</style>
+</script>
 </head>
 <body>
-<%-- ${page.olist} --%>
-<%-- ${orderList} --%>
 <sec:authentication property="principal.username" var="username"/>
 <div>
 <div class="container">
    <div style="padding: 40px 0;">
       <h3><i class="fas fa-shopping-cart">&nbsp;주문내역</i></h3>
    </div>
+   
+   <form action="/cheatingday/manager/order_list_keyword" id="search_frm" method="get">
+   	 	<input style="width: 170px; margin-left: 400px;" name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="주문번호로 검색하세요">
+    	<button style="margin-left: 400px;" class="btn btn-danger" type="button" id="search">검색</button> 
+    </form>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">
 				<col width="30%">
+				<col width="10%">
 				<col width="20%">
 				<col width="20%">
-				<col width="10%">
-				<col width="10%">
-				
+				<col width="20%">
 			</colgroup>
 			<thead>
 				<tr class="table-danger">
 					<th>주문번호</th>
-					<th>주문메뉴</th>
-					<th>총금액</th>
+					<th>메뉴이름</th>
+					<th>메뉴수량</th>
+					<th>메뉴금액</th>
 					<th>주문시간</th>
 					<th>사용자아이디</th>
-					<th>주문확인여부</th>
 				</tr>
 			</thead> 
 			<tbody id="list">
 			<c:forEach items="${page.olist}" var="manager">
 				<tr>
-					<td>${manager.ONo}</td>
-					<td><a href="/cheatingday/manager/order_read?oNo=${manager.ONo}">${manager.orderName}</a></td>
-					<td>${manager.OTotal} 원</td>
-					<td>${manager.OOrderTimeStr}</td>
+					<td>${manager.orderNo}</td>
+					<td>${manager.cartName}</td>
+					<td>${manager.cartCount}</td>
+					<td>${manager.cartPrice}</td>
+					<td>${manager.cartDayStr}</td>
 					<td>${manager.UUsername}</td>
-					<td>
-					<c:choose>
-						<c:when test="${manager.OCheck==false}">
-							<p>접수 대기중</p>					
-						</c:when>
-					</c:choose>
-					</td>
 				</tr>
 			</c:forEach> 
 			</tbody>

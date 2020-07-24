@@ -20,8 +20,6 @@ import org.springframework.web.servlet.mvc.support.*;
 
 import com.icia.cheatingday.main.service.mvc.*;
 import com.icia.cheatingday.manager.dto.*;
-import com.icia.cheatingday.manager.entity.Store;
-import com.icia.cheatingday.manager.service.*;
 import com.icia.cheatingday.user.dto.*;
 import com.icia.cheatingday.util.editor.*;
 
@@ -35,7 +33,6 @@ public class MainController {
 		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 		}
 
-   
 	
    /////////////////////////////////////////    메인 공용        ///////////////////////////////////////////////////
    
@@ -49,8 +46,7 @@ public class MainController {
    // [공용] 로그인
    @GetMapping("/login")
    public ModelAndView login() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")
-            .addObject("viewName", "main/login.jsp");
+      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/login.jsp");
    }
 
 
@@ -79,21 +75,49 @@ public class MainController {
    public ModelAndView findpwd() {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findpwd.jsp");
    }
-   
 
    
    // 메인화면 카테고리 선택 & 주소 검색 후 가게 리스트
    @PreAuthorize("isAuthenticated()")
    @RequestMapping("/store_list")
    @ResponseBody
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job,  @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.listReview(foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/storelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.list(foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       return null;
    }
    
+   // 이용약관
+   @GetMapping("/footer_use")
+   public ModelAndView footer1() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer1.jsp");
+   }
+   
+   // 개인정보 처리방침
+   @GetMapping("/footer_imp")
+   public ModelAndView footer2() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer2.jsp");
+   }
+   
+   // 개인정보 제3자 제공동의
+   @GetMapping("/footer_agr")
+   public ModelAndView footer3() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer3.jsp");
+   }
+   
+   // 위치기반 서비스 이용약관
+   @GetMapping("/footer_loc")
+   public ModelAndView footer4() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer4.jsp");
+   }
+   
+   // 전자금융거래 이용약관
+   @GetMapping("/footer_tra")
+   public ModelAndView footer5() {
+	   return new ModelAndView("main").addObject("viewHeader","include/noheader.jsp").addObject("viewName","footer/footer5.jsp");
+   }
    
    ///////////////////////////////////////////    일반 회원         //////////////////////////////////////////////
    
@@ -133,23 +157,6 @@ public class MainController {
       String uUsername = service.findUserUsername(uIrum, uEmail);
       ra.addFlashAttribute("msg", "아이디는 " + uUsername + " 입니다");
       return "redirect:/system/msg";
-   }
-   
-   
-   // [일반] '마이페이지' 클릭 시 비밀번호 확인 Get
-   @PreAuthorize("isAuthenticated()")
-   @GetMapping("/main/u_check_pwd")
-   public ModelAndView checkUserPwd() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/checkpwd.jsp");
-   }
-   
-   // [일반] '마이페이지' 클릭 시 비밀번호 확인 Post
-   @PreAuthorize("isAuthenticated()")
-   @PostMapping("/main/u_check_pwd")
-   public String checkUserPwd(String uPassword, Principal principal, HttpSession session) {
-      service.checkUserPwd(uPassword, principal.getName());
-      session.setAttribute("isCheck", "true");
-      return "redirect:/user";
    }
    
    

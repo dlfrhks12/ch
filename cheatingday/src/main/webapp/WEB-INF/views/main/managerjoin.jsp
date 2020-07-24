@@ -243,13 +243,6 @@ $(function() {
 						</div>
 					</div>
 					<div>
-						<label class="txt p-b-11" for="s_name">상호명</label>
-						<div class="wrap-input100 validate-input m-b-36">
-							<input class="input200" type="text" id="s_name" name="sName">
-							<span class="focus-input200"></span>
-						</div>
-					</div>
-					<div>
 						<input type="hidden" name="authorities" value="ROLE_MANAGER">
 					</div>
 					<div class="container-login100-form-btn" style="text-align: center;">

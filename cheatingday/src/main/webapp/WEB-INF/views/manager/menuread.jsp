@@ -12,9 +12,9 @@
 <meta charset="UTF-8">
 <title>메뉴읽기</title>
 <style>
-	section {margin-left: 580px; }
+	section {margin-left: 580px; font-size: 17px; }
 	
-	#update {margin-left: 350px;}
+	#update {margin-left: 350px; font-size: 17px;}
 </style>
 
 <script>
@@ -117,7 +117,7 @@ $("#update").on("click",function(){
 	</div><br>
 	
 	<button type="button"  class="btn btn-danger" id="update">변경하기</button>
-	<button type="button"  class="btn btn-danger" id="delete">삭제하기</button> 
+	<button type="button"  class="btn btn-danger" id="delete" style="font-size: 17px;">삭제하기</button> 
 	
 	</div>
 </body>

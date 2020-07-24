@@ -11,6 +11,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
+table{text-align: center;}
 #nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
 </style>
 <script>
@@ -24,18 +26,6 @@ function loadImage() {
 }
 
 $(function(){
-   loadImage();
-   var filter = "${filter}";
-      console.log(filter);
-   var food = "${foodno}"
-      console.log(food);
-   $("#filter").on("change", function(){
-      console.log(this.value);
-      if(this.value=="review")
-         location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=review_list";
-      if(this.value=="star")
-         location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
-   })
 	loadImage();
 	//분류 요소들을 꺼내와서 자바스크립스식으로 변환
 	var filter = "${filter}";
@@ -58,14 +48,12 @@ $(function(){
 <div>
 <div style="padding: 40px 0;">
       <h3><i class="fas fa-store">&nbsp;나의 매장</i></h3>
-
-
 		<select id="filter" name="filter">
 			<option selected="selected">정렬</option>
 			<option value="review">리뷰순 정렬</option>
 			<option value="star">별점순 정렬</option>
 		</select>
-		<table class="table table-hover">
+		<table class="table table-hover">                                                                                                                    
 			<colgroup>
 				<col width="19%">
 				<col width="19%">
@@ -96,7 +84,7 @@ $(function(){
 			</tbody>
 		</table>
 	</div>
-	 <div style="text-align:center; display: inline-block; padding-left: 600px; ">
+    <div style="text-align:center; display: inline-block; padding-left: 600px; ">
       <ul class="pagination" class="pagination pagination-lg">
          <c:if test="${store.prev==true}">
             <li class="page-item"><a class="page-link" href="/cheatingday/store_list?foodNo=${foodno}&&pageno=${store.startPage-1}&&job=${filter}">이전</a></li>

@@ -1,5 +1,6 @@
 package com.icia.cheatingday.cart;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -13,18 +14,22 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Builder
 @Accessors(chain=true)
-public class Orders {
-	/*
-	o_no NUMBER(10) NOT NULL,  주문번호 
-    u_username VARCHAR2(20),  아이디 
-    m_name NVARCHAR2(30),  메뉴이름 
-	o_total NUMBER(10) NOT NULL,  총금액 
-	o_order_time DATE NOT NULL, /주문일 
-	s_num NVARCHAR2(50) 음식점 고유번호 */
+public class Orders implements Serializable {
+	// 완전한주문상세내역 Entity DB table = orders
+	private static final long serialVersionUID = 1L;
 	
-	private int oNo;	// 주문번호
+	private int orderNo; // 주문번호
+	private int menuno; // 메뉴 번호
 	private String uUsername; // 유저 아이디
-	private int oTotal; // 총금액
-	private LocalDateTime orderTime; // 주문시간
-	private int sNum; // 음식점 고유번호
+	private String cartName; // 메뉴이름
+	private int cartPrice; // 메뉴 가격
+	private LocalDateTime cartDay; // 주문일자
+	private int cartCount; // 수량
+	private String image; // 메뉴사진
+	private int cartJumunMoney; // 해당메뉴 총 가격
+	private int sNum; // 사업자 번호
+
 }
+
+
+

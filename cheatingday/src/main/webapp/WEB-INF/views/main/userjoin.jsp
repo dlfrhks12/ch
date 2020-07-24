@@ -32,10 +32,9 @@
    function openDaumZipAddress() {
       new daum.Postcode({
          oncomplete:function(data) {
-            jQuery("#zonecode").val(data.zonecode);
-            jQuery("#address").val(data.address);
-            jQuery("#address_etc").focus();
-            console.log(data);
+            $("#zonecode").val(data.zonecode);
+            $("#address").val(data.address);
+            $("#address_etc").focus();
          }
       }).open();
    }
@@ -141,15 +140,6 @@ $(function() {
    $("#u_tel").on("blur", checkTel);
 
    $("#join").on("click", function() {
-      
-   /* 
-      formData값 확인하는 코드
-      var formData = new FormData(document.getElementById("join_form"))
-      for(var key of formData.keys())
-         console.log(key);
-      for(var value of formData.values())
-         console.log(value);
-   */
    
       var r1 = checkUsername();
       var r2 = checkIrum();
@@ -225,17 +215,21 @@ $(function() {
                   </div>
                </div>
                <div>
-                  <label class="txt p-b-11" for="u_address">주소</label>
-                  <div class="wrap-input100 validate-input m-b-36">
-                     <button type="button" onClick="openDaumZipAddress();">검색</button>
-                     <input id="zonecode" type="text" style="width: 50px;" name="uAddress" readonly />&nbsp; 
-                     <input class="input200" type="text" id="address" name="uAddress" readonly />
-                  </div>
+	               <div>
+	                  <label class="txt p-b-11" for="u_address">주소</label>
+			          <div class="wrap-input300 validate-input m-b-36" style="width:25%;">
+		                 <input class="input300" id="zonecode" type="text" name="uAddress" placeholder="우편번호" />
+		              </div>
+			          <button type="button" class="btn btn-outline-danger" onClick="openDaumZipAddress();" id="sea">검색</button>
+	                  <div class="wrap-input100 validate-input m-b-36">
+	                     <input class="input200" type="text" id="address" name="uAddress" placeholder="주소를 검색해주세요" readonly/>
+	                  </div>
+	               </div>
+	               <div class="wrap-input100 validate-input m-b-36">
+	                     <input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
+	                     <span class="focus-input200"></span>
+	               </div>
                </div>
-               <div class="wrap-input100 validate-input m-b-36">
-                          <input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
-                          <span class="focus-input200"></span>
-                   </div>
                    <div>
                   <input type="hidden" name="authorities" value="ROLE_USER">
                </div>

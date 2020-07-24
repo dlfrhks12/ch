@@ -1,7 +1,16 @@
 package com.icia.cheatingday.review.dto;
 
-import lombok.*;
-import lombok.experimental.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import com.icia.cheatingday.review.entity.Review;
+import com.icia.cheatingday.review.entity.ReviewComment;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 public class ReviewDto {
 	private ReviewDto() {}
@@ -11,15 +20,35 @@ public class ReviewDto {
 	@Builder
 	@Accessors(chain=true)
 	public static class DtoForList {
-		private int rNo;
+		private Integer rNo; 
+		private Integer sNum;
 		private String category;
 		private String rContent; 
-		private int rStarPoint;
+		private Integer rStarPoint;
 		private String rWriteTimeStr;
+		private Integer orderNo;
 		private String rTitle;
+		private Integer rReport;
+		private String uUsername;
 		private String sName;
 		private String menuname;
 		private String sajin;
+	}
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@Builder
+	@Accessors(chain=true)
+	public static class DtoForReviewList{
+		private Integer rNo;
+		private Integer sNum;
+		private String sName;
+		private Integer rStarPoint;
+		private String rContent;
+		private String rTitle;
+		private String rWriteTimeStr;
+		private String uUsername;
+		
 	}
 	@Data
 	@AllArgsConstructor
@@ -35,6 +64,8 @@ public class ReviewDto {
 		private Integer sNum;
 		private String sName;
 		private Integer rReport;
+		private Integer rStarPoint;
+		private List<ReviewComment> comments;
 	}
 	@Data
 	@AllArgsConstructor
@@ -42,10 +73,11 @@ public class ReviewDto {
 	@Accessors(chain=true)
 	public static class DtoForWrite{
 		private String rTitle;
+		private LocalDateTime rWriteTime;
 		private String rContent;
 		private String uUsername;
-		private Integer sNum;
-		private Integer sName;
+		private Integer orderNo;
+		private Integer rStarPoint;
 	}
 	
 	@Data
@@ -54,6 +86,7 @@ public class ReviewDto {
 		private String rTitle;
 		private String rContent;
 		private String uUsername;
+		private Integer rStarPoint;
 	}
 	
 	

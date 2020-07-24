@@ -2,28 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cartMapper">
 	
-	<insert id="insert">
-		<selectKey keyProperty="oNo" resultType="int" order="BEFORE">
-			select orders_seq.nextval from dual
-		</selectKey>
-		insert into orders(o_no, u_username, m_name, o_total, o_order_time, s_num)
-		values(#{oNo}, #{uUsername}, #{mName}, #{oTotal}, sysdate, #{sNum})
-	</insert>
-	
-	<select id="findAll">
-		select o_no oNo, u_username uUsername, m_name mName, o_total oTotal, o_order_time orderTime, s_num sNum
-		from orders
+	<!-- 세션에 담긴 값을 List형식으로 insert하기 위한 형식 -->
+	<update id="insertAll" parameterType="cart">
+		<foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
+			into cart (order_no, menuno, u_username, cart_name, cart_price, cart_day, 
+		                  cart_count, image, cart_jumunMoney, s_num) 
+		    values(cart_seq.nextval, #{item.menuno},#{item.uUsername}, #{item.cartName}, #{item.cartPrice}, sysdate, 
+		       	#{item.cartCount}, #{item.image}, #{item.cartJumunMoney}, #{item.sNum})
+		</foreach>
+	</update>
+
+	<!-- 예비상세주문내역 출력 -->
+	<select id="findAll" resultType="cart">
+		select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
+		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
+		from cart
 	</select>
+	
+	<!-- 예비주문상세내역 삭제 -->
+	<delete id="delete">
+		delete from cart 
+	</delete>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
 

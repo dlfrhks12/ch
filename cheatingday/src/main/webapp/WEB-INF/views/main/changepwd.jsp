@@ -115,22 +115,19 @@ $(function() {
 		        type: "post",
 		        data: $('#u_change_pwd_form').serialize(),
 		     }).done(()=>{
-		    	 alert("비밀번호가 변경되었습니다");
-		    	 location.href = "/cheatingday"})}
-		
+		    	 alert("비밀번호가 변경되었습니다");})}
 	})
 		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
 		var r2 = checkManagerPassword2();
 		var result = r1 && r2
-		if(result===true && $("#uNewPassword").val()!=="" && $("#uNewPassword2").val()!=="")  {
+		if(result===true && $("#mNewPassword").val()!=="" && $("#mNewPassword2").val()!=="")  {
 			$.ajax({
 		        url: "/cheatingday/m_change_pwd",
 		        type: "post",
 		        data: $('#m_change_pwd_form').serialize(),
 		     }).done(()=>{
-		    	 alert("비밀번호가 변경되었습니다");
-		    	 location.href = "/cheatingday"})}
+		    	 alert("비밀번호가 변경되었습니다");})}
 	})
 })
 

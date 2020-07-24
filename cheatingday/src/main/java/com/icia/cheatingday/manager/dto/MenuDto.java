@@ -15,8 +15,7 @@ public class MenuDto {
 		private int menusal;       //가격
 		private String menusajin;  //사진
 		private String menuname;   //이름
-		private String sNum;
-		
+		private int sNum;
 		//다른클래스
 		private String mUsername;  //사업자이름
 		private long mNum;       //사업자등록번호

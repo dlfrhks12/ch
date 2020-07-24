@@ -12,28 +12,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-.modal-dialog {
-	position: absolute;
-	width: 500px;
-	top: 35%;
-	left: 40%;
-}
-
-table {
-	width: 100%;
-	border-top: 1px solid #444444;
-	border-collapse: collapse;
-}
-
-th, td {
-	border-bottom: 1px solid #444444;
-	padding: 10px;
-}
 .first {
 	text-align: center;
 }
+.modal-dialog {
+	position: absolute;
+	width: 200px;
+	top: 35%;
+	left: 40%;
+}
 </style>
-<script>
+ <script>
 $(function() {
 	$(".fav").click(function() {
 		var snum = $(this).data("num");
@@ -64,10 +53,15 @@ $(function() {
 			}
 		})
 	})
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 });
-</script>
+</script> 
 </head>
 <body>
+
+	 <div>
 	<div>
 	<div class="container">
 	<div style="padding: 40px 0;">
@@ -92,12 +86,10 @@ $(function() {
 			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
-						<td>${buylist.SName}</td>
-						<td><a class='writer' data-toggle="modal"
-							data-target="#myModal" data-writer="${buylist.SName}"
-							onclick="openWin()">${buylist.SName}</a></td>
-						<td>${buylist.OTotal}</td>
-						<td>${buylist.OOrderTimeStr}</td>
+						<td><a href = "/cheatingday/review/write?orderNo=${buylist.orderNo}">${buylist.SName}</a></td>
+						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.menuname}</a></td>
+						<td>${buylist.cartPrice}</td>
+						<td>${buylist.cartDayStr}</td>
 						<c:if test="${buylist.favCheck eq false }">
 							<td><button type="button" data-num="${buylist.SNum }"
 									data-check="1" class="btn btn-info fav">
@@ -124,11 +116,11 @@ $(function() {
 			<c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
-						<li class="active"><a
+						<li class="active"><a style="background-color: #E74D44; border: 1px solid;"
 							href="/cheatingday/user/buylist?pageno=${i}&uUsername=${username}">${i}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/cheatingday/user/buylist?pageno=${i}&uUsername=${username}">${i}</a></li>
+						<li><a style="color: #E74D44" href="/cheatingday/user/buylist?pageno=${i}&uUsername=${username}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 
@@ -140,7 +132,8 @@ $(function() {
 		</ul>
 	</div>
 	</div>
-	</div>
+	</div> 
 	
+	</div>
 </body>
 </html>

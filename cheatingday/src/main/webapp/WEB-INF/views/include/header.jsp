@@ -5,16 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>header</title>
+<link href="mainhome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="mainhome/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="mainhome/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="mainhome/css/landing-page.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="mainhome/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <style>
-#bg {width: 100%; height: 300px; }
-#row {position: absolute; top: 100px; left: 450px;}
-#search {position: absolute; top: -48px; left: 425px; width: 80px;}
-.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#bg {height:300px;}
+#row {text-align: center; margin:0 auto; margin-top: -80px;}
+#but {width:48px; height:48px; color: red;}
 #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap; color:black;}
-.map_wrap {position: absolute; left: -420px; top: -100px;}
+.map_wrap {position: absolute; left: -420px; top: -112px;}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .bg_white {background:#fff; width: 80px; height: 40px;}
@@ -49,10 +59,7 @@
 #placesList .item .marker_15 {background-position: 0 -654px;}
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
-#pagination .on {font-weight: bold; cursor: default;color:#777;}
-
-
-
+#pagination .on {font-weight: bold; cursor: default; color:#777;}
 </style>
 <body>
     <!-- Masthead -->
@@ -60,34 +67,34 @@
         <div class="overlay"></div>
         <div class="container">
             <div class="row" id="row">
-                <div class="col-xl-9 mx-auto">
+                <div class="col-xl-9 mx-auto" id="col">
 					<div class="map_wrap" >
 						<div id="map" style="width:490px; height:385px; position:relative; overflow:hidden;"></div>
 						<div id="menu_wrap" class="bg_white" >
 							<div class="option">
 								<div id="place">
 									<form onsubmit="searchPlaces(); return false;">
-										<input type="text" placeholder="건물명, 도로명, 지번으로 검색하세요." value="인천  ICIA 교육원"  id="keyword" size="32" style="overflow:hidden;"> 
+										<input type="text" placeholder="건물명, 도로명, 지번으로 검색하세요." value="인천  ICIA 교육원"  id="keyword" size="32" style="width: 200px;"> 
 										<button type="submit">검색</button> 
 									</form>
 								</div>
 							</div>
-        					<ul id="placesList" style="display:hide;"></ul>
+        					<ul id="placesList" style="display:none;"></ul>
     					</div>
 					</div>          
                     <h1 class="mb-5" >&nbsp;&nbsp;오늘 하루는 치팅데이
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form id="search_frm" style="900px;" name="" method="get" action="/cheatingday/store_list">
+                    <form id="search_frm" style="900px;" method="get" action="/cheatingday/store_list">
                         <div class="form-row">
-                        <button type="button" class="fas fa-street-view fa-2x" id="but" ></button>
+	                        <svg type="button" width="1em" id="but" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  							<path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
                             <div class="col-12 col-md-9 mb-2 mb-md-0" id="hAddr">
-                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="우리동네로 검색하기">
+                                <input name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="구/동으로 검색하세요">
                             </div>
-                            <div class="col-12 col-md-3">
-                                <button type="button" class="btn btn-block btn-lg btn-danger" id="search">검색</button>
-                            </div>
+                            <button type="button" class="btn btn-danger" id="search" style="margin-left: 10px; width: 60px;">검색</button>
                         </div>
                     </form>
                 </div>
@@ -253,9 +260,6 @@ function placesSearchCB(data, status, pagination) {
         // 검색 목록과 마커를 표출합니다
         displayPlaces(data);
 
-        // 페이지 번호를 표출합니다
-        displayPagination(pagination);
-
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
         alert('검색 결과가 존재하지 않습니다.');
@@ -358,36 +362,7 @@ function removeMarker() {
     markers = [];
 }
 
-// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-function displayPagination(pagination) {
-    var paginationEl = document.getElementById('pagination'),
-        fragment = document.createDocumentFragment(),
-        i; 
 
-    // 기존에 추가된 페이지번호를 삭제합니다
-    while (paginationEl.hasChildNodes()) {
-        paginationEl.removeChild (paginationEl.lastChild);
-    }
-
-    for (i=1; i<=pagination.last; i++) {
-        var el = document.createElement('a');
-        el.href = "#";
-        el.innerHTML = i;
-
-        if (i===pagination.current) {
-            el.className = 'on';
-        } else {
-            el.onclick = (function(i) {
-                return function() {
-                    pagination.gotoPage(i);
-                }
-            })(i);
-        }
-
-        fragment.appendChild(el);
-    }
-    paginationEl.appendChild(fragment);
-}
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
@@ -405,78 +380,28 @@ function removeAllChildNods(el) {
     }
 }
 
-//마커를 표시할 위치와 title 객체 배열입니다 
-var positions = [
-    {
-        title: '처갓집 양념치킨', 
-        latlng: new kakao.maps.LatLng(37.4392331, 126.675512)
-    },
-    {
-        title: 'BHC치킨', 
-        latlng: new kakao.maps.LatLng(37.439084, 126.674121)
-    },
-    {
-        title: '본죽', 
-        latlng: new kakao.maps.LatLng(37.439314, 126.673924)
-    },
-    {
-        title: '피자스쿨',
-        latlng: new kakao.maps.LatLng(37.43926, 126.674228)
-    },
-    {
-        title: '서해해물칼국수',
-        latlng: new kakao.maps.LatLng(37.438692, 126.671225)
-    }
-];
-
-// 마커 이미지의 이미지 주소입니다
-var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-    
-for (var i = 0; i < positions.length; i ++) {
-    
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new kakao.maps.Size(24, 35); 
-    
-    // 마커 이미지를 생성합니다    
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage // 마커 이미지 
-    });
-}
 ///////////////////////////////////////////////////////////////////////////////
 
 $(function() {
+	// 버튼 누르면 지도 생기고 사라지기
 	$(".map_wrap").hide();
 	$("#but").on("click", function() {
 		$(".map_wrap").toggle();
 	})
 	
+	
+	// 지도에서 좌표 선택 -> 주소 입력됨
+	// 구만 뽑아내서 동일한 구의 가게 리스트창으로 이동
 	$("#search").on("click", function() {
 		var address = $("#centerAddr").val();
-		var array = address.split(" ");
-		var key = array[1];
+		var array = address.split("구");
+		var key = array[0];
 		console.log(address);
 		console.log(array);
 		console.log(key);
 		$("#centerAddr").val(key);
 		$("#search_frm").submit();
 		
-		
-// 		var params = {
-// 			keyword: key
-// 		}
-		
-// 		 $.ajax({
-// 	         url: "/cheatingday/store_list",
-// 	         type: "post",
-// 	         data: params
-// 	      }).done(()=>{location.href="/cheatingday/store_list"})
-// 	      .fail(()=>{console.log(params)});
 	})
 })
 

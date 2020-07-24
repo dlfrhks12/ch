@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="favoriteMapper">
+	<!-- 즐겨찾기 -->
 	<insert id="favoriteIn">
 		insert into favorites(u_username, s_num) values(#{uUsername}, #{sNum})
 	</insert>
+	<!-- 즐겨찾기 페이징위한 카운트 -->
 	<select id="favorteCount" resultType="int">
 		select count(*) from favorites where u_username=#{uUsername}
 	</select>
+	<!-- 아이디로 즐겨찾기 찾기 -->
 	<select id="findFavoriteById" resultType="boolean">
 		select count(*) from favorites where u_username=#{uUsername} and s_num=#{sNum} and rownum=1
 	</select>
+	<!-- 즐겨찾기 중복 -->
 	<select id="existsByFav" resultType="string">
 		select u_username from favorites where u_username=#{uUsername} and rownum=1
 	</select>
+	<!-- 즐겨찾기 해제 -->
 	<delete id="deleteFavorite">
 		delete from favorites where u_username=#{uUsername} and s_num=#{sNum}
 	</delete>
+	<!-- 즐겨찾기 여부 확인 -->
 	<select id="favCheck" resultType="boolean">
 		select count(*) from favorites where u_username=#{uUsername} and s_num=#{sNum}
 	</select>

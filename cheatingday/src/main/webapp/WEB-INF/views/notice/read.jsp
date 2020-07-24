@@ -23,6 +23,34 @@
 		var loginId = undefined;
 	</script>
 </sec:authorize>
+<style>
+	#lower_left li{
+		display: inline-block;
+		padding : 0 10px;
+	}
+	#lower_left li:nth-of-type(2n){  /* #lower_left 하위의 li 중 짝수번째인 것에 적용 */
+		border-left: 1px solid gray;
+		border-right: 1px solid gray;
+	}
+	#lower_right li {
+		display: inline-block;
+		padding : 0 5px;
+		font-size: 0.9em;
+	}
+	#lower_left {
+		float: left;
+	}
+	#lower_right {
+		float: right;
+	}
+	#lower {
+		overflow: hidden;
+	}
+	#title_div div {
+		margin: 5px 0 5px;
+	}
+
+</style>
 <script>
 $(function() {
 	//공지 불러오기
@@ -89,7 +117,7 @@ $(function() {
 	<div>
 		<div id="title_div">
 			<div id="upper">
-				<input type="text" id="nTitle" disabled="disabled" style="min-width: 600px;">
+				<input type="text" id="nTitle" disabled="disabled" style="min-width: 600px; ">
 				<input type="hidden" id="aUsername">
 			</div>
 			<div id="lower">

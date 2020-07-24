@@ -21,15 +21,6 @@ public class reviewTest {
 	@Autowired
 	private ReviewDao dao;
 	//@Test
-	public void insertTest() {
-		for(int i = 0; i<100; i++) {
-		Review review = Review.builder().rTitle("dd").uUsername("양수민").rStarPoint(5).rContent("마마").rWriteTime(LocalDateTime.now())
-				.oNo(1).build();
-		
-		assertThat(dao.insert(review), is(1));
-		}
-	}
-	//@Test
 	public void countTest() {
 		assertThat(dao.count("양수민"), is(101));
 	}

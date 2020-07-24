@@ -8,7 +8,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.icia.cheatingday.cart.OrdersDao;
 import com.icia.cheatingday.common.dto.Page;
+import com.icia.cheatingday.manager.dao.StoreDao;
+import com.icia.cheatingday.manager.entity.*;
+import com.icia.cheatingday.review.dao.ReviewCommentDao;
 import com.icia.cheatingday.review.dao.ReviewDao;
 import com.icia.cheatingday.review.dto.ReviewDto;
 import com.icia.cheatingday.review.entity.Review;
@@ -16,41 +20,49 @@ import com.icia.cheatingday.util.PagingUtil;
 
 @Service
 public class ReviewService {
-
+	@Autowired 
+	private ReviewDao reviewDao;
+	@Autowired 
+	private OrdersDao orderDao;
+	@Autowired 
+	private StoreDao storeDao;
 	@Autowired
-	private ReviewDao dao;
+	private ReviewCommentDao reviewcommentdao;
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Page list(int pageno, String uUsername) {
-		int countOfReview = dao.count(uUsername);
+//write,list(findAll),read(findByRno)
+	public Page list(int pageno) {
+		int countOfReview = reviewDao.count(null);
 		Page page = PagingUtil.getPage(pageno, countOfReview);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Review> list = null;
-		dao.findAll(srn, ern);
-		List<ReviewDto.DtoForList> dtoList = new ArrayList<ReviewDto.DtoForList>();
-		for(Review review:list) {
-			ReviewDto.DtoForList dto = modelMapper.map(review,ReviewDto.DtoForList.class);
-			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년MM월 dd일")));
+		List<Review> list = reviewDao.findAll(srn, ern);
+		List<ReviewDto.DtoForReviewList> dtoList = new ArrayList<ReviewDto.DtoForReviewList>();
+		for(Review review: list) {
+			ReviewDto.DtoForReviewList dto = modelMapper.map(review, ReviewDto.DtoForReviewList.class);
+			dto.setRWriteTimeStr(review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			dto.setSNum(orderDao.findByONo(review.getOrderNo()));
+			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}
 		page.setReviewlist(dtoList);
 		return page;
 	}
-	
 	public int write(ReviewDto.DtoForWrite dto) {
 		Review review = modelMapper.map(dto, Review.class);
-		dao.insert(review);
-		return review.getRNo();
+		review.setSNum(orderDao.findByONo(dto.getOrderNo()));
+		storeDao.update(Store.builder().sNum(review.getSNum()).sReviewCnt(1).build());
+		return reviewDao.insert(review);
 	}
-	public ReviewDto.DtoForRead read(Integer rNo, String uUsername){
-		Review review = dao.findByRno(rNo);
-		ReviewDto.DtoForRead dto = modelMapper.map(review,ReviewDto.DtoForRead.class);
-		if(uUsername!=null&&uUsername.equals(dto.getUUsername())==false)
-			dao.update(Review.builder().rNo(rNo).build());
+	public ReviewDto.DtoForRead read(Integer rNo,String uUsername){
+		Review review = reviewDao.findByRno(rNo);
+		ReviewDto.DtoForRead dto = modelMapper.map(review, ReviewDto.DtoForRead.class);
 		String str = review.getRWriteTime().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 		dto.setRWriteTimeStr(str);
+		dto.setSNum(orderDao.findByONo(review.getOrderNo()));
+		dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
+		dto.setComments(reviewcommentdao.findByRno(dto.getRNo()));
 		return dto;
 	}
 }

@@ -13,7 +13,7 @@
 <title>메뉴리스트</title>
 <style>
 
-section { margin-left: 450px; margin-right: 450px;}
+section { margin-left: 450px; margin-right: 450px; font-size: 17px;}
 #write {margin-left: 600px;}
 
 
@@ -47,7 +47,7 @@ section { margin-left: 450px; margin-right: 450px;}
 	</div>
 	<div class="form-group">
 	<a href="/cheatingday/manager/menu_write">
-		<button type="button" id="write"  class="btn btn-danger">메뉴추가</button></a>
+		<button type="button" id="write"  class="btn btn-danger" style="font-size: 17px;">메뉴추가</button></a>
 	</div>
 	 </div>
 </body>

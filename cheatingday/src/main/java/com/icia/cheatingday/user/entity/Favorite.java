@@ -9,6 +9,6 @@ import lombok.experimental.*;
 @Builder
 @Accessors(chain=true)
 public class Favorite {
-	private String uUsername;
-	private int sNum;
+	private String uUsername;	// 아이디
+	private int sNum;			// 음식점 고유번호
 }

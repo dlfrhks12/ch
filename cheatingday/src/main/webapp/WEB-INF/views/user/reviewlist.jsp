@@ -46,7 +46,7 @@
 				<tr>
 					<td>${review.SName}</td>
 					<td>${review.category}</td>
-					<td><a href="/cheatingday/user/read?reviewlist=${page.rlist}" onclick="openWin()">${review.RTitle}</a></td>
+					<td><a href="/cheatingday/review/read?rNo=${review.RNo}">${review.RTitle}</a></td>
 					<td>${review.menuname}</td>
 					<td>${review.RWriteTimeStr}</td>
 					<td>${review.RStarPoint} /
@@ -71,11 +71,11 @@
 				<c:choose>
 					<c:when test="${page.pageno eq i }">
 						<li class="active">
-							<a href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a>
+							<a style="background-color: #E74D44; border: 1px solid;" href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a>
 						</li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a></li>
+						<li><a style="color: #E74D44" href="/cheatingday/user/reviewlist?pageno=${i}&uUsername=${username}">${i}</a></li>
 					</c:otherwise>
 				</c:choose>
 				

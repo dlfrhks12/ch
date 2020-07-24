@@ -88,7 +88,6 @@ function printQna() {
 }
 //댓글출력
 function printComment(qnacomment) {
-	console.log(qnacomment);
    var $comments = $("#comments");
    $comments.empty();
    $.each(qnacomment, function(i, comment) {
@@ -123,10 +122,10 @@ $(function() {
       method:"post"
    }).done((result)=>{ 
       qna = result;
-      //console.log(qna);
+      console.log(qna);
       printQna();
       printComment(qna.comments);
-      //console.log(qna.comments.length);
+      console.log(qna.comments.length);
    });
    // 1. 댓글 달기
    $("#comment_write").on("click", function() {
@@ -207,6 +206,7 @@ $(function() {
       .done((result)=>{ location.reload(); })
       .fail((result)=>{console.log(result)});
    });
+   
    // 글 삭제
    $("#delete").on("click", function() {
       var params = {

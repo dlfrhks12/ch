@@ -93,8 +93,6 @@ public class UserController {
 			.addObject("viewName", "user/mypage.jsp")
 			
 			.addObject("user",service.myPage(principal.getName()));
-		0
-		+
 	}
 
 	// 비밀번호 확인 get

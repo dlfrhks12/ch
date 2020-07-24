@@ -103,6 +103,7 @@ public class OrderDao {
 	public List<OrderEntity> findAll(String uUsername) {
 		return tpl.selectList("orderMapper.findAll", uUsername);
 	}
-		
-	
+	public int findByOno(int oNo) {
+		return tpl.selectOne("orderMapper.findByOno", oNo);
+	}
 }

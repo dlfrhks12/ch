@@ -58,7 +58,6 @@ public class MReviewOrderService {
 	//sNum으로 리뷰리스트 페이징
 	public Page list (int pageno, String mUsername) {
 		int sNum = storeDao.findBymUsername(mUsername).getSNum();
-		
 		int countOfBoard = reviewDao.countBySnum(sNum);
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();

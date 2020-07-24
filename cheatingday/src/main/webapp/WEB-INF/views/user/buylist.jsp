@@ -16,7 +16,7 @@
 	text-align: center;
 }
 </style>
-<script>
+ <script>
 $(function() {
 	$(".fav").click(function() {
 		var snum = $(this).data("num");
@@ -48,10 +48,11 @@ $(function() {
 		})
 	})
 });
-</script>
+</script> 
 </head>
 <body>
-	<div>
+
+	 <div>
 	<div class="container">
 	<div style="padding: 40px 0;">
 		<h3><i class="fas fa-shopping-bag">&nbsp;구매내역</i></h3>
@@ -75,7 +76,7 @@ $(function() {
 			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
-						<td>${buylist.SName}</td>
+						<td><a href = "/cheatingday/review/write?oNo=${buylist.ONo}">${buylist.SName}</a></td>
 						<td><a class='writer' data-toggle="modal"
 							data-target="#myModal" data-writer="${buylist.SName}"
 							onclick="openWin()">${buylist.SName}</a></td>
@@ -123,7 +124,7 @@ $(function() {
 		</ul>
 	</div>
 	</div>
-	</div>
+	</div> 
 	
 </body>
 </html>

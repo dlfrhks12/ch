@@ -43,6 +43,7 @@ public class ReviewDao {
    public Review findByRno(Integer rNo) {
       return tpl.selectOne("reviewMapper.findByRno",rNo);
    }
+ 
    public int countByRepoert() {   
       return tpl.selectOne("reviewMapper.countByRepoert");
    }

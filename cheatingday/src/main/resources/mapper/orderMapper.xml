@@ -99,7 +99,9 @@
 	<select id="findAll" resultType="order">
 		select s_num sNum from orders where u_username = #{uUsername} 
 	</select>
-	
+	<select id="findByOno" resultType="int">
+		select s_num sNum from orders where o_no = #{oNo}
+	</select>
 </mapper>
 
 

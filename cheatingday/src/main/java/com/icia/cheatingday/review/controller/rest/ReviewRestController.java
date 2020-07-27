@@ -60,12 +60,8 @@ public class ReviewRestController {
 		return ResponseEntity.ok(null);
 	}
 	@PatchMapping("/review/singo")
-	public ResponseEntity<Void> singoReview(@Valid ReviewDto.DtoForUpdate dto, BindingResult bindingResult, Principal principal) throws BindException{
-		if(bindingResult.hasErrors())
-			throw new BindException(bindingResult);
-		dto.setUUsername(principal.getName());
-		restService.singoReview(dto);
-		return ResponseEntity.ok(null);
+	public ResponseEntity<?> singoReview(int rNo, Principal principal) {
+		return ResponseEntity.ok(restService.singoReview(rNo, principal.getName()));
 	}
 	@DeleteMapping("/review/delete")
 	public ResponseEntity<?> deleteReview(int rNo){

@@ -68,9 +68,9 @@ public class StoreService {
 	}
 	
 	// 가게읽기 - 사업자
-	public StoreDto storeRead(int sNum, String username){
+	public StoreDto.DtoForRead storeRead(int sNum, String username){
 		Store store = dao.findBysNum(sNum);
-		StoreDto dto = modelMapper.map(store, StoreDto.class);
+		StoreDto.DtoForRead dto = modelMapper.map(store, StoreDto.DtoForRead.class);
 		//로그인한사람이랑 글쓴사람이랑 같아야헤.
 	
 		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
@@ -79,9 +79,9 @@ public class StoreService {
 	
 	
 	// 주문을 위한 가게읽기 - 모든회원
-	public StoreDto orderStoreRead(int sNum) {
+	public StoreDto.DtoForRead orderStoreRead(int sNum) {
 		Store store = dao.findBysNum(sNum);
-		StoreDto dto = modelMapper.map(store, StoreDto.class);
+		StoreDto.DtoForRead dto = modelMapper.map(store, StoreDto.DtoForRead.class);
 		dto.setFoodCategory(foodCategoryDao.findByFoodNo(dto.getFoodNo()));
 		return dto;
 		
@@ -111,7 +111,20 @@ public class StoreService {
 
 	
 	// 가게수정 
-	public int storeUpdate(Store store, MultipartFile sajin) throws IllegalStateException,IOException{
+	public int storeUpdate(StoreDto.DtoForUpdate dto, MultipartFile sajin) throws IllegalStateException,IOException{
+		Store store = dao.findBysNum(dto.getSNum());
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		System.out.println(store);
+		store = modelMapper.map(dto, Store.class);
 		if(sajin!=null&&!sajin.isEmpty()){
 		if (sajin.getContentType().toLowerCase().startsWith("image/") == true) {
 			int lastIndexOfDot = sajin.getOriginalFilename().lastIndexOf('.');
@@ -120,6 +133,7 @@ public class StoreService {
 			sajin.transferTo(file);
 			store.setSSajin(storePath + file.getName());
 			}
+		System.out.println(store);
 		}return dao.update(store);
 	}
 

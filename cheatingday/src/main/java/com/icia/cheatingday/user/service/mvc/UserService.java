@@ -105,7 +105,7 @@ public class UserService {
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
 			dto.setOOrderTimeStr(buylistDao.findById(uUsername).getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setSNum(buylistDao.findByOrderNo(point.getONo()).getSNum());
+			dto.setSNum(buylistDao.findByOrderNo(point.getOrderNo()).getSNum());
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}

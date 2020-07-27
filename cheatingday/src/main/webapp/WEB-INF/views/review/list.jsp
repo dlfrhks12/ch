@@ -65,12 +65,12 @@
 </div>
  <div style="text-align:center; display: inline-block; padding-left: 600px; ">
       <ul class="pagination" class="pagination pagination-lg">
-         <c:if test="${review.prev==true}">
-            <li class="page-item"><a class="page-link" href="/cheatingday/review/list?rNo=${rNo}&&pageno=${review.startPage-1}&&job=${filter}">이전</a></li>
+         <c:if test="${page.prev==true}">
+            <li class="page-item"><a class="page-link" href="/cheatingday/review/list?rNo=${rNo}&&pageno=${page.startPage-1}&&job=${filter}">이전</a></li>
          </c:if>
-         <c:forEach begin="${review.startPage}" end="${review.endPage}" var="i">
+         <c:forEach begin="${page.startPage}" end="${page.endPage}" var="i">
             <c:choose>
-               <c:when test="${review.pageno eq i }">
+               <c:when test="${page.pageno eq i }">
                   <li  class="page-item">
                      <a class="page-link" href="/cheatingday/review/list?rNo=${rNo}&&pageno=${i}">${i}</a>
                   </li>
@@ -80,8 +80,8 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${store.next==true}">
-			<li  class="page-item"><a class="page-link" href="/cheatingday/review/list?rNo=${rNo}&&pageno=${review.endPage+1}&&job=${filter}">다음</a></li>
+		<c:if test="${page.next==true}">
+			<li  class="page-item"><a class="page-link" href="/cheatingday/review/list?rNo=${rNo}&&pageno=${page.endPage+1}&&job=${filter}">다음</a></li>
 		</c:if>
       </ul>
       </div>   

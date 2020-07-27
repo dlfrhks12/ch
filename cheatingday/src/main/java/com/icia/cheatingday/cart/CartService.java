@@ -158,18 +158,24 @@ public class CartService {
 	}
 	
 	// 결제 눌렀을때
-	public int insertOrderAll(HttpServletRequest req) {
+	public int insertOrderAll(HttpServletRequest req, int orderNo, String uUsername) {
 		HttpSession session = req.getSession(); // 세션을 새로 만든다.
 		List<OrderDetails> order = findAll(); // 예비주문상세내역을 선언한다.
 		session.setAttribute("order", order); // 예비주문상세내역 정보를 새로 만든 세션에 저장한다 
 		List<Orders> orders = (List<Orders>) session.getAttribute("order"); // 저장한 세션을 가져와서
-		session.getAttribute("order");
-		session.getAttribute("order");
-		session.getAttribute("order");
-		session.getAttribute("order");
-		session.getAttribute("order");
-		session.getAttribute("order");
-		return orDao.insertOrderAll(orders); // 완전한 주문상세내역에 인서트
+		orDao.insertOrderAll(orders); // 완전한 주문상세내역에 인서트
+		pointDao.insert(Point.builder().uUsername(uUsername).orderNo(orderNo).accumulationSal(pointDao.ordermoney(orderNo)).build());		
+		int totalPoint = pointDao.findByTotalpoint(uUsername);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		System.out.println(totalPoint);
+		return pointDao.update(Point.builder().uUsername(uUsername).totalPoint(pointDao.findByTotalpoint(uUsername)).build());
 	}
 }
 

@@ -54,8 +54,9 @@ public class StoreDao {
 	public int delete(int sNum) {
 		return tpl.delete("storeMapper.delete",sNum);
 	}
-
-
+	public float starAvg(int sNum) {
+		return tpl.selectOne("storeMapper.starAvg",sNum);
+	}
 	public int count(Integer foodNo, String keyword) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("foodNo", foodNo);

@@ -57,8 +57,6 @@
       select count(*) from orders where order_no=#{orderNo}
    </select>
 
-
-
    <!-- 읽기  -->
    <!-- 해당 주문번호 내용 읽기  -->
    <select id="orderReadByONo" resultType="order">
@@ -68,27 +66,7 @@
    </select>
 
    <!-- 일관 -->
-   <update id="insertOrderAll" parameterType="order">
-      <foreach collection="list" item="item" open="INSERT ALL" separator=" " close="SELECT * FROM DUAL">
-         into orders (order_no, menuno, u_username, cart_name, cart_price, cart_day, 
-                        cart_count, image, cart_jumunMoney, s_num) 
-          values(#{item.orderNo}, #{item.menuno},#{item.uUsername}, #{item.cartName}, #{item.cartPrice}, sysdate, 
-                #{item.cartCount}, #{item.image}, #{item.cartJumunMoney}, #{item.sNum})
-      </foreach>
-   </update>
-   
-   
-   <select id="findAlls" resultType="order">
-      select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
-             cart_count cartCount, image, cart_jumunMoney cartJumunMoney
-      from orders
-   </select>
    <select id="findByONo" resultType="int">
       select s_num sNum from orders where order_no=#{orderNo} and rownum=1
    </select>
-  
-   <select id="findAll" resultType="order">
-      select s_num sNum from orders where u_username = #{uUsername} 
-   </select>
-   
 </mapper>

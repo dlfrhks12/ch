@@ -191,6 +191,7 @@ public class MainController {
    @PostMapping("/u_change_pwd")
    public String changeUserPwd(@RequestParam @NotNull String uPassword, @RequestParam @NotNull String uNewPassword, Principal principal, RedirectAttributes ra) {
       service.changeUserPwd(uPassword, uNewPassword, principal.getName());
+      ra.addFlashAttribute("msg", "비밀번호가 변경되었습니다");
       return "redirect:/";
    }
    
@@ -272,6 +273,7 @@ public class MainController {
    @PostMapping("/m_change_pwd")
    public String changeManagerPwd(@RequestParam @NotNull String mPassword, @RequestParam @NotNull String mNewPassword, Principal principal, RedirectAttributes ra) {
       service.changeManagerPwd(mPassword, mNewPassword, principal.getName());
+      ra.addFlashAttribute("msg", "비밀번호가 변경되었습니다");
       return "redirect:/";
    }
    

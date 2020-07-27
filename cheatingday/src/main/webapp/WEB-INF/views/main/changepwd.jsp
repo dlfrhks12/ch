@@ -98,7 +98,11 @@ function checkUserPassword() {
 $(function() {   
 	var msg = "${msg}";
 	if(msg!="") {
-		alert(msg);
+		Swal.fire({
+			  icon: 'info',
+			  title: 'success',
+			  text: '비밀번호를 변경해 주세요',
+			})
 	}
 	$("#uNewPassword").on("blur", checkUserPassword);
 	$("#uNewPassword2").on("blur", checkUserPassword2);
@@ -114,19 +118,15 @@ $(function() {
 		        url: "/cheatingday/u_change_pwd",
 		        type: "post",
 		        data: $('#u_change_pwd_form').serialize(),
-		     }).done(()=>{
-<<<<<<< HEAD
-		    	 alert("비밀번호가 변경되었습니다");})}
-=======
-		    	 alert("비밀번호가 변경되었습니다");
-		    	 location.href = "/cheatingday"})}
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
-		
-<<<<<<< HEAD
-		
-		
-=======
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
+		       	success: function() {
+		       		Swal.fire({
+		       		  icon: 'success',
+		       		  title: 'success',
+		       		  text: '비밀번호가 변경되었습니다'
+		       		})
+		       	}
+		     })
+		}
 	})
 		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
@@ -137,8 +137,15 @@ $(function() {
 		        url: "/cheatingday/m_change_pwd",
 		        type: "post",
 		        data: $('#m_change_pwd_form').serialize(),
-		     }).done(()=>{
-		    	 alert("비밀번호가 변경되었습니다");})}
+		       	success: function() {
+		       		Swal.fire({
+			       		  icon: 'success',
+			       		  title: 'success',
+			       		  text: '비밀번호가 변경되었습니다'
+			       	})
+		       	}
+		     })
+		}
 	})
 })
 

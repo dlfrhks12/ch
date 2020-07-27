@@ -24,6 +24,13 @@ public class OrdersDao {
 	public List<Orders> findAlls() {
 		return tpl.selectList("orderMapper.findAlls");
 	}
+	public List<Orders> findAllByusername(int startRowNum,int endRowNum,String uUsername) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("startRowNum",startRowNum);
+		map.put("endRowNum", endRowNum);
+		map.put("uUsername", uUsername);
+		return tpl.selectList("orderMapper.findAllByusername", map);
+	}
 
 	public Orders findByOrderNo(int oNo) {
 		return tpl.selectOne("orderMapper.findByOrderNo",oNo);

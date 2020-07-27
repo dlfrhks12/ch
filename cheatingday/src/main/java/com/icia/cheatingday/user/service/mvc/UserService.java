@@ -13,6 +13,7 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.buylist.dao.*;
 import com.icia.cheatingday.buylist.dto.*;
 import com.icia.cheatingday.buylist.entity.*;
+import com.icia.cheatingday.cart.*;
 import com.icia.cheatingday.common.dto.*;
 import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.manager.dao.*;
@@ -38,6 +39,8 @@ public class UserService {
 	private StoreDao storeDao;
 	@Autowired
 	private MenuDao menuDao;
+	@Autowired
+	private OrdersDao orderDao;
 	@Autowired
 	private FavoriteDao favDao;
 	@Autowired
@@ -145,20 +148,12 @@ public class UserService {
 		Page page = PagingUtil.getPage(pageno, countOfBoard);
 		int srn = page.getStartRowNum();
 		int ern = page.getEndRowNum();
-		List<Buylist> buyList = buylistDao.findAll(srn, ern, uUsername);
+		List<Orders> orderlist = orderDao.findAllByusername(srn, ern, uUsername);
 		List<BuylistDto.DtoForList> dtoList = new ArrayList<>();
-		for(Buylist buylist:buyList) {
-			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
-			dto.setCartDayStr(buylist.getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			System.out.println(dto.getSNum());
-			System.out.println(dto.getSNum());
-			System.out.println(dto.getSNum());
-			System.out.println(dto.getSNum());
-			System.out.println(dto.getSNum());
-			System.out.println(dto.getSNum());
-			System.out.println(dto.getSNum());
+		for(Orders order:orderlist) {
+			BuylistDto.DtoForList dto = modelMapper.map(order, BuylistDto.DtoForList.class);
+			dto.setCartDayStr(order.getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
-			dto.setMenuname(buylistDao.findByOrderNo(dto.getOrderNo()).getCartName());
 			dto.setFavCheck(favDao.findFavoriteById(dto.getUUsername(),dto.getSNum()));
 			dtoList.add(dto);
 		}

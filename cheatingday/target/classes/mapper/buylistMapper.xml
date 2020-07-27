@@ -13,7 +13,7 @@
 	<!-- 주문번호로 아이디 불러오기 -->
 	<select id="findByOrderNo" resultType="buylist">
 		select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
-             cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum from orders where order_no=#{orderNo}
+             cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum from orders where order_no=#{orderNo} and rownum=1
 	</select>
 	<!-- 아이디로 주문내역 불러오기 -->
 	<select id="findAll" resultType="buylist">

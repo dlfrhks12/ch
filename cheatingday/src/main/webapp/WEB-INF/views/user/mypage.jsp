@@ -157,6 +157,9 @@ $(function() {
          UTel: "${user.UTel}",
          UEmail: "${user.UEmail}"
       };
+      console.log(params);      
+      console.log($newPassword);
+      console.log($newPassword2);
       $.ajax({
          url: "/cheatingday/user/update",
          type: "post",

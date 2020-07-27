@@ -14,7 +14,7 @@
 
 	<context-param>
 		<param-name>profileFolder</param-name>
-		<param-value>d:/upload/profile</param-value>
+		<param-value>c:/upload/profile</param-value>
 	</context-param>
 	<context-param>
 		<param-name>profilePath</param-name>
@@ -22,7 +22,7 @@
 	</context-param>
 	<context-param>
 		<param-name>imageFolder</param-name>
-		<param-value>d:/upload/ckimage</param-value>
+		<param-value>c:/upload/ckimage</param-value>
 	</context-param>
 	<context-param>
 		<param-name>imagePath</param-name>
@@ -30,7 +30,7 @@
 	</context-param>
 	<context-param>
 		<param-name>attachmentFolder</param-name>
-		<param-value>d:/upload/profile</param-value>
+		<param-value>c:/upload/profile</param-value>
 	</context-param>
 	<context-param>
 		<param-name>attachmentPath</param-name>

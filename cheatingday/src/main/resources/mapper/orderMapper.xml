@@ -41,6 +41,17 @@
 		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney
 		from orders
 	</select>
+		<select id="findAllByusername" resultType="order">
+		 <![CDATA[
+	 	select * from
+	 		(select rownum as rnum, b.* from
+		(select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
+		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
+		from orders where u_username = #{uUsername}) b
+		where rownum<=#{endRowNum})
+		where rnum>=#{startRowNum} order by orderNo desc
+		]]>
+	</select>
 
 	<select id="findAll" resultType="order">
 		select s_num sNum from orders where u_username = #{uUsername} 

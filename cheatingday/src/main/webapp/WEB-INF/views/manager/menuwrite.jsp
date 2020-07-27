@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,10 +51,11 @@ $(function(){
 </script>
 </head>
 <body>
+<sec:authentication property="principal.username" var="username"/>
 <!--user- 회원가입 같이 만들음 > 사진도 추가해줘야해서 -->
 
 <div id="wrap">
-		<form id="write_form" action="/cheatingday/manager/menu_write" method="post" enctype="multipart/form-data">
+		<form id="write_form" action="/cheatingday/manager/menu_write?uUsername=${username}" method="post" enctype="multipart/form-data">
 			<img id="show_menusajin" height="250px">
 			<input type="hidden" name="_csrf" value="${_csrf.token }">
 			<div class="form-group">
@@ -78,12 +80,7 @@ $(function(){
 					<input id="menusal" type="text" class="form-control" name="menusal" placeholder="메뉴가격을 입력해주세요">
 				</div>
 			</div>
-			<div>
-				<label for="sNum_label">음식점고유번호</label>
-				<div class="form-group">
-					<input id="sNum" type="text" class="form-control" name="sNum">
-				</div>
-			</div>
+				
 			<div class="form-group" style="text-align: center;">
 				<button type="button" id="write" class="btn btn-danger">메뉴추가</button>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>

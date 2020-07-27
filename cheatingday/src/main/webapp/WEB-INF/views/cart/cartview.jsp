@@ -227,7 +227,6 @@ $(function() {
 </style>
 </head>
 <body>
-	${cartview }
 	<div id="cart_area">
 	</div>
 	<div id="button_area">

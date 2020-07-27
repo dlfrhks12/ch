@@ -67,6 +67,12 @@ public class ReviewRestService {
 		review = modelMapper.map(dto, Review.class);
 		return reviewDao.update(review);
 	}
+	public int singoReview(ReviewDto.DtoForUpdate dto) {
+		Review review = reviewDao.findByRno(dto.getRNo());
+		review = modelMapper.map(dto, Review.class);
+		return reviewDao.update(Review.builder().rNo(dto.getRNo()).rReport(1).build());
+		
+	}
 	public void deleteReview(Integer rNo) {
 		Review review = reviewDao.findByRno(rNo);
 		String content = review.getRContent();

@@ -49,7 +49,6 @@
    #lower {
       overflow: hidden;
  	}
-
 </style>
 <script>
 //공백상태
@@ -84,10 +83,11 @@ function printQna() {
       $("#comment_textarea").prop("disabled", false);
       $("#comment_write").prop("disabled", false);
    }
+   else if(qna.comments!="")
+	  $("#comment_area").hide();
 }
 //댓글출력
 function printComment(qnacomment) {
-<<<<<<< HEAD
    var $comments = $("#comments");
    $comments.empty();
    $.each(qnacomment, function(i, comment) {
@@ -103,37 +103,13 @@ function printComment(qnacomment) {
          $("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:1000px; min-height:200px;").val(comment.qcContent).appendTo($center_div); 
       $("<span>").text(comment.qcWriteTime).appendTo($upper_div);
       if(comment.ausername===loginId) {
-         var btn = $("<button>").attr("class","delete_commen btn btn-danger").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
+         var btn = $("<button>").attr("class","delete_comment btn btn-danger").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
             .text("삭제").appendTo($center_div).css("float","right");
          var btn2 = $("<button>").attr("class","update_comment btn btn-danger").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
          .text("수정").appendTo($center_div).css("float","right");
       }
       $("<hr>").appendTo($comment);
    });
-=======
-	var $comments = $("#comments");
-	$comments.empty();
-	$.each(qnacomment, function(i, comment) {
-		console.log(comment);
-		var $comment = $("<div>").appendTo($comments);
-		var $upper_div = $("<div>").appendTo($comment);
-		var $center_div = $("<div>").appendTo($comment);
-		var $lower_div = $("<div>").appendTo($comment);
-		$("<span></span>").text("관리자").appendTo($upper_div);
-		if(comment.ausername===loginId)
-			$("<textarea>").attr("id","qccontent").attr("style","min-width:800px;").val(comment.qcContent).appendTo($center_div); 
-		else
-			$("<textarea>").attr("id","qccontent").attr("disabled","disabled").attr("style","min-width:1000px;").val(comment.qcContent).appendTo($center_div); 
-		$("<span>").text(comment.qcWriteTime).appendTo($lower_div);
-		if(comment.ausername===loginId) {
-			var btn = $("<button>").attr("class","delete_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
-				.text("삭제").appendTo($center_div).css("float","right");
-			var btn2 = $("<button>").attr("class","update_comment").attr("data-qcno",comment.qcNo).attr("data-ausername", comment.ausername)
-			.text("수정").appendTo($center_div).css("float","right").css("width","50px").css("height","30px");
-		}
-		$("<hr>").appendTo($comment);
-	});
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 
 }
 $(function() { 
@@ -169,7 +145,7 @@ $(function() {
          method: "post",
          data: params
       }) 
-      .done((result)=>{ printComment(result); $("#comment_textarea").val(""); $("#comment_textarea").prop("disabled", true); $("#comment_write").prop("disabled", true);})
+      .done((result)=>{ printComment(result); $("#comment_textarea").val(""); $("#comment_area").hide(); })
       .fail((result)=>{console.log(result)});
    })
    
@@ -185,12 +161,13 @@ $(function() {
          _method: "delete",
          _csrf: "${_csrf.token}"
       }
+      console.log(params);
       $.ajax({
          url: "/cheatingday/center/comment_delete",
          method: "post",
          data: params
       })
-      .done((result)=>{ printComment(result); })
+      .done((result)=>{ printComment(result); $("#comment_area").show(); })
       .fail(()=>{console.log(params)});
    });
    //댓글 업데이트
@@ -208,7 +185,7 @@ $(function() {
          method: "post",
          data: params
       }) 
-      .done((result)=>{alert("변경되었습니다"); console.log(result); })
+      .done((result)=>{alert("변경되었습니다"); })
       .fail((result)=>{console.log(params);});
    });
    //글 업데이트
@@ -229,6 +206,7 @@ $(function() {
       .done((result)=>{ location.reload(); })
       .fail((result)=>{console.log(result)});
    });
+   
    // 글 삭제
    $("#delete").on("click", function() {
       var params = {
@@ -248,9 +226,8 @@ $(function() {
 </script>
 </head>
 <body>
-<<<<<<< HEAD
    <hr> 
-   <div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;" >
+   <div id="wrap" style="width: 1000px; min-height: 800px; margin-left: 400px; margin-right: 400px;" >
       <div>
          <div id="title_div">
             <div id="upper">
@@ -278,7 +255,7 @@ $(function() {
             </div>
          </div>
          <sec:authorize access="hasRole('ROLE_ADMIN')">
-         <div>
+         <div id="comment_area">
             <div class="form-group">
                <label for="comment_textarea">댓글을 입력하세요</label>
                <textarea class="form-control" rows="5" id="comment_textarea"
@@ -293,51 +270,5 @@ $(function() {
       </div>
       <button class="btn btn-danger" onclick="location.href='/cheatingday/center/list';">목록이동</button>
    </div>
-=======
-	<hr> 
-	<div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;" >
-		<div>
-			<div id="title_div">
-				<div id="upper">
-					<input type="text" id="qTitle" disabled="disabled"
-						style="min-width: 600px;"> <input type="hidden"
-						id="mUsername">
-				</div>
-				<div id="lower">
-					<input type="hidden" id="qCano">
-					<ul id="lower_left">
-						<li><span id="mIrum"></span></li>
-						<li><span id="qWriteTime"></span></li>
-					</ul>
-					<span id="qCategory"></span>
-					
-				</div>
-			</div>
-			<div id="content_div">
-				<div class="form-group">
-					<div class="form-control" id="qContent"></div>
-				</div>
-				<div id="btn_area">
-					<button id="update" class="btn btn-info">변경</button>
-					<button id="delete" class="btn btn-success">삭제</button>
-				</div>
-			</div>
-			<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<div>
-				<div class="form-group">
-					<label for="comment_textarea">댓글을 입력하세요</label>
-					<textarea class="form-control" rows="5" id="comment_textarea"
-						placeholder="관리자만 댓글을 달 수 있습니다" disabled="disabled"></textarea>
-				</div>
-				<button type="button" class="btn btn-info" id="comment_write"
-					disabled="disabled">댓글 작성</button>
-			</div>
-			</sec:authorize>
-			<hr>
-			<div id="comments"></div>
-		</div>
-		<button class="btn btn-info" onclick="location.href='/cheatingday/center/list';">목록이동</button>
-	</div>
->>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 </body>
 </html>

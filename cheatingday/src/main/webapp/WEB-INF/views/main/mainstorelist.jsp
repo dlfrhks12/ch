@@ -25,16 +25,36 @@ function loadImage() {
 		$("#show_sajin").attr("src", e.target.result);
 	}
 }
+$(function(){
+	loadImage();
+	//분류 요소들을 꺼내와서 자바스크립스식으로 변환
+	var filter = "${filter}";
+		console.log(filter);
+	var food = "${foodno}"
+		console.log(food);
+	$("#filter").on("change", function(){
+		console.log(this.value);
+		if(this.value=="review")
+			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=review_list";
+		if(this.value=="star")
+			location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
+	})
+})
 </script>
 </head>
 <body>
+	<select id="filter" name="filter">
+			<option selected="selected">정렬</option>
+			<option value="review">리뷰순 정렬</option>
+			<option value="star">별점순 정렬</option>
+	</select>
 	<div>
-      <h4 style="padding:3px;">치팅데이 등록 음식점</h4>
+      <h4 style="padding:3px; margin-left: 50px;">치팅데이 등록 음식점 </h4>
+      
    </div>
 	<div id="ta">
 		<div>
-			<c:forEach items="${store.mainlist}" var="store">
-			<hr>
+			<c:forEach items="${store}" var="store">
 				<div id="menulist">
 	                <img id="show_sajin" src="${store.SSajin}">
 					<ul onclick="location.href='/cheatingday/order/orderPage?sNum=${store.SNum}'">

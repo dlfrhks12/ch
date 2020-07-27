@@ -57,7 +57,7 @@ public class ManagerController {
 	@PostMapping("/manager/menu_write")
 	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin, Principal principal) throws IllegalStateException, IOException {
 		dto.setMUsername(principal.getName());
-		service.write(dto, sajin);
+		service.write(dto, sajin, principal.getName());
 		return "redirect:/manager/menu_list";
 	}
 	 

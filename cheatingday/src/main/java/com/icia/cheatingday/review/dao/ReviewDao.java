@@ -23,7 +23,7 @@ public class ReviewDao {
       map.put("endRowNum", endRowNum);
       return tpl.selectList("reviewMapper.findAll", map);
    }
-   //사업자> 리뷰신고
+   //사업자&일반회원 리뷰신고
    public int reviewSingoUpdate(int rNo) {
       return tpl.update("reviewMapper.reviewSingo",rNo);
    }
@@ -39,11 +39,10 @@ public class ReviewDao {
       map.put("sNum", sNum);
       return tpl.selectList("reviewMapper.findAllBysNum",map);
    }
-   //사업자> 음식점 리뷰 읽기 , 리뷰신고
+   //사업자> 음식점 리뷰 읽기
    public Review findByRno(Integer rNo) {
       return tpl.selectOne("reviewMapper.findByRno",rNo);
    }
- 
    public int countByRepoert() {   
       return tpl.selectOne("reviewMapper.countByRepoert");
    }

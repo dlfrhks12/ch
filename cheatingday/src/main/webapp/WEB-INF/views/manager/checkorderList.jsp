@@ -10,20 +10,28 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style >
+<script>
 
+$(function(){
+	$("#search").on("click",function(){
+	$("#search_frm").submit();
+	});
+})
 
-</style>
+</script>
 </head>
 <body>
-<%-- ${page.olist} --%>
-<%-- ${orderList} --%>
 <sec:authentication property="principal.username" var="username"/>
 <div>
 <div class="container">
    <div style="padding: 40px 0;">
       <h3><i class="fas fa-shopping-cart">&nbsp;주문내역</i></h3>
    </div>
+   
+   <form action="/cheatingday/manager/order_list_keyword" id="search_frm" method="get">
+   	 	<input style="width: 170px; margin-left: 400px;" name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="주문번호로 검색하세요">
+    	<button style="margin-left: 400px;" class="btn btn-danger" type="button" id="search">검색</button> 
+    </form>
 		<table class="table table-hover">
 			<colgroup>
 				<col width="10%">

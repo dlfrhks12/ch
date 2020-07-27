@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.icia.cheatingday.cart.OrdersDao;
 import com.icia.cheatingday.common.dto.Page;
 import com.icia.cheatingday.manager.dao.StoreDao;
+import com.icia.cheatingday.manager.entity.*;
 import com.icia.cheatingday.review.dao.ReviewCommentDao;
 import com.icia.cheatingday.review.dao.ReviewDao;
 import com.icia.cheatingday.review.dto.ReviewDto;
@@ -50,15 +51,8 @@ public class ReviewService {
 	}
 	public int write(ReviewDto.DtoForWrite dto) {
 		Review review = modelMapper.map(dto, Review.class);
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
-		System.out.println(orderDao.findByONo(dto.getOrderNo()));
 		review.setSNum(orderDao.findByONo(dto.getOrderNo()));
+		storeDao.update(Store.builder().sNum(review.getSNum()).sReviewCnt(1).build());
 		return reviewDao.insert(review);
 	}
 	public ReviewDto.DtoForRead read(Integer rNo,String uUsername){
@@ -69,11 +63,6 @@ public class ReviewService {
 		dto.setSNum(orderDao.findByONo(review.getOrderNo()));
 		dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 		dto.setComments(reviewcommentdao.findByRno(dto.getRNo()));
-		System.out.println("ddddddddddddddddddddddddddddd");
-		System.out.println(rNo);
-		System.out.println(uUsername);
-		System.out.println(review);
-		System.out.println(dto);
 		return dto;
 	}
 }

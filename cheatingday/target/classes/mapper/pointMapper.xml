@@ -10,7 +10,7 @@
 	<![CDATA[
 	select * from
 		(select rownum as rnum, p.* from
-			(select /*+ index_desc(point point_pk_u_username)*/ u_username uUsername, o_no oNo, accumulation_sal accumulationSal from point where u_username=#{uUsername}) p
+			(select /*+ index_desc(point point_pk_u_username)*/ u_username uUsername, order_no orderNo, accumulation_sal accumulationSal from point where u_username=#{uUsername}) p
 		where rownum <=#{endRowNum})
 	where rnum>=#{startRowNum}
 	]]>	
@@ -24,17 +24,17 @@
 		<selectKey keyProperty="uUsername" resultType="int" order="BEFORE">
 			select point_seq.nextval from dual
 		</selectKey>
-		insert into point(u_username, o_no , accumulation_sal )
-		values(#{uUsername}, #{oNo}, #{accumulationSal})
+		insert into point(u_username, order_no , accumulation_sal )
+		values(#{uUsername}, #{orderNo}, #{accumulationSal})
 	</insert>	
 	<!--  포인트 수정 -->
 	<update id="update">
 		update point
 		<trim suffixOverrides="," prefix="set">
-			<if test="oNO=!null">o_no=#{oNO},</if>
+			<if test="orderNo=!null">order_no=#{orderNo},</if>
 			<if test="accumulationSal=!null">accumulation_sal=#{accumulationSal}</if>
 		</trim>
-		where u_username=#{UUsername} and rownum=1
+		where u_username=#{uUsername} and rownum=1
 	</update>
 	<!-- 포인트 추가 -->
 	<update id="pointAdd" parameterType="point">

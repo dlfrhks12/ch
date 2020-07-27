@@ -150,6 +150,13 @@ public class UserService {
 		for(Buylist buylist:buyList) {
 			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
 			dto.setCartDayStr(buylist.getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dto.setMenuname(buylistDao.findByOrderNo(dto.getOrderNo()).getCartName());
 			dto.setFavCheck(favDao.findFavoriteById(dto.getUUsername(),dto.getSNum()));

@@ -41,7 +41,7 @@
 	<select id="findAllByEnabled" resultType="manager">
 	<![CDATA[
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
-		m_irum mIrum, s_name sName, m_enabled mEnabled from manager
+		m_irum mIrum, m_enabled mEnabled from manager
 		where m_enabled=0
 	]]>
 	</select>

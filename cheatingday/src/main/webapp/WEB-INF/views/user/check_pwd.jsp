@@ -32,25 +32,6 @@ $(function(){
 			$("#check_pwd_frm").submit();
 	});
 	
-	var msg = "${msg}";
-	if(msg!="") {
-		Swal.fire({
-			  title: '다시 한번 비밀번호를 생각해주세요!',
-			  width: 500,
-			  padding: '4em',
-			  background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
-			  backdrop: `
-			    rgba(0,0,123,0.4)
-			    url("https://sweetalert2.github.io/images/nyan-cat.gif")
-			    left top
-			    no-repeat
-			  `
-			})
-		}
-	});
-   $("#check_pwd").on("click", function(){
-         $("#check_pwd_frm").submit();
-   })
    
    var msg = "${msg}";
    if(msg!="") {

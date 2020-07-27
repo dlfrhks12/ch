@@ -113,7 +113,7 @@ $(function() {
 </script>
 </head>
 <body>
-<div id="wrap" style="width: 1000px; min-height: 800px; position: relative; left: 20%;">
+<div id="wrap" style="width: 1000px; min-height: 800px; margin-left: 400px; margin-right: 400px;">
 	<div>
 		<div id="title_div">
 			<div id="upper">

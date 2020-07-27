@@ -40,7 +40,6 @@ $("#deletes")
 <title>Insert title here</title>
 </head>
 <body>
-${orders }
 <hr>
 
 	<c:set var="sum" value="0" />

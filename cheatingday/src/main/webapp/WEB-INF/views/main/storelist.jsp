@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 table{text-align: center;}
 #nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
 </style>
@@ -25,18 +26,6 @@ function loadImage() {
 }
 
 $(function(){
-   loadImage();
-   var filter = "${filter}";
-      console.log(filter);
-   var food = "${foodno}"
-      console.log(food);
-   $("#filter").on("change", function(){
-      console.log(this.value);
-      if(this.value=="review")
-         location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=review_list";
-      if(this.value=="star")
-         location.href="/cheatingday/store_list?foodNo="+food+"&&pageno=1&&job=star_list";
-   })
 	loadImage();
 	//분류 요소들을 꺼내와서 자바스크립스식으로 변환
 	var filter = "${filter}";

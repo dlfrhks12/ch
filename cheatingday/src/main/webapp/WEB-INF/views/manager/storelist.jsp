@@ -11,15 +11,10 @@
 <meta charset="UTF-8">
 <title>음식점 리스트</title>
 <style>
-
-/* #wrap {width: 620px margin-left: 500px margin-top: 0px} */
 section { margin-left: 400px; margin-right: 400px; margin-bottom: 130px; margin-top: 30px; font-size: 17px;}
-
 </style>
-
 </head>
 <body>
-
 <div>
 		<table class="table table-hover">
 			<colgroup>
@@ -50,9 +45,7 @@ section { margin-left: 400px; margin-right: 400px; margin-bottom: 130px; margin-
 			</div>
 		</c:when>
 		<c:otherwise>
-		
 		</c:otherwise>
 	</c:choose>
 </body>
-</div>
 </html>

@@ -24,7 +24,7 @@ public class StoreController {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
-	  //가게리스트 페이지로 이동 - 해당하는 사장님만 자신의 가게 리스트를 볼 수 있어 
+	  //가게리스트 페이지로 이동 
 	 @PreAuthorize("isAuthenticated()")
 	 @GetMapping("/manager/store_list") 
 	 public ModelAndView storeList(Principal principal) throws JsonProcessingException{ 
@@ -33,16 +33,6 @@ public class StoreController {
 				 .addObject("storeList", service.storeList(principal.getName())); }
 	 
    	 
-	  //가게읽기 페이지로 이동 - 해당하는 사장님만 자신의 가게를 읽을 수 있어.
-	  @PreAuthorize("isAuthenticated()")
-	  @GetMapping("/manager/store_read") 
-	  public ModelAndView storeRead(int sNum, Principal principal) {
-		  String username = principal!=null? principal.getName():null;
-		  return new ModelAndView("main").addObject("viewName","manager/storeread.jsp")
-				  	.addObject("viewHeader", "include/viewHeader.jsp") 
-				  	.addObject("storeRead", service.storeRead(sNum, username));}
-	  
-	  
 	  //가게등록 페이지로 이동
 	  @PreAuthorize("isAuthenticated()")
 	  @GetMapping("/manager/store_insert") public ModelAndView storeInsert() {
@@ -59,6 +49,17 @@ public class StoreController {
 	  service.storeInsert(store, sajin); 
 	  return "redirect:/manager/store_list"; 
 	  }
+	  
+	  
+	 
+	  //가게읽기 페이지로 이동 
+	  @PreAuthorize("isAuthenticated()")
+	  @GetMapping("/manager/store_read") 
+	  public ModelAndView storeRead(int sNum, Principal principal) {
+		  String username = principal!=null? principal.getName():null;
+		  return new ModelAndView("main").addObject("viewName","manager/storeread.jsp")
+				  	.addObject("viewHeader", "include/viewHeader.jsp") 
+				  	.addObject("storeRead", service.storeRead(sNum, username));}
 	  
 	  
 

@@ -23,7 +23,8 @@ public class StoreRestController {
 	  //가게수정
 	  @PreAuthorize("isAuthenticated()")
 	  @PatchMapping("/manager/store_update") 
-	  public ResponseEntity<?> storeUpdate(Store store, MultipartFile sajin) throws IllegalStateException, IOException{
+	  public ResponseEntity<?> storeUpdate(Store store, MultipartFile sajin) 
+			  throws IllegalStateException, IOException{
 		 return ResponseEntity.ok(service.storeUpdate(store, sajin));
 	  }
 	  

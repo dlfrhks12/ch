@@ -34,7 +34,7 @@
 	<select id="menuName" resultType="order">
 		select order_no orderNo, cart_day cartDay, u_username uUSername,
 		 s_num sNum, cart_jumunMoney cartJumunMoney, cart_name cartName from orders where s_num=#{sNum} and rownum=1 
-	
+	</select>
 	
 	<select id="findAlls" resultType="order">
 		select order_no orderNo, menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 

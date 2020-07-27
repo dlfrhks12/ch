@@ -27,10 +27,11 @@ $(function(){
    <div style="padding: 40px 0;">
       <h3><i class="fas fa-shopping-cart">&nbsp;주문내역</i></h3>
    </div>
-   
    <form action="/cheatingday/manager/order_list_keyword" id="search_frm" method="get">
-   	 	<input style="width: 170px; margin-left: 400px;" name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="주문번호로 검색하세요">
-    	<button style="margin-left: 400px;" class="btn btn-danger" type="button" id="search">검색</button> 
+		<button style="float: right;" class="btn btn-danger" type="button" id="search">검색</button> 
+		<div style="width: 70%;">
+		   	 <input style="width: 170px; margin-left: 880px; margin-bottom: 15px;" name="keyword" class="form-control form-control-lg" id="centerAddr" placeholder="주문번호로 검색하세요">
+		</div>
     </form>
 		<table class="table table-hover">
 			<colgroup>

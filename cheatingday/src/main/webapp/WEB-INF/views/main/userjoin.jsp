@@ -215,16 +215,16 @@ $(function() {
                   </div>
                </div>
                <div>
-	               <div>
-	                  <label class="txt p-b-11" for="u_address">주소</label>
-			          <div class="wrap-input300 validate-input m-b-36" style="width:25%;">
+	               <label class="txt p-b-11" for="u_address">주소</label>
+	               <div style="height: 70px;">
+			           <button type="button" class="btn btn-outline-danger" onClick="openDaumZipAddress();" id="sea" style="float: right; margin-right: 240px;" >검색</button>
+			           <div class="wrap-input300 validate-input m-b-50">
 		                 <input class="input300" id="zonecode" type="text" name="uAddress" placeholder="우편번호" />
 		              </div>
-			          <button type="button" class="btn btn-outline-danger" onClick="openDaumZipAddress();" id="sea">검색</button>
+	               </div>
 	                  <div class="wrap-input100 validate-input m-b-36">
 	                     <input class="input200" type="text" id="address" name="uAddress" placeholder="주소를 검색해주세요" readonly/>
 	                  </div>
-	               </div>
 	               <div class="wrap-input100 validate-input m-b-36">
 	                     <input class="input200" type="text" id="address_etc" name="uAddress" placeholder="상세주소 입력"/>
 	                     <span class="focus-input200"></span>

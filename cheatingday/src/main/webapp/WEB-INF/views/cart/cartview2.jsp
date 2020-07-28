@@ -52,7 +52,6 @@ function printCart(CartEntity, dest) {
 	$("<a href='#'>-</a>").attr("class","dec").attr("data-menuno", CartEntity.menuno).appendTo($div);
 	// 5번째 td에는 <button> 2개를 붙일 것임. 따라서 var $td로 저장
 	var $td = $("<td class='fifth'>").appendTo($tr);
-	$("<button>").attr("class","buy").attr("data-menuno", CartEntity.menuno).text("구입").appendTo($td);
 	$("<button>").attr("class","delete").attr("data-menuno", CartEntity.menuno).text("삭제").appendTo($td);
 } 
 
@@ -130,7 +129,7 @@ $(function() {
             $(this).parent().prev().text(CartEntity.cartJumunMoney + "원")
             $(this).prev().text(CartEntity.cartCount);
          }).fail(()=>{
-            alert("실팽");
+            alert("실패");
          })
 	})
 	
@@ -236,7 +235,7 @@ $(function() {
 				method: "post",
 				data: params,
 			}).done(()=>{
-				var choice = confirm("결제하시겠냐?");
+				var choice = confirm("결제하시겠습니까?");
 				if(choice==true)
 					location.href = "/cheatingday/cart/orders"
 			}).fail((xhr)=>{

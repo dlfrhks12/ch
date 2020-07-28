@@ -138,9 +138,9 @@ public class MReviewOrderService {
 	
 	
 	// 해당 주문번호 내용 읽기 
-	public List<ManagerDto.DtoForOrderRead> orderRead(int oNo){
+	public List<ManagerDto.DtoForOrderRead> orderRead(int orderNo){
 		
-		List<Orders> list = orderDao.orderReadByONo(oNo);
+		List<Orders> list = orderDao.orderReadByONo(orderNo);
 		
 		List<ManagerDto.DtoForOrderRead> dtoList = new ArrayList<>();
 		for(Orders detailOrder:list) {

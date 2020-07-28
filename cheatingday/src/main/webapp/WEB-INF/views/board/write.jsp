@@ -30,6 +30,7 @@ $(function() {
 			content: CKEDITOR.instances['content'].getData(),
 			_csrf: "${_csrf.token}",
 		}
+		console.log(params);
 		$.ajax({
 			url: "/cheatingday/board/write",
 			method: "post",

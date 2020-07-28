@@ -32,8 +32,8 @@ public class OrdersDao {
 		return tpl.selectList("orderMapper.findAllByusername", map);
 	}
 
-	public Orders findByOrderNo(int oNo) {
-		return tpl.selectOne("orderMapper.findByOrderNo",oNo);
+	public Orders findByOrderNo(int orderNo) {
+		return tpl.selectOne("orderMapper.findByOrderNo",orderNo);
 	}
 	//사업자
 	//주문 리스트 출력 페이징 - 검색용

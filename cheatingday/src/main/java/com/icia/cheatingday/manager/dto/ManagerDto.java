@@ -42,7 +42,7 @@ public static class DtoForOrderList{
 		private int dSal; //메뉴금액
 		private int dMenuCnt; //메뉴수량
 		private String dMenuName; //메뉴이름
-		private int oNo; //주문번호
+		private int orderNo; //주문번호
 		private int menuno; //메뉴번호
 		private String uUsername; //사용자아이디
 	}
@@ -56,7 +56,7 @@ public static class DtoForOrderList{
 		private String rContent; 
 		private int rStarPoint;
 		private String rWriteTimeStr;
-		private int oNo;
+		private int orderNo;
 		private String rTitle;
 		private int rReport;
 		private String uUsername;

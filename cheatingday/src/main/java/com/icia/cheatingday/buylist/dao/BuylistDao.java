@@ -10,7 +10,7 @@ import org.springframework.stereotype.*;
 import com.icia.cheatingday.buylist.entity.*;
 
 @Repository
-public class BuylistDao {
+public class BuylistDao { 
 	@Inject
 	private SqlSessionTemplate tpl;
 	

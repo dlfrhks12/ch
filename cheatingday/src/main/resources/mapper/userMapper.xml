@@ -25,6 +25,7 @@
          <if test="uEmail!=null">u_email=#{uEmail},</if>
          <if test="uTel!=null">u_tel=#{uTel},</if>
          <if test="uAddress!=null">u_address=#{uAddress},</if>
+         <if test="uPoint!=null">u_point=#{uPoint},</if>
          <if test="uPassword!=null">u_password=#{uPassword},</if>
          <if test="uEnabled!=null">u_enabled=#{uEnabled},</if>
          <if test="uJoinDate!=null">u_joinDate=#{uJoinDate},</if>

@@ -28,7 +28,6 @@ public class PointDao {
 		System.out.println(uUsername);
 		System.out.println(uUsername);
 		System.out.println(uUsername);
-		System.out.println(uUsername);
 		return tpl.selectOne("pointMapper.findByTotalpoint", uUsername);
 	}
 	public int insert(Point point) {

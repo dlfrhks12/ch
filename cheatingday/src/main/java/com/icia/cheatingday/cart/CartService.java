@@ -27,6 +27,8 @@ public class CartService {
    private OrdersDao orDao;
    @Autowired
    private PointDao pointDao;
+   @Autowired
+   private UserDao userdao;
    
    // 장바구니가 없으면 새로 만들고, 있으면 꺼내는 메소드
    private List<CartEntity> findList(HttpSession session) {
@@ -165,17 +167,9 @@ public class CartService {
 		List<Orders> orders = (List<Orders>) session.getAttribute("order"); // 저장한 세션을 가져와서
 		orDao.insertOrderAll(orders); // 완전한 주문상세내역에 인서트
 		pointDao.insert(Point.builder().uUsername(uUsername).orderNo(orderNo).accumulationSal(pointDao.ordermoney(orderNo)).build());		
-		int totalPoint = pointDao.findByTotalpoint(uUsername);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		System.out.println(totalPoint);
-		return pointDao.update(Point.builder().uUsername(uUsername).totalPoint(pointDao.findByTotalpoint(uUsername)).build());
+		int total = pointDao.findByTotalpoint(uUsername);
+		pointDao.update(Point.builder().uUsername(uUsername).totalPoint(total).build());
+		return  userdao.update(User.builder().uUsername(uUsername).uPoint(total).build());
 	}
 }
 

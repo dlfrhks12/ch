@@ -12,11 +12,11 @@
 		(select rownum as rnum, p.* from
 			(select /*+ index_desc(point point_pk_u_username)*/ u_username uUsername, order_no orderNo, accumulation_sal accumulationSal from point where u_username=#{uUsername}) p
 		where rownum <=#{endRowNum})
-	where rnum>=#{startRowNum}
+	where rnum>=#{startRowNum} order by orderNo desc
 	]]>	
 	</select>
 	<!-- 총포인트 불러오기 -->
-	<select id="findByTotalpoint" resultType="point">
+	<select id="findByTotalpoint" resultType="int">
 		select sum(accumulation_sal) from point where u_username=#{uUsername}
 	</select>
 	<!-- 포인트 입력 -->
@@ -26,11 +26,7 @@
 	</insert>	
 	<!--  포인트 수정 -->
 	<update id="update">
-		update point
-		<trim suffixOverrides="," prefix="set">
-			<if test="totalPoint=!null">totalpoint=#{totalPoint}</if>
-		</trim>
-		where u_username=#{uUsername} and rownum=1
+		update point set totalpoint=#{totalPoint} where u_username=#{uUsername}
 	</update>
 	<!-- 포인트 추가 -->
 	<update id="pointAdd" parameterType="point">

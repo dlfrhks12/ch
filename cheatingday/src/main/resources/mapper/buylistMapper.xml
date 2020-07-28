@@ -8,7 +8,7 @@
 	<!-- 아이디 정보 읽어오기-->
 	<select id="findById" resultType="buylist">
 		select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
-             cart_count cartCount, image, cart_jumunMoney cartJumunMoney from orders where u_username = #{uUsername} and rownum =1
+             cart_count cartCount, image, cart_jumunMoney cartJumunMoney from orders where u_username = #{uUsername} and rownum =1 
 	</select>
 	<!-- 주문번호로 아이디 불러오기 -->
 	<select id="findByOrderNo" resultType="buylist">
@@ -23,7 +23,7 @@
 			(select /*+ index_desc(orders orders_pk_u_username)*/ order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
              cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum from orders where u_username=#{uUsername}) o
 		where rownum <=#{endRowNum})
-	where rnum>=#{startRowNum}	
+	where rnum>=#{startRowNum} order by orderNo desc
 	]]>
 	</select>
 	

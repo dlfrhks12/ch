@@ -13,7 +13,7 @@
       cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
       from orders where s_num=#{sNum} and order_no = #{keyword}) b
       where rownum<=#{endRowNum})
-      where rnum>=#{startRowNum}
+      where rnum>=#{startRowNum} order by orderNo desc
       ]]>
       </select> 
       
@@ -25,7 +25,7 @@
       cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
       from orders where s_num=#{sNum})b
       where rownum<=#{endRowNum})
-      where rnum>=#{startRowNum}
+      where rnum>=#{startRowNum} order by orderNo desc
       ]]>
       </select> 
       

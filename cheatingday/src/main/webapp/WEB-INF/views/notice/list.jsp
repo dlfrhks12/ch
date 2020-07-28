@@ -69,8 +69,10 @@
 			</c:if>
 		</ul>
 	</div>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	<div class="form-group" style="margin-left: 350px; margin-right: 450px;">
 		<a class="btn btn-danger" href="/cheatingday/notice/write">글쓰기</a>
 	</div>
+	</sec:authorize>
 </body>
 </html>

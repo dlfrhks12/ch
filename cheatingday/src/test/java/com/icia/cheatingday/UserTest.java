@@ -27,6 +27,8 @@ public class UserTest {
 	private UserService uservice;
 	@Inject
 	private UserRestService urservice;
+	@Inject
+	private PointDao pdao;
 	
 	
 	//@Test
@@ -84,5 +86,13 @@ public class UserTest {
 	//@Test
 	public void wfgw() {
 		System.out.println(uservice.pointList(1, null));
+	}
+	@Test
+	public void ssdgs() {
+		Point point = Point.builder().uUsername("usy14731").totalPoint(5208).build();
+		pdao.update(point);
+		System.out.println(point);
+		System.out.println(point);
+		System.out.println(point);
 	}
 }

@@ -9,7 +9,7 @@
 		(select rownum as rnum, b.* from
 			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt, b_cateno cateno from board) b
 		where rownum<=#{endRowNum})
-	where rnum>=#{startRowNum}
+	where rnum>=#{startRowNum} order by bno desc
 	]]>
 	</select>
 	<select id="findAllByUsername" resultType="FreeBoard">
@@ -18,7 +18,7 @@
 		(select rownum as rnum, b.* from
 			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt from board where u_username=#{username}) b
 		where rownum<=#{endRowNum})
-	where rnum>=#{startRowNum}
+	where rnum>=#{startRowNum} order by bno desc
 	]]>
 	</select>
 	<select id="findAllByCategory" resultType="FreeBoard">
@@ -27,7 +27,7 @@
 		(select rownum as rnum, b.* from
 			(select /*+ index_desc(board board_pk_b_no) */ b_no bno, b_title title, u_username username, b_write_time writeTime, b_read_cnt readCnt,b_cateno cateno from board where b_cateno=#{cateno}) b
 		where rownum<=#{endRowNum})
-	where rnum>=#{startRowNum}
+	where rnum>=#{startRowNum} order by bno desc
 	]]>
 	</select>
 	<select id="findById" resultType="FreeBoard">

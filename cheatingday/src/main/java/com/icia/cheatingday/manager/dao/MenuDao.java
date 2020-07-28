@@ -34,7 +34,7 @@ public class MenuDao {
 		return tpl.selectList("menuMapper.findAll");
 	}
 
-	// mUsername으로 메뉴리스트 띄우기
+	// 메뉴리스트 띄우기
 	public List<MenuEntity> findAllBymUsername(int sNum) {
 		return tpl.selectList("menuMapper.findAllById", sNum);
 	}
@@ -42,7 +42,6 @@ public class MenuDao {
 	// 메뉴읽기
 	public MenuEntity findById(Integer menuno) {
 		return tpl.selectOne("menuMapper.findById", menuno);
-
 	}
 
 	// 메뉴추가
@@ -50,7 +49,7 @@ public class MenuDao {
 		return tpl.insert("menuMapper.insert", menu);
 	}
 
-	// 메뉴업뎃
+	// 메뉴수정
 	public int update(MenuEntity menu) {
 		return tpl.update("menuMapper.update", menu);
 	}

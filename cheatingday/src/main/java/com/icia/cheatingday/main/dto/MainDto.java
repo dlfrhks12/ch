@@ -17,7 +17,7 @@ public class MainDto {
 		private int foodNo;
 		private String foodCategory;
 		private Integer sReviewCnt;
-		private Integer sStarPoint;
+		private Float sStarPoint;
 	}
 }
 

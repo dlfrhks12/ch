@@ -36,33 +36,31 @@ public class ManagerController {
 			
 	}
 	
-	
-	//메뉴읽기 페이지로 이동
-	@GetMapping("/manager/menu_read")
-	public ModelAndView menuRead(Integer menuno) {
-		return new ModelAndView("main").addObject("viewName", "manager/menuread.jsp")
-				.addObject("viewHeader", "include/viewHeader.jsp")
-				.addObject("menuRead",service.menuRead(menuno));
-	}
-	
-	//메뉴쓰기로 이동
-	@GetMapping("/manager/menu_write")
-	public ModelAndView menuWrite() {
-		return new ModelAndView("main").addObject("viewName", "manager/menuwrite.jsp")
-				.addObject("viewHeader", "include/viewHeader.jsp");
-	}
-	
-	
-	//메뉴쓰기
-	@PostMapping("/manager/menu_write")
-	public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin, Principal principal) throws IllegalStateException, IOException {
-		dto.setMUsername(principal.getName());
-		service.write(dto, sajin, principal.getName());
-		return "redirect:/manager/menu_list";
-	}
-	 
-
-	
+		//메뉴쓰기로 이동
+		@GetMapping("/manager/menu_write")
+		public ModelAndView menuWrite() {
+			return new ModelAndView("main").addObject("viewName", "manager/menuwrite.jsp")
+					.addObject("viewHeader", "include/viewHeader.jsp");
+		}
+		
+		//메뉴쓰기
+		@PostMapping("/manager/menu_write")
+		public String menuWrite(MenuDto.DtoForRead dto, MultipartFile sajin, Principal principal) 
+				throws IllegalStateException, IOException {
+			dto.setMUsername(principal.getName());
+			service.write(dto, sajin, principal.getName());
+			return "redirect:/manager/menu_list";
+		}
+		
+		//메뉴읽기 페이지로 이동
+		@GetMapping("/manager/menu_read")
+		public ModelAndView menuRead(Integer menuno) {
+			return new ModelAndView("main").addObject("viewName", "manager/menuread.jsp")
+					.addObject("viewHeader", "include/viewHeader.jsp")
+					.addObject("menuRead",service.menuRead(menuno));
+		}
+		
+		
 	//내 정보 읽기
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/manager/information")
@@ -74,7 +72,6 @@ public class ManagerController {
 	
 
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	

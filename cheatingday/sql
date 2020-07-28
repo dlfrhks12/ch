@@ -227,8 +227,40 @@ CREATE TABLE cart (
 );
 
 SELECT * FROM all_objects
-
 WHERE object_type = 'SEQUENCE';
+
+drop SEQUENCE QNA_SEQ;
+drop SEQUENCE QNACOMMENT_SEQ;
+drop SEQUENCE STORE_SEQ;
+drop SEQUENCE MENU_SEQ;
+drop SEQUENCE REVIEW_SEQ;
+drop SEQUENCE REVIEWCOMMENT_SEQ;
+drop SEQUENCE BOARD_SEQ;
+drop SEQUENCE NOTICE_SEQ;
+
+create SEQUENCE QNA_SEQ MINVALUE 0;
+create SEQUENCE QNACOMMENT_SEQ MINVALUE 0;
+create SEQUENCE STORE_SEQ MINVALUE 0;
+create SEQUENCE MENU_SEQ MINVALUE 0;
+create SEQUENCE CART_SEQ MINVALUE 0;
+create SEQUENCE REVIEW_SEQ MINVALUE 0;
+create SEQUENCE REVIEWCOMMENT_SEQ MINVALUE 0;
+create SEQUENCE BOARD_SEQ MINVALUE 0;
+create SEQUENCE NOTICE_SEQ MINVALUE 0;
+
+select QNA_SEQ.nextval from dual;
+select QNACOMMENT_SEQ.nextval from dual;
+select STORE_SEQ.nextval from dual;
+select MENU_SEQ.nextval from dual;
+select REVIEW_SEQ.nextval from dual;
+select REVIEWCOMMENT_SEQ.nextval from dual;
+select BOARD_SEQ.nextval from dual;
+select NOTICE_SEQ.nextval from dual;
+
+commit;
+
+
+
 --CHEAT	QNA_SEQ
 --CHEAT	QNACOMMENT_SEQ
 --CHEAT	STORE_SEQ

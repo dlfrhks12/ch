@@ -20,7 +20,7 @@
       (select rownum as rnum, b.* from
          (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_star_point rStarPoint,r_write_time rWriteTime,r_title rTitle,u_username uUsername,s_num sNum from review where s_num=#{sNum}) b
       where rownum <=#{endRowNum})
-   where rnum>=#{startRowNum}
+   where rnum>=#{startRowNum} order by rNo desc
    ]]>
    </select>
    
@@ -47,7 +47,7 @@
          (select rownum as rnum, b.* from
             (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime, u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review) b
          where rownum <=#{endRowNum})
-       where rnum>=#{startRowNum}
+       where rnum>=#{startRowNum} order by rNo desc
        ]]>
    </select>
    <select id="findAllByUsername" resultType="review">
@@ -56,7 +56,7 @@
          (select rownum as rnum, b.* from
             (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review where u_username=#{uUsername}) b
          where rownum <=#{endRowNum})
-       where rnum>=#{startRowNum}
+       where rnum>=#{startRowNum} order by rNo desc
        ]]>
    </select>
    <select id="findAllByReport" resultType="review">
@@ -65,7 +65,7 @@
          (select rownum as rnum, b.* from
             (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_write_time rWriteTime,s_num sNum,u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review where r_report>=1 order by r_report desc) b
          where rownum <=#{endRowNum})
-       where rnum>=#{startRowNum}
+       where rnum>=#{startRowNum} order by rNo desc
        ]]>
    </select>
    <delete id="delete">

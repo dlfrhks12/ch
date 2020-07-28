@@ -19,8 +19,8 @@ public class Store {
 	private String sName;    //상호명
 	private String sTel;     //음식점 전화번호
 	private String sAddress; //주소
-	private int foodNo;      //음식 카테고리 번호
-	private int sStarPoint;  //별점평균
-	private int sReviewCnt; //리뷰개수
+	private int foodNo;     //음식 카테고리 번호
+	private Float sStarPoint;  //별점평균
+	private Integer sReviewCnt; //리뷰개수
 	private String mUsername; //사업자아이디
 }

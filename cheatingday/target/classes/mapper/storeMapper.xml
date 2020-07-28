@@ -13,15 +13,17 @@
 	select count(*) from store where m_username=#{mUsername} and rownum=1
 </select>
 
-<!-- musername 잠시 삭제함 -->
 <select id="findBysNum" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
-s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername, s_review_cnt sReviewCnt, s_star_point sStarPoint from store where s_num=#{sNum} and rownum=1
+s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername, 
+s_review_cnt sReviewCnt, s_star_point sStarPoint from store where s_num=#{sNum} and rownum=1
 </select>
 
 <select id="findBymUsername" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
-s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, m_username mUsername, s_review_cnt sReviewCnt, s_star_point sStarPoint from store where m_username=#{mUsername} and rownum=1
+s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
+m_username mUsername, s_review_cnt sReviewCnt, s_star_point sStarPoint 
+from store where m_username=#{mUsername} and rownum=1
 </select>
 
 <!-- <select id="findAll" resultType="store">
@@ -33,14 +35,14 @@ s_star_point sStarPoint, s_review_cnt sReviewC nt, m_username mUsername from sto
 <select id="findAllBymUsername" resultType="store">
 select s_num sNum, s_sajin sSajin, s_info sInfo,
 s_name sName, s_tel sTel, s_address sAddress, food_no foodNo, 
-s_star_point sStarPoint, s_review_cnt sReviewCnt, m_username mUsername from store where m_username=#{mUsername} 
+s_star_point sStarPoint, s_review_cnt sReviewCnt, m_username mUsername 
+from store where m_username=#{mUsername} 
 </select>
 
 <insert id="insert">
 <selectKey order="BEFORE" resultType="int" keyProperty="sNum">
 select store_seq.nextval from dual
 </selectKey>
-
 insert into store(s_num,s_sajin,s_info,s_name,s_tel,s_address,
 food_no,s_star_point,s_review_cnt,m_username) values(#{sNum},#{sSajin},#{sInfo},#{sName},
 #{sTel},#{sAddress},#{foodNo},0,0,#{mUsername})
@@ -55,7 +57,7 @@ update store
 		<if test="sTel!=null">s_tel=#{sTel},</if>
 		<if test="sAddress!=null">s_address=#{sAddress},</if>
 		<if test="sStarPoint!=null">s_star_point=#{sStarPoint},</if>
-		<if test="sReviewCnt!=null">s_review_cnt=s_review_cnt+1,</if>
+		<if test="sReviewCnt!=null">s_review_cnt=#{sReviewCnt},</if>
 	</trim>
 	where s_num=#{sNum} and rownum=1
 </update>	
@@ -97,7 +99,9 @@ update store
 		select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_star_point desc
 	]]>
 </select>
-
+<select id="starAvg" resultType="float">
+select round(avg(cast(r_star_point as float)),1) from review where s_num=#{sNum}
+</select>
 </mapper>
 
 

@@ -11,7 +11,7 @@
 section {margin-left:470px; margin-right:450px; margin-top:50px;}
 #list {width:990px; margin: 0 auto;}
 table th{text-align: center;}
-#show_sajin {float: left; width: auto; height: auto; max-height: 130px; max-width: 130px; margin-bottom: 5px;}
+#show_sajin {float: left; width: auto; height: auto; max-height: 120px; max-width: 120px; margin-bottom: 5px;}
 #nosajin{padding: 15px 0px 0px 0px; height: 60px; line-height: 30px;}
 #filter{float:right; margin-right: 30px;}
 #menulist ul li {font-size: 15px; list-style:none; margin-left: 100px; padding: 5px;}

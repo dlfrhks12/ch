@@ -3,7 +3,7 @@
 <mapper namespace="pointMapper">
 	<!-- 포인트 페이징 -->
 	<select id="count" resultType="int">
-		select count(*) from point where u_username=#{uUsername}
+		select count(*) from point where u_username=#{username}
 	</select>
 	<!-- 아이디로 포인트내역 불러오기 -->
 	<select id="findAll" resultType="point">
@@ -12,29 +12,21 @@
 		(select rownum as rnum, p.* from
 			(select /*+ index_desc(point point_pk_u_username)*/ u_username uUsername, order_no orderNo, accumulation_sal accumulationSal from point where u_username=#{uUsername}) p
 		where rownum <=#{endRowNum})
-	where rnum>=#{startRowNum}
+	where rnum>=#{startRowNum} order by orderNo desc
 	]]>	
 	</select>
 	<!-- 총포인트 불러오기 -->
-	<select id="findByTotalpoint" resultType="point">
-		select total_point totalPoint from point where u_username=#{uUsername}
+	<select id="findByTotalpoint" resultType="int">
+		select sum(accumulation_sal) from point where u_username=#{uUsername}
 	</select>
 	<!-- 포인트 입력 -->
 	<insert id="insert">
-		<selectKey keyProperty="uUsername" resultType="int" order="BEFORE">
-			select point_seq.nextval from dual
-		</selectKey>
-		insert into point(u_username, order_no , accumulation_sal )
-		values(#{uUsername}, #{orderNo}, #{accumulationSal})
+		insert into point(u_username, order_no , accumulation_sal, totalpoint )
+		values(#{uUsername}, #{orderNo}, #{accumulationSal},0)
 	</insert>	
 	<!--  포인트 수정 -->
 	<update id="update">
-		update point
-		<trim suffixOverrides="," prefix="set">
-			<if test="orderNo=!null">order_no=#{orderNo},</if>
-			<if test="accumulationSal=!null">accumulation_sal=#{accumulationSal}</if>
-		</trim>
-		where u_username=#{uUsername} and rownum=1
+		update point set totalpoint=#{totalPoint} where u_username=#{uUsername}
 	</update>
 	<!-- 포인트 추가 -->
 	<update id="pointAdd" parameterType="point">
@@ -48,4 +40,8 @@
 	<delete id="delete">
 		delete from point where u_username=#{uUsername} and rownum=1
 	</delete>
+	<select id="ordermoney" resultType="int">
+		select sum(cart_jumunMoney)*0.02 from orders where order_no=#{orderNo}
+	</select>
+	
 </mapper>

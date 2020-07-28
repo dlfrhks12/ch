@@ -25,6 +25,9 @@ public class PointDao {
 		return tpl.selectList("pointMapper.findAll", map);
 	}
 	public int findByTotalpoint(String uUsername) {
+		System.out.println(uUsername);
+		System.out.println(uUsername);
+		System.out.println(uUsername);
 		return tpl.selectOne("pointMapper.findByTotalpoint", uUsername);
 	}
 	public int insert(Point point) {
@@ -41,6 +44,9 @@ public class PointDao {
 	}
 	public int pointMin(Point point) {
 		return tpl.update("pointMapper.pointMin", point);
+	}
+	public int ordermoney(int orderNo) {
+		return tpl.selectOne("pointMapper.ordermoney", orderNo);
 	}
 	
 }

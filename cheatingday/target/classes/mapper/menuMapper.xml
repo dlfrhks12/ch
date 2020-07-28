@@ -17,15 +17,15 @@
 	select menuno, menusal, menusajin, menuname, s_num sNum from menu 
 </select>
 
-<select id="findAllById" resultType="menu"><!-- 해당 아이디로 리스트 띄우기  -->
+<select id="findAllById" resultType="menu">
 	select menuno, menusal, menusajin, menuname, s_num sNum 
 	from menu where s_num=#{sNum}
-	
 </select>
 
 
-<select id="findById" resultType="menu"> <!-- 해당하는 메뉴를 클릭하면 나타날 정보들 -->
-	select menuno, menusal, menusajin, menuname, s_num sNum from menu where menuno=#{menuno} and rownum=1
+<select id="findById" resultType="menu"> 
+	select menuno, menusal, menusajin, menuname, s_num sNum 
+	from menu where menuno=#{menuno} and rownum=1
 </select>
 
 

@@ -31,12 +31,10 @@ public class StoreDao {
 	public Store findBysNum(int sNum) {
 		return tpl.selectOne("storeMapper.findBysNum",sNum);
 	}
-	
 	//findBymUsername으로 찾아야해 
 	public Store findBymUsername(String mUsername) {
 		return tpl.selectOne("storeMapper.findBymUsername", mUsername);
 	}
-	
 	
 	//사업자아이디로 리스트 출력하기
 	public List<Store> findAllBymUsername(String mUsername){

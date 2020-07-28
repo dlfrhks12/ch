@@ -80,8 +80,6 @@
       select count(*) from orders where order_no=#{orderNo}
    </select>
 
-
-
    <!-- 읽기  -->
    <!-- 해당 주문번호 내용 읽기  -->
    <select id="orderReadByONo" resultType="order">
@@ -89,10 +87,7 @@
       cart_day cartDay, cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
       from order where order_no=#{orderNo}
    </select>
-
-   
    <select id="findByONo" resultType="int">
       select s_num sNum from orders where order_no=#{orderNo} and rownum=1
    </select>
-  
 </mapper>

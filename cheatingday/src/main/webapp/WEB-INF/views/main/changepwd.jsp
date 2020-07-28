@@ -98,7 +98,11 @@ function checkUserPassword() {
 $(function() {   
 	var msg = "${msg}";
 	if(msg!="") {
-		alert(msg);
+		Swal.fire({
+			  icon: 'info',
+			  title: 'success',
+			  text: '비밀번호를 변경해 주세요',
+			})
 	}
 	
 	$("#uNewPassword").on("blur", checkUserPassword);
@@ -115,21 +119,53 @@ $(function() {
 			$.ajax({
 		        url: "/cheatingday/u_change_pwd",
 		        type: "post",
+<<<<<<< HEAD
+		        data: $('#u_change_pwd_form').serialize(),
+		        success: function() {
+		        	Swal.fire({
+		  			  icon: 'success',
+		  			  title: 'success',
+		  			  text: '비밀번호가 변경되었습니다',
+		  			})
+		        	}
+		     })
+		} 
+	})
+=======
 		        data: $("#u_change_pwd_form").serialize(),
 		     }).done(()=>{$("#u_change_pwd_form").submit();})
 		 }
 		     
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
 		var r2 = checkManagerPassword2();
+<<<<<<< HEAD
+		var result = r1 && r2
+		if(result===true && $("#uNewPassword").val()!=="" && $("#uNewPassword2").val()!=="")  {
+=======
 		var result = r1 && r2;
 		if(result==true)  {
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 			$.ajax({
 		        url: "/cheatingday/m_change_pwd",
 		        type: "post",
+<<<<<<< HEAD
+		        data: $('#m_change_pwd_form').serialize(),
+		        success: function() {
+		        	Swal.fire({
+			  			  icon: 'success',
+			  			  title: 'success',
+			  			  text: '비밀번호가 변경되었습니다',
+			  			})
+		        }
+		     })
+		}
+=======
 		        data: $("#m_change_pwd_form").serialize(),
 		     }).done(()=>{$("#m_change_pwd_form").submit();})}
 		 })
+>>>>>>> branch 'master' of https://github.com/tjddnjs5092/CheatingDay.git
 	})
 })
 

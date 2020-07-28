@@ -103,11 +103,14 @@ public class ReviewRestService {
 		commentDao.insert(comment);
 		return commentDao.findByRno(comment.getRNo());
 	}
-	public int updateComment(ReviewComment comment) {
-		return commentDao.update(comment);
-	}
+
 	public List<ReviewComment> deleteComment(Integer rcNo, Integer rNo,String mUsername){
 		ReviewComment comment = commentDao.findByRcno(rcNo);
+		System.out.println(mUsername);
+		System.out.println(mUsername);
+		System.out.println(mUsername);
+		System.out.println(mUsername);
+		System.out.println(mUsername);
 		if(mUsername.equals(comment.getMUsername())==false)
 			throw new JobFailException("댓글을 삭제 할 수 없습니다.");
 		commentDao.delete(rcNo);

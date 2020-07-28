@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.*;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,22 +32,24 @@ public class ReviewRestController {
 	@Autowired
 	private ReviewRestService restService;
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/review/read")
 	public ResponseEntity<?> read(@RequestParam @NotNull Integer rNo, Principal principal){
 		String username = principal!=null? principal.getName():null;
-		
 		ReviewDto.DtoForRead dto = service.read(rNo, username);
-		
 		return ResponseEntity.ok(dto);
 	}
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/reviewComment/write")
 	public ResponseEntity<?> writeComment(@Valid ReviewComment comment, BindingResult bindingResult, Principal principal){
 		return ResponseEntity.ok(restService.writeComment(comment, principal.getName()));
 	}
+	@PreAuthorize("isAuthenticated()")
 	@DeleteMapping("/reviewComment/delete")
-	public ResponseEntity<?> deleteComment(int rcNo, int rNo, String uUsername){
-		return ResponseEntity.ok(restService.deleteComment(rcNo, rNo, uUsername));
+	public ResponseEntity<?> deleteComment(int rcNo, int rNo, Principal principal){
+		return ResponseEntity.ok(restService.deleteComment(rcNo, rNo, principal.getName()));
 	}
+	@PreAuthorize("isAuthenticated()")
 	@PatchMapping("/review/update")
 	public ResponseEntity<Void> updateReview(@Valid ReviewDto.DtoForUpdate dto, BindingResult bindingResult, Principal principal) throws BindException{
 		if(bindingResult.hasErrors())
@@ -55,15 +58,18 @@ public class ReviewRestController {
 		restService.updateReview(dto);
 		return ResponseEntity.ok(null);
 	}
+	@PreAuthorize("isAuthenticated()")
 	@PatchMapping("/review/singo")
 	public ResponseEntity<?> singoReview(int rNo, Principal principal) {
 		return ResponseEntity.ok(restService.singoReview(rNo, principal.getName()));
 	}
+	@PreAuthorize("isAuthenticated()")
 	@DeleteMapping("/review/delete")
 	public ResponseEntity<?> deleteReview(int rNo){
 		restService.deleteReview(rNo);
 		return ResponseEntity.ok("/cheatingday/review/list");
 	}
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/review/ckupload")
 	public ResponseEntity<?> ckUpload(MultipartFile upload) throws IOException{
 		return ResponseEntity.ok(restService.saveCkImage(upload));

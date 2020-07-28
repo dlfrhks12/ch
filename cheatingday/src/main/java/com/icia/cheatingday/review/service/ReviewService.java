@@ -53,7 +53,9 @@ public class ReviewService {
 		Review review = modelMapper.map(dto, Review.class);
 		review.setSNum(orderDao.findByONo(dto.getOrderNo()));
 		reviewDao.insert(review);
-		return storeDao.update(Store.builder().sNum(review.getSNum()).sReviewCnt(storeDao.findBysNum(review.getSNum()).getSReviewCnt()+1).sStarPoint((float) storeDao.starAvg(review.getSNum())).build());
+		return storeDao.update(Store.builder().sNum(review.getSNum())
+				.sReviewCnt(storeDao.findBysNum(review.getSNum()).getSReviewCnt()+1)
+				.sStarPoint((float) storeDao.starAvg(review.getSNum())).build());
 	}
 	public ReviewDto.DtoForRead read(Integer rNo,String uUsername){
 		Review review = reviewDao.findByRno(rNo);

@@ -26,10 +26,17 @@
    
    <!-- 리뷰 읽기  해야해-->
    <select id="findByRno" resultType="review">
-      select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, order_no orderNo, r_title rTitle, r_report rReport, u_username uUsername from review where r_no=#{rNo} and rownum=1
+      select r_no rNo, r_content rContent, r_star_point rStarPoint, r_write_time rWriteTime, order_no orderNo, r_title rTitle,
+       r_report rReport, u_username uUsername from review where r_no=#{rNo} and rownum=1
    </select>
 
-   <!-- 리뷰 페이징 -->
+   
+   <select id="countByRepoert" resultType="int">
+      select count(*) from review where r_report>=1
+   </select>
+
+
+  <!-- 리뷰 페이징 -->
    <select id="count" resultType="int">
       select count(*) from review
       <where>
@@ -37,15 +44,12 @@
       </where>
    </select>
    
-   <select id="countByRepoert" resultType="int">
-      select count(*) from review where r_report>=1
-   </select>
-   
    <select id="findAll" resultType="review">
       <![CDATA[
       select * from
          (select rownum as rnum, b.* from
-            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime, u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review) b
+            (select /*+ index_desc(review review_pk_r_no)*/r_no rNo,r_title rTitle,r_content rContent,r_write_time rWriteTime,
+             u_username uUsername,r_report rReport,order_no orderNo,r_star_point rStarPoint from review) b
          where rownum <=#{endRowNum})
        where rnum>=#{startRowNum} order by rNo desc
        ]]>

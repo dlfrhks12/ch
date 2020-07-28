@@ -68,7 +68,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div style="text-align:center;">
+	<div style="text-align:center; padding-right: 800px;">
 		<ul class="pagination">
 			<c:if test="${page.prev==true}">
 				<li><a href="/cheatingday/center/list?pageno=${page.startPage-1}">이전</a></li>

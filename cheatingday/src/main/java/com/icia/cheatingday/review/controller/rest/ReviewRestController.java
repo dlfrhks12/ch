@@ -43,10 +43,6 @@ public class ReviewRestController {
 	public ResponseEntity<?> writeComment(@Valid ReviewComment comment, BindingResult bindingResult, Principal principal){
 		return ResponseEntity.ok(restService.writeComment(comment, principal.getName()));
 	}
-	@PatchMapping("/reviewComment/update")
-	public ResponseEntity<?> updateCommnet(@Valid ReviewComment comment){
-		return ResponseEntity.ok(restService.updateComment(comment));
-	}
 	@DeleteMapping("/reviewComment/delete")
 	public ResponseEntity<?> deleteComment(int rcNo, int rNo, String uUsername){
 		return ResponseEntity.ok(restService.deleteComment(rcNo, rNo, uUsername));

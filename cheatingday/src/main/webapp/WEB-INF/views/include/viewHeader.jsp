@@ -67,6 +67,7 @@ $(function() {
     	<li class="nav-item active">
    			<a class="nav-link" href="/cheatingday/user/reviewlist?uUsername=${username}">내가 쓴 리뷰</a>
     	</li>
+    	<li class="nav-item active"><a class="nav-link" href="/cheatingday/notice/list">공지사항</a></li>
  	</sec:authorize>
  	
  	

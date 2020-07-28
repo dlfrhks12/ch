@@ -252,6 +252,7 @@ select MENU_SEQ.nextval from dual;
 select REVIEW_SEQ.nextval from dual;
 select REVIEWCOMMENT_SEQ.nextval from dual;
 select BOARD_SEQ.nextval from dual;
+select CART_SEQ.nextval from dual;
 select NOTICE_SEQ.nextval from dual;
 SELECT
     *
@@ -262,6 +263,16 @@ FROM qnacategory;
 SELECT
     *
 FROM boardcate;
+
+drop SEQUENCE QNA_SEQ;
+drop SEQUENCE CART_SEQ;
+drop SEQUENCE QNACOMMENT_SEQ;
+drop SEQUENCE STORE_SEQ;
+drop SEQUENCE MENU_SEQ;
+drop SEQUENCE REVIEW_SEQ;
+drop SEQUENCE REVIEWCOMMENT_SEQ;
+drop SEQUENCE BOARD_SEQ;
+drop SEQUENCE NOTICE_SEQ;
 insert into foodcategory VALUES(1,'분식');
 insert into foodcategory VALUES(2,'중국집');
 insert into foodcategory VALUES(3,'치킨');

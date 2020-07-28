@@ -1,7 +1,5 @@
 package com.icia.cheatingday.buylist.dto;
 
-import java.time.*;
-
 import lombok.*;
 import lombok.experimental.*;
 

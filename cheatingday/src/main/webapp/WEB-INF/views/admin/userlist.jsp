@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
 $(function() {
 	// 유저목록 중 선택한 글을 블록	
@@ -66,7 +69,7 @@ $(function() {
 					<th>가입일</th>
 					<th>전화번호</th>
 					<th class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#"> 유저 관리 <span class="caret"></span></a>
+						data-toggle="dropdown" href="#"> 유저 관리</a>
 						<ul class="dropdown-menu">
 							<li><a href="/cheatingday/admin/user_list?job=user_list">유저
 									목록</a></li>

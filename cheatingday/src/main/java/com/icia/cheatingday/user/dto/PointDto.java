@@ -12,7 +12,7 @@ public class PointDto {
 	@Accessors(chain=true)
 	public static class DtoForList {
 		private String uUsername;
-		private int oNo;
+		private int orderNo;
 		private int accumulationSal;
 		private String oOrderTimeStr;
 		private int SNum;

@@ -12,4 +12,5 @@ public class Admin {
 	private String aUsername;
 	private String aPassword;
 	private String aIrum;
+	private Boolean aEnabled;
 }

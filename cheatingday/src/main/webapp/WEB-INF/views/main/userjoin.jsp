@@ -28,13 +28,6 @@
 <script src="login/vendor/countdowntime/countdowntime.js"></script>
 <script type="text/JavaScript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<style>
-#sea {
-	position: absolute;
-	left: 200px;
-	top: 936px;
-}
-</style>
 <script type="text/javascript">
    function openDaumZipAddress() {
       new daum.Postcode({
@@ -224,10 +217,10 @@ $(function() {
                <div>
 	               <div>
 	                  <label class="txt p-b-11" for="u_address">주소</label>
-	                  <button type="button" class="btn btn-outline-danger" onClick="openDaumZipAddress();" id="sea">검색</button>
-		              <div class="wrap-input300 validate-input m-b-36">
-	                     <input class="input300" id="zonecode" type="text" name="uAddress" placeholder="우편번호" />&nbsp; 
-	                  </div>
+			          <div class="wrap-input300 validate-input m-b-36" style="width:25%;">
+		                 <input class="input300" id="zonecode" type="text" name="uAddress" placeholder="우편번호" />
+		              </div>
+			          <button type="button" class="btn btn-outline-danger" onClick="openDaumZipAddress();" id="sea">검색</button>
 	                  <div class="wrap-input100 validate-input m-b-36">
 	                     <input class="input200" type="text" id="address" name="uAddress" placeholder="주소를 검색해주세요" readonly/>
 	                  </div>

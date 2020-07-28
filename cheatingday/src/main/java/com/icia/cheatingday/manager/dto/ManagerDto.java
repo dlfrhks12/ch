@@ -95,7 +95,6 @@ public static class DtoForOrderList{
 		private String mTel;      //사업자 전화번호
 		@Pattern(regexp = "^[가-힣]{2,5}$", message = "이름은 한글 2~5자입니다")
 		private String mIrum;     //사업자 이름
-		private String sName;
 		private List<String> authorities;
 	}
 	

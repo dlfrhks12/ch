@@ -63,57 +63,30 @@ public class StoreDao {
 		return tpl.selectOne("storeMapper.count", map);
 	}
 
-	public List<Store> findAllByfoodNoAndStar(int startRowNum, int endRowNum, Integer foodNo, String keyword) {
+	public List<Store> findAllByfoodNoAndStar(Integer foodNo, String keyword) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("startRowNum", startRowNum);
-		map.put("endRowNum", endRowNum);
 		map.put("foodNo", foodNo);
 		map.put("keyword", keyword);
 		return tpl.selectList("storeMapper.findAllByfoodNoAndStar", map);
 	}
 	
-	public List<Store> findAllByfoodNoAndReview(int startRowNum, int endRowNum, Integer foodNo, String keyword) {
+	public List<Store> findAllByfoodNoAndReview(Integer foodNo, String keyword) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("startRowNum", startRowNum);
-		map.put("endRowNum", endRowNum);
 		map.put("foodNo", foodNo);
 		map.put("keyword", keyword);
 		return tpl.selectList("storeMapper.findAllByfoodNoAndReview", map);
 	}
 
-	public List<Store> findAllByReview(int startRowNum, int endRowNum, String keyword) {
+	public List<Store> findAllByReview(String keyword) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("startRowNum", startRowNum);
-		map.put("endRowNum", endRowNum);
 		map.put("keyword", keyword);
 		return tpl.selectList("storeMapper.findAllByReview", map);
 	}
 	
-	public List<Store> findAllByStar(int startRowNum, int endRowNum, String keyword) {
+	public List<Store> findAllByStar(String keyword) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("startRowNum", startRowNum);
-		map.put("endRowNum", endRowNum);
 		map.put("keyword", keyword);
 		return tpl.selectList("storeMapper.findAllByStar", map);
-	}
-	
-	public List<Store> listAll(String searchOption, String keyword) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		return tpl.selectList("storeMapper.listAll", map);
-	}
-	
-	public int countArticle(String searchOption, String keyword) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		return tpl.selectOne("storeMapper.countArticle", map);
-	}
-
-
-	public List<Store> findAll() {
-		return tpl.selectList("storeMapper.findAll");
 	}
 
 }

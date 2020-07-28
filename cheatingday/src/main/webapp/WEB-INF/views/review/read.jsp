@@ -58,12 +58,13 @@
 				var $lower_div = $("<div>").appendTo($comment);
 				$("<span></span><br>").text("사장님").appendTo($upper_div);
 				$("<span>").text(comment.rcDateTime).appendTo($upper_div);
-				if(comment.musername==loginId)
-					$("<div>").html(comment.rcContent).attr("id","comment_rcContent").appendTo($center_div);
+				$("<div>").html(comment.rcContent).attr("id","comment_rcContent").appendTo($center_div);
 				
 				if(comment.musername===loginId){
-					var btn = $("<button>").attr("class","delete_comment").attr("data-rcno",comment.rcNo)
+					var btn = $("<button>").attr("class","delete_comment").attr("data-rcno",comment.rcNo).attr("data-musername", comment.musername)
 							.text("삭제").appendTo($center_div).css("float",right);
+					var btn2 = $("<button>").attr("class","update_comment").attr("data-rcno",comment.rcNo).attr("data-musername", comment.musername)
+					.text("신고").appendTo($center_div).css("float",right);
 				}
 				$("<hr>").appendTo($comment);
 				
@@ -121,6 +122,19 @@
 		console.log(params);
 		$.ajax({
 			url:"/cheatingday/review/update",
+			method:"post",
+			data: params
+		}).done((result)=>{location.reload()}).fail((result)=>{console.log(result)})
+	})
+	$("#singo").on("click",function(){
+		var params = {
+			rNo:review.rno,
+			_csrf:"${_csrf.token}",
+			_method:"patch"
+		}
+		console.log(params);
+		$.ajax({
+			url:"/cheatingday/review/singo",
 			method:"post",
 			data: params
 		}).done((result)=>{location.reload()}).fail((result)=>{console.log(result)})
@@ -254,14 +268,21 @@
 					<button id = "update" class = "btn btn-outline-info">Update</button>
 					<button id = "delete" class = "btn btn-outline-info">Delete</button>
 				</div>
+				<div>
+				<sec:authorize access="hasRole('ROLE_MANAGER')">
+					<button id = "singo" class = "btn btn-outline-info">신고하기</button>
+				</sec:authorize>
+				</div>
 			</div>
 		</div>
+		<sec:authorize access="hasRole('ROLE_MANAGER')">
 		<div id = "comment_div">
 			<div class = "form-group" id = "comment_form">
 				<textarea class = "form-control" rows = "5" id = "comment_textarea" placeholder = "댓글을 입력하세요" disabled="disabled"></textarea>
 			</div>
 			<button type = "button" class = "btn btn-outline-info" id = "comment_write">Write </button>
 		</div>
+		</sec:authorize>
 		<hr>
 		<div id = "comments"></div>
 	</div>

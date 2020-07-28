@@ -158,7 +158,6 @@ public class CartService {
 		HttpSession session = req.getSession(); // 세션을 새로 만든다.
 		List<OrderDetails> order = findAll(); // 예비주문상세내역을 선언한다.
 		session.setAttribute("order", order); // 예비주문상세내역 정보를 새로 만든 세션에 저장한다 
-		
 		List<Orders> orders = (List<Orders>) session.getAttribute("order"); // 저장한 세션을 가져와서
 		return orDao.insertOrderAll(orders); // 완전한 주문상세내역에 인서트
 	}

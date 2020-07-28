@@ -201,16 +201,12 @@ public class MainService {
 		}
 
 		//별점순 리스트
-		public Page list(int pageno, Integer foodNo, String keyword) {
-			int countOfBoard = storeDao.count(foodNo, keyword);
-			Page page = PagingUtil.getPage(pageno, countOfBoard);
-			int srn = page.getStartRowNum();
-			int ern = page.getEndRowNum();
+		public List<MainDto.DtoForList> list(Integer foodNo, String keyword) {
 			List<Store> storelist = null;
 			if(foodNo!=null) 
-				storelist = storeDao.findAllByfoodNoAndStar(srn, ern, foodNo, keyword);
+				storelist = storeDao.findAllByfoodNoAndStar(foodNo, keyword);
 			else
-				storelist = storeDao.findAllByStar(srn, ern, keyword);
+				storelist = storeDao.findAllByStar(keyword);
 			List<MainDto.DtoForList> dtolist= new ArrayList<>();
 			for(Store store:storelist) {
 				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
@@ -218,22 +214,17 @@ public class MainService {
 				dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 				dtolist.add(dto);
 			}
-			page.setMainlist(dtolist);
-			return page;
+			return dtolist;
 		}
 		//리뷰순 리스트
 		
 		// 리뷰순 리스트
-		public Page listReview(int pageno, Integer foodNo, String keyword) {
-			int countOfBoard = storeDao.count(foodNo,keyword);
-			Page page = PagingUtil.getPage(pageno, countOfBoard);
-			int srn = page.getStartRowNum();
-			int ern = page.getEndRowNum();
+		public List<MainDto.DtoForList> listReview(Integer foodNo, String keyword) {
 			List<Store> storelist = null;
 			if(foodNo!=null) 
-				storelist = storeDao.findAllByfoodNoAndReview(srn, ern, foodNo, keyword);
+				storelist = storeDao.findAllByfoodNoAndReview(foodNo, keyword);
 			else
-				storelist = storeDao.findAllByReview(srn, ern, keyword);
+				storelist = storeDao.findAllByReview(keyword);
 			List<MainDto.DtoForList> dtolist= new ArrayList<>();
 			for(Store store:storelist) {
 				MainDto.DtoForList dto = modelMapper.map(store, MainDto.DtoForList.class);
@@ -241,8 +232,7 @@ public class MainService {
 				dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 				dtolist.add(dto);
 			}
-			page.setMainlist(dtolist);
-			return page;
+			return dtolist;
 		}
 
   }

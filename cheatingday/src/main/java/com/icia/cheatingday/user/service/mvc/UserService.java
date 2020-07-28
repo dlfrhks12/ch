@@ -102,7 +102,7 @@ public class UserService {
 		for(Point point:pointList) {
 			PointDto.DtoForList dto = modelMapper.map(point, PointDto.DtoForList.class);
 			dto.setOOrderTimeStr(buylistDao.findById(uUsername).getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
-			dto.setSNum(buylistDao.findByOrderNo(point.getONo()).getSNum());
+			dto.setSNum(buylistDao.findByOrderNo(point.getOrderNo()).getSNum());
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dtoList.add(dto);
 		}
@@ -150,6 +150,13 @@ public class UserService {
 		for(Buylist buylist:buyList) {
 			BuylistDto.DtoForList dto = modelMapper.map(buylist, BuylistDto.DtoForList.class);
 			dto.setCartDayStr(buylist.getCartDay().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")));
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
+			System.out.println(dto.getSNum());
 			dto.setSName(storeDao.findBysNum(dto.getSNum()).getSName());
 			dto.setMenuname(buylistDao.findByOrderNo(dto.getOrderNo()).getCartName());
 			dto.setFavCheck(favDao.findFavoriteById(dto.getUUsername(),dto.getSNum()));

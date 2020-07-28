@@ -17,8 +17,8 @@ public class BuylistDao {
 	public Buylist findById(String uUsername) {
 		return tpl.selectOne("buylistMapper.findById", uUsername);
 	}
-	public Buylist findByOrderNo(int oNo) {
-		return tpl.selectOne("buylistMapper.findByOrderNo", oNo);
+	public Buylist findByOrderNo(int orderNo) {
+		return tpl.selectOne("buylistMapper.findByOrderNo", orderNo);
 	}
 
 	public int count(String uUsername) {

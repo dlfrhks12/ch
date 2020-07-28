@@ -20,10 +20,6 @@ public class NoticeDao {
 	public int count() {
 		return tpl.selectOne("noticeMapper.count");
 	}
-	//[전체]공지불러오기
-	public Notice findById(Integer nNo) {
-		return tpl.selectOne("noticeMapper.findById", nNo);
-	}
 	//[전체]공지목록
 	public List<Notice> findAll(int startRowNum, int endRowNum){
 		Map<String, Integer> map = new HashMap<>();
@@ -31,6 +27,10 @@ public class NoticeDao {
 		map.put("endRowNum", endRowNum);
 		return tpl.selectList("noticeMapper.findAll", map);
 	}
+	//[전체]공지불러오기
+		public Notice findById(Integer nNo) {
+			return tpl.selectOne("noticeMapper.findById", nNo);
+		}
 	//[관리자]공지입력
 	public int insert(Notice notice) {
 		return tpl.insert("noticeMapper.insert", notice);

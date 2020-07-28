@@ -86,12 +86,12 @@
          <if test="rTitle!=null">r_title=#{rTitle},</if>
          <if test="rStarPoint!=null">r_star_point=#{rStarPoint},</if>
          <if test="rContent!=null">r_content=#{rContent},</if>
+         <if test="rReport!=null">r_report=r_report+1,</if>
       </trim>
       where r_no=#{rNo} and rownum=1
    </update>
    
 </mapper>
-
 
 
 

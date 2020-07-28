@@ -44,7 +44,6 @@ a:visited { color: black; text-decoration: none;}
 <title>Insert title here</title>
 </head>
 <body>
-${orders }
 <hr>
 <div class="alldiv">
 <div class="wrap1">

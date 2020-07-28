@@ -118,15 +118,15 @@ $(function() {
 		        url: "/cheatingday/u_change_pwd",
 		        type: "post",
 		        data: $('#u_change_pwd_form').serialize(),
-		       	success: function() {
-		       		Swal.fire({
-		       		  icon: 'success',
-		       		  title: 'success',
-		       		  text: '비밀번호가 변경되었습니다'
-		       		})
-		       	}
+		        success: function() {
+		        	Swal.fire({
+		  			  icon: 'success',
+		  			  title: 'success',
+		  			  text: '비밀번호가 변경되었습니다',
+		  			})
+		        	}
 		     })
-		}
+		} 
 	})
 		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
@@ -137,13 +137,13 @@ $(function() {
 		        url: "/cheatingday/m_change_pwd",
 		        type: "post",
 		        data: $('#m_change_pwd_form').serialize(),
-		       	success: function() {
-		       		Swal.fire({
-			       		  icon: 'success',
-			       		  title: 'success',
-			       		  text: '비밀번호가 변경되었습니다'
-			       	})
-		       	}
+		        success: function() {
+		        	Swal.fire({
+			  			  icon: 'success',
+			  			  title: 'success',
+			  			  text: '비밀번호가 변경되었습니다',
+			  			})
+		        }
 		     })
 		}
 	})

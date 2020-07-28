@@ -33,7 +33,6 @@ public class MainController {
 		wdb.registerCustomEditor(List.class, "authorities", new AuthorityPropertyEditor());
 		}
 
-   
 	
    /////////////////////////////////////////    메인 공용        ///////////////////////////////////////////////////
    
@@ -47,8 +46,7 @@ public class MainController {
    // [공용] 로그인
    @GetMapping("/login")
    public ModelAndView login() {
-      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp")
-            .addObject("viewName", "main/login.jsp");
+      return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName", "main/login.jsp");
    }
 
 
@@ -77,18 +75,17 @@ public class MainController {
    public ModelAndView findpwd() {
       return new ModelAndView("main").addObject("viewHeader", "include/noheader.jsp").addObject("viewName","main/findpwd.jsp");
    }
-   
 
    
    // 메인화면 카테고리 선택 & 주소 검색 후 가게 리스트
    @PreAuthorize("isAuthenticated()")
    @RequestMapping("/store_list")
    @ResponseBody
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job,  @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.listReview(foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.list(foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       return null;
    }
    

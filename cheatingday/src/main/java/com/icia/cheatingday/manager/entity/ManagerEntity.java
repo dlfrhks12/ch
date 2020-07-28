@@ -20,7 +20,6 @@ public class ManagerEntity { //사업자회원
 	   private String mTel;      //사업자 전화번호
 	   private String mAccount;  //사업자 전용계좌번호
 	   private String mIrum;     //사업자 이름
-	   private String sName;     //상호명
 	   private Boolean mEnabled;
 	   private String status;
 	   

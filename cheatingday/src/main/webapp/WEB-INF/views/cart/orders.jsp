@@ -44,7 +44,6 @@ a:visited { color: black; text-decoration: none;}
 <title>Insert title here</title>
 </head>
 <body>
-${orders }
 <hr>
 <div class="alldiv">
 <div class="wrap1">
@@ -56,7 +55,7 @@ ${orders }
 					<span style="font-size: 0.75em;">메뉴이름: ${cart.cartName }</span><br>
 					<span style="font-size: 0.75em;">수량: ${cart.cartCount}개</span><br>
 					<span style="font-size: 0.75em;">가격: ${cart.cartJumunMoney }원</span>
-					<input type="hidden" id="orderno" value="${cart.orderNo }">
+					<input type="hidden" id="orderno" name="orderNo" value="${cart.orderNo }">
 				</div>
 			</div>
 			<hr>

@@ -59,6 +59,10 @@ public class ReviewRestController {
 		restService.updateReview(dto);
 		return ResponseEntity.ok(null);
 	}
+	@PatchMapping("/review/singo")
+	public ResponseEntity<?> singoReview(int rNo, Principal principal) {
+		return ResponseEntity.ok(restService.singoReview(rNo, principal.getName()));
+	}
 	@DeleteMapping("/review/delete")
 	public ResponseEntity<?> deleteReview(int rNo){
 		restService.deleteReview(rNo);

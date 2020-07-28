@@ -19,13 +19,13 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insert">
-		insert into manager(m_num, m_password, m_username, m_email, m_tel, m_account, m_irum, s_name, m_enabled, status) 
-		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, #{sName}, 0, 1)
+		insert into manager(m_num, m_password, m_username, m_email, m_tel, m_account, m_irum, m_enabled, status) 
+		values(#{mNum}, #{mPassword}, #{mUsername}, #{mEmail}, #{mTel}, 0, #{mIrum}, 0, 1)
 	</insert>
 	<!-- 아이디로 정보 읽어오기 -->
 	<select id="findById" resultType="manager">
 		select m_num mNum, m_password mPassword, m_username mUsername, m_email mEmail, m_tel mTel, m_account mAccount, 
-		m_irum mIrum, s_name sName, m_enabled mEnabled, status from manager where m_username=#{m_username} and rownum=1
+		m_irum mIrum, m_enabled mEnabled, status from manager where m_username=#{m_username} and rownum=1
 	</select>
 	<!-- 이름과 이메일로 아이디 찾기 -->
 	<select id="findUsernameByIrumAndEmail" resultType="string">
@@ -42,7 +42,6 @@
 			<if test="mIrum!=null">m_irum=#{mIrum},</if>
 			<if test="mEnabled!=null">m_enabled=#{mEnabled},</if>
 			<if test="mAccount!=null">m_account=#{mAccount},</if>
-			<if test="sName!=null">s_name=#{sName}</if>
 		</trim>
 		where m_username=#{mUsername} and rownum=1
 	</update>

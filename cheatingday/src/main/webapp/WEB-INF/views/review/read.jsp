@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="/cheatingday/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/cheatingday/css/read.css">
 <sec:authorize access="isAuthenticated()">
 <script>
@@ -25,6 +28,8 @@
 
 	var review = undefined;
 	function printReview(){
+		var com = review.comments;
+		console.log(review);
 		$("#rTitle").val(review.rtitle);
 		$("#rNo").text(review.rno);
 		$("#write_time").text(review.rwriteTimeStr);
@@ -39,13 +44,13 @@
 			$("#rTitle").prop("disabled",false);
 			$("#btn_area").show();
 			$("#rStarPoint").prop("disabled",false);
-		
 		}else if(isLogin===true && review.uusername!==loginId){
 			$("#rStarPoint").prop("disabled",false);
 			$("#comment_textarea").prop("disabled",false);
 			$("#commnet_write").prop("disabled",false);
-		}else if(review.comments!="")
-			$("#comment_area").hide();
+		}
+		if(com.length>=1)
+			$("#comment_div").hide();
 	}
 		function printComment(reviewComment){
 			console.log(reviewComment);
@@ -58,11 +63,10 @@
 				var $lower_div = $("<div>").appendTo($comment);
 				$("<span></span><br>").text("사장님").appendTo($upper_div);
 				$("<span>").text(comment.rcDateTime).appendTo($upper_div);
-				if(comment.musername==loginId)
-					$("<div>").html(comment.rcContent).attr("id","comment_rcContent").appendTo($center_div);
+				$("<div>").html(comment.rcContent).attr("id","comment_rcContent").appendTo($center_div);
 				
 				if(comment.musername===loginId){
-					var btn = $("<button>").attr("class","delete_comment").attr("data-rcno",comment.rcNo)
+					var btn = $("<button>").attr("class","delete_comment").attr("data-rcno",comment.rcNo).attr("data-musername", comment.musername)
 							.text("삭제").appendTo($center_div).css("float",right);
 				}
 				$("<hr>").appendTo($comment);
@@ -95,7 +99,7 @@
 			url:"/cheatingday/reviewComment/write",
 			method:"post",
 			data:params
-		}).done((result)=>{printComment(result)}).fail((result)=>{console.log(result)});
+		}).done((result)=>{printComment(result);$("#comment_textarea").val(""); $("#comment_div").hide();}).fail((result)=>{console.log(result)});
 	})
 	$("#comments").on("click",".delete_comment",function(){
 		var params = {
@@ -108,7 +112,7 @@
 			url:"/cheatingday/reviewComment/delete",
 			method:"post",
 			data: params
-		}).done((result)=>{printComment(result)}).fail((result)=>{console.log(result)})
+		}).done((result)=>{printComment(result); $("#comment_div").show();}).fail((result)=>{console.log(result)})
 	})
 	$("#update").on("click",function(){
 		var params = {
@@ -124,6 +128,19 @@
 			method:"post",
 			data: params
 		}).done((result)=>{location.reload()}).fail((result)=>{console.log(result)})
+	})
+	$("#singo").on("click",function(){
+		var params = {
+			rNo:review.rno,
+			_csrf:"${_csrf.token}",
+			_method:"patch"
+		}
+		console.log(params);
+		$.ajax({
+			url:"/cheatingday/review/singo",
+			method:"post",
+			data: params
+		}).done((result)=>{alert("신고하셨습니다"); location.reload()}).fail((result)=>{console.log(result)})
 	})
 	$("#delete").on("click",function(){
 		var params = {
@@ -254,14 +271,21 @@
 					<button id = "update" class = "btn btn-outline-info">Update</button>
 					<button id = "delete" class = "btn btn-outline-info">Delete</button>
 				</div>
+				<div>
+				<sec:authorize access="hasRole('ROLE_MANAGER')">
+					<button id = "singo" class = "btn btn-outline-info">신고하기</button>
+				</sec:authorize>
+				</div>
 			</div>
 		</div>
+		<sec:authorize access="hasRole('ROLE_MANAGER')">
 		<div id = "comment_div">
 			<div class = "form-group" id = "comment_form">
 				<textarea class = "form-control" rows = "5" id = "comment_textarea" placeholder = "댓글을 입력하세요" disabled="disabled"></textarea>
 			</div>
 			<button type = "button" class = "btn btn-outline-info" id = "comment_write">Write </button>
 		</div>
+		</sec:authorize>
 		<hr>
 		<div id = "comments"></div>
 	</div>

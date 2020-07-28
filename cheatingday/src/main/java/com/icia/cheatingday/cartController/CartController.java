@@ -111,8 +111,8 @@ public class CartController {
    
    // 최종 주문 내용
    @PostMapping("/cart/finalorder")
-   public ResponseEntity<?> inserts(HttpServletRequest req) {
-      return ResponseEntity.ok(service.insertOrderAll(req));
+   public ResponseEntity<?> inserts(HttpServletRequest req, int orderNo, Principal principal) {
+	   return ResponseEntity.ok(service.insertOrderAll(req, orderNo,principal.getName()));
    }
 
 }

@@ -67,11 +67,11 @@ function checkUserPassword() {
    	if(pwd1!==pwd2) {
    		$("#u_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
    		return false;
-   	}
-   	$("#u_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
-   	return true;
+   	} else if(pwd1==pwd2 && pwd1!=="") {
+   		$("#u_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
+   		return true;
    }
-   
+}   
 
  //비밀번호 확인
    function checkManagerPassword() {
@@ -87,8 +87,8 @@ function checkUserPassword() {
       	if(pwd1!==pwd2) {
       		$("#m_password2_msg").text("비밀번호가 일치하지 않습니다").css({"color":"red", "font-size":"0.75em"});
       		return false;
-      	} else {
-   	   	$("#m_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
+      	} else if(pwd1==pwd2 && pwd1=="") {
+   	   		$("#m_password2_msg").text("비밀번호가 일치합니다").css({"color":"green", "font-size":"0.75em"});
       		return true;
       	}
    }
@@ -100,34 +100,36 @@ $(function() {
 	if(msg!="") {
 		alert(msg);
 	}
+	
 	$("#uNewPassword").on("blur", checkUserPassword);
 	$("#uNewPassword2").on("blur", checkUserPassword2);
 	$("#mNewPassword").on("blur", checkManagerPassword);
 	$("#mNewPassword2").on("blur", checkManagerPassword2);
 	
+	
 	$("#uChangePwd").on("click", function() {
 		var r1 = checkUserPassword();
 		var r2 = checkUserPassword2();
-		var result = r1 && r2
-		if(result===true && $("#uNewPassword").val()!=="" && $("#uNewPassword2").val()!=="")  {
+		var result = r1 && r2;
+		if(result==true)  {
 			$.ajax({
 		        url: "/cheatingday/u_change_pwd",
 		        type: "post",
-		        data: $('#u_change_pwd_form').serialize(),
-		     }).done(()=>{
-		    	 alert("비밀번호가 변경되었습니다");})}
-	})
+		        data: $("#u_change_pwd_form").serialize(),
+		     }).done(()=>{$("#u_change_pwd_form").submit();})
+		 }
+		     
 		$("#mChangePwd").on("click", function() {
 		var r1 = checkManagerPassword();
 		var r2 = checkManagerPassword2();
-		var result = r1 && r2
-		if(result===true && $("#mNewPassword").val()!=="" && $("#mNewPassword2").val()!=="")  {
+		var result = r1 && r2;
+		if(result==true)  {
 			$.ajax({
 		        url: "/cheatingday/m_change_pwd",
 		        type: "post",
-		        data: $('#m_change_pwd_form').serialize(),
-		     }).done(()=>{
-		    	 alert("비밀번호가 변경되었습니다");})}
+		        data: $("#m_change_pwd_form").serialize(),
+		     }).done(()=>{$("#m_change_pwd_form").submit();})}
+		 })
 	})
 })
 
@@ -168,7 +170,7 @@ $(function() {
 					</div>
 					<div>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-						<button id="uChangePwd">비밀번호 변경</button>
+						<button type="button" id="uChangePwd">비밀번호 변경</button>
 					</div>
 				</form>
 			</div>

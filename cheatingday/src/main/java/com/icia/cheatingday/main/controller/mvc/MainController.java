@@ -81,11 +81,11 @@ public class MainController {
    @PreAuthorize("isAuthenticated()")
    @RequestMapping("/store_list")
    @ResponseBody
-   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job, @RequestParam(defaultValue = "1") int pageno, @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
+   public ModelAndView storelist(@RequestParam(defaultValue = "star_list") String job,  @Nullable Integer foodNo , @RequestParam(defaultValue = "") String keyword) {
       if(job.equals("review_list"))
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.listReview(pageno, foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.listReview(foodNo, keyword)).addObject("filter", "review_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       else if(job.equals("star_list"))         
-         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.list(pageno, foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
+         return new ModelAndView("main").addObject("viewHeader","include/menuheader.jsp").addObject("viewName","main/mainstorelist.jsp").addObject("store", service.list(foodNo, keyword)).addObject("filter", "star_list").addObject("foodno", foodNo).addObject("keyword", keyword);
       return null;
    }
    
@@ -188,6 +188,7 @@ public class MainController {
    @PostMapping("/u_change_pwd")
    public String changeUserPwd(@RequestParam @NotNull String uPassword, @RequestParam @NotNull String uNewPassword, Principal principal, RedirectAttributes ra) {
       service.changeUserPwd(uPassword, uNewPassword, principal.getName());
+      ra.addFlashAttribute("msg", "비밀번호가 변경되었습니다.");
       return "redirect:/";
    }
    
@@ -269,6 +270,7 @@ public class MainController {
    @PostMapping("/m_change_pwd")
    public String changeManagerPwd(@RequestParam @NotNull String mPassword, @RequestParam @NotNull String mNewPassword, Principal principal, RedirectAttributes ra) {
       service.changeManagerPwd(mPassword, mNewPassword, principal.getName());
+      ra.addFlashAttribute("msg", "비밀번호가 변경되었습니다.");
       return "redirect:/";
    }
    

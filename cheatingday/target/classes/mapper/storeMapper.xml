@@ -43,7 +43,6 @@ from store where m_username=#{mUsername}
 <selectKey order="BEFORE" resultType="int" keyProperty="sNum">
 select store_seq.nextval from dual
 </selectKey>
-
 insert into store(s_num,s_sajin,s_info,s_name,s_tel,s_address,
 food_no,s_star_point,s_review_cnt,m_username) values(#{sNum},#{sSajin},#{sInfo},#{sName},
 #{sTel},#{sAddress},#{foodNo},0,0,#{mUsername})
@@ -78,46 +77,31 @@ update store
 <!-- 별점순 정렬 목록 카테고리조건 -->
 <select id="findAllByfoodNoAndStar" resultType="store">
 	<![CDATA[
-		select * from
-		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where food_no=#{foodNo} and s_address like '%'||#{keyword}||'%' order by s_star_point desc) b
-			where rownum<=#{endRowNum})
-		where rnum>=#{startRowNum}
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where food_no=#{foodNo} and s_address like '%'||#{keyword}||'%' order by s_star_point desc
 	]]>
 </select>
 <!-- 리뷰순 정렬목록 카테고리조건 -->
 <select id="findAllByfoodNoAndReview" resultType="store">
-		<![CDATA[
-		select * from
-		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where food_no=#{foodNo} and s_address like '%'||#{keyword}||'%' order by s_review_cnt desc) b
-			where rownum<=#{endRowNum})
-		where rnum>=#{startRowNum}
+	<![CDATA[
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where food_no=#{foodNo} and s_address like '%'||#{keyword}||'%' order by s_review_cnt desc
 	]]>
 </select>
 
 <!-- 리뷰순 정렬목록 -->
 <select id="findAllByReview" resultType="store">
 	<![CDATA[
-		select * from
-		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_review_cnt desc) b
-			where rownum<=#{endRowNum} )
-		where rnum>=#{startRowNum}
+	select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_review_cnt desc
 	]]>
 </select>
 <!-- 별점순 정렬목록 -->
 <select id="findAllByStar" resultType="store">
 	<![CDATA[
-		select * from
-		(select rownum as rnum, b.* from
-			(select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_star_point desc) b
-			where rownum<=#{endRowNum})
-		where rnum>=#{startRowNum}
+		select s_num sNum,s_sajin sSajin,s_name sName,food_no foodNo,s_star_point sStarPoint,s_review_cnt sReviewCnt, s_address sAddress from store where s_address like '%'||#{keyword}||'%' order by s_star_point desc
 	]]>
-	
 </select>
-
+<select id="starAvg" resultType="float">
+select round(avg(cast(r_star_point as float)),1) from review where s_num=#{sNum}
+</select>
 </mapper>
 
 

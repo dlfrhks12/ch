@@ -69,13 +69,16 @@ $(function() {
 	</div>
 		<table class="table table-hover">
 			<colgroup>
+				<col width="10%">
 				<col width="20%">
 				<col width="20%">
 				<col width="20%">
 				<col width="20%">
+				<col width="10%">
 			</colgroup>
 			<thead>
 				<tr class="table-danger">
+					<th class="first">주문번호</th>
 					<th class="first">상호명</th>
 					<th class="first">주문메뉴</th>
 					<th class="first">주문금액</th>
@@ -86,8 +89,9 @@ $(function() {
 			<tbody id="list" class="first">
 				<c:forEach items="${page.blist}" var="buylist">
 					<tr>
+						<td>${buylist.orderNo}</td>
 						<td><a href = "/cheatingday/review/write?orderNo=${buylist.orderNo}">${buylist.SName}</a></td>
-						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.menuname}</a></td>
+						<td><a data-toggle="modal" data-target="#exampleModalCenter">${buylist.cartName}</a></td>
 						<td>${buylist.cartPrice}</td>
 						<td>${buylist.cartDayStr}</td>
 						<c:if test="${buylist.favCheck eq false }">

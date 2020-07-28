@@ -46,7 +46,7 @@
 				<tr>
 					<td>${review.SName}</td>
 					<td>${review.category}</td>
-					<td><a href="/cheatingday/user/read?reviewlist=${page.rlist}" onclick="openWin()">${review.RTitle}</a></td>
+					<td><a href="/cheatingday/review/read?rNo=${review.RNo}">${review.RTitle}</a></td>
 					<td>${review.menuname}</td>
 					<td>${review.RWriteTimeStr}</td>
 					<td>${review.RStarPoint} /

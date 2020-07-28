@@ -33,9 +33,14 @@ public class ManagerRestController {
 	
 	
 	//메뉴수정
-	@PatchMapping("/manager/menu_update")
-	public ResponseEntity<?> menuUpdate(MenuDto.DtoForRead dto,MultipartFile sajin) 
-			throws IllegalStateException, IOException{
+	@PatchMapping("/manager/menu_update")//음식점고유번호랑 로그인한사람 같으면, 
+	public ResponseEntity<?> menuUpdate(MenuDto.DtoForRead dto,MultipartFile sajin) throws IllegalStateException, IOException{
+		System.out.println(dto.getSNum());
+		System.out.println(dto.getSNum());
+		System.out.println(dto.getSNum());
+		System.out.println(dto.getSNum());
+		System.out.println(dto.getSNum());
+		System.out.println(dto.getSNum());
 		return ResponseEntity.ok(service.menuUpdate(dto, sajin));
 	}
 	

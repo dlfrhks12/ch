@@ -19,9 +19,9 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.icia.cheatingday.exception.*;
 import com.icia.cheatingday.manager.dao.ManagerDao;
-import com.icia.cheatingday.review.dao.ReviewCommentDao;
-import com.icia.cheatingday.review.dao.ReviewDao;
+import com.icia.cheatingday.review.dao.*;
 import com.icia.cheatingday.review.dto.ReviewDto;
 import com.icia.cheatingday.review.entity.Review;
 import com.icia.cheatingday.review.entity.ReviewComment;
@@ -44,6 +44,8 @@ public class ReviewRestService {
 	private String imagePath;
 	@Autowired
 	private ManagerDao managerDao;
+	@Autowired
+	private ManagerBoardDao managerboardDao;
 	Pattern ckImagePattern = Pattern.compile("src=\".+\"\\s");
 
 	public String saveCkImage(MultipartFile upload) throws IOException {
@@ -66,6 +68,16 @@ public class ReviewRestService {
 		Review review = reviewDao.findByRno(dto.getRNo());
 		review = modelMapper.map(dto, Review.class);
 		return reviewDao.update(review);
+	}
+	public int singoReview(int rNo, String mUsername) {
+		Review review = reviewDao.findByRno(rNo);
+		if(managerboardDao.alreadyExist(mUsername, rNo)!=null) {
+			int result = review.getRReport();
+			return result;
+		} 
+		managerboardDao.insert(mUsername, rNo);
+		reviewDao.update(Review.builder().rNo(rNo).rReport(review.getRReport()+1).build());
+		return review.getRReport()+1;
 	}
 	public void deleteReview(Integer rNo) {
 		Review review = reviewDao.findByRno(rNo);
@@ -94,8 +106,10 @@ public class ReviewRestService {
 	public int updateComment(ReviewComment comment) {
 		return commentDao.update(comment);
 	}
-	public List<ReviewComment> deleteComment(Integer rcNo, Integer rNo,String uUsername){
+	public List<ReviewComment> deleteComment(Integer rcNo, Integer rNo,String mUsername){
 		ReviewComment comment = commentDao.findByRcno(rcNo);
+		if(mUsername.equals(comment.getMUsername())==false)
+			throw new JobFailException("댓글을 삭제 할 수 없습니다.");
 		commentDao.delete(rcNo);
 		return commentDao.findByRno(rNo);
 	}

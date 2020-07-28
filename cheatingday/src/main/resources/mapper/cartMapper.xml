@@ -15,7 +15,7 @@
 	<!-- 예비상세주문내역 출력 -->
 	<select id="findAll" resultType="cart">
 		select order_no orderNo, menuno menuno, u_username uUsername, cart_name cartName, cart_price cartPrice, cart_day cartDay, 
-		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney
+		       cart_count cartCount, image, cart_jumunMoney cartJumunMoney, s_num sNum
 		from cart
 	</select>
 	

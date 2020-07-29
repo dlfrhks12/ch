@@ -167,7 +167,7 @@ $(function() {
          method: "post",
          data: params
       })
-      .done((result)=>{ printComment(result); $("#comment_area").show(); })
+      .done((result)=>{ printComment(result); $("#comment_area").show();  $("#comment_textarea").prop("disabled", false); $("#comment_write").prop("disabled", false); })
       .fail(()=>{console.log(params)});
    });
    //댓글 업데이트

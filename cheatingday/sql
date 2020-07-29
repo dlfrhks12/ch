@@ -42,8 +42,7 @@ CREATE TABLE point (
 	u_username VARCHAR2(20) NOT NULL, /* 아이디 */
 	order_no NUMBER(10), /* 주문번호 */
 	accumulation_sal NUMBER(10), /* 적립금액 */
-	totalpoint NUMBER(10), /* 총포인트 */
-    constraint point_pk_u_username primary key(u_username)
+	totalpoint NUMBER(10) /* 총포인트 */
 );
 
 /* 음식점  */
@@ -55,7 +54,7 @@ CREATE TABLE store (
 	s_tel VARCHAR2(11), /* 음식점 전화번호 */
 	s_address NVARCHAR2(100), /* 주소 */
 	food_no NUMBER(10), /* 음식 카테고리 번호 */
-	s_star_point NUMBER(10), /* 별점평균 */
+	s_star_point FLOAT, /* 별점평균 */
 	image VARCHAR2(100), /* 메뉴사진 */
 	s_review_cnt NUMBER(10), /* 리뷰개수 */
 	m_username VARCHAR2(20), /* 사업자아이디 */
@@ -195,15 +194,13 @@ CREATE TABLE boardcate (
 /* 중복확인 */
 CREATE TABLE user_board (
 	username NVARCHAR2(20), /* 아이디 */
-	bno NUMBER(10), /* 글번호 */
-    constraint user_board_pk_username primary key(username)
+	bno NUMBER(10) /* 글번호 */
 );
 
 /* 신고 */
 CREATE TABLE manager_board (
 	username NVARCHAR2(20) NOT NULL, /* 사업자아이디 */
-	r_no NUMBER(10), /* 리뷰번호 */
-    constraint manager_board_pk_username primary key(username)
+	r_no NUMBER(10) /* 리뷰번호 */
 );
 
 /* 주문상세 */
@@ -217,8 +214,7 @@ CREATE TABLE orders (
 	menuno NUMBER(10), /* 메뉴번호 */
 	u_username VARCHAR2(20), /* 아이디 */
 	s_num NUMBER(10), /* 음식점 고유번호 */
-	order_no NUMBER(10), /* 주문번호 */
-    constraint orders_pk_order_no primary key(order_no)
+	order_no NUMBER(10)/* 주문번호 */
 );
 
 /* 임시주문 */
@@ -232,8 +228,7 @@ CREATE TABLE cart (
 	cart_day DATE, /* 주문일 */
 	cart_jumunMoney NUMBER(10), /* 메뉴총금액 */
 	s_num NUMBER(10), /* 음식점 고유번호 */
-	image  VARCHAR2(100), /* 메뉴사진 */
-    constraint cart_pk_order_no primary key(order_no)
+	image  VARCHAR2(100) /* 메뉴사진 */
 );
 create SEQUENCE QNA_SEQ MINVALUE 0;
 create SEQUENCE QNACOMMENT_SEQ MINVALUE 0;
@@ -244,7 +239,7 @@ create SEQUENCE REVIEW_SEQ MINVALUE 0;
 create SEQUENCE REVIEWCOMMENT_SEQ MINVALUE 0;
 create SEQUENCE BOARD_SEQ MINVALUE 0;
 create SEQUENCE NOTICE_SEQ MINVALUE 0;
-
+create SEQUENCE COMMENTS_SEQ MINVALUE 0;
 select QNA_SEQ.nextval from dual;
 select QNACOMMENT_SEQ.nextval from dual;
 select STORE_SEQ.nextval from dual;
@@ -254,6 +249,7 @@ select REVIEWCOMMENT_SEQ.nextval from dual;
 select BOARD_SEQ.nextval from dual;
 select CART_SEQ.nextval from dual;
 select NOTICE_SEQ.nextval from dual;
+select COMMENTS_SEQ.nextval from dual;
 SELECT
     *
 FROM foodcategory;
@@ -263,16 +259,6 @@ FROM qnacategory;
 SELECT
     *
 FROM boardcate;
-
-drop SEQUENCE QNA_SEQ;
-drop SEQUENCE CART_SEQ;
-drop SEQUENCE QNACOMMENT_SEQ;
-drop SEQUENCE STORE_SEQ;
-drop SEQUENCE MENU_SEQ;
-drop SEQUENCE REVIEW_SEQ;
-drop SEQUENCE REVIEWCOMMENT_SEQ;
-drop SEQUENCE BOARD_SEQ;
-drop SEQUENCE NOTICE_SEQ;
 insert into foodcategory VALUES(1,'분식');
 insert into foodcategory VALUES(2,'중국집');
 insert into foodcategory VALUES(3,'치킨');
@@ -287,8 +273,39 @@ insert into qnacategory VALUES(2,'신고');
 insert into qnacategory VALUES(3,'기타');
 insert into boardcate VALUES(1,'맛집추천');
 insert into boardcate VALUES(2,'나만의 레시피');
---SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 commit;
+drop SEQUENCE QNA_SEQ;
+drop SEQUENCE CART_SEQ;
+drop SEQUENCE QNACOMMENT_SEQ;
+drop SEQUENCE STORE_SEQ;
+drop SEQUENCE MENU_SEQ;
+drop SEQUENCE REVIEW_SEQ;
+drop SEQUENCE REVIEWCOMMENT_SEQ;
+drop SEQUENCE BOARD_SEQ;
+drop SEQUENCE NOTICE_SEQ;
+--DROP TABLE "MANAGER_BOARD" CASCADE CONSTRAINTS;
+--DROP TABLE "QNACATEGORY" CASCADE CONSTRAINTS;
+--DROP TABLE "QNA" CASCADE CONSTRAINTS;
+--DROP TABLE "CART" CASCADE CONSTRAINTS;
+--DROP TABLE "REVIEW" CASCADE CONSTRAINTS;
+--DROP TABLE "BOARD" CASCADE CONSTRAINTS;
+--DROP TABLE "COMMENTS" CASCADE CONSTRAINTS;
+--DROP TABLE "BOARDCATE" CASCADE CONSTRAINTS;
+--DROP TABLE "USER_BOARD" CASCADE CONSTRAINTS;
+--DROP TABLE "ORDERS" CASCADE CONSTRAINTS;
+--DROP TABLE "NOTICE" CASCADE CONSTRAINTS;
+--DROP TABLE "ADMIN" CASCADE CONSTRAINTS;
+--DROP TABLE "MANAGER" CASCADE CONSTRAINTS;
+--DROP TABLE "USERS" CASCADE CONSTRAINTS;
+--DROP TABLE "POINT" CASCADE CONSTRAINTS;
+--DROP TABLE "STORE" CASCADE CONSTRAINTS;
+--DROP TABLE "FOODCATEGORY" CASCADE CONSTRAINTS;
+--DROP TABLE "AUTHORITY" CASCADE CONSTRAINTS;
+--DROP TABLE "MENU" CASCADE CONSTRAINTS;
+--DROP TABLE "FAVORITES" CASCADE CONSTRAINTS;
+--DROP TABLE "REVIEWCOMMENT" CASCADE CONSTRAINTS;
+--DROP TABLE "QNACOMMENT" CASCADE CONSTRAINTS;
 --CHEAT	QNA_SEQ
 --CHEAT	QNACOMMENT_SEQ
 --CHEAT	STORE_SEQ
